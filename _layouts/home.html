@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+</head>
+<body>
+  <!-- full-screen background layer -->
+  <canvas id="meteors"></canvas>
+
+  <!-- your usual header/nav include -->
+  {% include header.html %}
+
+  <!-- hero content -->
+  <main class="hero">
+    {{ content }}
+  </main>
+
+  <!-- meteor shower script -->
+  <script src="{{ '/assets/js/meteors.js' | relative_url }}"></script>
+</body>
+</html>
