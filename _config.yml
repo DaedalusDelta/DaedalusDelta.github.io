@@ -1,0 +1,4 @@
+title: “DaedalusDelta”
+theme: minima     # or any Jekyll theme you like
+plugins:
+  - jekyll-feed
