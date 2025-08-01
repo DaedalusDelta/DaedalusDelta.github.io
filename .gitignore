@@ -1,0 +1,21 @@
+# — Jekyll build output
+_site/
+
+# — Jekyll cache
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+.tool-versions
+
+# — Bundler
+.bundle/
+vendor/bundle/
+
+# — VS Code project settings
+.vscode/
+
+# — macOS FS metadata
+.DS_Store
+
+# — Log files
+*.log

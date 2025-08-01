@@ -4,10 +4,23 @@ title: About Me
 permalink: /about/
 ---
 
-## Your Name, Ph.D. Candidate  
-University of Somewhere
+## Muxin Liu, CMU School of Computer Science BSAI
 
-**Research Interests:** X, Y, Z  
-**Contact:** you@example.com  
+**Research Interests:** sim2real, behavior cloning, representation learning
 
-— add CV link, publications list, photo, etc.
+**Contact:** muxinl@andrew.cmu.edu
+
+
+<div class="construction-container">
+
+  <div class="under-construction">
+    🚧 Under Construction 🚧
+  </div>
+
+  <img
+    src="{{ '/assets/images/under_construction.gif' | relative_url }}"
+    alt="Under Construction Animation"
+    class="construction-gif"
+  />
+
+</div>
