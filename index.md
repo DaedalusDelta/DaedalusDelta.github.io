@@ -4,5 +4,7 @@ title: Home
 permalink: /
 ---
 
-> “Nous devons savoir, nous saurons.”  
-> — a paraphrase of David Hilbert’s “We must know, we will know”
+<blockquote class="hilbert-quote">
+  “What must be known, we shall know.”
+  <cite>— David Hilbert</cite>
+</blockquote>
