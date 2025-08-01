@@ -21,3 +21,50 @@ canvas#meteors,
   z-index: 1;
   /* any extra spacing / typography here */
 }
+
+
+/* ensure page content isn’t hidden under the fixed nav */
+body {
+  padding-top: 4rem; /* adjust if your nav’s height changes */
+}
+
+/* nav container */
+.main-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 30, 0.8);
+  z-index: 100;
+  /* subtle backdrop blur if you like: */
+  /* backdrop-filter: saturate(180%) blur(10px); */
+}
+
+/* remove default list styling & center items */
+.main-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* links styling */
+.main-nav a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  color: #eef;
+  text-decoration: none;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: background 0.3s;
+  border-radius: 4px;
+}
+
+/* hover/focus effect */
+.main-nav a:hover,
+.main-nav a:focus {
+  background: rgba(255, 255, 255, 0.1);
+}
