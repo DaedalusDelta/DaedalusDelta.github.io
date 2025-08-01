@@ -1,0 +1,49 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ page.title }} | {{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+    <!-- KaTeX: only for posts -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+      onload="renderMathInElement(document.body,{
+        delimiters: [
+          {left:'$$',right:'$$',display:true},
+          { left: '\\[', right: '\\]', display:true},
+          {left:'$',right:'$',display:false}
+        ],
+        throwOnError: false
+      });"
+    ></script>
+  </head>
+  <body class="blog">
+    {% include header.html %}
+    <main class="post-content">
+      {{ content }}
+      {% if page.tags %}
+        <section class="post-tags">
+          <h4>Tags</h4>
+          <ul>
+            {% for tag in page.tags %}
+              <li>
+                <a href="{{ '/tags/' | append: tag | relative_url }}">#{{ tag }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </section>
+      {% endif %}
+    </main>
+  </body>
+</html>

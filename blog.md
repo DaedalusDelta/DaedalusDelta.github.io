@@ -15,7 +15,6 @@ permalink: /blog/
               src="{{ post.video | relative_url }}"
               muted
               loop
-              autoplay
               playsinline
             ></video>
           {% else %}
@@ -25,10 +24,19 @@ permalink: /blog/
             >
           {% endif %}
         </div>
-        <h2 class="card-title">{{ post.title }}</h2>
-        <time class="card-date" datetime="{{ post.date | date_to_xmlschema }}">
-          {{ post.date | date: "%b %-d, %Y" }}
-        </time>
+        <div class="card-content">
+          <h2 class="card-title">{{ post.title }}</h2>
+          <time class="card-date" datetime="{{ post.date | date_to_xmlschema }}">
+            {{ post.date | date: "%b %-d, %Y" }}
+          </time>
+          {% if post.tags %}
+            <p class="card-tags">
+              {% for tag in post.tags %}
+                <a href="{{ '/tags/' | append: tag | relative_url }}" class="tag">#{{ tag }}</a>
+              {% endfor %}
+            </p>
+          {% endif %}
+        </div>
       </a>
     </div>
   {% endfor %}

@@ -1,9 +1,26 @@
 <header>
-  <nav class="main-nav">
-    <ul>
-      <li><a href="{{ '/' | relative_url }}">Home</a></li>
-      <li><a href="{{ '/about/' | relative_url }}">About</a></li>
-      <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
-    </ul>
-  </nav>
+  {% if page.url == '/blog/' or page.layout == 'post' %}
+    <!-- BLOG NAV: brand on left, links on right -->
+    <nav class="blog-nav">
+      <div class="nav-brand">
+        <a href="{{ '/blog/' | relative_url }}">
+          <img src="{{ '/assets/images/labyrinth_icon.png' | relative_url }}"
+               alt="{{ site.title }} logo" />
+          <span class="brand-name">The Labyrinth</span>
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="{{ '/'      | relative_url }}">Home</a></li>
+      </ul>
+    </nav>
+  {% else %}
+    <!-- DEFAULT NAV: centered links -->
+    <nav class="main-nav">
+      <ul>
+        <li><a href="{{ '/'      | relative_url }}">Home</a></li>
+        <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+        <li><a href="{{ '/blog/'  | relative_url }}">Blog</a></li>
+      </ul>
+    </nav>
+  {% endif %}
 </header>

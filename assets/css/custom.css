@@ -1,50 +1,37 @@
+/* ——————————————————————————————————————— */
+/* Import IBM Plex Sans (300–700) for a thinner, modern look */
+/* ——————————————————————————————————————— */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
+
+html {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300; /* default to a light weight */
+  line-height: 1.6;
+}
+
 /* 1. Base reset + light-blue background */
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  overflow: hidden;
   background-color: #fff;
 }
 /* 2. Only Home gets light-blue */
 body.home {
   background-color: lightblue;
+  overflow: hidden;
 }
 
-/* 2. Hide all animated layers & canvas */
-#meteors,
-canvas#meteors,
-#moon,
-#clouds {
-  display: none !important;
-}
-
-/* 3. Hero/content stays on top */
-.hero {
-  position: relative;
-  z-index: 1;
-  /* any extra spacing / typography here */
-}
-
-
-/* ensure page content isn’t hidden under the fixed nav */
-body {
-  padding-top: 4rem; /* adjust if your nav’s height changes */
-}
-
-/* nav container */
+/* ————————————————————————————
+   Default nav (Home/About): centered links
+   ———————————————————————————— */
 .main-nav {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
-  background: rgba(0, 0, 30, 0.8);
+  background: rgba(0,0,30,0.8);
   z-index: 100;
-  /* subtle backdrop blur if you like: */
-  /* backdrop-filter: saturate(180%) blur(10px); */
+  padding: 1rem 0;
 }
-
-/* remove default list styling & center items */
 .main-nav ul {
   margin: 0;
   padding: 0;
@@ -53,18 +40,18 @@ body {
   justify-content: center;
   gap: 2rem;
 }
-
-/* links styling */
 .main-nav a {
-  display: inline-block;
-  padding: 0.5rem 1rem;
   color: #eef;
   text-decoration: none;
+  padding: 0.75rem 1.5rem;
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  transition: background 0.3s;
   border-radius: 4px;
+  transition: background 0.3s;
+}
+.main-nav a:hover {
+  background: rgba(255,255,255,0.1);
 }
 
 /* hover/focus effect */
@@ -72,6 +59,82 @@ body {
 .main-nav a:focus {
   background: rgba(255, 255, 255, 0.1);
 }
+
+
+/* ————————————————————————————
+   Blog nav (only on /blog/ & posts)
+   ———————————————————————————— */
+.blog-nav {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+  padding: 0 0.5rem;
+  background: #fff;
+  z-index: 100;
+}
+.blog-nav .nav-brand a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.blog-nav .nav-brand img {
+  height: 3rem;
+  width: 3rem;
+  margin-right: 0.5rem;
+}
+.blog-nav .brand-name {
+  color: #000;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.blog-nav .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  margin-right: 1rem;
+  padding: 0;
+}
+.blog-nav .nav-links a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+.blog-nav .nav-links a:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+.blog-nav + main,
+.blog-nav + main.page-content,
+.blog-nav + main.post-content {
+  margin-top: 4rem;
+}
+
+/* Nav links a bit bolder for readability */
+.main-nav a,
+.blog-nav .nav-links a {
+  font-weight: 500;
+}
+
+/* Site title/brand */
+.brand-name {
+  font-weight: 600;
+}
+
+/* Blog card titles */
+.card-title {
+  font-weight: 500;
+}
+
 
 /* ——————————————————————————————— */
 /* 1. Hilbert quote (much larger)    */
@@ -122,9 +185,12 @@ body {
    ———————————————————————— */
 .blog-grid {
   display: grid;
-  gap: 2rem;
-  /* 1 column on small, 2 on medium, 3 on large */
-  grid-template-columns: 1fr;
+  gap: 1.5rem;                     /* space between cards */
+  padding: 0 1rem;                 /* padding from left/right page borders */
+  max-width: 1200px;               /* cap overall width so cards don’t stretch too wide */
+  margin: 0 1rem;                  /* center the grid container */
+  grid-template-columns: 
+    repeat(auto-fit, minmax(280px, 1fr)); /* shrink cards to min 280px */
 }
 @media (min-width: 600px) {
   .blog-grid { grid-template-columns: repeat(2, 1fr); }
@@ -194,3 +260,76 @@ body {
   display: block;
 }
 
+/* smooth, padded blog cards like Perplexity.ai */
+.blog-card {
+  border-radius: 12px;          /* more rounded than before */
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.blog-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+/* keep media full-width */
+.card-media {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: #000;
+}
+
+/* add space around title & date */
+.card-content {
+  padding: 1rem;                /* your padding inside each card */
+}
+
+/* you can tweak these too */
+.card-title {
+  margin: 0 0 0.5rem;
+}
+.card-date {
+  margin: 0;
+}
+
+
+/* Side padding for individual blog posts */
+.post-content {
+  padding: 0 2rem;       /* 2rem on left & right */
+  max-width: 800px;       /* optional: prevent lines getting too long */
+  margin: 0 auto;         /* center the content block */
+}
+
+/* You can tighten padding on smaller screens if you like */
+@media (max-width: 600px) {
+  .post-content {
+    padding: 0 1rem;
+  }
+}
+
+
+
+/* Push down content on any page with body.blog */
+body.blog main.page-content,
+body.blog main.post-content {
+  margin-top: 4rem; /* matches your nav height; adjust if you change it */
+}
+
+body.home main.hero,
+/* About (and any other page) uses <main class="page-content"> */
+body:not(.home) main.page-content {
+  margin-top: 6rem; /* match your nav’s height */
+}
+
+/* smooth-hide for both navs */
+.main-nav,
+.blog-nav {
+  transition: transform 0.3s ease;
+}
+
+/* apply the hide */
+.nav-hidden {
+  transform: translateY(-100%);
+}
