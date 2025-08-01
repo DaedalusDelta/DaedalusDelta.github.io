@@ -1,19 +1,21 @@
-/* make canvas cover the viewport, behind everything */
-body, html {
+/* 1. Base reset + light-blue background */
+html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   overflow: hidden;
+  background-color: lightblue;
 }
-canvas#meteors {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #000022; /* dark-night sky */
-  z-index: -1;          /* sit behind page content */
+
+/* 2. Hide all animated layers & canvas */
+#meteors,
+canvas#meteors,
+#moon,
+#clouds {
+  display: none !important;
 }
+
+/* 3. Hero/content stays on top */
 .hero {
   position: relative;
   z-index: 1;
