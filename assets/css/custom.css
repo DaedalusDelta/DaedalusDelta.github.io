@@ -16,10 +16,131 @@ html, body {
   background-color: #fff;
 }
 /* 2. Only Home gets light-blue */
+/* Home page base — keep scrolling, no background image here */
 body.home {
-  background-color: lightblue;
-  overflow: hidden;
+  margin: 0;
+  color: #fff;
+  background: #000; /* optional: black behind the art */
+  font-family: 'Press Start 2P', monospace;
 }
+
+/* Hero fills the whole viewport */
+/* Hero below navbar */
+/* Hero below navbar (navbar is in flow, so no manual gap needed) */
+.hero {
+  position: relative;
+  width: 100vw;
+  margin: 0;            /* no forced gap */
+}
+
+/* Image drives height & scrolls naturally */
+.hero-wrap { position: relative; width: 100vw; }
+
+.hero-image {
+  display: block;
+  width: 100vw;   /* fit screen width */
+  height: auto;   /* keep aspect ratio; tall => page scrolls */
+  image-rendering: pixelated;
+}
+
+/* Welcome text stays centered */
+.welcome-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #0ff;
+  font-family: 'Press Start 2P', monospace;
+  text-shadow: 2px 2px #000, 0 0 8px #ff00ff, 0 0 12px #0ff;
+  letter-spacing: 2px;
+}
+
+.welcome-text h1 {
+  font-size: 2rem;
+  color: #0ff;
+  text-shadow: 2px 2px #000, 0 0 8px #ff00ff, 0 0 12px #0ff;
+  letter-spacing: 2px;
+}
+
+
+/* Pixel-styled nav bar */
+.cyber-nav {
+  position: relative; /* stays in flow */
+  margin: 0; 
+  background: black;
+  border-bottom: 3px solid #ff00ff;
+  padding: 1rem 0;
+}
+
+.cyber-nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 6rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cyber-nav a {
+  text-decoration: none;
+  color: #0ff; /* neon cyan */
+  font-size: 1.25rem;
+  letter-spacing: 0.1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.cyber-nav a:hover {
+  color: #ff00ff; /* neon magenta */
+  text-shadow: 0 0 8px #ff00ff;
+}
+
+/* Center "Welcome" caption */
+.welcome-text {
+  position: fixed;          /* fixed to the screen, not image */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #0ff;
+  font-family: 'Press Start 2P', monospace;
+  text-shadow: 2px 2px #000, 0 0 8px #ff00ff, 0 0 12px #0ff;
+  letter-spacing: 2px;
+  z-index: 10;              /* ensure it’s above the image */
+  pointer-events: none;     /* so you can still click nav links behind if needed */
+}
+
+@keyframes neon-blink {
+  0%, 100% {
+    color: #0ff;
+    text-shadow:
+      0 0 5px #0ff,
+      0 0 10px #0ff,
+      0 0 20px #ff00ff,
+      0 0 40px #ff00ff;
+  }
+  50% {
+    color: #0cc; /* dim/off look */
+    text-shadow:
+      0 0 1px #0ff,
+      0 0 2px #ff00ff;
+  }
+}
+
+.welcome-text h1 {
+  font-size: 2rem;
+  letter-spacing: 2px;
+  animation: neon-blink 4s infinite;
+}
+
+
+.welcome-text h1 {
+  font-size: 2rem;
+  color: #0ff;
+  text-shadow: 2px 2px #000, 0 0 8px #ff00ff, 0 0 12px #0ff;
+  letter-spacing: 2px;
+}
+
 
 /* ————————————————————————————
    Default nav (Home/About): centered links
@@ -59,7 +180,6 @@ body.home {
 .main-nav a:focus {
   background: rgba(255, 255, 255, 0.1);
 }
-
 
 /* ————————————————————————————
    Blog nav (only on /blog/ & posts)
@@ -133,30 +253,6 @@ body.home {
 /* Blog card titles */
 .card-title {
   font-weight: 500;
-}
-
-
-/* ——————————————————————————————— */
-/* 1. Hilbert quote (much larger)    */
-/* ——————————————————————————————— */
-.hilbert-quote {
-  font-size: 4rem;             /* was 2.5rem */
-  line-height: 1.2;
-  font-style: italic;
-  text-align: center;
-  margin: 0 auto 2rem;
-  max-width: 900px;
-  color: #000;        
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
-}
-.hilbert-quote cite {
-  display: block;
-  margin-top: 1rem;
-  font-size: 1.2rem;
-  font-style: normal;
-  font-weight: 300;
-  text-align: right;
-  opacity: 0.8;
 }
 
 /* ——————————————————————————————— */
@@ -294,7 +390,6 @@ body.home {
   margin: 0;
 }
 
-
 /* Side padding for individual blog posts */
 .post-content {
   padding: 0 2rem;       /* 2rem on left & right */
@@ -309,18 +404,10 @@ body.home {
   }
 }
 
-
-
 /* Push down content on any page with body.blog */
 body.blog main.page-content,
 body.blog main.post-content {
   margin-top: 4rem; /* matches your nav height; adjust if you change it */
-}
-
-body.home main.hero,
-/* About (and any other page) uses <main class="page-content"> */
-body:not(.home) main.page-content {
-  margin-top: 6rem; /* match your nav’s height */
 }
 
 /* smooth-hide for both navs */
@@ -333,3 +420,69 @@ body:not(.home) main.page-content {
 .nav-hidden {
   transform: translateY(-100%);
 }
+
+
+/* ——— About page ——— */
+.page .page-content { max-width: 1000px; margin: 0 auto; padding: 2rem 1.25rem; }
+
+/* Hero */
+.about-hero { text-align: center; margin-bottom: 2.5rem; }
+.about-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(1.8rem, 2.6vw, 2.6rem);
+  color: #0ff;
+  text-shadow: 0 0 6px rgba(0,255,255,0.5);
+  letter-spacing: 0.04em;
+  margin: 0 0 0.5rem;
+}
+.about-subtitle { color: #bbb; margin: 0.25rem 0 1rem; }
+.about-cta { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+.btn-ghost {
+  border: 1.5px solid #0ff;
+  color: #0ff; text-decoration: none;
+  padding: 0.5rem 0.9rem; border-radius: 10px;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
+  box-shadow: 0 0 8px rgba(0,255,255,0.2);
+}
+.btn-ghost:hover { background: rgba(0,255,255,0.1); color: #fff; transform: translateY(-1px); }
+
+/* Two-column intro */
+.two-col { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.25rem; align-items: start; margin-bottom: 2.25rem; }
+.about-photo img { width: 100%; border-radius: 12px; display: block; }
+@media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+
+/* Media grid */
+.about-media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem; margin: 2rem 0 2.5rem;
+}
+.media-card { background: #0b0b0b; border: 1px solid #222; border-radius: 12px; overflow: hidden; }
+.media { width: 100%; height: 100%; display: block; object-fit: cover; }
+.media-card figcaption { padding: 0.6rem 0.8rem; color: #cfcfcf; font-size: 0.95rem; }
+
+/* Sections */
+.about-section { margin: 2rem 0; }
+.about-section h2 {
+  font-family: 'Press Start 2P', monospace; color: #0ff; font-size: 1.2rem;
+  margin: 0 0 0.75rem; letter-spacing: 0.04em;
+}
+
+/* Publications */
+.pub-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.8rem; }
+.pub-title { font-weight: 600; }
+.pub-venue { color: #9ad; margin-left: 0.5rem; }
+.pub-links a { color: #0ff; text-decoration: none; }
+.pub-links a:hover { text-decoration: underline; }
+
+/* News */
+.news-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.25rem; }
+.news-list time { color: #9aa; margin-right: 0.5rem; }
+
+/* Dark page background (inherited from your body.blog default) */
+body:not(.home) {
+  background: #fff;
+  color: #000;
+}
+
+
