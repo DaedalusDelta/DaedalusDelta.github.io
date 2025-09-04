@@ -24,6 +24,21 @@ body.home {
   font-family: 'Press Start 2P', monospace;
 }
 
+:root { --main-nav-h: 4.5rem; }
+
+/* Make sure the fixed nav doesn't overlap page content */
+body:not(.home) .main-nav {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+body:not(.home) main.page-content {
+  margin-top: var(--main-nav-h);
+}
+
+
 /* Hero fills the whole viewport */
 /* Hero below navbar */
 /* Hero below navbar (navbar is in flow, so no manual gap needed) */

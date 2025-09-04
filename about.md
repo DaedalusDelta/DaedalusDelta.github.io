@@ -8,7 +8,9 @@ permalink: /about/
   <h1 class="about-name">Ray Liu</h1>
   <p class="about-subtitle">Robotics & AI • Dexterous Manipulation • CMU</p>
   <div class="about-cta">
-    <a class="btn-ghost" href="mailto:yourname@cmu.edu">Email</a>
+    <p>Email: <span class="email-text">muxinl [at] cmu [dot] edu</span></p>
+  <div>
+  <div class="about-cta">
     <a class="btn-ghost" href="/assets/pdfs/RayLiu_CV.pdf">CV</a>
     <a class="btn-ghost" href="https://scholar.google.com/">Google Scholar</a>
     <a class="btn-ghost" href="https://github.com/DaedalusDelta">GitHub</a>
