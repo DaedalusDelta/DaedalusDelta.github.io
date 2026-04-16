@@ -1,15 +1,20 @@
 ---
 layout: home
-title: Home
+title: Ray Muxin Liu
+description: Ray Muxin Liu is a Carnegie Mellon University School of Computer Science undergraduate in Artificial Intelligence, class of 2027, interested in robotics, embodied AI, and robot learning.
 ---
 
 <div class="home-overlay">
   <section class="home-intro-card">
-    <p class="home-kicker">Ray Liu</p>
-    <h1>Research notes, projects, and writing on AI and robotics.</h1>
+    <p class="home-kicker">Carnegie Mellon University · School of Computer Science</p>
+    <h1>Ray Muxin Liu</h1>
+    <p>
+      Research notes, projects, and writing on AI, robotics, embodied
+      intelligence, and robot learning.
+    </p>
     <p>
       Carnegie Mellon SCS undergraduate in Artificial Intelligence, class of
-      2027.
+      2027, preparing for PhD applications.
     </p>
   </section>
 

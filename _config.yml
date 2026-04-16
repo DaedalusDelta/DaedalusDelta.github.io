@@ -1,4 +1,13 @@
-title: “DaedalusDelta”
+title: Ray Muxin Liu
+description: Ray Muxin Liu is a Carnegie Mellon University School of Computer Science undergraduate in Artificial Intelligence, class of 2027, interested in robotics, embodied AI, and robot learning.
+url: "https://daedalusdelta.github.io"
+lang: en-US
 theme: minima     # or any Jekyll theme you like
 plugins:
   - jekyll-feed
+  - jekyll-sitemap
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/images/portrait.jpeg

@@ -2,6 +2,7 @@
 layout: page
 title: Blog
 permalink: /blog/
+description: Writing by Ray Muxin Liu on robotics, embodied AI, mathematical thinking, and technical notes from research and systems work.
 ---
 
 {% assign featured_titles = "Welcome to My Blog|A Brief Note on Mathematical Writing" | split: "|" %}

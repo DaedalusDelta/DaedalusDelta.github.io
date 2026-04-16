@@ -2,13 +2,14 @@
 layout: page
 title: About
 permalink: /about/
+description: About Ray Muxin Liu, a Carnegie Mellon University School of Computer Science undergraduate in Artificial Intelligence focused on robotics, embodied AI, dexterous manipulation, and robot learning.
 ---
 
 <section class="profile-shell">
   <section class="profile-hero">
     <div class="profile-copy">
       <p class="profile-kicker">Carnegie Mellon University · School of Computer Science</p>
-      <h1>Ray Liu</h1>
+      <h1>Ray Muxin Liu</h1>
       <p class="profile-lead">
         I am an undergraduate at Carnegie Mellon University studying Artificial
         Intelligence in the School of Computer Science, class of 2027. I am
@@ -39,7 +40,7 @@ permalink: /about/
     </div>
     <div class="profile-aside">
       <div class="portrait-card">
-        <img src="/assets/images/portrait.jpeg" alt="Portrait of Ray Liu">
+        <img src="/assets/images/portrait.jpeg" alt="Portrait of Ray Muxin Liu">
       </div>
       <dl class="profile-facts">
         <div>
