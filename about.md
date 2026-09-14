@@ -164,6 +164,7 @@ description: Ray Muxin Liu is a fourth-year Carnegie Mellon University School of
           </p>
           <div class="paper-links">
             <a href="https://ifgrasping.github.io/">Project</a>
+            <a href="https://arxiv.org/abs/2511.09558">arXiv</a>
           </div>
         </div>
       </div>

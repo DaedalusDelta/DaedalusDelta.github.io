@@ -533,7 +533,13 @@ body:not(.home) .page-content {
   margin: 0;
 }
 
-.profile-grid,
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
 .subpage-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
