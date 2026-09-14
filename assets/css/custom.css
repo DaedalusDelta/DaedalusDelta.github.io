@@ -595,6 +595,23 @@ body:not(.home) .page-content {
   background: rgba(255, 250, 242, 0.92);
 }
 
+.paper-thumb-placeholder {
+  display: grid;
+  place-items: center;
+  height: 150px;
+  padding: 1rem;
+  background:
+    linear-gradient(135deg, rgba(180, 79, 42, 0.12), rgba(34, 64, 91, 0.08)),
+    rgba(255, 250, 242, 0.92);
+  color: var(--page-text);
+}
+
+.paper-thumb-placeholder span {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
 .paper-body {
   min-width: 0;
 }
