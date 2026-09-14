@@ -71,7 +71,7 @@ description: Ray Muxin Liu is a fourth-year Carnegie Mellon University School of
         </div>
         <div>
           <dt>Focus</dt>
-          <dd>Robotics, embodied AI, manipulation</dd>
+          <dd>Robotics, Embodied AI, Manipulation</dd>
         </div>
       </dl>
     </div>
