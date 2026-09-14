@@ -129,11 +129,11 @@ description: Ray Muxin Liu is a fourth-year Carnegie Mellon University School of
         <div class="paper-body">
           <div class="paper-meta">
             <span>2026</span>
-            <span>Accepted (unreleased)</span>
+            <span>CoRL</span>
           </div>
           <h3>COWBOY: A Scalable Sim-to-Real Framework for Learning Contextual Whole-Body Manipulation</h3>
           <p class="paper-authors">Jiahui Yang*, Jason Jingzhou Liu*, <strong class="paper-author-highlight">Ray Muxin Liu*</strong>, Andrew E. Wang, Kenneth Shaw, Deepak Pathak, Ruslan Salakhutdinov</p>
-          <p class="paper-venue">Accepted (unreleased)</p>
+          <p class="paper-venue">CoRL 2026 · Accepted (unreleased)</p>
           <p>
             A scalable sim-to-real framework for contextual whole-body mobile
             manipulation, using local reinforcement-learning experts,
