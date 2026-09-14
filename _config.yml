@@ -1,6 +1,9 @@
 title: Ray Muxin Liu
-description: Ray Muxin Liu is a Carnegie Mellon University School of Computer Science undergraduate in Artificial Intelligence, class of 2027, interested in robotics, embodied AI, and robot learning.
-url: "https://daedalusdelta.github.io"
+description: Ray Muxin Liu is a fourth-year Carnegie Mellon University School of Computer Science undergraduate in Artificial Intelligence, expected to graduate in December 2026, and interested in robotics, embodied AI, and robot learning.
+url: "https://raymuxinliu.com"
+# Add your public profile URLs here when they are ready.
+linkedin_url: "https://www.linkedin.com/in/ray-liu-1b6933390"
+google_scholar_url: "https://scholar.google.com/citations?user=cVWtQRkAAAAJ&hl=en"
 lang: en-US
 theme: minima     # or any Jekyll theme you like
 plugins:

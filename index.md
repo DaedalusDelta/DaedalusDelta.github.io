@@ -2,6 +2,7 @@
 layout: home
 title: Ray Muxin Liu
 description: Ray Muxin Liu is a Carnegie Mellon University School of Computer Science undergraduate in Artificial Intelligence, class of 2027, interested in robotics, embodied AI, and robot learning.
+published: false
 ---
 
 <div class="home-overlay">
@@ -29,7 +30,7 @@ description: Ray Muxin Liu is a Carnegie Mellon University School of Computer Sc
       <strong>The Labyrinth</strong>
       <p>Technical notes, paper stories, and practical deep learning posts.</p>
     </a>
-    <a class="home-nav-card" href="https://daedalusdelta.github.io/conference_calendar/">
+    <a class="home-nav-card" href="/conference_calendar/">
       <span class="home-card-label">Tool</span>
       <strong>Conference Calendar</strong>
       <p>Track conference and workshop deadlines in one place.</p>

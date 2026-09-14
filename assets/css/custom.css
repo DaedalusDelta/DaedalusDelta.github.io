@@ -414,6 +414,51 @@ body:not(.home) .page-content {
   margin-top: 1.75rem;
 }
 
+.profile-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.75rem;
+}
+
+.social-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 1px solid rgba(26, 34, 48, 0.12);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--page-text);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.social-icon-button:hover,
+.social-icon-button:focus-visible {
+  transform: translateY(-2px);
+  background: #fff;
+  border-color: var(--page-accent);
+}
+
+.social-icon-button svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.social-icon-button.icon-filled svg {
+  fill: currentColor;
+  stroke: none;
+}
+
 .button-primary,
 .button-secondary {
   display: inline-flex;
@@ -583,6 +628,11 @@ body:not(.home) .page-content {
 .paper-authors,
 .paper-venue {
   margin-top: 0.6rem;
+}
+
+.paper-author-highlight {
+  color: var(--page-text);
+  font-weight: 700;
 }
 
 .paper-links {

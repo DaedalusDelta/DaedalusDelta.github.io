@@ -1,8 +1,8 @@
 ---
 layout: page
-title: About
-permalink: /about/
-description: About Ray Muxin Liu, a Carnegie Mellon University School of Computer Science undergraduate in Artificial Intelligence focused on robotics, embodied AI, dexterous manipulation, and robot learning.
+title: Ray Muxin Liu
+permalink: /
+description: Ray Muxin Liu is a fourth-year Carnegie Mellon University School of Computer Science undergraduate in Artificial Intelligence, expected to graduate in December 2026, and focused on robotics, embodied AI, dexterous manipulation, and robot learning.
 ---
 
 <section class="profile-shell">
@@ -12,8 +12,8 @@ description: About Ray Muxin Liu, a Carnegie Mellon University School of Compute
       <h1>Ray Muxin Liu</h1>
       <p class="profile-lead">
         I am an undergraduate at Carnegie Mellon University studying Artificial
-        Intelligence in the School of Computer Science, class of 2027. I am
-        currently a third-year student and interested in research at the
+        Intelligence in the School of Computer Science. I am a fourth-year
+        student expected to graduate in December 2026, and I am interested in research at the
         intersection of robotics, embodied AI, and learning systems.
       </p>
       <p class="profile-lead">
@@ -21,17 +21,29 @@ description: About Ray Muxin Liu, a Carnegie Mellon University School of Compute
         on dexterous manipulation, robot learning, and scalable approaches for
         bridging semantics with physical interaction.
       </p>
-      <div class="profile-actions">
+      <div class="profile-socials" aria-label="Contact and research profiles">
         <button
-          class="button-primary copy-email-button"
+          class="social-icon-button copy-email-button"
           type="button"
           data-user="muxinl"
-          data-domain="andrew.cmu.edu">
-          Copy Email
+          data-domain="andrew.cmu.edu"
+          aria-label="Copy email address"
+          title="Copy email address">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 5.5h17v13h-17zM4.5 6.5 12 13l7.5-6.5M4 18l5.4-5M20 18l-5.4-5"/></svg>
         </button>
-        <a class="button-secondary" href="https://github.com/DaedalusDelta">GitHub</a>
-        <a class="button-secondary" href="/blog/">Blog</a>
-        <a class="button-secondary" href="https://daedalusdelta.github.io/conference_calendar/">Conference Calendar</a>
+        <a class="social-icon-button" href="{{ '/assets/files/Ray_Muxin_Liu_Resume.pdf' | relative_url }}" target="_blank" rel="noopener" aria-label="Open résumé PDF" title="Résumé">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2.75h8l4 4v14.5H6zM14 2.75v4h4M8.75 12h6.5M8.75 15h6.5M8.75 18h4.25"/></svg>
+        </a>
+        {% if site.linkedin_url != "" %}
+        <a class="social-icon-button icon-filled" href="{{ site.linkedin_url }}" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.1 3.5a1.85 1.85 0 1 1 0 3.7 1.85 1.85 0 0 1 0-3.7ZM3.5 8.7h3.2v11.8H3.5V8.7Zm5.2 0h3.07v1.61h.04c.43-.81 1.48-1.66 3.05-1.66 3.26 0 3.87 2.15 3.87 4.94v6.91h-3.2v-6.13c0-1.46-.03-3.34-2.04-3.34-2.05 0-2.36 1.59-2.36 3.24v6.23H8.7V8.7Z"/></svg>
+        </a>
+        {% endif %}
+        {% if site.google_scholar_url != "" %}
+        <a class="social-icon-button icon-filled" href="{{ site.google_scholar_url }}" aria-label="Google Scholar" title="Google Scholar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 10 5.5L12 14 2 8.5 12 3Zm-6.25 8.94V16c0 1.78 2.8 3.22 6.25 3.22s6.25-1.44 6.25-3.22v-4.06L12 15.37l-6.25-3.43Zm14.5-2.17v6.48h1.25V9.77h-1.25Z"/></svg>
+        </a>
+        {% endif %}
       </div>
       <p class="profile-contact-line">
         Email:
@@ -53,7 +65,7 @@ description: About Ray Muxin Liu, a Carnegie Mellon University School of Compute
         </div>
         <div>
           <dt>Year</dt>
-          <dd>Class of 2027 · Third Year</dd>
+          <dd>Fourth Year · Expected December 2026</dd>
         </div>
         <div>
           <dt>Focus</dt>
@@ -65,29 +77,36 @@ description: About Ray Muxin Liu, a Carnegie Mellon University School of Compute
 
   <section class="profile-grid">
     <article class="info-panel">
-      <p class="section-label">About</p>
-      <h2>Research direction</h2>
+      <p class="section-label">Research philosophy</p>
+      <h2>Intelligence needs a body</h2>
       <p>
-        I am interested in building intelligent systems that connect perception,
-        reasoning, and action in the physical world. My current interests are
-        centered on dexterous robot manipulation, functional grasping, and
-        representation learning for embodied agents.
+        I see robotics as the work of giving intelligence a body. Learning
+        systems can reason over language and vision, but an intelligence that
+        genuinely explores the world must also act in it, observe the
+        consequences, and revise its understanding through physical experience.
       </p>
       <p>
-        This site will continue to evolve as I refine my research philosophy,
-        document projects, and share notes on papers and technical ideas.
+        I am motivated by the long-term possibility of embodied intelligence
+        becoming a scientific partner: a system that helps extend how humanity
+        investigates, understands, and learns from the physical world.
       </p>
     </article>
 
     <article class="info-panel">
-      <p class="section-label">Current interests</p>
-      <h2>What I want to work on</h2>
-      <ul class="interest-list">
-        <li>Dexterous manipulation and contact-rich control</li>
-        <li>Robot learning that generalizes beyond narrow lab settings</li>
-        <li>Embodied AI systems grounded in geometry and semantics</li>
-        <li>Research training that prepares for long-term PhD work</li>
-      </ul>
+      <p class="section-label">A working view</p>
+      <h2>Discovery through interaction</h2>
+      <p>
+        I am interested in the intelligence that emerges when perception,
+        reasoning, and action are treated as one connected process. A robot
+        should not only describe its surroundings; it should be able to test
+        hypotheses, use tools, and learn from the consequences of contact with
+        the world.
+      </p>
+      <p>
+        I write about the more technical side of this view—behavior
+        generalization, simulation, real-world learning, and control—in the
+        <a href="/blog/">blog</a>.
+      </p>
     </article>
   </section>
 
@@ -112,8 +131,8 @@ description: About Ray Muxin Liu, a Carnegie Mellon University School of Compute
             <span>Preprint</span>
           </div>
           <h3>IFG: Internet-Scale Guidance for Functional Grasping Generation</h3>
-          <p class="paper-authors">Ray Muxin Liu*, Mingxuan Li*, Kenneth Shaw, Deepak Pathak</p>
-          <p class="paper-venue">arXiv preprint</p>
+          <p class="paper-authors"><strong class="paper-author-highlight">Ray Muxin Liu*</strong>, Mingxuan Li*, Kenneth Shaw, Deepak Pathak</p>
+          <p class="paper-venue">ICRA Workshop on Robot Learning Prior Maps · Best Poster Finalist</p>
           <p>
             A grasp generation framework that combines internet-scale semantic cues
             with simulation-driven geometric reasoning for functional dexterous
@@ -138,7 +157,7 @@ description: About Ray Muxin Liu, a Carnegie Mellon University School of Compute
             <span>CoRL</span>
           </div>
           <h3>Bimanual Dexterity for Complex Tasks</h3>
-          <p class="paper-authors">Kenneth Shaw*, Yulong Li*, Jiahui Yang, Mohan Kumar Srirama, Ray Liu, Haoyu Xiong, Russell Mendonca, Deepak Pathak</p>
+          <p class="paper-authors">Kenneth Shaw*, Yulong Li*, Jiahui Yang, Mohan Kumar Srirama, <strong class="paper-author-highlight">Ray Liu</strong>, Haoyu Xiong, Russell Mendonca, Deepak Pathak</p>
           <p class="paper-venue">Conference on Robot Learning (CoRL) 2024</p>
           <p>
             A low-cost, highly dexterous bimanual teleoperation system for collecting
