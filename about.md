@@ -123,8 +123,8 @@ description: Ray Muxin Liu is a fourth-year Carnegie Mellon University School of
 
     <article class="paper-card">
       <div class="paper-layout">
-        <div class="paper-thumb paper-thumb-placeholder" aria-hidden="true">
-          <span>COWBOY</span>
+        <div class="paper-thumb">
+          <img src="/assets/images/papers/cowboy.jpg" alt="COWBOY whole-body mobile manipulation experiments across diverse environments">
         </div>
         <div class="paper-body">
           <div class="paper-meta">
