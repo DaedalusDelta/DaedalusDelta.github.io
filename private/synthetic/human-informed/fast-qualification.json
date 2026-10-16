@@ -1,0 +1,2228 @@
+[
+  {
+    "mode": 0,
+    "seed": 42801,
+    "returncode": 0,
+    "seconds": 16.04,
+    "native": true,
+    "verification": {
+      "seed": 42801,
+      "mode": "franka-tud-fabrics",
+      "initial_qpos_error": 0.0,
+      "final_arm_qpos_error": 0.0,
+      "contact_monitor_hz": 500,
+      "unwanted_contact_count": 0,
+      "unwanted_contact_examples": [],
+      "sustained_physical_success_1s": true,
+      "qualified": true,
+      "last_second": [
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510378712443,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19388613038439897,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510376957094,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19388651660138925,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103771346413,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19388690279484674,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103773249753,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19388728903903654,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510376832462,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19388767513270053,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103770822557,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.193888061355717,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103773214745,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19388844761112667,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103767978774,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19388883371558624,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510377019029,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19388921995243108,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510377181335,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19388960623267912,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103787377385,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19388999237720228,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103769464487,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19389037857938113,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103771293398,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19389076477159764,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103773274395,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19389115102213358,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510376819734,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19389153712079057,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510377076459,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19389192335312885,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103772107458,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19389230964012702,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103767968915,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19389269578274484,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510377011764,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1938930819895125,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510377175306,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19389346826128234,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103787606633,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19389385440606685,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510376938595,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1938942406143985,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103771243806,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19389462681441305,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510377319071,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19389501307498702,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510376803809,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1938953991799403,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510377068295,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1938957854222187,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103772080444,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19389617172063078,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103767796004,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19389655787082505,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103770018235,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19389694408684985,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510377172109,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19389733036959733,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510378794697,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1938977165219603,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510376928197,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19389810273953853,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510377118994,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1938984889485353,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103773319204,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19389887521970006,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103769100747,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19389926142448483,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103770649615,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19389964762161666,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.62751037720271,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19390003389738064,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103767692696,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19390042004061234,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103769953967,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19390080625990908,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103771678836,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19390119255124005,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103788466017,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19390157871031047,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103769165415,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19390196493682202,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510377126502,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1939023512293595,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103773160495,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1939027374605024,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103769006485,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1939031236486627,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103770579116,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19390350984327032,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510377198452,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19390389612516512,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.62751037675674,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19390428227388568,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103769850188,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19390466850168045,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510377164649,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.19390505480380307,
+          "withdrawn": true
+        }
+      ],
+      "exclusions": "Robot fixed base-floor and directly attached body pairs excluded; numerical penetration tolerance0.1mm. Nonadjacent robot self contact, non-finger robot-object contact and moving robot-floor contacts checked at 500Hz."
+    }
+  },
+  {
+    "mode": 0,
+    "seed": 42802,
+    "returncode": 0,
+    "seconds": 14.42,
+    "native": true,
+    "verification": {
+      "seed": 42802,
+      "mode": "franka-tud-fabrics",
+      "initial_qpos_error": 0.0,
+      "final_arm_qpos_error": 0.0,
+      "contact_monitor_hz": 500,
+      "unwanted_contact_count": 0,
+      "unwanted_contact_examples": [],
+      "sustained_physical_success_1s": true,
+      "qualified": true,
+      "last_second": [
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103923859855,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464269917760515,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103922438032,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1146429271723388,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392144567,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464315519704002,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103911301256,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464338324350679,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392291063,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1146436112536081,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392172714,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464383929149886,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392045865,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464406727414987,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103923739755,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464429542619113,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392207478,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464452343523568,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392050193,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464475140957081,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392394716,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464497955346131,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392248663,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464520755123703,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103921452283,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464543557925594,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103911002877,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464566362933705,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103922938223,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464589164236744,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103921744742,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1146461196836412,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392042865,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464634766867599,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392378877,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464657582615698,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392209765,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464680383805646,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.62751039204176,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464703181461357,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103923988965,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464725996377838,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392250616,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464748796418366,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392142177,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464771591694307,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510391113711,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464794402473036,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103922992957,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464817206857404,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103921763554,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464840012510981,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392045301,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1146486281172863,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103923827396,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464885628200948,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103922116543,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464908429741694,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392047501,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464931227641012,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392403561,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464954043095427,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103922526912,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464976843399684,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392142507,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11464999638850387,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103910880713,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11465022450080396,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103923003185,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11465045254799203,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103921772134,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11465068060809161,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103920403033,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11465090860265856,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103923878063,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11465113677288324,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392214032,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1146513647911102,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103921224363,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11465159274816114,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392394388,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11465182087198982,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103922555516,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11465204892372861,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392145211,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11465227690259425,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510391081773,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1146525050280056,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103923041616,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11465273308212509,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392179044,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11465296114715809,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510392041371,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11465318914460632,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103923930967,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11465341732054175,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103922155583,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1146536453416142,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103921226055,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.11465387330036991,
+          "withdrawn": true
+        }
+      ],
+      "exclusions": "Robot fixed base-floor and directly attached body pairs excluded; numerical penetration tolerance0.1mm. Nonadjacent robot self contact, non-finger robot-object contact and moving robot-floor contacts checked at 500Hz."
+    }
+  },
+  {
+    "mode": 0,
+    "seed": 43021,
+    "returncode": 0,
+    "seconds": 15.02,
+    "native": true,
+    "verification": {
+      "seed": 43021,
+      "mode": "franka-tud-fabrics",
+      "initial_qpos_error": 0.0,
+      "final_arm_qpos_error": 0.0,
+      "contact_monitor_hz": 500,
+      "unwanted_contact_count": 0,
+      "unwanted_contact_examples": [],
+      "sustained_physical_success_1s": true,
+      "qualified": true,
+      "last_second": [
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510397999018,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015961963854287827,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103985252377,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015962031698674203,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398463476,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015962099566397145,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398556337,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015962167382610744,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.62751039855796,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015962235355254793,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398483256,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.01596230319381482,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398592703,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015962371000774734,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398325802,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.01596243896511168,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398508254,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.0159625067920666,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398451368,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015962574647010088,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103979959398,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.01596264252417567,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398540366,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015962710458824022,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398467293,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.01596277826596083,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398560111,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015962846046620682,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103985649455,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.01596291400766066,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103984862263,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015962981839598763,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.62751039861193,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015963049642894318,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103983291386,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015963117608739745,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103985105437,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.01596318543481005,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398452002,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.01596325328974564,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103979840058,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.01596332116739554,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398542608,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015963389103681228,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398468401,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015963456910233927,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103985716304,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015963524689952775,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398567052,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.0159635926529543,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398486947,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.01596366048499419,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398608438,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015963728287989015,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103983207524,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015963796255895724,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103985131514,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015963864082126605,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.62751039845286,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.01596393193765843,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510397986763,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015963999816242167,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103985442634,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.01596406775411134,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103984693473,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.01596413556090649,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398568295,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015964203340589993,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.62751039857636,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015964271305408152,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398488608,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015964339138040184,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398599009,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.01596440694138687,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103983201276,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015964474911144354,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103985127486,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015964542738051236,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398453342,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015964610594513835,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510397978794,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015964678474182363,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103985482184,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015964746413602345,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398469919,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015964814221042588,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103985634893,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.01596488200126509,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103985717885,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015964949967827498,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398489069,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.01596501780136451,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398595787,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015965085605459346,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398317255,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015965153576957665,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103985145027,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.01596522140477494,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510398453277,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.015965289262356,
+          "withdrawn": true
+        }
+      ],
+      "exclusions": "Robot fixed base-floor and directly attached body pairs excluded; numerical penetration tolerance0.1mm. Nonadjacent robot self contact, non-finger robot-object contact and moving robot-floor contacts checked at 500Hz."
+    }
+  },
+  {
+    "mode": 1,
+    "seed": 42801,
+    "returncode": 0,
+    "seconds": 15.9,
+    "native": true,
+    "verification": {
+      "seed": 42801,
+      "mode": "franka-tud-fabrics",
+      "initial_qpos_error": 0.0,
+      "final_arm_qpos_error": 0.0,
+      "contact_monitor_hz": 500,
+      "unwanted_contact_count": 0,
+      "unwanted_contact_examples": [],
+      "sustained_physical_success_1s": true,
+      "qualified": true,
+      "last_second": [
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101500319584,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348388148845486,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101517165655,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348400954735413,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510151040892,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348413759635158,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101505400817,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348426564980116,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510145389059,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348439370605797,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101514070602,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.634845217687704,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510150690507,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348464981929404,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510143657304,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348477787759763,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510151775482,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348490593862894,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101508791696,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348503398792427,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510150031151,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348516203666896,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101518362374,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348529010315419,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510151113105,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348541815638038,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510150566605,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348554621285721,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101449173266,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348567427169994,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101513825048,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348580232722452,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101507308234,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348593038566386,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510150018979,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348605843858904,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.62751015187408,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348618650907077,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101509392944,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348631456504868,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101504422094,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348644261515147,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510151935001,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348657068193718,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101511933756,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348669874177949,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510150574556,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348682679439487,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510144550767,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348695486194527,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101514883996,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348708292255696,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510150779795,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.634872109844322,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510149987872,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348733903941399,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101515426247,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348746710239039,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101509959122,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348759516663308,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510150468043,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348772322188415,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101520895143,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348785129310094,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510151282783,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348797935568823,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101506076046,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348810740991555,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101442077413,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348823547373389,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510151596149,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348836354123323,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101507828977,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348849159857899,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510149991995,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.634886196621814,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510151660166,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348874773084406,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510150995443,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348887578968407,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101504973293,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348900385294222,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510145359742,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348913191898792,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101513603674,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348925999144589,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510150649488,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348938805180542,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101436460515,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348951611989171,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101517290023,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.634896441906873,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101508354117,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6348977224982317,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101499894427,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.634899003084142,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510151787457,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6349002838463031,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275101510721535,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.6349015644767687,
+          "withdrawn": true
+        }
+      ],
+      "exclusions": "Robot fixed base-floor and directly attached body pairs excluded; numerical penetration tolerance0.1mm. Nonadjacent robot self contact, non-finger robot-object contact and moving robot-floor contacts checked at 500Hz."
+    }
+  },
+  {
+    "mode": 1,
+    "seed": 42802,
+    "returncode": 0,
+    "seconds": 14.34,
+    "native": true,
+    "verification": {
+      "seed": 42802,
+      "mode": "franka-tud-fabrics",
+      "initial_qpos_error": 0.0,
+      "final_arm_qpos_error": 0.0,
+      "contact_monitor_hz": 500,
+      "unwanted_contact_count": 0,
+      "unwanted_contact_examples": [],
+      "sustained_physical_success_1s": true,
+      "qualified": true,
+      "last_second": [
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103824727886,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1705495992608038,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510381236742,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17054993926448694,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103826560566,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17055027921367194,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382511962,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17055061917155587,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.62751038235816,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17055095907749737,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382758644,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1705512991216551,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382554455,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17055163904642628,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103824473756,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17055197892319038,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103827739605,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17055231893169587,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103826042927,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17055265888360344,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382474097,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1705529987781523,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103812046545,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17055333878880904,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382663017,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1705536787434271,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382514995,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1705540187069484,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103823519608,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17055435861707213,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.62751038276671,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17055469866925532,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382558296,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17055503859870563,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103824479995,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1705553784787581,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382786971,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1705557184942219,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103826089374,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17055605845150065,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382475414,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1705563983497807,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510381194955,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17055673836740276,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382670094,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1705570783274085,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103825174786,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17055741829653906,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103823455956,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1705577582107708,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382683925,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17055809818647177,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382561792,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1705584381704727,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382451105,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17055877808461803,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103827976425,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17055911812020727,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103826154456,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17055945808827608,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382478543,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1705597979924302,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103811409077,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17056013801779635,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382682069,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1705604779834492,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.62751038252143,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17056081795826242,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103823508092,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17056115787651877,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103826962507,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17056149785795366,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382565463,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1705618378478882,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382452367,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17056217776597354,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382808659,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17056251780892306,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103826238,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17056285778240388,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382480523,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17056319769012335,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103810986344,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17056353772249444,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103826857285,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1705638776934289,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103825235364,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17056421767376267,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103823504065,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1705645575959075,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103827008195,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17056489758301316,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382570056,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17056523757884876,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382453975,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17056557750076107,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382822022,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17056591755108114,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510382628997,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.17056625752992738,
+          "withdrawn": true
+        }
+      ],
+      "exclusions": "Robot fixed base-floor and directly attached body pairs excluded; numerical penetration tolerance0.1mm. Nonadjacent robot self contact, non-finger robot-object contact and moving robot-floor contacts checked at 500Hz."
+    }
+  },
+  {
+    "mode": 1,
+    "seed": 43021,
+    "returncode": 0,
+    "seconds": 14.620000000000001,
+    "native": true,
+    "verification": {
+      "seed": 43021,
+      "mode": "franka-tud-fabrics",
+      "initial_qpos_error": 0.0,
+      "final_arm_qpos_error": 0.0,
+      "contact_monitor_hz": 500,
+      "unwanted_contact_count": 0,
+      "unwanted_contact_examples": [],
+      "sustained_physical_success_1s": true,
+      "qualified": true,
+      "last_second": [
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103791333754,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18751514023153118,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103789206655,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18751551346115042,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103787247165,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1875158867566769,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103791502574,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18751626009874323,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103789899017,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1875166334356058,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510378846923,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1875170066828322,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103792939563,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18751738007077248,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103790605163,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18751775337764934,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510378881126,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18751812660852513,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103771836203,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18751849992415034,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510379138199,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18751887327023212,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.62751037892468,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18751924652638985,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103787238123,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18751961983664048,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103791617243,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18751999318917117,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510378994825,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1875203665343135,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510378847725,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18752073978701195,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103793049133,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18752111318312,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103790662837,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18752148649628989,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103788832364,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18752185973176203,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510377168443,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18752223305379218,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510379143624,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18752260640687132,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510378927899,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18752297966812037,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510378725518,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18752335298459316,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510379167941,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1875237263442233,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103789975836,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1875240996962434,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103788486858,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18752447295385122,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103775499495,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18752484625939841,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510379064897,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18752521963335453,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103788862157,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1875255929104684,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510377140223,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1875259662553812,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510379153546,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18752633962205978,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510378930671,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1875267128910143,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510378725882,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18752708621466646,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510379174397,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18752745958173714,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103790016887,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18752783294081551,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103788502094,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18752820620331973,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510377504069,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18752857951476698,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.62751037907165,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18752895289605476,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510378888547,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1875293261784222,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103771155752,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18752969953000187,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103791590992,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18753007290378745,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103789334198,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18753044617776404,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103787213805,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18753081950755457,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103791819037,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1875311928817376,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510378985877,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18753156616395872,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510378853524,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1875319394859341,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103775004762,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18753231283220406,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510379076547,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1875326862333583,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.627510378890203,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.1875330595261368,
+          "withdrawn": true
+        },
+        {
+          "ok": true,
+          "support_normal_force_N": 2.6275103770868578,
+          "upper_weight_N": 2.6275104,
+          "xy_error_cm": 0.18753343288637614,
+          "withdrawn": true
+        }
+      ],
+      "exclusions": "Robot fixed base-floor and directly attached body pairs excluded; numerical penetration tolerance0.1mm. Nonadjacent robot self contact, non-finger robot-object contact and moving robot-floor contacts checked at 500Hz."
+    }
+  }
+]

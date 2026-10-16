@@ -1,0 +1,32 @@
+{
+  "status": "segment-comparison-delivered",
+  "url": "/private/synthetic/segments/",
+  "owner": "Donald",
+  "source_manifest": "../manifest.json",
+  "source_npz_sha256": "918a0a8b41737d8903b30e4f8c2b8b4a4fa697a403780e7e24db9e6b9278a4c6",
+  "no_cross_trajectory_averaging": true,
+  "counts": {
+    "human_left": 45,
+    "human_right": 40,
+    "fabrics": 40
+  },
+  "verification": [
+    "Finite geometry and positive intervals for125 retained segments",
+    "Spatial smoothing straight-line sanity check",
+    "Segmentation count sensitivity at0.008/0.012/0.020m/s saved",
+    "510 source-camera images decoded; nearest timestamp mismatch<18ms",
+    "Browser renders geometry, speed and timeline; empty-category handling and restoration verified"
+  ],
+  "interpretation": [
+    "Example human ep0019 left0.76\u20133.42s:0.447m,2.66s, p95speed0.307m/s; sim42801 approach0\u20138.92s:0.467m,8.92s,p95speed0.071m/s. Similar path length and broad shape but different task/constraints; no causal human-likeness claim.",
+    "Across selected segments16/85human vs20/40fabrics classified near-straight;6/85human vs0/40fabrics reversing/return. Behavior-mixture and segmentation effects remain.",
+    "Automatic approach labels are provisional. Ring/pole positions and contact are not estimated. Source images and exportable manual labels provided."
+  ],
+  "next_tuning_targets": [
+    "Review travel vs manipulation approach using camera context before fitting behavior-specific targets",
+    "Match individual path bend size/location and speed-versus-progress envelopes; keep variability without mean paths",
+    "Tune free-space timing separately from contact speed and validate physical success; avoid matching raw teleoperation spikes"
+  ],
+  "controller_modified": false,
+  "training_resumed": false
+}

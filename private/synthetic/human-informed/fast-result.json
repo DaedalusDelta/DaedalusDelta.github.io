@@ -1,0 +1,88 @@
+{
+  "owner": "Donald",
+  "requested": "Approximately 2x actual execution speed for both controllers",
+  "rows": [
+    {
+      "mode": "old",
+      "seed": 42801,
+      "before_seconds": 30.080000000000002,
+      "after_seconds": 16.04,
+      "speedup": 1.8753117206982546,
+      "qualified": true,
+      "unwanted_contacts": 0
+    },
+    {
+      "mode": "old",
+      "seed": 42802,
+      "before_seconds": 27.080000000000002,
+      "after_seconds": 14.42,
+      "speedup": 1.8779472954230236,
+      "qualified": true,
+      "unwanted_contacts": 0
+    },
+    {
+      "mode": "old",
+      "seed": 43021,
+      "before_seconds": 27.900000000000002,
+      "after_seconds": 15.02,
+      "speedup": 1.8575233022636486,
+      "qualified": true,
+      "unwanted_contacts": 0
+    },
+    {
+      "mode": "human-informed",
+      "seed": 42801,
+      "before_seconds": 30.240000000000002,
+      "after_seconds": 15.9,
+      "speedup": 1.9018867924528302,
+      "qualified": true,
+      "unwanted_contacts": 0
+    },
+    {
+      "mode": "human-informed",
+      "seed": 42802,
+      "before_seconds": 27.18,
+      "after_seconds": 14.34,
+      "speedup": 1.895397489539749,
+      "qualified": true,
+      "unwanted_contacts": 0
+    },
+    {
+      "mode": "human-informed",
+      "seed": 43021,
+      "before_seconds": 27.18,
+      "after_seconds": 14.620000000000001,
+      "speedup": 1.8590971272229821,
+      "qualified": true,
+      "unwanted_contacts": 0
+    }
+  ],
+  "physics": "Unchanged model, masses, friction, timestep and actuator force limits. Action interface gripper delta limit changed from0.12 to1.0 so full closing target reaches the existing actuator; saved actions require this versioned interface.",
+  "changes": [
+    "2.5x reference timing target with loaded/contact caps",
+    "fabrics tracking gains scaled, loaded tracking rate2 versus free2.5",
+    "gripper command range corrected",
+    "close/release ramp0.05 per tick, phase dwell35ticks vs65; final75tick observation unchanged"
+  ],
+  "limitations": [
+    "3 paired development resets per controller; not an independent generalization estimate",
+    "Viser8890/8893 remain historical controller versions; faster executable and videos are here",
+    "Earlier failed tuning candidates retained under execution-speed-v1"
+  ],
+  "source_hashes": {
+    "tuning.py": "d48fc260b00d69dcbb644f0bca2ef27ef4a1f510d1135025438aa023e6290d41",
+    "simulate.py": "cea64af444ae3ffbb1a730cb376126b675f12b4221520b73074df46546f278b4",
+    "controller_snapshot/fabric_control.py": "756bd6a2a078f196d7ef88cc2a17ad279d82c8bbeeeca2b899ef35fdc187f752",
+    "controller_snapshot/path_motion.py": "e25e9077fbe8db5fa50d7812a5490a6cd7910e62361b71e9a3b5517e5c7b9913",
+    "controller_snapshot/franka_env.py": "3d4bbbad2e232484724e6255fd368f4b587073fa13b4cfc49e3eab4ca0c9db30",
+    "controller_snapshot/verify.py": "44346a90b7cccf5179f2962cb0ea7ec59c71d883d6e86c5df07879d36f07b306"
+  },
+  "original_controller_unchanged": {
+    "tuning.py": true,
+    "simulate.py": true,
+    "app.py": true
+  },
+  "physics_model_definition_unchanged": true,
+  "original_action_interface_gripper_delta": 0.12,
+  "new_action_interface_gripper_delta": 1.0
+}

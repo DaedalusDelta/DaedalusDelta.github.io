@@ -1,0 +1,364 @@
+{
+  "seed": 43026,
+  "mode": "franka-tud-fabrics",
+  "initial_qpos_error": 0.0,
+  "final_arm_qpos_error": 0.0,
+  "contact_monitor_hz": 500,
+  "unwanted_contact_count": 0,
+  "unwanted_contact_examples": [],
+  "sustained_physical_success_1s": false,
+  "qualified": false,
+  "last_second": [
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680446096,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680451292,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.466376804537234,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680454913,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680454855,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.466376804542996,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680452796,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680452061,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680452563,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.466376804556,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.466376804601595,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.466376804650274,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680467419,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680468013,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680467781,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680466578,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.466376804657656,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680466502,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680469647,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680474447,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.4663768047896,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680481028,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.466376804815035,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680480556,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680480077,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680479209,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680478232,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680479708,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.4663768048376,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.466376804889194,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680492787,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.4663768049431,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680494005,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680493609,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680492839,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680491941,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680493865,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680497885,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680502982,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680506516,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.4663768050722,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680507507,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.466376805070254,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680506263,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680504619,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680504904,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.466376805075626,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680511951,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.466376805172615,
+      "withdrawn": true
+    },
+    {
+      "ok": false,
+      "support_normal_force_N": 0.0,
+      "upper_weight_N": 2.6275104,
+      "xy_error_cm": 38.46637680519621,
+      "withdrawn": true
+    }
+  ],
+  "exclusions": "Robot fixed base-floor and directly attached body pairs excluded; numerical penetration tolerance0.1mm. Nonadjacent robot self contact, non-finger robot-object contact and moving robot-floor contacts checked at 500Hz."
+}

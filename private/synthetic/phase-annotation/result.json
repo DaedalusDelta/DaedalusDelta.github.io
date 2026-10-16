@@ -1,0 +1,24 @@
+{
+  "status": "annotation-tool-ready-awaiting-user-labels",
+  "url": "/private/synthetic/phase-annotation/",
+  "arm": "left",
+  "phases": [
+    "move towards ring",
+    "align and pickup",
+    "move the ring to the pole",
+    "align and open",
+    "withdraw"
+  ],
+  "episode_ids": [
+    "ep_0019",
+    "ep_0036",
+    "ep_0043"
+  ],
+  "boundary_semantics": "Four user-selected transitions on complete trajectories; no velocity-based phase assignment",
+  "saved_directory": "study-artifacts/motion-comparison/phase-annotation/annotations",
+  "source": "../manifest.json",
+  "verification": "verification.json",
+  "service": "ocbench-phase-annotation-20261016.service",
+  "controller_changed": false,
+  "training_resumed": false
+}

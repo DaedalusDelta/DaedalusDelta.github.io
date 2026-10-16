@@ -1,0 +1,14 @@
+{
+  "tests_passed": [
+    "valid save yields five named contiguous phases",
+    "durable JSON roundtrip",
+    "stale revision rejected",
+    "missing, unordered, negative, out-of-range and NaN rejected",
+    "prior saved revisions retained",
+    "all three videos verified50fps and within40ms of measured episode duration",
+    "HTTP video byte-range206 response and20-byte response length verified",
+    "Browser seek advanced video, clock and 3D/speed cursor to0.10s",
+    "Production annotation remains unfilled revision0"
+  ],
+  "test_annotations": "temporary directory only; no user annotation created"
+}

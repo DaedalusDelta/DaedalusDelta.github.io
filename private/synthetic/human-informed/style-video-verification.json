@@ -1,0 +1,29 @@
+[
+  {
+    "mode": 1,
+    "seed": 42801,
+    "decode_exit": 0,
+    "decode_errors": "",
+    "sim_seconds": 15.44,
+    "video_seconds": 15.5,
+    "playback_rate": 1
+  },
+  {
+    "mode": 1,
+    "seed": 42802,
+    "decode_exit": 0,
+    "decode_errors": "",
+    "sim_seconds": 14.08,
+    "video_seconds": 14.1,
+    "playback_rate": 1
+  },
+  {
+    "mode": 1,
+    "seed": 43021,
+    "decode_exit": 0,
+    "decode_errors": "",
+    "sim_seconds": 14.16,
+    "video_seconds": 14.2,
+    "playback_rate": 1
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "scope": "left-arm semantic-phase motion reference study; does not alter BC training dataset",
+  "decisions": {
+    "ep_0036": {
+      "status": "excluded",
+      "reason": "User marked episode bad; no specific failure mode supplied"
+    },
+    "ep_0019": {
+      "status": "annotated-reference",
+      "annotation": "annotations/ep_0019.json"
+    },
+    "ep_0043": {
+      "status": "annotated-reference",
+      "annotation": "annotations/ep_0043.json"
+    }
+  },
+  "sufficiency": "Two complete five-phase examples are enough for an initial qualitative comparison and tuning pilot, not for estimating general phase distributions."
+}

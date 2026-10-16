@@ -1,0 +1,278 @@
+[
+  {
+    "seed": 42801,
+    "previous": {
+      "episode": "study-artifacts/execution-speed-v2/qualified-1/episodes/42801",
+      "seconds": 15.9,
+      "phases": [
+        {
+          "phase": "approach",
+          "waypoint_p90_cm": 1.1424160545162385,
+          "waypoint_max_cm": 1.2452126126715444,
+          "tracking_p90_cm": 3.78645893579629,
+          "speed_p10": 0.029357958265197125,
+          "speed_p90": 0.18022430127366665,
+          "speed_p90_p10": 6.13885678444187
+        },
+        {
+          "phase": "lift",
+          "waypoint_p90_cm": 0.9308201877534438,
+          "waypoint_max_cm": 0.9587314574368684,
+          "tracking_p90_cm": 4.153332577233244,
+          "speed_p10": 0.020553565689026703,
+          "speed_p90": 0.10932489277125117,
+          "speed_p90_p10": 5.319023201391201
+        },
+        {
+          "phase": "carry",
+          "waypoint_p90_cm": 2.0903744012929795,
+          "waypoint_max_cm": 2.2025620338559895,
+          "tracking_p90_cm": 4.330570561098452,
+          "speed_p10": 0.08208851461979415,
+          "speed_p90": 0.18385534943747436,
+          "speed_p90_p10": 2.2397207488651647
+        },
+        {
+          "phase": "withdraw",
+          "waypoint_p90_cm": 0.7550753868705762,
+          "waypoint_max_cm": 0.7968916850361586,
+          "tracking_p90_cm": 2.936886354437898,
+          "speed_p10": 0.011418527938560363,
+          "speed_p90": 0.18143850377741438,
+          "speed_p90_p10": 15.889833151320378
+        }
+      ],
+      "carry_bend_speed_ratio": 0.7017037553743602
+    },
+    "candidate": {
+      "episode": "study-artifacts/motion-style-v3/selected/episodes/42801",
+      "seconds": 15.44,
+      "phases": [
+        {
+          "phase": "approach",
+          "waypoint_p90_cm": 0.6566016568965859,
+          "waypoint_max_cm": 0.8121865220506304,
+          "tracking_p90_cm": 3.027190228208066,
+          "speed_p10": 0.031354340871771566,
+          "speed_p90": 0.2012806512416296,
+          "speed_p90_p10": 6.419546565013055
+        },
+        {
+          "phase": "lift",
+          "waypoint_p90_cm": 0.7736471899519964,
+          "waypoint_max_cm": 0.7898986918364073,
+          "tracking_p90_cm": 3.595919787524439,
+          "speed_p10": 0.021180796855612267,
+          "speed_p90": 0.13457077253385008,
+          "speed_p90_p10": 6.353432944530268
+        },
+        {
+          "phase": "carry",
+          "waypoint_p90_cm": 1.4099579824516109,
+          "waypoint_max_cm": 1.974818483129389,
+          "tracking_p90_cm": 3.9543677039546754,
+          "speed_p10": 0.05834611902611472,
+          "speed_p90": 0.21817492343931433,
+          "speed_p90_p10": 3.7393219477316557,
+          "planned_overshoot_cm": 4.999999999999997,
+          "executed_overshoot_cm": 3.15141168855198,
+          "overshoot_target_nearest_cm": 1.974818483129389
+        },
+        {
+          "phase": "withdraw",
+          "waypoint_p90_cm": 0.6632323992215118,
+          "waypoint_max_cm": 0.6994529996260277,
+          "tracking_p90_cm": 2.4843495490932495,
+          "speed_p10": 0.02477261924485208,
+          "speed_p90": 0.20175120872937222,
+          "speed_p90_p10": 8.144121004535986
+        }
+      ],
+      "carry_bend_speed_ratio": 0.41863238110017303
+    }
+  },
+  {
+    "seed": 42802,
+    "previous": {
+      "episode": "study-artifacts/execution-speed-v2/qualified-1/episodes/42802",
+      "seconds": 14.34,
+      "phases": [
+        {
+          "phase": "approach",
+          "waypoint_p90_cm": 1.1467930875532533,
+          "waypoint_max_cm": 1.2126500975348438,
+          "tracking_p90_cm": 3.7163555114271483,
+          "speed_p10": 0.028940485939376055,
+          "speed_p90": 0.17797773470105502,
+          "speed_p90_p10": 6.149783907356607
+        },
+        {
+          "phase": "lift",
+          "waypoint_p90_cm": 0.7814977111394955,
+          "waypoint_max_cm": 0.8022741929265642,
+          "tracking_p90_cm": 4.289737457182377,
+          "speed_p10": 0.020697386490742015,
+          "speed_p90": 0.11001325329042067,
+          "speed_p90_p10": 5.315321011163889
+        },
+        {
+          "phase": "carry",
+          "waypoint_p90_cm": 1.4365705152214914,
+          "waypoint_max_cm": 1.5437332385920317,
+          "tracking_p90_cm": 4.413564684944615,
+          "speed_p10": 0.07469254111787016,
+          "speed_p90": 0.17479771536590455,
+          "speed_p90_p10": 2.3402298643188653
+        },
+        {
+          "phase": "withdraw",
+          "waypoint_p90_cm": 0.45766086319738614,
+          "waypoint_max_cm": 0.5331583640962574,
+          "tracking_p90_cm": 2.8220135167937745,
+          "speed_p10": 0.04212466954486147,
+          "speed_p90": 0.16447117408410827,
+          "speed_p90_p10": 3.904390844157283
+        }
+      ],
+      "carry_bend_speed_ratio": 0.8681020593470308
+    },
+    "candidate": {
+      "episode": "study-artifacts/motion-style-v3/selected/episodes/42802",
+      "seconds": 14.08,
+      "phases": [
+        {
+          "phase": "approach",
+          "waypoint_p90_cm": 0.7198083830434483,
+          "waypoint_max_cm": 0.8255139948792012,
+          "tracking_p90_cm": 3.1350734603071064,
+          "speed_p10": 0.030911053455267512,
+          "speed_p90": 0.20866110175442265,
+          "speed_p90_p10": 6.75037174182315
+        },
+        {
+          "phase": "lift",
+          "waypoint_p90_cm": 0.9199147999775991,
+          "waypoint_max_cm": 0.9529519500075259,
+          "tracking_p90_cm": 3.6913964804253387,
+          "speed_p10": 0.019477442523350635,
+          "speed_p90": 0.13801623531272947,
+          "speed_p90_p10": 7.0859526422561885
+        },
+        {
+          "phase": "carry",
+          "waypoint_p90_cm": 1.0900975585965502,
+          "waypoint_max_cm": 1.1281503569097409,
+          "tracking_p90_cm": 4.067063420225791,
+          "speed_p10": 0.05013130685332001,
+          "speed_p90": 0.20537617428450955,
+          "speed_p90_p10": 4.096764819744735,
+          "planned_overshoot_cm": 5.000000000000005,
+          "executed_overshoot_cm": 4.424454258792832,
+          "overshoot_target_nearest_cm": 0.6783891352760945
+        },
+        {
+          "phase": "withdraw",
+          "waypoint_p90_cm": 0.24993902943742993,
+          "waypoint_max_cm": 0.494385938904264,
+          "tracking_p90_cm": 2.6550438683010102,
+          "speed_p10": 0.04920187594936617,
+          "speed_p90": 0.214844949192995,
+          "speed_p90_p10": 4.366600765671876
+        }
+      ],
+      "carry_bend_speed_ratio": 0.523765506756337
+    }
+  },
+  {
+    "seed": 43021,
+    "previous": {
+      "episode": "study-artifacts/execution-speed-v2/qualified-1/episodes/43021",
+      "seconds": 14.620000000000001,
+      "phases": [
+        {
+          "phase": "approach",
+          "waypoint_p90_cm": 0.6740358551040364,
+          "waypoint_max_cm": 0.8733759215612779,
+          "tracking_p90_cm": 3.1691309230175517,
+          "speed_p10": 0.03238676051684001,
+          "speed_p90": 0.23622051897654528,
+          "speed_p90_p10": 7.293737169350997
+        },
+        {
+          "phase": "lift",
+          "waypoint_p90_cm": 0.3841097917408592,
+          "waypoint_max_cm": 0.5068768795916389,
+          "tracking_p90_cm": 3.621713339828626,
+          "speed_p10": 0.020319505064168585,
+          "speed_p90": 0.15043441323492368,
+          "speed_p90_p10": 7.403448694240084
+        },
+        {
+          "phase": "carry",
+          "waypoint_p90_cm": 1.543038013693006,
+          "waypoint_max_cm": 2.128359135236104,
+          "tracking_p90_cm": 3.7495465065505154,
+          "speed_p10": 0.08397817256126483,
+          "speed_p90": 0.2187463154344306,
+          "speed_p90_p10": 2.604799661183958
+        },
+        {
+          "phase": "withdraw",
+          "waypoint_p90_cm": 0.7053257456826334,
+          "waypoint_max_cm": 0.7651804412860439,
+          "tracking_p90_cm": 2.9826035896967933,
+          "speed_p10": 0.03594369703657509,
+          "speed_p90": 0.1925856894333778,
+          "speed_p90_p10": 5.357982214167039
+        }
+      ],
+      "carry_bend_speed_ratio": 0.5486442180431486
+    },
+    "candidate": {
+      "episode": "study-artifacts/motion-style-v3/selected/episodes/43021",
+      "seconds": 14.16,
+      "phases": [
+        {
+          "phase": "approach",
+          "waypoint_p90_cm": 0.4309034483702546,
+          "waypoint_max_cm": 0.5509372377064293,
+          "tracking_p90_cm": 3.177274185143373,
+          "speed_p10": 0.03138013748245913,
+          "speed_p90": 0.3000495105570824,
+          "speed_p90_p10": 9.56176532766321
+        },
+        {
+          "phase": "lift",
+          "waypoint_p90_cm": 0.330116485057491,
+          "waypoint_max_cm": 0.4979686501290637,
+          "tracking_p90_cm": 3.139657440975907,
+          "speed_p10": 0.02199924024822952,
+          "speed_p90": 0.1674027565026261,
+          "speed_p90_p10": 7.609478991716476
+        },
+        {
+          "phase": "carry",
+          "waypoint_p90_cm": 1.0266254933329233,
+          "waypoint_max_cm": 1.1957813955529215,
+          "tracking_p90_cm": 3.367232471987832,
+          "speed_p10": 0.06358910403967895,
+          "speed_p90": 0.26270492912115717,
+          "speed_p90_p10": 4.1312884194316055,
+          "planned_overshoot_cm": 5.0,
+          "executed_overshoot_cm": 4.689691983197349,
+          "overshoot_target_nearest_cm": 0.33825544660615015
+        },
+        {
+          "phase": "withdraw",
+          "waypoint_p90_cm": 0.38889970970497506,
+          "waypoint_max_cm": 0.6076051135656717,
+          "tracking_p90_cm": 2.7643483567189806,
+          "speed_p10": 0.04485734885941306,
+          "speed_p90": 0.22189648403641304,
+          "speed_p90_p10": 4.946714187944019
+        }
+      ],
+      "carry_bend_speed_ratio": 0.3381551002836709
+    }
+  }
+]

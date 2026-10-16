@@ -1,0 +1,16 @@
+{
+  "phase_rows": 60,
+  "human_demonstrations": 2,
+  "simulations": 10,
+  "qualified_simulations": 9,
+  "excluded_human": [
+    "ep_0036"
+  ],
+  "verified": [
+    "ordered contiguous phase boundaries",
+    "exact user phase labels and annotation hashes",
+    "controller guard mapping from recorded progress",
+    "finite metric values and straightness bounds"
+  ],
+  "controller_modified": false
+}

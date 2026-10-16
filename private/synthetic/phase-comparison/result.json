@@ -1,0 +1,29 @@
+{
+  "status": "comparison-complete",
+  "url": "/private/synthetic/phase-comparison/",
+  "inputs": "Two user-annotated left-arm episodes19/43, nine qualified fabrics plus one retained failed attempt",
+  "excluded": "ep0036 per user",
+  "evidence": [
+    "comparison.json",
+    "metrics.csv",
+    "summary.json",
+    "verification.json",
+    "phase-speed.png",
+    "analyze.py"
+  ],
+  "findings": [
+    "Travel/transport executed speed lower and travel speed relatively flatter in fabrics",
+    "Fabrics is not globally too straight: transport is already curved and longer than the two human paths",
+    "Final alignment and withdrawal are near-straight in fabrics, more indirect in the two recorded demos",
+    "Fabrics explicit1.3s close/release intervals and path restarts differ from human motion across semantic phase boundaries"
+  ],
+  "limits": [
+    "Two demos only",
+    "Controller guard-based phase mapping is an approximation across different tasks",
+    "No causal naturalness or overshoot claims",
+    "Geometry metrics spatially smoothed5mm; original raw curves retained"
+  ],
+  "implementation_note": "Excluded phase-transition rows carrying previous path progress when computing contact-guard crossings; verified each selected crossing straddles the threshold within the correct path interval.",
+  "controller_changed": false,
+  "training_resumed": false
+}

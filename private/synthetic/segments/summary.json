@@ -1,0 +1,48 @@
+{
+  "groups": {
+    "human_left": {
+      "count": 45,
+      "shapes": {
+        "near-straight": 9,
+        "curved": 33,
+        "reversing / return": 3
+      },
+      "median_p95_speed": 0.2903818192786134,
+      "median_efficiency": 0.8757031223702416
+    },
+    "human_right": {
+      "count": 40,
+      "shapes": {
+        "near-straight": 7,
+        "curved": 30,
+        "reversing / return": 3
+      },
+      "median_p95_speed": 0.12471515293841134,
+      "median_efficiency": 0.8091050444321628
+    },
+    "fabrics_sim": {
+      "count": 40,
+      "shapes": {
+        "near-straight": 20,
+        "curved": 20,
+        "reversing / return": 0
+      },
+      "median_p95_speed": 0.09047528125979437,
+      "median_efficiency": 0.9636882189375011
+    }
+  },
+  "threshold_sensitivity": {
+    "0.008": {
+      "human": 85,
+      "fabrics": 40
+    },
+    "0.012": {
+      "human": 85,
+      "fabrics": 40
+    },
+    "0.02": {
+      "human": 83,
+      "fabrics": 41
+    }
+  }
+}

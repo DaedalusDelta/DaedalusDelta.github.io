@@ -1,0 +1,412 @@
+{
+  "human": [
+    {
+      "episode": "ep_0019",
+      "phases": [
+        {
+          "phase": 0,
+          "inside_median": 0.14718987446667775,
+          "between_median": 0.23162291230101106,
+          "ratio": 0.6354719962910822,
+          "speed_p90_p10": 5.43705090086703
+        },
+        {
+          "phase": 2,
+          "inside_median": 0.22816088999473763,
+          "between_median": 0.48929580818904006,
+          "ratio": 0.4663046079205064,
+          "speed_p90_p10": 3.479981134854411
+        },
+        {
+          "phase": 4,
+          "inside_median": 0.08546889676386102,
+          "between_median": 0.31283740347666467,
+          "ratio": 0.27320549209914524,
+          "speed_p90_p10": 10.217838595018993
+        }
+      ]
+    },
+    {
+      "episode": "ep_0043",
+      "phases": [
+        {
+          "phase": 0,
+          "inside_median": 0.14696562892438264,
+          "between_median": 0.1935625788507424,
+          "ratio": 0.7592667435874005,
+          "speed_p90_p10": 17.303351743060524
+        },
+        {
+          "phase": 2,
+          "inside_median": 0.1919184486202241,
+          "between_median": 0.4589516801035613,
+          "ratio": 0.4181670030642838,
+          "speed_p90_p10": 4.586808581657888
+        },
+        {
+          "phase": 4,
+          "inside_median": 0.15450447026658554,
+          "between_median": 0.015156768450394865,
+          "ratio": 10.193760680071641,
+          "speed_p90_p10": 9.617281979306552
+        }
+      ]
+    },
+    {
+      "episode": "ep_0053",
+      "phases": [
+        {
+          "phase": 0,
+          "inside_median": 0.14924173453568618,
+          "between_median": 0.15641815369201684,
+          "ratio": 0.9541202923897131,
+          "speed_p90_p10": 5.9339487322165505
+        },
+        {
+          "phase": 2,
+          "inside_median": 0.1664184538132473,
+          "between_median": 0.36592500906991754,
+          "ratio": 0.45478841207447945,
+          "speed_p90_p10": 3.146209436035368
+        },
+        {
+          "phase": 4,
+          "inside_median": 0.0380463606449989,
+          "between_median": 0.2732392450615193,
+          "ratio": 0.13924193296769224,
+          "speed_p90_p10": 16.792418095903702
+        }
+      ]
+    },
+    {
+      "episode": "ep_0057",
+      "phases": [
+        {
+          "phase": 0,
+          "inside_median": 0.14325960951345632,
+          "between_median": 0.2117413201989813,
+          "ratio": 0.6765784277666251,
+          "speed_p90_p10": 7.705052651575837
+        },
+        {
+          "phase": 2,
+          "inside_median": 0.18810423583350705,
+          "between_median": 0.3628830058223245,
+          "ratio": 0.5183605537196389,
+          "speed_p90_p10": 2.639007058537538
+        },
+        {
+          "phase": 4,
+          "inside_median": 0.20295052511183828,
+          "between_median": 0.3280886753780815,
+          "ratio": 0.6185843655772726,
+          "speed_p90_p10": 9.547458910414193
+        }
+      ]
+    },
+    {
+      "episode": "ep_0065",
+      "phases": [
+        {
+          "phase": 0,
+          "inside_median": 0.15884319131948207,
+          "between_median": 0.10934181387466725,
+          "ratio": 1.4527213852658019,
+          "speed_p90_p10": 6.446776936509252
+        },
+        {
+          "phase": 2,
+          "inside_median": 0.15542290849546786,
+          "between_median": 0.39572742003820965,
+          "ratio": 0.3927524367163158,
+          "speed_p90_p10": 3.525158871724395
+        },
+        {
+          "phase": 4,
+          "inside_median": 0.14525300082790082,
+          "between_median": 0.18934172227117765,
+          "ratio": 0.7671473518122308,
+          "speed_p90_p10": 9.440910086996249
+        }
+      ]
+    },
+    {
+      "episode": "ep_0071",
+      "phases": [
+        {
+          "phase": 0,
+          "inside_median": 0.14571815282299366,
+          "between_median": 0.11527098620296315,
+          "ratio": 1.2641355611065974,
+          "speed_p90_p10": 2.999736953940123
+        },
+        {
+          "phase": 2,
+          "inside_median": 0.22180115013185936,
+          "between_median": 0.29140630084471314,
+          "ratio": 0.7611405432515149,
+          "speed_p90_p10": 1.7713126043818248
+        },
+        {
+          "phase": 4,
+          "inside_median": 0.18690197048411095,
+          "between_median": 0.033958960609231585,
+          "ratio": 5.503760042446721,
+          "speed_p90_p10": 4.4454838611864265
+        }
+      ]
+    },
+    {
+      "episode": "ep_0078",
+      "phases": [
+        {
+          "phase": 0,
+          "inside_median": 0.068036696718633,
+          "between_median": 0.3313183485869684,
+          "ratio": 0.20535143015411328,
+          "speed_p90_p10": 21.323652294230985
+        },
+        {
+          "phase": 2,
+          "inside_median": 0.15295835941040065,
+          "between_median": 0.4977673588909499,
+          "ratio": 0.30728885025968633,
+          "speed_p90_p10": 8.00240593185792
+        },
+        {
+          "phase": 4,
+          "inside_median": 0.04985279710642079,
+          "between_median": 0.012791048195516488,
+          "ratio": 3.8974755113420003,
+          "speed_p90_p10": 19.73558661277051
+        }
+      ]
+    },
+    {
+      "episode": "ep_0080",
+      "phases": [
+        {
+          "phase": 0,
+          "inside_median": 0.13127591038259614,
+          "between_median": 0.05228295642995699,
+          "ratio": 2.5108738936457295,
+          "speed_p90_p10": 2.725861124866664
+        },
+        {
+          "phase": 2,
+          "inside_median": 0.2697688788335987,
+          "between_median": 0.30710693215520224,
+          "ratio": 0.8784200243883323,
+          "speed_p90_p10": 1.921323014261999
+        },
+        {
+          "phase": 4,
+          "inside_median": 0.12835717421082796,
+          "between_median": 0.22775363429542034,
+          "ratio": 0.5635790384110194,
+          "speed_p90_p10": 13.166655537167243
+        }
+      ]
+    },
+    {
+      "episode": "ep_0095",
+      "phases": [
+        {
+          "phase": 0,
+          "inside_median": 0.16550347972752497,
+          "between_median": 0.2398942767397455,
+          "ratio": 0.6899017432878359,
+          "speed_p90_p10": 19.47370579947276
+        },
+        {
+          "phase": 2,
+          "inside_median": 0.16148116861003667,
+          "between_median": 0.38071791854101145,
+          "ratio": 0.42414911604073,
+          "speed_p90_p10": 2.8636305460821765
+        },
+        {
+          "phase": 4,
+          "inside_median": 0.2014460694939546,
+          "between_median": 0.019635513942160863,
+          "ratio": 10.259271546817772,
+          "speed_p90_p10": 13.228937470681242
+        }
+      ]
+    }
+  ],
+  "baseline": [
+    {
+      "seed": 42801,
+      "phases": [
+        {
+          "phase": "approach",
+          "wrist_direction_reversals_per_axis": [
+            2,
+            1,
+            1
+          ],
+          "waypoint_nearest_p90_cm": 1.1424160545162385,
+          "waypoint_nearest_max_cm": 1.2452126126715444,
+          "synchronous_tracking_p90_cm": 3.78645893579629,
+          "speed_p10": 0.02943555995545835,
+          "speed_p90": 0.18104755513638549
+        },
+        {
+          "phase": "lift",
+          "wrist_direction_reversals_per_axis": [
+            0,
+            0,
+            0
+          ],
+          "waypoint_nearest_p90_cm": 0.9308201877534438,
+          "waypoint_nearest_max_cm": 0.9587314574368684,
+          "synchronous_tracking_p90_cm": 4.153332577233244,
+          "speed_p10": 0.02924018936464546,
+          "speed_p90": 0.10971761384821502
+        },
+        {
+          "phase": "carry",
+          "wrist_direction_reversals_per_axis": [
+            1,
+            2,
+            3
+          ],
+          "waypoint_nearest_p90_cm": 2.0903744012929795,
+          "waypoint_nearest_max_cm": 2.2025620338559895,
+          "synchronous_tracking_p90_cm": 4.330570561098452,
+          "speed_p10": 0.07764346603732664,
+          "speed_p90": 0.1858667604025366
+        },
+        {
+          "phase": "withdraw",
+          "wrist_direction_reversals_per_axis": [
+            1,
+            2,
+            1
+          ],
+          "waypoint_nearest_p90_cm": 0.7550753868705762,
+          "waypoint_nearest_max_cm": 0.7968916850361586,
+          "synchronous_tracking_p90_cm": 2.936886354437898,
+          "speed_p10": 0.011219698589809127,
+          "speed_p90": 0.18511416346667464
+        }
+      ]
+    },
+    {
+      "seed": 42802,
+      "phases": [
+        {
+          "phase": "approach",
+          "wrist_direction_reversals_per_axis": [
+            3,
+            3,
+            1
+          ],
+          "waypoint_nearest_p90_cm": 1.1467930875532533,
+          "waypoint_nearest_max_cm": 1.2126500975348438,
+          "synchronous_tracking_p90_cm": 3.7163555114271483,
+          "speed_p10": 0.028995510034791217,
+          "speed_p90": 0.1810962870515168
+        },
+        {
+          "phase": "lift",
+          "wrist_direction_reversals_per_axis": [
+            0,
+            0,
+            0
+          ],
+          "waypoint_nearest_p90_cm": 0.7814977111394955,
+          "waypoint_nearest_max_cm": 0.8022741929265642,
+          "synchronous_tracking_p90_cm": 4.289737457182377,
+          "speed_p10": 0.030667974516204163,
+          "speed_p90": 0.11014898201097828
+        },
+        {
+          "phase": "carry",
+          "wrist_direction_reversals_per_axis": [
+            3,
+            2,
+            2
+          ],
+          "waypoint_nearest_p90_cm": 1.4365705152214914,
+          "waypoint_nearest_max_cm": 1.5437332385920317,
+          "synchronous_tracking_p90_cm": 4.413564684944615,
+          "speed_p10": 0.07333135609190966,
+          "speed_p90": 0.1759332292559929
+        },
+        {
+          "phase": "withdraw",
+          "wrist_direction_reversals_per_axis": [
+            3,
+            2,
+            3
+          ],
+          "waypoint_nearest_p90_cm": 0.45766086319738614,
+          "waypoint_nearest_max_cm": 0.5331583640962574,
+          "synchronous_tracking_p90_cm": 2.8220135167937745,
+          "speed_p10": 0.06011080206690832,
+          "speed_p90": 0.1669418165906629
+        }
+      ]
+    },
+    {
+      "seed": 43021,
+      "phases": [
+        {
+          "phase": "approach",
+          "wrist_direction_reversals_per_axis": [
+            3,
+            1,
+            2
+          ],
+          "waypoint_nearest_p90_cm": 0.6740358551040364,
+          "waypoint_nearest_max_cm": 0.8733759215612779,
+          "synchronous_tracking_p90_cm": 3.1691309230175517,
+          "speed_p10": 0.03215684352169753,
+          "speed_p90": 0.23638999819549839
+        },
+        {
+          "phase": "lift",
+          "wrist_direction_reversals_per_axis": [
+            0,
+            0,
+            0
+          ],
+          "waypoint_nearest_p90_cm": 0.3841097917408592,
+          "waypoint_nearest_max_cm": 0.5068768795916389,
+          "synchronous_tracking_p90_cm": 3.621713339828626,
+          "speed_p10": 0.021956889502631444,
+          "speed_p90": 0.1525489443637674
+        },
+        {
+          "phase": "carry",
+          "wrist_direction_reversals_per_axis": [
+            1,
+            3,
+            2
+          ],
+          "waypoint_nearest_p90_cm": 1.543038013693006,
+          "waypoint_nearest_max_cm": 2.128359135236104,
+          "synchronous_tracking_p90_cm": 3.7495465065505154,
+          "speed_p10": 0.08022598252236725,
+          "speed_p90": 0.22008479259469957
+        },
+        {
+          "phase": "withdraw",
+          "wrist_direction_reversals_per_axis": [
+            2,
+            2,
+            2
+          ],
+          "waypoint_nearest_p90_cm": 0.7053257456826334,
+          "waypoint_nearest_max_cm": 0.7651804412860439,
+          "synchronous_tracking_p90_cm": 2.9826035896967933,
+          "speed_p10": 0.04718530233774404,
+          "speed_p90": 0.20015733074983916
+        }
+      ]
+    }
+  ],
+  "limits": "9 annotated left-arm demos. Human measured flange, simulator pinch tracking metrics. Within/between ratios only within human data, moving >1cm/s, same phase. Temporal smoothing80ms; geometric detector5mm. Bend extent can cover most of phase; ratios are descriptive not universal causal laws."
+}

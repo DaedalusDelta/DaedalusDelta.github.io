@@ -1,0 +1,21 @@
+{
+  "runs": [
+    {
+      "seed": 43024,
+      "exitcode": 0
+    },
+    {
+      "seed": 43025,
+      "exitcode": 0
+    },
+    {
+      "seed": 43026,
+      "exitcode": 0
+    },
+    {
+      "seed": 43027,
+      "exitcode": 0
+    }
+  ],
+  "verify_exit": 0
+}

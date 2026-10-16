@@ -1,0 +1,35 @@
+{
+  "status": "analysis_and_viewer_complete",
+  "owner": "Donald",
+  "completed_at": "2026-10-16T07:36:05.280306+00:00",
+  "viewer": "/private/synthetic/bend-comparison/",
+  "scope": "Individual left-arm phase bend geometry: count, position, turning angle, extent and effective radius; no mean-speed objective.",
+  "human_episodes": [
+    "ep_0019",
+    "ep_0043"
+  ],
+  "excluded_human": [
+    "ep_0036"
+  ],
+  "verification": {
+    "detector_checks": "7 passed, see detector-tests.json",
+    "browser": "Rendered paths and tables inspected; pickup phase selector verified",
+    "static_plot": "human-bend-map.png visually inspected"
+  },
+  "limitations": [
+    "Only two annotated human demonstrations; different manipulation tasks",
+    "Bend counts depend on explicit smoothing and thresholds",
+    "Fabrics phase mapping is approximate",
+    "Phase position is not physical distance to object"
+  ],
+  "artifacts": {
+    "analyze.py": "b4156e37e1c5f5ebcd7e75c0910ae20c1a32b2ec1bf662c87ecb08b3096ef565",
+    "bends.json": "96285f14b6abc0326408a3d89f6ce307c19dd54f840aa05e140936679da44fc1",
+    "summary.json": "41e39247c970f2a401563e6559cf8ced2bd931bbb91633f9e3a7354fdcfdac29",
+    "detector-tests.json": "b30b2a2b0872fc1838cbeee3f32afd093ed789c386490b8cf864f3091c7d0d15",
+    "index.html": "91eb9b8893fba205cf58301e02190cb506d589f3e51ea8285fef6be4424c7ef2",
+    "human-bend-map.png": "5d921ba4265075abf8e7cf9bc526d6129b8c7d1bb6159bb8123c5bb5d376bae8"
+  },
+  "controller_changed": false,
+  "training_hold_preserved": true
+}

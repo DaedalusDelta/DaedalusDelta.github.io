@@ -1,0 +1,100 @@
+{
+  "new_videos_decoded": [
+    "ep_0053",
+    "ep_0057",
+    "ep_0065",
+    "ep_0071",
+    "ep_0078",
+    "ep_0080",
+    "ep_0095"
+  ],
+  "annotations_preserved": [
+    "ep_0019.json",
+    "ep_0043.json"
+  ],
+  "http_review_status": {
+    "episodes": [
+      {
+        "episode": "ep_0019",
+        "annotated": true,
+        "annotation_revision": 1,
+        "status": "annotated-reference",
+        "review_revision": 0,
+        "reason": ""
+      },
+      {
+        "episode": "ep_0036",
+        "annotated": false,
+        "annotation_revision": 0,
+        "status": "excluded",
+        "review_revision": 0,
+        "reason": "User marked episode bad; no specific failure mode supplied"
+      },
+      {
+        "episode": "ep_0043",
+        "annotated": true,
+        "annotation_revision": 1,
+        "status": "annotated-reference",
+        "review_revision": 0,
+        "reason": ""
+      },
+      {
+        "episode": "ep_0053",
+        "annotated": false,
+        "annotation_revision": 0,
+        "status": "unreviewed",
+        "review_revision": 0,
+        "reason": ""
+      },
+      {
+        "episode": "ep_0057",
+        "annotated": false,
+        "annotation_revision": 0,
+        "status": "unreviewed",
+        "review_revision": 0,
+        "reason": ""
+      },
+      {
+        "episode": "ep_0065",
+        "annotated": false,
+        "annotation_revision": 0,
+        "status": "unreviewed",
+        "review_revision": 0,
+        "reason": ""
+      },
+      {
+        "episode": "ep_0071",
+        "annotated": false,
+        "annotation_revision": 0,
+        "status": "unreviewed",
+        "review_revision": 0,
+        "reason": ""
+      },
+      {
+        "episode": "ep_0078",
+        "annotated": false,
+        "annotation_revision": 0,
+        "status": "unreviewed",
+        "review_revision": 0,
+        "reason": ""
+      },
+      {
+        "episode": "ep_0080",
+        "annotated": false,
+        "annotation_revision": 0,
+        "status": "unreviewed",
+        "review_revision": 0,
+        "reason": ""
+      },
+      {
+        "episode": "ep_0095",
+        "annotated": false,
+        "annotation_revision": 0,
+        "status": "unreviewed",
+        "review_revision": 0,
+        "reason": ""
+      }
+    ]
+  },
+  "selection": "All seven remaining examples in the pre-existing random sample; no geometry-based selection."
+}

@@ -1,0 +1,10 @@
+{
+  "annotation_count": 9,
+  "rows": 285,
+  "checks": [
+    "Every whole-path bend has exactly one primary phase",
+    "Per-phase overlap fractions sum to one for every bend",
+    "All nine saved annotations included with hashes",
+    "Excluded ep36 absent; failed fabrics execution retained separately"
+  ]
+}

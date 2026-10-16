@@ -1,0 +1,22 @@
+{
+  "owner": "Donald",
+  "status": "expanded_annotation_analysis_complete",
+  "time": "2026-10-16T08:09:16.996001+00:00",
+  "human_annotations": 9,
+  "excluded_human": [
+    "ep_0036"
+  ],
+  "qualified_fabrics": 9,
+  "failed_fabrics_retained": 1,
+  "url": "/private/synthetic/whole-bends/expanded-study/",
+  "evidence": [
+    "summary.json",
+    "phase-metrics.csv",
+    "verification.json",
+    "phase-distributions.png",
+    "human-position-map.png"
+  ],
+  "browser_verified": "Nine-demo table and 10 mm sensitivity switch; individual position map visually inspected",
+  "next": "Use observed per-phase joint patterns and phase-length dependence to design the synthetic bend generator; do not claim a population distribution or resumed training.",
+  "controller_changed": false
+}

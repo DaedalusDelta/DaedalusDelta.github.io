@@ -1,0 +1,75 @@
+{
+  "passed": [
+    "straight line0bends",
+    "quarter circle1bend; detected-region angle agrees within4deg, radius within1cm of10cm",
+    "two separated opposite heading changes2bends with correct locations",
+    "0.2mm high-frequency jitter on straight path suppressed at5mm",
+    "rigid rotation/translation invariance",
+    "full loop flagged for inspection",
+    "nonuniform input sampling retains two bends and locations"
+  ],
+  "arc_measurement": [
+    {
+      "start_fraction": 0.03184713375796178,
+      "end_fraction": 0.9681528662420382,
+      "center_fraction": 0.5000000000000004,
+      "peak_fraction": 0.5031847133757962,
+      "start_m": 0.004996332235742255,
+      "end_m": 0.15188849996656456,
+      "width_cm": 14.689216773082231,
+      "total_turn_deg": 81.5461004156213,
+      "net_turn_deg": 81.87309563751546,
+      "peak_curvature_per_m": 10.011993626596764,
+      "effective_radius_cm": 10.320911989179118,
+      "kind": "turn",
+      "start_index": 5,
+      "end_index": 152,
+      "peak_index": 79,
+      "near_endpoint": false,
+      "edge_truncated": false,
+      "edge_affected": true
+    }
+  ],
+  "two_bend_measurements": [
+    {
+      "start_fraction": 0.20500000000000002,
+      "end_fraction": 0.29500000000000004,
+      "center_fraction": 0.24980281275651414,
+      "peak_fraction": 0.25,
+      "start_m": 0.2048683101553617,
+      "end_m": 0.29481049510161805,
+      "width_cm": 8.994218494625636,
+      "total_turn_deg": 75.59940183356589,
+      "net_turn_deg": 75.66415340550095,
+      "peak_curvature_per_m": 27.069423748223016,
+      "effective_radius_cm": 6.8165983759378435,
+      "kind": "turn",
+      "start_index": 205,
+      "end_index": 295,
+      "peak_index": 250,
+      "near_endpoint": false,
+      "edge_truncated": false,
+      "edge_affected": false
+    },
+    {
+      "start_fraction": 0.655,
+      "end_fraction": 0.745,
+      "center_fraction": 0.6997772432918913,
+      "peak_fraction": 0.7000000000000001,
+      "start_m": 0.6545792348866435,
+      "end_m": 0.7445214198328998,
+      "width_cm": 8.994218494625628,
+      "total_turn_deg": 75.59919416197418,
+      "net_turn_deg": 75.6639474202862,
+      "peak_curvature_per_m": 27.034346311445262,
+      "effective_radius_cm": 6.816617101188157,
+      "kind": "turn",
+      "start_index": 655,
+      "end_index": 745,
+      "peak_index": 700,
+      "near_endpoint": false,
+      "edge_truncated": false,
+      "edge_affected": false
+    }
+  ]
+}

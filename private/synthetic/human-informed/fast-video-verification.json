@@ -1,0 +1,56 @@
+[
+  {
+    "mode": 0,
+    "seed": 42801,
+    "decode_exit": 0,
+    "decode_errors": "",
+    "sim_seconds": 16.04,
+    "video_seconds": 16.1,
+    "playback_time_scale": 1
+  },
+  {
+    "mode": 0,
+    "seed": 42802,
+    "decode_exit": 0,
+    "decode_errors": "",
+    "sim_seconds": 14.42,
+    "video_seconds": 14.5,
+    "playback_time_scale": 1
+  },
+  {
+    "mode": 0,
+    "seed": 43021,
+    "decode_exit": 0,
+    "decode_errors": "",
+    "sim_seconds": 15.02,
+    "video_seconds": 15.1,
+    "playback_time_scale": 1
+  },
+  {
+    "mode": 1,
+    "seed": 42801,
+    "decode_exit": 0,
+    "decode_errors": "",
+    "sim_seconds": 15.9,
+    "video_seconds": 15.9,
+    "playback_time_scale": 1
+  },
+  {
+    "mode": 1,
+    "seed": 42802,
+    "decode_exit": 0,
+    "decode_errors": "",
+    "sim_seconds": 14.34,
+    "video_seconds": 14.4,
+    "playback_time_scale": 1
+  },
+  {
+    "mode": 1,
+    "seed": 43021,
+    "decode_exit": 0,
+    "decode_errors": "",
+    "sim_seconds": 14.620000000000001,
+    "video_seconds": 14.7,
+    "playback_time_scale": 1
+  }
+]

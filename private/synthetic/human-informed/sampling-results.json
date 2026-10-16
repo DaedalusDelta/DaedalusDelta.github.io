@@ -1,0 +1,222 @@
+{
+  "owner": "Donald",
+  "physical_passes": 5,
+  "physical_attempts": 5,
+  "rows": [
+    {
+      "seed": 42801,
+      "exitcode": 0,
+      "seconds": 16.66,
+      "error": null,
+      "signed_offset_m": 0.05735513879525934
+    },
+    {
+      "seed": 42802,
+      "exitcode": 0,
+      "seconds": 13.38,
+      "error": null,
+      "signed_offset_m": -0.001969296170080022
+    },
+    {
+      "seed": 43021,
+      "exitcode": 0,
+      "seconds": 14.48,
+      "error": null,
+      "signed_offset_m": 0.04819325401510199
+    },
+    {
+      "seed": 43024,
+      "exitcode": 0,
+      "seconds": 16.28,
+      "error": null,
+      "signed_offset_m": 0.04786133032726023
+    },
+    {
+      "seed": 43025,
+      "selection_reason": "Chosen before execution for a visible negative sampled longitudinal offset, not selected by outcome",
+      "run_exit": 0,
+      "verify_exit": 0,
+      "seconds": 12.96,
+      "error": null,
+      "signed_offset_m": -0.03014093738384441
+    }
+  ],
+  "sampled_ranges": {
+    "placement_overshoot": [
+      -0.04,
+      0.06
+    ],
+    "correction_heading_deg": [
+      -30.0,
+      30.0
+    ],
+    "correction_lateral": [
+      -0.018,
+      0.018
+    ],
+    "clearance_add": [
+      0.0,
+      0.02
+    ],
+    "human_shape_gain": [
+      0.65,
+      1.0
+    ],
+    "contact_shape_gain": [
+      0.45,
+      0.75
+    ],
+    "offset_scale": [
+      0.85,
+      1.15
+    ],
+    "overshoot_scale": [
+      0.85,
+      1.15
+    ],
+    "shape_compensation": [
+      0.9,
+      1.1
+    ],
+    "shape_progress_power": [
+      0.8,
+      1.25
+    ],
+    "shape_roll_deg": [
+      -20.0,
+      20.0
+    ],
+    "longitudinal_gain": [
+      0.25,
+      0.55
+    ],
+    "reach_shape_cap": [
+      0.06,
+      0.085
+    ],
+    "carry_shape_cap": [
+      0.055,
+      0.075
+    ],
+    "pickup_shape_cap": [
+      0.008,
+      0.012
+    ],
+    "place_shape_cap": [
+      0.005,
+      0.008
+    ],
+    "withdraw_shape_cap": [
+      0.03,
+      0.045
+    ],
+    "speed_scale": [
+      0.9,
+      1.1
+    ],
+    "max_angular_speed": [
+      0.6,
+      0.85
+    ],
+    "normal_acceleration": [
+      0.17,
+      0.25
+    ],
+    "tangential_acceleration": [
+      0.22,
+      0.3
+    ],
+    "contact_speed_scale": [
+      0.85,
+      1.1
+    ],
+    "rotation_start_fraction": [
+      0.02,
+      0.12
+    ],
+    "rotation_end_fraction": [
+      0.6,
+      0.8
+    ],
+    "bend_fast_multiplier": [
+      1.2,
+      1.5
+    ],
+    "bend_slow_multiplier": [
+      0.4,
+      0.65
+    ],
+    "bend_width_fraction": [
+      0.05,
+      0.1
+    ],
+    "modulation_amplitude": [
+      0.1,
+      0.28
+    ],
+    "modulation_cycles": [
+      0.8,
+      1.5
+    ],
+    "braking_acceleration": [
+      0.18,
+      0.26
+    ],
+    "loaded_speed_multiplier": [
+      2.2,
+      2.6
+    ],
+    "loaded_normal_acceleration": [
+      0.65,
+      0.8
+    ],
+    "loaded_tangential_acceleration": [
+      0.8,
+      1.0
+    ],
+    "lift_height": [
+      0.13,
+      0.17
+    ],
+    "withdraw_height": [
+      0.14,
+      0.18
+    ]
+  },
+  "qualification_scope": "Five development examples, not a distribution-wide reliability estimate",
+  "hold": "OCBench policy training remains paused",
+  "source_sha256": {
+    "tuning.py": "c223aeeaeba134ef25cb11571fc1a48606d11221ce42cdf57bfc968f45be7248",
+    "simulate.py": "92df28599d8e87afa629966cff0914f7b5b56c0b3fda628d881f4d042736b276",
+    "controller_snapshot/fabric_control.py": "756bd6a2a078f196d7ef88cc2a17ad279d82c8bbeeeca2b899ef35fdc187f752",
+    "controller_snapshot/franka_env.py": "3d4bbbad2e232484724e6255fd368f4b587073fa13b4cfc49e3eab4ca0c9db30",
+    "controller_snapshot/verify.py": "44346a90b7cccf5179f2962cb0ea7ec59c71d883d6e86c5df07879d36f07b306"
+  },
+  "reference_checks": "reference-checks.json",
+  "parameter_use_audit": "parameter-use-audit.json",
+  "video_checks": "video-checks.json",
+  "workboard_comment_delivered": true,
+  "rendering_incident": {
+    "initial_batch_exit": 143,
+    "known_cause": "Termination cause not established; simulations and physical replay had already completed",
+    "recovery": "recover_previews.py reuses valid complete videos and renders only missing/incomplete previews from immutable traces"
+  },
+  "preview_complete": true,
+  "browser_check": {
+    "durations": [
+      16.7,
+      14.5,
+      13.0
+    ],
+    "playback_rates": [
+      1,
+      1,
+      1
+    ],
+    "media_errors": [
+      null,
+      null,
+      null
+    ]
+  }
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "seed": 42801,
+    "phase": "approach",
+    "monotone_rotation": true,
+    "exact_endpoints": true,
+    "bend_speed_min": 0.5000000000000001,
+    "bend_speed_max": 1.2773601627625448
+  },
+  {
+    "seed": 42801,
+    "phase": "lift",
+    "monotone_rotation": true,
+    "exact_endpoints": true,
+    "bend_speed_min": 1.35,
+    "bend_speed_max": 1.35
+  },
+  {
+    "seed": 42801,
+    "phase": "carry",
+    "monotone_rotation": true,
+    "exact_endpoints": true,
+    "bend_speed_min": 0.5000000000000001,
+    "bend_speed_max": 1.35
+  },
+  {
+    "seed": 42801,
+    "phase": "withdraw",
+    "monotone_rotation": true,
+    "exact_endpoints": true,
+    "bend_speed_min": 0.5000000000000001,
+    "bend_speed_max": 1.3499441881062495
+  },
+  {
+    "seed": 42802,
+    "phase": "approach",
+    "monotone_rotation": true,
+    "exact_endpoints": true,
+    "bend_speed_min": 0.5000000000000001,
+    "bend_speed_max": 1.348324900902046
+  },
+  {
+    "seed": 42802,
+    "phase": "lift",
+    "monotone_rotation": true,
+    "exact_endpoints": true,
+    "bend_speed_min": 1.35,
+    "bend_speed_max": 1.35
+  },
+  {
+    "seed": 42802,
+    "phase": "carry",
+    "monotone_rotation": true,
+    "exact_endpoints": true,
+    "bend_speed_min": 0.5000000000000001,
+    "bend_speed_max": 1.35
+  },
+  {
+    "seed": 42802,
+    "phase": "withdraw",
+    "monotone_rotation": true,
+    "exact_endpoints": true,
+    "bend_speed_min": 0.5000000000000001,
+    "bend_speed_max": 1.3499999999999945
+  },
+  {
+    "seed": 43021,
+    "phase": "approach",
+    "monotone_rotation": true,
+    "exact_endpoints": true,
+    "bend_speed_min": 0.5000000000000001,
+    "bend_speed_max": 1.3499999999999608
+  },
+  {
+    "seed": 43021,
+    "phase": "lift",
+    "monotone_rotation": true,
+    "exact_endpoints": true,
+    "bend_speed_min": 1.35,
+    "bend_speed_max": 1.35
+  },
+  {
+    "seed": 43021,
+    "phase": "carry",
+    "monotone_rotation": true,
+    "exact_endpoints": true,
+    "bend_speed_min": 0.5000000000000001,
+    "bend_speed_max": 1.35
+  },
+  {
+    "seed": 43021,
+    "phase": "withdraw",
+    "monotone_rotation": true,
+    "exact_endpoints": true,
+    "bend_speed_min": 0.5000000000000001,
+    "bend_speed_max": 1.34999999968008
+  }
+]

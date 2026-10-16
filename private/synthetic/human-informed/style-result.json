@@ -1,0 +1,31 @@
+{
+  "owner": "Donald",
+  "scope": "Coherent wrist rotation, placement overshoot, tracking-vs-offset experiment, human bend-conditioned velocity analysis, executed preview videos",
+  "selected_settings": {
+    "tracking_gain": 1.2,
+    "placement_overshoot": 0.05,
+    "execution_rate": 2.5,
+    "bend_timing": 1,
+    "human_mode": 1
+  },
+  "physical_checks": "Three selected seeds qualified with zero unwanted contacts at500Hz and stable supported released stack throughout final1second. Other four probe runs also qualified; development sample only.",
+  "orientation": "One shortest SO3 arc with monotone progress and phase-dependent randomized timing. No independently sampled alternating wrist perturbations. Endpoint pose exact in path reference. Actual tracking remains dynamic.",
+  "tracking": "Soft moving attractors do miss intermediate reference points. Increased tracking rate1.2 improves, not eliminates, geometric target error. Potential scales with rate squared and damping linearly; this is a coordinated tracking-response change, not an isolated damping ablation.",
+  "velocity": "Existing speed was nonconstant. New reference clock adds smooth curvature-peak-associated speed valleys; faster traversal between bends; retains loaded/contact/rotation/tracking/acceleration limits. Energy formulation was not replaced.",
+  "human": "Nine annotated left-arm demos, each separately; ring/pole tasks differ. Whole-path5mm bends,80ms temporal speed smoothing, moving threshold1cm/s. Median human transport inside/between ratio.455;40/120ms sensitivity.467/.413; trimming10% phase time at each end yields.53. Association not a causal human timing model.",
+  "limits": [
+    "Three matched development seeds are not generalization evidence",
+    "Remaining intermediate target miss up to approximately2cm in selected first carry; no hard waypoint guarantee",
+    "Human transport labels and simulated carry are approximate correspondences; simulated carry includes final alignment",
+    "No new execution-energy or dynamic-attractor integration tested; research note documents options",
+    "Viser apps remain historical; this version is a separate executable candidate"
+  ],
+  "source_hashes": {
+    "tuning.py": "3df3174c118c2232b0423d4577b0027aba7c85faf4fb227f2c1560f6de328299",
+    "simulate.py": "d9dde809982a6900b253d62ecbf401108a0e309329bbdc7c5197eddbac6ee4af",
+    "controller_snapshot/fabric_control.py": "756bd6a2a078f196d7ef88cc2a17ad279d82c8bbeeeca2b899ef35fdc187f752",
+    "controller_snapshot/path_motion.py": "e25e9077fbe8db5fa50d7812a5490a6cd7910e62361b71e9a3b5517e5c7b9913",
+    "controller_snapshot/franka_env.py": "3d4bbbad2e232484724e6255fd368f4b587073fa13b4cfc49e3eab4ca0c9db30",
+    "controller_snapshot/verify.py": "44346a90b7cccf5179f2962cb0ea7ec59c71d883d6e86c5df07879d36f07b306"
+  }
+}

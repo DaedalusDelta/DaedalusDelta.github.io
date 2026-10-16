@@ -1,0 +1,24 @@
+{
+  "request": "Compare three speed traces and ten 3D trajectories per source",
+  "status": "complete",
+  "report_url": "/private/synthetic/",
+  "evidence": [
+    "manifest.json",
+    "trajectories.npz",
+    "speed-three-each.png",
+    "trajectories-human-10.png",
+    "trajectories-fabrics-10.png",
+    "build.py",
+    "execution.json"
+  ],
+  "browser_verified": "Dropdown switched to ep_0036 / sim 42802; both 3D scenes rendered",
+  "limitations": [
+    "Different tasks; descriptive comparison only",
+    "Flange positions reconstructed from measured joint observations using identical Panda FK",
+    "Real arms independently start-centered; not physical bimanual spacing",
+    "Speed is translational magnitude, not angular velocity",
+    "One simulated example, seed 43026, failed strict qualification and remains labeled",
+    "Goal overshoot cannot be inferred reliably without intended subgoal annotations"
+  ],
+  "training_resumed": false
+}

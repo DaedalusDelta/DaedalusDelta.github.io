@@ -1,0 +1,13 @@
+{
+  "passed": 8,
+  "checks": [
+    "phase-boundary shift leaves bend identity and geometry unchanged",
+    "cross-boundary turn stays one bend",
+    "phase overlap lengths and angles partition whole bend",
+    "primary phase counts sum to whole count",
+    "unannotated path has no invented phases",
+    "loop timestamp mapping monotonic",
+    "stationary samples map monotonically",
+    "quality flags versioned with stale-write protection"
+  ]
+}

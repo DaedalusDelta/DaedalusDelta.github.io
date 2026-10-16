@@ -1,0 +1,45 @@
+{
+  "schema": "left-arm-purpose-phases-v1",
+  "episode": "ep_0019",
+  "arm": "left",
+  "source": "workspace/bimanual-franka-bc-batch-20260927/dataset/batches/data_2026-09-27_factr_104episodes.h5",
+  "source_origin_ns": 1790485796716131191,
+  "duration_s": 9.335126784,
+  "boundaries_s": [
+    2.88,
+    4.04,
+    5.4,
+    7
+  ],
+  "phases": [
+    {
+      "name": "move towards ring",
+      "start_s": 0,
+      "end_s": 2.88
+    },
+    {
+      "name": "align and pickup",
+      "start_s": 2.88,
+      "end_s": 4.04
+    },
+    {
+      "name": "move the ring to the pole",
+      "start_s": 4.04,
+      "end_s": 5.4
+    },
+    {
+      "name": "align and open",
+      "start_s": 5.4,
+      "end_s": 7
+    },
+    {
+      "name": "withdraw",
+      "start_s": 7,
+      "end_s": 9.335126784
+    }
+  ],
+  "notes": "",
+  "revision": 1,
+  "saved_at": "2026-10-16T07:02:49.342157+00:00",
+  "annotation_method": "user marked whole-trajectory phase boundaries; no velocity-derived labels"
+}

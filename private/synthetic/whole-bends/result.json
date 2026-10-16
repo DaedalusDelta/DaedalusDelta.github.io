@@ -1,0 +1,43 @@
+{
+  "status": "annotation_queue_and_whole_path_analysis_ready",
+  "owner": "Donald",
+  "completed_at": "2026-10-16T07:57:42.393594+00:00",
+  "annotation_url": "/private/synthetic/phase-annotation/",
+  "analysis_url": "/private/synthetic/whole-bends/",
+  "pending_human_annotations": [
+    "ep_0053",
+    "ep_0057",
+    "ep_0065",
+    "ep_0071",
+    "ep_0078",
+    "ep_0080",
+    "ep_0095"
+  ],
+  "existing_labels_preserved": [
+    "ep_0019",
+    "ep_0043"
+  ],
+  "excluded": [
+    "ep_0036"
+  ],
+  "checks": [
+    "7 original geometry checks passed",
+    "8 whole-path mapping/attribution/review checks passed",
+    "7 new videos decoded end-to-end",
+    "HTTP video range request passed",
+    "annotation queue and next navigation browser verified",
+    "whole-path 3D plot and cross-phase overlap tables browser verified"
+  ],
+  "next_action": "User marks four phase boundaries per suitable demonstration or flags unsuitable examples; Donald reruns whole-bends/analyze.py to incorporate labels and studies coherent phase-conditioned bend patterns before generation.",
+  "training_hold_preserved": true,
+  "generation_or_distribution_fit_claimed": false,
+  "artifacts": {
+    "whole-bends/analyze.py": "fb672502b9acc8c0bfdada501ee545bfd8d9b718be86fe1873ff802b14efb80f",
+    "whole-bends/whole-bends.json": "0f8d6d2c7314d6fe5b779543f0dbc7579e477599077d3e0b4ae9353cbd3b48a8",
+    "whole-bends/tests.json": "70524ec1ff49c6d9a9c1bbffaf694a76b98c9f217f882bb13911b33d8064c92e",
+    "phase-annotation/expansion-verification.json": "79265334ef13e5c1f320a79a97538f89d4b8184c1caacb5e9db3959a326b0e61",
+    "phase-annotation/server.py": "a0f58d9aa64076ec3b3bad1aa67a7c2bed213159e1bf05b6fd203c2268c4c3e2",
+    "phase-annotation/review.py": "cc857ad0f63c36fcbf2e7548de49b56d46b80db790abfcefe2a2bc17b67f2a10",
+    "phase-annotation/index.html": "378053223cef4f34d8144231287de239791552624f4ed0b9c76bc3a68643e5c3"
+  }
+}
