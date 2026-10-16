@@ -1,0 +1,107 @@
+[
+  {
+    "seed": 42801,
+    "episode": "study-artifacts/motion-style-v5/executions/42801/attempt-0/episodes/42801",
+    "applied_scale": 1.0,
+    "before": {
+      "seconds": 16.66,
+      "donor": "ep_0071",
+      "chord_cm": 66.42731369875634,
+      "planned_deviation_cm": 8.382205104284298,
+      "executed_deviation_cm": 8.310299022241264,
+      "planned_ratio": 0.12618612190607417
+    },
+    "after": {
+      "seconds": 16.76,
+      "donor": "ep_0071",
+      "chord_cm": 66.42731369875634,
+      "planned_deviation_cm": 9.439720359250742,
+      "executed_deviation_cm": 9.32632439290255,
+      "planned_ratio": 0.14210600780966814
+    }
+  },
+  {
+    "seed": 42802,
+    "episode": "study-artifacts/motion-style-v5/executions/42802/attempt-0/episodes/42802",
+    "applied_scale": 1.0,
+    "before": {
+      "seconds": 13.38,
+      "donor": "ep_0080",
+      "chord_cm": 42.160426657817005,
+      "planned_deviation_cm": 7.45796160309809,
+      "executed_deviation_cm": 6.5596170971226515,
+      "planned_ratio": 0.1768948322944759
+    },
+    "after": {
+      "seconds": 13.4,
+      "donor": "ep_0080",
+      "chord_cm": 42.160426657817005,
+      "planned_deviation_cm": 7.60555628514525,
+      "executed_deviation_cm": 6.7042439620530345,
+      "planned_ratio": 0.18039561949582633
+    }
+  },
+  {
+    "seed": 43021,
+    "episode": "study-artifacts/motion-style-v5/executions/43021/attempt-0/episodes/43021",
+    "applied_scale": 1.0,
+    "before": {
+      "seconds": 14.48,
+      "donor": "ep_0065",
+      "chord_cm": 68.0999862478891,
+      "planned_deviation_cm": 7.422961466696128,
+      "executed_deviation_cm": 7.271069445643866,
+      "planned_ratio": 0.10900092460629855
+    },
+    "after": {
+      "seconds": 15.5,
+      "donor": "ep_0065",
+      "chord_cm": 68.0999862478891,
+      "planned_deviation_cm": 20.495759138573856,
+      "executed_deviation_cm": 20.19130904059016,
+      "planned_ratio": 0.3009656868940875
+    }
+  },
+  {
+    "seed": 43024,
+    "episode": "study-artifacts/motion-style-v5/executions/43024/attempt-0/episodes/43024",
+    "applied_scale": 1.0,
+    "before": {
+      "seconds": 16.28,
+      "donor": "ep_0095",
+      "chord_cm": 48.259010948234554,
+      "planned_deviation_cm": 7.4328861883956865,
+      "executed_deviation_cm": 7.3098533462123765,
+      "planned_ratio": 0.15402069048552686
+    },
+    "after": {
+      "seconds": 16.3,
+      "donor": "ep_0095",
+      "chord_cm": 48.259010948234554,
+      "planned_deviation_cm": 8.639157251100379,
+      "executed_deviation_cm": 8.460407061834756,
+      "planned_ratio": 0.17901645892343804
+    }
+  },
+  {
+    "seed": 43025,
+    "episode": "study-artifacts/motion-style-v5/executions/43025/attempt-0/episodes/43025",
+    "applied_scale": 1.0,
+    "before": {
+      "seconds": 12.96,
+      "donor": "ep_0043",
+      "chord_cm": 15.147518919821296,
+      "planned_deviation_cm": 6.55666571149889,
+      "executed_deviation_cm": 6.289481720425166,
+      "planned_ratio": 0.4328541027876955
+    },
+    "after": {
+      "seconds": 12.96,
+      "donor": "ep_0043",
+      "chord_cm": 15.147518919821296,
+      "planned_deviation_cm": 6.55666571149889,
+      "executed_deviation_cm": 6.289481720425166,
+      "planned_ratio": 0.4328541027876955
+    }
+  }
+]

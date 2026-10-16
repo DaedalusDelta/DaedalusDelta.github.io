@@ -1,0 +1,49 @@
+{
+  "owner": "Donald",
+  "base": "motion-style-v4",
+  "change": "Removed absolute cap for human-derived carry transit; preserve residual normalized by human chord, rescaled by new chord and existing sampled style gain. Other phase limits unchanged.",
+  "accepted": 5,
+  "attempts": 5,
+  "full_scale_successes": 5,
+  "clearance_handling": "Actual executed robot/contact replay plus stable released stack. No analytic collision-free planning guarantee. Bounded carry attenuation is available only after a failing execution; never label unverified traces expert.",
+  "recovery_coverage": "All five passed first attempt; attenuation fallback was not exercised by these examples.",
+  "training_hold": true,
+  "limitations": [
+    "Five development seeds, not population reliability",
+    "Human donor shapes retained individually, not averaged",
+    "Videos show fixed controller/physics and matched v4 style draws",
+    "Full-size paths may still require rejection in other resets or cluttered scenes",
+    "Viser viewers remain earlier versions"
+  ],
+  "evidence": {
+    "reference": "reference-checks.json",
+    "qualification": "qualification.json",
+    "comparison": "comparison.json",
+    "videos": "video-checks.json"
+  },
+  "source_sha256": {
+    "tuning.py": "0112870f569ac2779c8657881ac0847294bf8bbc33b004b4380949302b38789f",
+    "simulate.py": "92df28599d8e87afa629966cff0914f7b5b56c0b3fda628d881f4d042736b276",
+    "run_checked.py": "ef6669a1da96aeb0d50beec697b8c72f9bb193e26e149fa2e8d6631ff3811bd0",
+    "controller_snapshot/verify.py": "44346a90b7cccf5179f2962cb0ea7ec59c71d883d6e86c5df07879d36f07b306",
+    "controller_snapshot/fabric_control.py": "756bd6a2a078f196d7ef88cc2a17ad279d82c8bbeeeca2b899ef35fdc187f752",
+    "controller_snapshot/franka_env.py": "3d4bbbad2e232484724e6255fd368f4b587073fa13b4cfc49e3eab4ca0c9db30"
+  },
+  "browser_verified": {
+    "durations": [
+      16.8,
+      15.5,
+      16.3
+    ],
+    "rates": [
+      1,
+      1,
+      1
+    ],
+    "errors": [
+      null,
+      null,
+      null
+    ]
+  }
+}

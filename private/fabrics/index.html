@@ -1,0 +1,1114 @@
+<!doctype html>
+<html lang="en"><head><meta name="robots" content="noindex, nofollow, noarchive"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Geometric fabrics, built from first principles</title>
+<meta name="description" content="An interactive derivation of geometric fabrics: geometry, HD2, energy, Euler–Lagrange equations, energization, composition, and stability, starting from calculus and kinematics.">
+<link rel="stylesheet" href="assets/vendor/katex/katex.min.css?v=19095127357e"><link rel="stylesheet" href="assets/fabrics-book.css?v=e0db7a58d184">
+<link rel="stylesheet" href="assets/fabrics-illustrations.css?v=4965ebe97c09">
+</head><body>
+<header class="masthead"><a href="#start">Geometric fabrics</a><div><button id="expand-background" type="button">Expand background notes</button><button id="print-article" type="button">Print / save PDF</button></div></header>
+<main id="start"><header class="hero"><p class="eyebrow">An interactive derivation</p><h1>Geometric fabrics,<br>built from first principles</h1><p class="deck">How to preserve a geometry of motion and choose timing along it.</p><p class="audience">For readers who know basic calculus and kinematics. Mechanics, differential geometry, and stability theory are developed as they become necessary.</p></header>
+<nav class="contents" aria-label="Chapters"><a href="#motivation">The problem &amp; one-page overview</a><a href="#geometry">1. Preserve geometry while changing the clock</a><a href="#robot-mechanics">Mechanics interlude: where energy enters</a><a href="#energy">2. Choose an energy to select timing</a><a href="#energization">3. Energization: compute the clock locally</a><a href="#composition">4. Compose tasks without losing structure</a><a href="#stability">5. Goals, damping, and actual guarantees</a><a href="#design">6. Design a complete fabric</a><a href="#implementation">7. From equations to an implementation</a><a href="#reference">Notation and source guide</a></nav>
+<article><section id="motivation" class="chapter">
+<p class="chapter-kicker">Start with the design problem</p><h2>Two design goals: preserve geometry, choose timing</h2>
+<p>Imagine a robot reaching around a cup. We want to design how its motion bends around the cup, then control how quickly it follows that route. Speeding up should not accidentally turn the route into a different curve. Slowing down should not erase the steering behavior we designed.</p>
+<p>These are two distinct questions. <strong>Geometry tells us which spatial paths motion follows. Timing tells us how the robot progresses along a selected path.</strong> A geometry is a family of paths selected by starting configuration and direction, not one stored trajectory. The construction at the heart of this tutorial lets us keep that family while choosing a different clock.</p>
+<div class="overview" id="two-design-goals"><p class="eyebrow">The two goals</p><h3>Keep the route. Design the clock.</h3>
+<p>For one path, write <span class="math inline">q(t)=r(\sigma(t))</span>. The curve r describes configurations along the route; the increasing function σ(t) specifies our progress. A prime on r will mean differentiation with respect to σ.</p>
+<div class="math display">\underbrace{q(t)}_{\text{timed motion}}
+=\underbrace{r}_{\text{spatial path}}\!\left(\underbrace{\sigma(t)}_{\text{clock}}\right).</div>
+<p><strong>Goal 1: preserve geometry when timing changes.</strong> We will derive the HD2 scaling of a generator h, then show that adding acceleration parallel to velocity can retime its paths. This argument uses the chain rule; it does not assume energy conservation.</p>
+<p><strong>Goal 2: choose a useful timing rule along that geometry.</strong> We will first explore the simplest choice, constant ordinary speed. Then we will generalize it to conserving a chosen virtual energy. Energization computes the required clock adjustment as an acceleration.</p>
+<p>Conserving energy is one structured way to choose timing. It is not the reason the geometry survives. Arbitrary clocks need not conserve energy, and energy-conserving motion need not have speed-independent paths.</p></div>
+<h3>Why is this useful beyond an ordinary combination of motion requests?</h3>
+<p>An RMP, or Riemannian Motion Policy, represents an acceleration request together with a metric expressing its priority. For two components in the same coordinates with scalar weights, their compromise is familiar:</p>
+<div class="math display">a=\frac{w_1a_1+w_2a_2}{w_1+w_2}.</div>
+<p>This resolves an instantaneous disagreement. Properties such as geometry preservation, energy conservation, and goal convergence require additional structure in the resulting differential equation. Particular RMP constructions can have stability guarantees; fabrics provide a way to design these geometric and energy properties explicitly, using compatible task-combination algebra.</p>
+<p>We will first establish the two-goal construction for one motion generator. We will then combine components and add purposeful goal forces and damping. Those later operations need their own analysis: a goal force can intentionally change the underlying geometry, and convergence is a further property to prove.</p>
+
+<div class="overview" id="overview"><p class="eyebrow">The whole argument in one page</p><h3>From an acceleration rule to geometry with a chosen clock</h3>
+<p><strong>1. Describe motion.</strong> Let q be configuration, <span class="math inline">v=\dot q</span> velocity, and <span class="math inline">\ddot q=h(q,v)</span> an acceleration rule. Given an initial state, this rule generates a timed trajectory. We want to distinguish its spatial geometry from its timing.</p>
+<p><strong>2. Preserve the geometry.</strong> Replaying a motion twice as fast doubles velocity and quadruples acceleration. Requiring the same generator to admit that replay leads to <span class="math inline">h(q,cv)=c^2h(q,v)</span>, or HD2. A nonuniform replay adds a term parallel to velocity: <span class="math inline">a=h+\alpha v</span>. The generator supplies the geometry and a baseline timing; α changes that timing. No energy argument is needed here.</p>
+<p><strong>3. Specify what the clock should achieve.</strong> The simplest target is constant speed, expressed by conserving <span class="math inline">E=\tfrac12\|v\|^2</span>. More general energies weight motion by configuration and direction. Requiring a chosen E to remain at its initial value determines a clock along a fixed regular path.</p>
+<p><strong>4. Derive the energy tools.</strong> A mechanics interlude explains where an energy-rate identity comes from and why natural mechanics ties an energy to a particular geometry. Chapter 2 extends the account from ordinary squared speed to Riemannian and Finsler energies. We keep useful scaling and positivity properties while widening directional expressiveness.</p>
+<p><strong>5. Compute the clock locally.</strong> Choose h and E, substitute <span class="math inline">a=h+\alpha v</span> into the energy-rate identity, and solve <span class="math inline">\dot E=0</span> for α. This is energization. It preserves the chosen geometry by Step 2 and conserves E by a separate cancellation. We can execute the resulting policy without precomputing a whole path.</p>
+<p><strong>6. Assemble and give purpose.</strong> Task maps translate requests to joint coordinates; compatible weighting preserves HD2 structure during combination. Goal potentials and damping then initiate motion and let it settle. An energy inequality plus regularity and boundedness assumptions establishes convergence to a stationary set, not automatically a global goal.</p>
+<p>The logical order is <strong>geometry-preserving freedom → a criterion for timing → energization → composition and purposeful forcing</strong>. Classical mechanics motivates and supports the energy construction; conservation does not prove the first step.</p></div>
+<p class="reading-note">Read the main text in order. The expandable notes supply prerequisite mathematics and longer proofs at the point of use. Printing includes them. Interactive plots expose the quantities used in the argument. The primary sources are linked beside the corresponding derivations, beginning with <a href="https://arxiv.org/html/2010.14745#S2">the geometry and clock-equivalence construction</a>.</p>
+</section>
+
+<section id="geometry" class="chapter"><p class="chapter-kicker">Chapter 1 · Reference R0–R1</p><h2>Preserve geometry while changing the clock</h2>
+<p><strong>Our first goal is to change the timing of motion without changing its spatial geometry.</strong> We will derive the required scaling and the allowed clock adjustments directly from kinematics. We do not yet choose an energy, invoke a mechanical law, or require conservation.</p>
+<h3>First distinguish the object from its clock</h3>
+<p>A configuration <span class="math inline">q</span> might contain the two coordinates of a point, or seven robot joint angles. A trajectory is a function <span class="math inline">q(t)</span>. Its path is the curve it draws after we discard the timestamps. Two trajectories can trace the same path at different speeds. A <strong>geometry of paths</strong> specifies an entire family of curves: for each starting configuration and direction, which curve should the motion follow?</p>
+<p>The word “geometry” in the fabrics papers is sometimes used as shorthand for the differential equation that generates this family. A single path is a member of the geometry, rather than the whole geometry. This distinction matters because fabrics design the rule for motion from many possible states, rather than store one route.</p>
+<details><summary>Background: vectors, dots, and a second-order equation</summary><p>A vector is a list of coordinates. For a moving point, <span class="math inline">q=(x,y)^T</span>. A dot means a time derivative: <span class="math inline">\dot q=(dx/dt,dy/dt)^T</span>; two dots mean acceleration. A second-order equation specifies <span class="math inline">\ddot q</span> from <span class="math inline">q,\dot q</span>. Together with an initial position and velocity, a sufficiently regular rule determines a local trajectory. “Autonomous” means the rule has no separate explicit dependence on time: the same state produces the same acceleration.</p><p>We use <span class="math inline">h</span> for an acceleration, so our equation is <span class="math inline">\ddot q=h</span>. Some papers instead write <span class="math inline">\ddot q+h=0</span>. Their <span class="math inline">h</span> has the opposite sign. Keep the equation beside the symbol when comparing notation.</p></details>
+<details><summary>Notation: dot products, norms, and projections</summary><p>We write vectors as columns. The superscript T turns a column into a row, so <span class="math inline">v^Ta=\sum_jv_ja_j</span> is the dot product. It is zero for perpendicular vectors. The norm <span class="math inline">\|v\|=\sqrt{v^Tv}</span> is ordinary length. For a unit vector e, <span class="math inline">ee^Tz=e(e^Tz)</span> extracts the part of z along e. The identity matrix I leaves a vector unchanged, so <span class="math inline">(I-ee^T)z</span> removes that part. These are the projections we will use to separate turning from speeding up.</p></details>
+<h3>The square is forced by the chain rule</h3>
+<p>We want one motion rule to describe a route independently of how quickly we travel along it. To turn that design goal into mathematics, ask: if a motion is allowed by our rule, should a faster replay of that same motion also be allowed?</p>
+<p>Imagine <span class="math inline">q(\tau)</span> as a recording: give it a timestamp τ, and it returns the configuration shown in that frame. At 2× playback, one second on our wall clock takes us to the frame originally recorded at two seconds, so <span class="math inline">q_2(1)=q(2)</span>. At a general playback rate <span class="math inline">c&gt;0</span>, the recording's timestamp is <span class="math inline">\tau=ct</span>, giving <span class="math inline">q_c(t)=q(ct)</span>. We change the time input to q; we do not multiply the positions by c.</p>
+<figure class="explain-figure" id="clock-illustration">
+<div class="figure-heading"><span class="figure-number">Visual 01</span><h4>One recording. Two playback clocks.</h4></div>
+<svg id="clock-svg" class="explain-svg" viewBox="0 0 840 300" role="img" aria-labelledby="clock-title clock-desc">
+<title id="clock-title">The same spatial route, replayed at normal and double speed</title>
+<desc id="clock-desc">At wall time one second, the teal point shows recording time one second and the orange point shows recording time two seconds. A slider changes wall time for both.</desc>
+<defs><linearGradient id="clock-road" x2="1" y2="1"><stop stop-color="#dae7e1"/><stop offset="1" stop-color="#eaf0e8"/></linearGradient><filter id="clock-shadow" x="-60%" y="-60%" width="220%" height="220%"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#193c34" flood-opacity=".18"/></filter></defs>
+<rect x="12" y="12" width="548" height="276" rx="12" fill="#f7faf7"/>
+<text x="34" y="40" class="svg-overline">SPACE · THE ROUTE STAYS FIXED</text>
+<path d="M50 232 C155 35 315 275 516 82" stroke="url(#clock-road)" stroke-width="24" fill="none" stroke-linecap="round"/>
+<path id="clock-route" d="M50 232 C155 35 315 275 516 82" stroke="#8ea69a" stroke-width="1.5" fill="none" stroke-dasharray="3 7"/>
+<g id="clock-frames"></g>
+<circle id="clock-normal-dot" r="10" fill="#136f73" stroke="white" stroke-width="3" filter="url(#clock-shadow)" cx="139" cy="155"/>
+<circle id="clock-fast-dot" r="10" fill="#c1663d" stroke="white" stroke-width="3" filter="url(#clock-shadow)" cx="247" cy="156"/>
+<text x="34" y="270" class="svg-small">Dots are two replays of one motion, not two new routes.</text>
+<rect x="578" y="12" width="250" height="126" rx="12" fill="#eaf4f1"/>
+<text x="598" y="39" class="svg-overline" fill="#136f73">NORMAL PLAYBACK · c = 1</text>
+<text id="clock-normal-label" x="598" y="76" class="svg-equation">q(1.00 s)</text>
+<text x="598" y="102" class="svg-small">Read the frame at wall-clock time.</text>
+<rect x="598" y="116" width="208" height="4" rx="2" fill="#c9ded6"/><rect id="clock-normal-bar" x="598" y="116" width="52" height="4" rx="2" fill="#136f73"/>
+<rect x="578" y="154" width="250" height="134" rx="12" fill="#fbefe6"/>
+<text x="598" y="182" class="svg-overline" fill="#ad5330">DOUBLE PLAYBACK · c = 2</text>
+<text id="clock-fast-label" x="598" y="220" class="svg-equation">q₂(1.00 s) = q(2.00 s)</text>
+<text x="598" y="248" class="svg-small">Read twice as far into the recording.</text>
+<rect x="598" y="264" width="208" height="4" rx="2" fill="#ecd3c2"/><rect id="clock-fast-bar" x="598" y="264" width="104" height="4" rx="2" fill="#c1663d"/>
+</svg>
+<div class="illustration-controls"><button id="clock-play" type="button">Play both clocks</button><button id="clock-compare" type="button" aria-pressed="false">Freeze one shared frame</button><label><span id="clock-slider-label">Wall-clock time t</span><input id="clock-time" type="range" min="0" max="2" step="0.01" value="1"><output id="clock-time-value">1.00 s</output></label></div>
+<div id="clock-match-note" class="clock-match-note" hidden><strong>At the same frame:</strong> normal velocity → 2× velocity; normal acceleration → 4× acceleration. The two replays reach that frame at different wall-clock times.</div>
+<figcaption id="clock-readout" aria-live="polite">At t = 1 s, normal playback reads frame 1 s; double playback reads frame 2 s. Both look up positions on the same recorded curve.</figcaption>
+</figure>
+
+<p>Now ask what acceleration the faster replay requires at a matching recorded frame. We compare the faster motion at wall time t with the original at recording time ct. Each time derivative contributes one factor of c through the chain rule: velocity gets one factor, and acceleration gets a second:</p>
+<div class="math display">\dot q_c(t)=c\dot q(ct),\qquad \ddot q_c(t)=c^2\ddot q(ct).</div>
+<p>We want this faster recording to satisfy the same nominal acceleration rule. The original rule says <span class="math inline">\ddot q(ct)=h(q(ct),\dot q(ct))</span>. The faster one must say <span class="math inline">\ddot q_c=h(q_c,\dot q_c)</span>. Substitution gives the condition:</p>
+<div class="math display">\boxed{h(q,cv)=c^2h(q,v)\quad\text{for every }c&gt;0.}\tag{1}</div>
+<p>This is <strong>homogeneity of degree two in velocity</strong>. “Homogeneous” describes a scaling rule; “degree two” means the factor is squared. No quadratic polynomial is required. For example, <span class="math inline">\|v\|^2b(q,v/\|v\|)</span> is HD2 for any suitable direction-dependent vector function <span class="math inline">b</span>. It can express much richer behavior than multiplying velocity by a fixed matrix.</p>
+<h4 id="same-route-different-clock">Following the same route is weaker than an exact faster replay</h4>
+<p><strong>HD2 guarantees that replaying a solution at a constant multiple of its original speed satisfies the same unchanged rule.</strong> “Sufficient” means HD2 guarantees this property. “Necessary” means that demanding this exact property for every initial state forces the rule to be HD2. But a motion can stay on the same geometric route without obeying that exact playback schedule.</p>
+<p>Consider damping in robot joint coordinates, with a fixed constant <span class="math inline">\beta&gt;0</span>:</p>
+<div class="math display">\ddot q=-\beta\dot q,\qquad
+v(t)=e^{-\beta t}v_0,\qquad
+q(t)=q_0+\frac{1-e^{-\beta t}}{\beta}v_0.</div>
+<p>Differentiate the formulas to check them. Every displacement is a scalar multiple of the same initial vector <span class="math inline">v_0</span>, so the motion stays on a straight line in joint space while slowing down. For an initial joint-velocity ratio <span class="math inline">v_{0,2}=2v_{0,1}\ne0</span>, for example, every visited configuration satisfies <span class="math inline">q_2-q_{0,2}=2(q_1-q_{0,1})</span>. Yet the rule is not HD2: doubling v doubles its requested acceleration rather than quadrupling it.</p>
+<p>We can locate the failure exactly. Replay that damped motion twice as fast by setting <span class="math inline">r(t)=q(2t)</span>. The chain rule gives</p>
+<div class="math display">\ddot r(t)=4\ddot q(2t)
+=-4\beta\dot q(2t)=-2\beta\dot r(t).</div>
+<p>The faster replay needs damping coefficient <span class="math inline">2\beta</span>, whereas the original equation uses β. Its straight-line shape survives; it does not satisfy the same unchanged equation. Damping also limits the distance traveled: <span class="math inline">q(t)\to q_0+v_0/\beta</span>. Thus “same geometry” here concerns the straight route over the portion traversed, not a claim that a damped trajectory visits every point reached by an indefinitely coasting one.</p>
+<p>The HD2 rule <span class="math inline">\ddot q=0</span> generates straight lines at constant speed. Adding <span class="math inline">-\beta\dot q</span> gives another way to traverse those lines. This is what it means to choose an HD2 <em>representative</em> of a geometry: one motion rule generates the paths, and an additional timing rule can change how they are traversed. We will prove the curved-path version below.</p>
+<h3 id="geometry-speed-acceleration">What specifies geometry, speed, and acceleration?</h3>
+<p><strong>An acceleration rule determines the evolving motion; geometry and timing describe different aspects of that motion.</strong> Given <span class="math inline">a=h(q,v)</span> and an initial state, we integrate <span class="math inline">\dot v=a</span> and <span class="math inline">\dot q=v</span>. We do not independently specify the velocity at every instant. To see how acceleration affects both the route and its timing, separate the velocity's magnitude from its direction.</p>
+<p>Parameterize a curve by distance <span class="math inline">\ell</span> along it. Write <span class="math inline">q(t)=r(\ell(t))</span>, and let <span class="math inline">s=\dot\ell</span> be speed. The unit tangent is <span class="math inline">T=dr/d\ell</span>. Applying the chain rule twice gives:</p>
+<div class="math display">v=sT,\qquad \ddot q=\dot sT+s^2\frac{dT}{d\ell}.\tag{2}</div>
+<p>The first term changes speed along the tangent. The second changes direction as we travel along the curve. Since <span class="math inline">T^TT=1</span>, differentiating with respect to <span class="math inline">\ell</span> gives <span class="math inline">T^T(dT/d\ell)=0</span>: the second term is perpendicular to motion. On a circle of radius <span class="math inline">R</span>, its magnitude is <span class="math inline">s^2/R</span>. That familiar centripetal acceleration is the same speed-squared requirement, now derived for any smooth curve.</p>
+<details><summary>A counterexample: conserving squared speed does not preserve the geometry</summary>
+<p>Consider a virtual motion rule in two joint coordinates: <span class="math inline">a=\lambda(-v_2,v_1)^T</span>. Its acceleration is perpendicular to v, so <span class="math inline">\frac{d}{dt}(\tfrac12\|v\|^2)=v^Ta=0</span> and speed <span class="math inline">s=\|v\|</span> stays constant. If λ is a positive constant, the acceleration magnitude is λs. Equation (2) then gives the curvature of its joint-space path:</p>
+<div class="math display">\left\|\frac{dT}{d\ell}\right\|
+=\frac{\|a\|}{s^2}=\frac{\lambda}{s}.</div>
+<p>Different initial speeds give different turning radii. Conserving energy did not by itself give a speed-independent geometry. Now choose <span class="math inline">\lambda=\kappa s</span>, with constant <span class="math inline">\kappa&gt;0</span>:</p>
+<div class="math display">a=\kappa\|v\|\begin{bmatrix}-v_2\\v_1\end{bmatrix},\qquad
+\left\|\frac{dT}{d\ell}\right\|=\kappa.</div>
+<p>This rule is HD2 and has circular joint-space paths of radius <span class="math inline">1/\kappa</span>. The constant κ sets curvature; the initial position and direction select a particular circle, and initial speed sets the rate of traversal. These are curves in the plane of two joint coordinates, not necessarily circles traced by the end effector.</p></details>
+<figure class="lab" data-lab="homogeneity"><h4>Experiment 1 · Change the exponent, then change the speed</h4><p>Use <span class="math inline">\ddot x=0,\ \ddot y=\kappa\dot x^p</span>, starting rightward at speed <span class="math inline">s</span>. Orange starts at speed 1; teal uses your speed.</p><div class="controls"><label>Velocity exponent p <select id="hd-p"><option value="0">0 — fixed acceleration</option><option value="1">1 — proportional to speed</option><option value="2" selected>2 — speed squared</option><option value="3">3 — speed cubed</option></select></label><label>Starting speed s <input id="hd-speed" type="range" min="0.5" max="2.5" step="0.1" value="2"><output id="hd-speed-value"></output></label></div><canvas id="hd-canvas" width="900" height="270" aria-label="Paths for two starting speeds and a selectable velocity exponent" role="img"></canvas><p id="hd-readout" class="readout" aria-live="polite"></p><figcaption>Eliminating time gives <span class="math inline">y(x)=\tfrac12\kappa s^{p-2}x^2</span>. Only p = 2 removes the starting speed from this family. A dashed outline distinguishes overlapping curves.</figcaption></figure>
+<h3 id="geometry-and-timing">Why tangential acceleration changes only the clock</h3>
+<p><strong>Retiming an HD2 solution changes its required acceleration by a term parallel to velocity. Conversely, a suitable tangential term can locally be realized by retiming.</strong> We will derive both directions. This is the precise sense in which geometry and timing separate, and the reason we can later control energy without replacing a chosen geometry.</p>
+<h4>Choose a new clock and calculate the acceleration it requires</h4>
+<p>Let <span class="math inline">r(\tau)</span> be a recorded solution of <span class="math inline">r''=h(r,r')</span>, where h is HD2 and primes mean derivatives with respect to the original time τ. Replay it using a smooth new clock <span class="math inline">\tau(t)</span>:</p>
+<div class="math display">q(t)=r(\tau(t)),\qquad \dot\tau&gt;0.</div>
+<p>Because the clock is increasing, we visit the recorded configurations in the same order. The curve is unchanged over the portion of the recording we traverse. The first derivative tells us the new velocity; the product rule then gives its acceleration:</p>
+<div class="math display">v=r'\dot\tau,\qquad
+\ddot q=r''\dot\tau^2+r'\ddot\tau.</div>
+<p>Substitute the recorded motion equation into the first term. The HD2 property turns it into the generator evaluated at the new velocity:</p>
+<div class="math display">r''\dot\tau^2=h(r,r')\dot\tau^2
+=h(r,r'\dot\tau)=h(q,v).</div>
+<p>For the second term, use <span class="math inline">r'=v/\dot\tau</span>. Together these give</p>
+<div class="math display">\boxed{\ddot q=h(q,v)+\frac{\ddot\tau}{\dot\tau}v.}\tag{3}</div>
+<p>Every step is an equality. The HD2 term automatically adjusts to the velocity needed at the new playback rate. The remaining acceleration is parallel to v and accounts for the changing playback rate. For a constant multiplier <span class="math inline">\tau=ct</span>, <span class="math inline">\ddot\tau=0</span>, so the extra term vanishes and the same unchanged equation suffices. For a changing playback rate, it generally does not vanish.</p>
+<h4>Choose a tangential term and recover its clock</h4>
+<p>We can reverse the construction. Suppose we want the added acceleration to be <span class="math inline">\alpha v</span>. Equation (3) tells us to choose a clock satisfying</p>
+<div class="math display">\ddot\tau=\alpha\dot\tau.</div>
+<p>For a prescribed function α(t), set <span class="math inline">w=\dot\tau</span>. The equation <span class="math inline">\dot w=\alpha(t)w</span> has the solution</p>
+<div class="math display">\dot\tau(t)=\dot\tau(0)
+\exp\!\left(\int_0^t\alpha(u)\,du\right).</div>
+<p>Starting with <span class="math inline">\dot\tau(0)&gt;0</span>, the clock rate stays positive while the expression remains finite. Integrating it gives τ(t). Thus the tangential adjustment corresponds to an actual increasing clock, not just an analogy. When α depends on (q, v), evaluate it along the retimed state <span class="math inline">(r(\tau),r'(\tau)\dot\tau)</span>; this gives a coupled clock equation with the same local interpretation under the usual existence and regularity assumptions.</p>
+<h4>The generator remains HD2; the full retimed policy need not</h4>
+<p>We keep h unchanged, but the complete policy is now <span class="math inline">a=h(q,v)+\alpha v</span>. A constant damping choice <span class="math inline">\alpha=-\beta</span> generally makes this full policy non-HD2, even though it follows the base generator's paths with a slowing clock. HD2 is a property of the base rule, not the operation of changing time.</p>
+<p>Nor does h necessarily contribute only sideways acceleration: it can already change speed. It specifies a family of paths and one way to traverse them; αv changes that traversal. The proof says the path geometry survives this change. Adding tangential acceleration to an arbitrary non-HD2 rule does not generally have that guarantee.</p>
+<details><summary>When is the full autonomous policy still HD2?</summary>
+<p>For nonzero v, scaling the full rule gives <span class="math inline">h(q,cv)+\alpha(q,cv)cv</span>. Since h is already HD2, the whole expression scales by <span class="math inline">c^2</span> precisely when</p>
+<div class="math display">\alpha(q,cv)=c\alpha(q,v).</div>
+<p>Thus α must be HD1 in velocity. The energization construction later satisfies this under its stated homogeneity assumptions; an arbitrary speed-control term need not.</p></details>
+<details><summary>Go deeper: what equation describes the geometry without choosing a clock?</summary><p>Let <span class="math inline">\hat v=v/\|v\|</span> and <span class="math inline">P_\perp=I-\hat v\hat v^T</span>. This matrix removes the component of a vector parallel to motion. For our HD2 base generator h, the equation</p><div class="math display">P_\perp\big(\ddot q-h(q,v)\big)=0</div><p>says the transverse acceleration must match h, while tangential acceleration is free. The family <span class="math inline">h+\alpha v</span> therefore describes its same local oriented paths. This is often called <em>projective equivalence</em>. The argument requires nonzero velocity and a regular increasing clock; it does not describe stopping, reversing time, or choosing a new departure direction at rest. A slowing clock can approach a finite limit, so a retimed motion need not traverse the entire original path. Positive homogeneity also need not imply symmetry under <span class="math inline">v\mapsto-v</span>.</p></details>
+<h3 id="geometry-does-not-require-conservation">What have we proved without an energy?</h3>
+<p><strong>We have achieved Goal 1: an HD2 generator plus a regular tangential adjustment describes the same local oriented geometry with different timing.</strong> Neither the constant-replay proof nor the nonuniform-clock proof used conservation. We now need a criterion for choosing α, which is Goal 2.</p>
+<p>The parabola experiment makes the distinction concrete. For <span class="math inline">h=(0,\kappa v_x^2)^T</span>, the rule is HD2 and its rightward-starting paths satisfy <span class="math inline">y=\kappa x^2/2</span> independently of starting speed. But its ordinary squared-speed account changes:</p>
+<div class="math display">E=\tfrac12(v_x^2+v_y^2),\qquad
+\dot E=v^Th=\kappa v_yv_x^2.</div>
+<p>This is generally nonzero. The geometry property holds without conserving this chosen E. Conversely, the rotating-velocity example in the optional note conserves E but changes its turning radius with starting speed. The two requirements need separate arguments.</p>
+<p class="connection">For Goal 2, we will choose a clock that conserves a useful motion account. The following mechanics interlude develops the energy tools and their origin; it is not a missing step in the geometry proof. Chapter 2 then selects the account, and Chapter 3 computes the corresponding clock correction. <a href="https://arxiv.org/html/2010.14745#S2">Source: nonlinear geometries and the clock-equivalence theorem</a>.</p>
+</section>
+
+<section id="robot-mechanics" class="chapter">
+<p class="chapter-kicker">Mechanics interlude · Supporting the timing construction</p><h2>What robot mechanics gives us—and what it ties together</h2>
+<p><strong>We have already proved how to preserve geometry under a clock change. We now need an energy account to choose that clock.</strong> Classical robot mechanics provides a familiar starting point and the derivative identities we will generalize. This interlude derives those tools from forces and moving links so the later formulas have an origin.</p>
+<p>Natural mechanics packages a geometry and an energy together. Its motion equation implies both a conservation law and HD2 scaling, through separate calculations. Fabrics will keep the energy structure while allowing a different chosen geometry. As we derive the physical model, distinguish “this energy is conserved” from “this particular equation generates its natural geometry.”</p>
+
+<h3>Start with the arm's configuration and moving links</h3>
+<p>For a seven-joint arm, <span class="math inline">q=(q_1,\ldots,q_7)^T</span> is the column of joint angles. Write <span class="math inline">v=\dot q</span> for joint velocities and <span class="math inline">a=\ddot q</span> for joint accelerations. The superscript T transposes a column into a row; <span class="math inline">v^T\tau=\sum_jv_j\tau_j</span> is a scalar. With joint torques τ, that scalar is mechanical power: torque times angular velocity, summed over the joints.</p>
+<p>Moving one joint moves several links, and moving two joints together can reinforce or oppose a link's velocity. The robot's kinetic energy therefore contains both squared joint velocities and cross terms:</p>
+<div class="math display">E(q,v)=\frac12v^TM(q)v
+=\frac12\sum_{i,j}M_{ij}(q)v_iv_j.\tag{M1}</div>
+<p>The symmetric <strong>inertia matrix</strong> M collects those coefficients. Its dependence on q reflects the changing arm configuration. For an ordinary nondegenerate arm, it is positive definite: <span class="math inline">v^TMv&gt;0</span> whenever v is nonzero. That means every nonzero joint motion has positive kinetic energy, and M has an inverse.</p>
+<details><summary>From kinematics to M: why moving links produce this matrix</summary><p>For link ℓ, kinematics gives its center-of-mass velocity <span class="math inline">\dot p_\ell=J_\ell(q)v</span> and angular velocity <span class="math inline">\omega_\ell=J_{\omega,\ell}(q)v</span>. A Jacobian J is the matrix of derivatives mapping joint velocities into these spatial velocities. Summing translational and rotational kinetic energies gives</p>
+<div class="math display">E=\sum_\ell\left[\frac12m_\ell\|J_\ell v\|^2+
+\frac12(J_{\omega,\ell}v)^TI_\ell(q)(J_{\omega,\ell}v)\right],</div>
+<div class="math display">M(q)=\sum_\ell\left[m_\ell J_\ell^TJ_\ell+
+J_{\omega,\ell}^TI_\ell(q)J_{\omega,\ell}\right].</div>
+<p>Here <span class="math inline">m_\ell</span> is the link mass and <span class="math inline">I_\ell</span> its rotational inertia about its center of mass, expressed in the same frame as its angular velocity. This is why the energy is quadratic in joint velocities even though the links' positions depend nonlinearly on the angles.</p></details>
+
+<h3 id="newton-to-joints">Where does the motion equation come from?</h3>
+<p>Knowing the kinetic energy does not yet tell us which way the arm accelerates. We need a law of motion. The physical starting point is <strong>Newton's second law</strong>: the total force on each piece of the robot equals its mass times its acceleration. Our task is to express that law in the joint angles q. We will derive the equation first, then check its energy balance.</p>
+<p>Begin with one horizontal robot link of length ℓ, carrying a point mass m at its tip. Ignore the link's own mass for this first calculation. If its joint angle is q, the tip's tangential acceleration is <span class="math inline">\ell\ddot q</span>. Newton's law in that direction, followed by the definition of torque about the joint, gives</p>
+<div class="math display">F_{\mathrm{tangent}}=m\ell\ddot q,
+\qquad \tau_{\mathrm{net}}=\ell F_{\mathrm{tangent}}
+=\underbrace{m\ell^2}_{I}\ddot q.</div>
+<p>I is rotational inertia. We have obtained <span class="math inline">I\ddot q=\tau_{\mathrm{net}}</span>, the rotational version of force = mass × acceleration. For example, m = 1 kg and ℓ = 0.5 m give <span class="math inline">I=0.25\ \mathrm{kg\,m^2}</span>; a net joint torque of 0.5 N·m produces <span class="math inline">\ddot q=2\ \mathrm{rad/s^2}</span>. The tip also has an inward acceleration <span class="math inline">\ell\dot q^2</span>. Its corresponding radial force passes through the joint, so it contributes no torque about that joint.</p>
+
+<h3>Several joints: the changing kinematics adds a term</h3>
+<p>To extend that calculation, imagine dividing every robot link into small material pieces. Piece i has fixed mass <span class="math inline">m_i</span> and position <span class="math inline">r_i(q)</span>. Summing over all pieces accounts for both link translation and link rotation; it is not the approximation of placing each whole link at its center of mass. For a continuous mass distribution the sum becomes an integral.</p>
+<p>The Jacobian <span class="math inline">J_i=\partial r_i/\partial q</span> maps joint velocity to the piece's velocity. Differentiating once more gives</p>
+<div class="math display">\dot r_i=J_i(q)v,
+\qquad \boxed{\ddot r_i=J_i(q)a+\dot J_i(q,v)v.}</div>
+<p>The first term comes from changing joint velocities. The second comes from the changing map J itself: the links rotate as the arm moves. Even constant joint velocities can produce changing Cartesian velocities. Newton's law must include both accelerations.</p>
+<p>We also need to express a spatial force as joint torques. Imagine any tiny, mechanically allowed joint displacement <span class="math inline">\delta q</span>, such as turning just one joint. It moves piece i by <span class="math inline">\delta r_i=J_i\delta q</span> to first order. A force <span class="math inline">f_i</span> does the work</p>
+<div class="math display">\delta W_i=f_i^T\delta r_i
+=f_i^TJ_i\delta q=(J_i^Tf_i)^T\delta q.</div>
+<p>Joint work is torque dotted with joint displacement. Therefore the torque contribution equivalent to <span class="math inline">f_i</span> is <span class="math inline">J_i^Tf_i</span>. This equality is required for every allowed <span class="math inline">\delta q</span>, so it determines each torque component, rather than just its work along the current motion. <a href="https://modernrobotics.northwestern.edu/nu-gm-book-resource/5-2-statics-of-open-chains/">Background: the Jacobian-transpose force map</a>.</p>
+<p>Apply this map to the Newton equations for all material pieces and add. For ideal rigid links and frictionless joint constraints, the constraint forces do no net work on allowed motions; their summed contribution vanishes. The remaining generalized force <span class="math inline">Q_{\mathrm{net}}</span> is the column of net applied joint torques, including the joint-coordinate contributions of gravity and damping:</p>
+<div class="math display">\begin{aligned}
+Q_{\mathrm{net}}
+&amp;=\sum_iJ_i^Tm_i\ddot r_i\\
+&amp;=\underbrace{\left(\sum_im_iJ_i^TJ_i\right)}_{M(q)}a
++\underbrace{\sum_im_iJ_i^T\dot J_i v}_{\xi(q,v)}.
+\end{aligned}</div>
+<p>Now <span class="math inline">Ma+\xi</span> has an origin: it is the total mass-times-acceleration expressed as joint torques. The inertia matrix M also appears in the kinetic energy because <span class="math inline">E=\tfrac12\sum_i m_i\|J_i v\|^2=\tfrac12v^TMv</span>. The velocity-dependent term ξ comes from the second part of the kinematic acceleration. It is neither friction nor a corrective force invented by the controller.</p>
+<details><summary>Why can we discard constraint forces, but not motor torques?</summary><p>An ideal constraint keeps the robot assembled without doing work on its permitted motions. At a revolute joint, the connected link points have the same translational displacement, so equal-and-opposite joint reaction forces have cancelling work. The relative rotation about the joint axis is allowed; an actuator torque about that axis does work on this rotation and therefore remains in <span class="math inline">Q_{\mathrm{net}}</span>. Friction also acts along allowed motion, so it must be modeled separately. “Ideal constraint” is an explicit modeling assumption, not a statement that every internal force can be ignored.</p></details>
+
+<h3>Add gravity and damping to complete the model</h3>
+<p>Separate the applied torques into motor or other commanded torques τ, conservative forces described by a potential U, and viscous damping. A conservative force does work <span class="math inline">\delta W=-\delta U=-(\nabla U)^T\delta q</span>, so its joint torque is <span class="math inline">-\nabla U</span>. Damping is modeled here as <span class="math inline">-Bv</span>. Substituting <span class="math inline">Q_{\mathrm{net}}=\tau-\nabla U-Bv</span> into our Newton equation gives</p>
+<div class="math display">\underbrace{M(q)a+\xi(q,v)}_{\text{inertial terms}}
++\underbrace{\nabla U(q)}_{\text{potential term}}
+=\underbrace{\tau}_{\text{applied joint torques}}
+-\underbrace{Bv}_{\text{damping}}.\tag{M2}</div>
+<p>U can be gravitational potential energy; its gradient lists the derivatives with respect to the joint angles. The damping matrix B is symmetric positive semidefinite, meaning <span class="math inline">v^TBv\ge0</span>. The word <strong>ideal</strong> refers to the modeling assumptions: rigid links, ideal joint constraints, smooth continuous motion without impacts, and the chosen damping law. It does not mean that the robot follows a desired motion perfectly. Equation (M2) predicts acceleration given the current state and applied torques; it is not yet a controller. The usual robot dynamics equation has this structure. <a href="https://underactuated.mit.edu/multibody.html">Source: MIT's manipulator equations</a>.</p>
+
+<h3>Connect the Newton equation to the energy account</h3>
+<p>We derived ξ, pronounced “xi,” from the changing link kinematics. It is often written <span class="math inline">C(q,v)v</span> in robotics. To calculate energy rates conveniently, express it in terms of the same M and E:</p>
+<div class="math display">\boxed{\xi=\dot Mv-\nabla_qE},\qquad
+\dot M=\sum_j\frac{\partial M}{\partial q_j}v_j.\tag{M3}</div>
+<p>In <span class="math inline">\nabla_qE</span>, differentiate with respect to joint angles while holding v fixed. The dot on M instead means its rate of change along the moving arm. The next expandable calculation proves (M3) from our Newton construction. Chapter 2 will recover it through the Euler–Lagrange language and extend that construction to the energies used by fabrics.</p>
+<details><summary>Derive ξ = Ṁv − ∇E from the kinematic expression above</summary><p>Differentiate <span class="math inline">M=\sum_i m_iJ_i^TJ_i</span> with the product rule:</p>
+<div class="math display">\dot Mv=\sum_i m_i\dot J_i^TJ_i v
++\sum_i m_iJ_i^T\dot J_i v.</div>
+<p>The last sum is ξ. We need to show that the first is <span class="math inline">\nabla_q E</span>. Denote column j of J by <span class="math inline">J_{:,j}</span>. Because J is the derivative of a smooth position map, its mixed position derivatives agree:</p>
+<div class="math display">\frac{\partial J_i}{\partial q_j}v
+=\sum_k\frac{\partial^2r_i}{\partial q_j\partial q_k}v_k
+=\frac{d}{dt}(J_i)_{:,j}.</div>
+<p>Differentiate the kinetic energy with respect to <span class="math inline">q_j</span>, keeping v fixed:</p>
+<div class="math display">\frac{\partial E}{\partial q_j}
+=\sum_i m_i(J_i v)^T\frac{\partial J_i}{\partial q_j}v
+=\left[\sum_i m_i\dot J_i^TJ_i v\right]_j.</div>
+<p>This holds for every j, so <span class="math inline">\nabla_qE=\sum_i m_i\dot J_i^TJ_i v</span>. Subtract it from the product-rule expression for <span class="math inline">\dot Mv</span> to obtain (M3). We assume smooth, time-independent link kinematics; no energy-conservation assumption was used to select the motion equation.</p></details>
+<p>First differentiate (M1), accounting for both changing velocity and changing inertia:</p>
+<div class="math display">\dot E=v^TMa+\frac12v^T\dot Mv.
+\qquad v^T\nabla_qE=\frac12v^T\dot Mv.</div>
+<p>The second equality differentiates E through its q input alone. It makes <span class="math inline">v^T\xi=\tfrac12v^T\dot Mv</span>. Thus the inertial term supplies exactly the part of the energy rate that <span class="math inline">v^TMa</span> misses.</p>
+<p>Now define total mechanical energy <span class="math inline">H=E+U</span>. Substituting (M2) gives the complete balance:</p>
+<div class="math display">\begin{aligned}
+\dot H
+&amp;=v^TMa+\tfrac12v^T\dot Mv+(\nabla U)^Tv\\
+&amp;=v^T(Ma+\xi+\nabla U)\\
+&amp;=\boxed{v^T\tau-v^TBv}.
+\end{aligned}\tag{M4}</div>
+<p>With no applied torque and no damping, <span class="math inline">\dot H=0</span>: kinetic and potential energy can trade places, but their sum stays fixed. With no applied torque and positive damping, <span class="math inline">\dot H\le0</span>: mechanical energy is dissipated. An applied torque adds or removes energy according to its power <span class="math inline">v^T\tau</span>. These are consequences of the motion equation, not assumptions that an arbitrary controller automatically satisfies.</p>
+
+<h3 id="natural-motion">Define natural motion by stating what we remove</h3>
+<p>We want to isolate the motion caused by the robot's inertia and joint kinematics, before adding a goal or damping. The full mechanical equation (M2) allows all of these effects. For the <strong>natural motion studied here</strong>, impose the additional conditions</p>
+<div class="math display">\boxed{
+\underbrace{\nabla U=0}_{\text{no potential force}},\qquad
+\underbrace{\tau=0}_{\text{no applied torque}},\qquad
+\underbrace{B=0}_{\text{no damping}}.}</div>
+<p>A horizontal arm with constant gravitational potential realizes the first condition; choose the irrelevant constant U = 0. These conditions are more restrictive than saying “ideal mechanics.” Rigid links and ideal joint constraints do not, by themselves, remove gravity, applied torques, or a separately modeled damping force.</p>
+<p>Substitute these conditions into (M2). The potential, applied-torque, and damping terms vanish, leaving</p>
+<div class="math display">Ma+\xi=0
+\quad\Longrightarrow\quad
+\boxed{a_{\mathrm{natural}}(q,v)=-M(q)^{-1}\xi(q,v).}\tag{M5}</div>
+<p>The word “motion” means the solution of a specific initial-value problem:</p>
+<div class="math display">\begin{aligned}
+\dot q&amp;=v,&amp; q(0)&amp;=q_0,\\
+\dot v&amp;=-M(q)^{-1}\xi(q,v),&amp;v(0)&amp;=v_0.
+\end{aligned}</div>
+<p>We specify the starting configuration and velocity, then this equation determines how they evolve. There is no target configuration in the equation. At rest, <span class="math inline">\xi(q,0)=0</span>, so the arm remains at rest. With nonzero initial velocity, its joint velocities can change through inertial coupling even though no torque is applied. “Natural” therefore does not mean zero acceleration.</p>
+<p>Its energy statement follows by substituting the same conditions into (M4):</p>
+<div class="math display">\dot E=v^T\big(Ma_{\mathrm{natural}}+\xi\big)=0
+\quad\Longrightarrow\quad E(q(t),v(t))=E(q_0,v_0).</div>
+<p>Vary the initial configuration and velocity and discard the timing of each solution: the resulting family of paths is the system's natural geometry. Since (M3) determines ξ from M, choosing M already determines this acceleration rule. Conservation alone is weaker: one scalar equation <span class="math inline">\dot E=0</span> does not uniquely determine all acceleration components.</p>
+<p>We can make this coupling visible in a two-joint robot. Use two massless links of length 1 m, with a 1 kg point mass at the elbow and another at the end effector, moving horizontally. Let q₁ be the first link's angle and q₂ the elbow angle <em>relative to the first link</em>. Its inertia and inertial torque are</p>
+<div class="math display">M(q)=\begin{bmatrix}
+3+2\cos q_2&amp;1+\cos q_2\\
+1+\cos q_2&amp;1
+\end{bmatrix},\qquad
+\xi(q,v)=\begin{bmatrix}
+-\sin q_2(2v_1v_2+v_2^2)\\
+\sin q_2\,v_1^2
+\end{bmatrix}.\tag{M6}</div>
+<details><summary>Derive the two-joint example directly from its link velocities</summary><p>The point masses are at <span class="math inline">p_1=(\cos q_1,\sin q_1)</span> and <span class="math inline">p_2=p_1+(\cos(q_1+q_2),\sin(q_1+q_2))</span>, in meters. Differentiation gives</p>
+<div class="math display">\|\dot p_1\|^2=v_1^2,\qquad
+\|\dot p_2\|^2=v_1^2+(v_1+v_2)^2+2\cos q_2\,v_1(v_1+v_2).</div>
+<p>With both masses 1 kg, add half of each squared speed:</p>
+<div class="math display">E=\tfrac12\left[(3+2\cos q_2)v_1^2
++2(1+\cos q_2)v_1v_2+v_2^2\right].</div>
+<p>Reading its coefficients gives M in (M6). Its determinant is <span class="math inline">2-\cos^2q_2\ge1</span> and its first diagonal entry is positive, so it is positive definite at every configuration. To obtain ξ, use (M3):</p>
+<div class="math display">\dot M=-\sin q_2\,v_2\begin{bmatrix}2&amp;1\\1&amp;0\end{bmatrix},\qquad
+\nabla_qE=\begin{bmatrix}0\\-\sin q_2(v_1^2+v_1v_2)\end{bmatrix}.</div>
+<p>Subtracting <span class="math inline">\nabla_qE</span> from <span class="math inline">\dot Mv</span> gives the two entries of ξ above. This example uses idealized robot link masses; it is not a numerical model of the Franka.</p></details>
+<p>Start with <span class="math inline">q=(0,\pi/2)</span> and <span class="math inline">v=(1,0)</span> rad/s: the shoulder is moving and the elbow initially has zero angular velocity. Then</p>
+<div class="math display">M=\begin{bmatrix}3&amp;1\\1&amp;1\end{bmatrix},\quad
+\xi=\begin{bmatrix}0\\1\end{bmatrix},\quad
+a_{\mathrm{natural}}=\begin{bmatrix}0.5\\-1.5\end{bmatrix}\ \mathrm{rad/s^2}.</div>
+<p>The elbow starts accelerating despite zero applied joint torque. The coupled arm redistributes motion while conserving <span class="math inline">E=1.5</span> J. Now imagine a <em>virtual</em> mechanical model of the same joint coordinates with constant unit inertia <span class="math inline">\bar M=I</span>. Its corresponding <span class="math inline">\bar\xi=0</span>, so its unforced rule gives <span class="math inline">a=0</span>: both joint velocities remain constant. The initial acceleration difference has an elbow component, not just a component along the starting velocity, so these models generate different joint-space paths, not merely different timings.</p>
+<figure class="explain-figure" id="robot-mechanics-illustration">
+<div class="figure-heading"><span class="figure-number">Robot mechanics lab</span><h4>Same initial joint motion. Different natural paths.</h4></div>
+<svg class="explain-svg" viewBox="0 0 840 320" role="img" aria-labelledby="coast-title coast-desc">
+<title id="coast-title">A horizontal two-joint arm under two different inertia models</title>
+<desc id="coast-desc">The physical point-mass model bends the elbow through inertial coupling. The virtual unit-inertia model keeps its elbow angle constant. Each conserves its own kinetic energy.</desc>
+<rect x="10" y="10" width="400" height="300" rx="12" fill="#fbf2e9"/>
+<rect x="430" y="10" width="400" height="300" rx="12" fill="#edf5f1"/>
+<text x="30" y="38" class="svg-overline" fill="#ad5330">POINT-MASS ARM · M(q)</text>
+<text x="450" y="38" class="svg-overline" fill="#136f73">VIRTUAL JOINT MODEL · M̄ = I</text>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M180 235H245V170" stroke="#d9c7b8" stroke-width="5"/>
+<path d="M600 235H665V170" stroke="#c4d8cd" stroke-width="5"/>
+<path id="coast-real-future" stroke="#ac9989" stroke-width="1.5" stroke-dasharray="3 5"/>
+<path id="coast-virtual-future" stroke="#94ab9f" stroke-width="1.5" stroke-dasharray="3 5"/>
+<path id="coast-real-trail" stroke="#c1663d" stroke-width="2.5"/>
+<path id="coast-virtual-trail" stroke="#136f73" stroke-width="2.5"/>
+<path id="coast-real-arm" d="M180 235H245V170" stroke="#c1663d" stroke-width="9"/>
+<path id="coast-virtual-arm" d="M600 235H665V170" stroke="#136f73" stroke-width="9"/>
+</g>
+<g stroke="white" stroke-width="2"><circle cx="180" cy="235" r="7" fill="#233330"/><circle cx="600" cy="235" r="7" fill="#233330"/>
+<circle id="coast-real-elbow" cx="245" cy="235" r="7" fill="#c1663d"/><circle id="coast-real-tip" cx="245" cy="170" r="7" fill="#c1663d"/>
+<circle id="coast-virtual-elbow" cx="665" cy="235" r="7" fill="#136f73"/><circle id="coast-virtual-tip" cx="665" cy="170" r="7" fill="#136f73"/></g>
+<text id="coast-real-angle" x="30" y="275" class="svg-small">Elbow q₂ = 90.0°</text>
+<text id="coast-virtual-angle" x="450" y="275" class="svg-small">Elbow q₂ = 90.0°</text>
+<text id="coast-real-energy" x="30" y="298" class="svg-small">E = 1.500 J · conserved</text>
+<text x="450" y="298" class="svg-small">Ē = 0.500 · conserved virtual energy</text>
+</svg>
+<div class="illustration-controls"><button id="coast-play" type="button">Play at ¼ speed</button><label>Model time <input id="coast-time" type="range" min="0" max="1.2" step="0.01" value="0.8"><output id="coast-time-value">0.80 s</output></label><button id="coast-reset" type="button">Initial state</button></div>
+<p id="coast-readout" class="landscape-status" aria-live="polite"></p>
+<figcaption>Top view, equal link lengths and display scales. Both models start at q = (0, π/2), v = (1, 0). Pale arms show that initial configuration; dotted lines show the end-effector paths over 1.2 s. Constant joint velocities in the virtual model do not imply a straight end-effector path. The energies differ because the models use different inertia matrices. These are idealized model trajectories, not real-robot recordings.</figcaption>
+</figure>
+
+
+<h3 id="inertia-priority">The design conflict: inertia as a priority matrix</h3>
+<p>We now move from predicting the physical arm to <strong>designing virtual motion components</strong>. There are two separate choices to keep track of: choosing a virtual inertia, and adding forces. We will change them one at a time.</p>
+<h4>First change M, while keeping potential forces and damping absent</h4>
+<p>For component i, choose a smooth symmetric positive-definite matrix <span class="math inline">M_i(q)</span> and use it to define a virtual kinetic energy. All components are evaluated at the same joint state (q, v):</p>
+<div class="math display">E_i=\tfrac12v^TM_i(q)v,\qquad
+\xi_i=\dot M_i v-\nabla_qE_i,\qquad
+\boxed{a_i^{\mathrm{natural}}=-M_i^{-1}\xi_i.}</div>
+<p>This is still the potential-free, undamped construction. The virtual matrix need not equal the physical arm's inertia, and choosing it does not change the hardware's mass. It defines a motion rule whose own <span class="math inline">E_i</span> is conserved when that component acts alone.</p>
+<p>To combine requests in the same joint coordinates, use the matrix-weighted force balance <span class="math inline">\sum_i M_i(a-a_i^{\mathrm{natural}})=0</span>. Solving gives</p>
+<div class="math display">a=\left(\sum_iM_i\right)^{-1}\sum_i M_i a_i^{\mathrm{natural}}
+=-\left(\sum_iM_i\right)^{-1}\sum_i\xi_i.</div>
+<p>The matrices weight the components' acceleration requests, so they also serve as priorities. But a position-dependent change in <span class="math inline">M_i</span> changes its derivatives, hence <span class="math inline">\xi_i</span> and generally <span class="math inline">a_i^{\mathrm{natural}}</span>. A matrix chosen to give a component more influence also helps determine what motion it requests. This is the design coupling we want to loosen. A constant overall rescaling is a special case: it changes the weight but leaves that component's natural acceleration unchanged.</p>
+
+<h4 id="virtual-forcing">Now change the force assumptions: add a goal potential and damping</h4>
+<p>Natural motion alone has no destination and does not dissipate its motion energy. To construct a component that seeks a goal and can settle, we now <strong>allow a potential force and damping</strong>. These were both absent above. Choose a time-independent virtual potential <span class="math inline">\psi_i(q)</span> and a symmetric positive-semidefinite damping matrix <span class="math inline">B_i</span>. The component equation becomes</p>
+<div class="math display">\begin{aligned}
+M_i a_i+\xi_i
+&amp;=\underbrace{-\nabla\psi_i}_{\text{added potential force}}\qquad
+\underbrace{-B_i v}_{\text{added damping}},\\
+M_i a_i&amp;=-\xi_i-\nabla\psi_i-B_i v,\\
+\boxed{a_i}&amp;=\boxed{-M_i^{-1}(\xi_i+\nabla\psi_i+B_i v)}.
+\end{aligned}</div>
+<p>Here <span class="math inline">a_i</span> is the complete acceleration requested by component i, including the added forces. There is no additional driving torque beyond those displayed. The minus sign and inverse follow by moving ξ to the right and solving for acceleration. In particular,</p>
+<div class="math display">a_i=
+\underbrace{a_i^{\mathrm{natural}}}_{\text{natural inertial motion}}
+-\underbrace{M_i^{-1}\nabla\psi_i}_{\text{potential contribution}}
+-\underbrace{M_i^{-1}B_i v}_{\text{damping contribution}}.</div>
+<p>The symbol ψ, pronounced “sigh,” assigns a scalar potential value to each configuration. It is designed as part of this virtual motion model; it is not an extra physical gravitational potential added to the real arm. For one joint targeting <span class="math inline">q^\star</span>, a simple choice is</p>
+<div class="math display">\psi_i(q)=\tfrac12 k(q-q^\star)^2
+\quad\Longrightarrow\quad
+-\frac{d\psi_i}{dq}=k(q^\star-q),\qquad k&gt;0.</div>
+<p>This virtual torque points toward the target. If <span class="math inline">M_i=m</span> is constant and <span class="math inline">B_i=b\ge0</span>, then ξ is zero and the acceleration is <span class="math inline">a_i=(k/m)(q^\star-q)-(b/m)v</span>. We have added goal attraction and dissipation to the earlier natural-motion rule.</p>
+<p>The energy claim must change too. For this component acting alone, use its motion equation and the chain rule:</p>
+<div class="math display">\begin{aligned}
+\dot E_i&amp;=v^T(M_i a_i+\xi_i)
+=-v^T\nabla\psi_i-v^TB_i v,\\
+\dot\psi_i&amp;=(\nabla\psi_i)^Tv,\\
+\boxed{\frac{d}{dt}(E_i+\psi_i)}&amp;=\boxed{-v^TB_i v\le0}.
+\end{aligned}</div>
+<p>With a potential but no damping, the conserved quantity is <span class="math inline">E_i+\psi_i</span>; kinetic energy alone can change. With damping, that total is nonincreasing. This identity alone does not prove arrival at the target; the convergence conditions are developed in Chapter 5.</p>
+<details><summary>What changes when several forced components are combined?</summary><p>Use their complete requests <span class="math inline">a_i</span> in the same force balance:</p>
+<div class="math display">\sum_i M_i(a-a_i)=0.</div>
+<div class="math display">\left(\sum_iM_i\right)a+\sum_i\xi_i+\nabla\!\left(\sum_i\psi_i\right)
+=-\left(\sum_iB_i\right)v.</div>
+<p>Because the energy and its derivatives add, define <span class="math inline">E_\Sigma=\sum_iE_i</span>, <span class="math inline">\psi_\Sigma=\sum_i\psi_i</span>, and <span class="math inline">B_\Sigma=\sum_iB_i</span>. The combined motion satisfies</p>
+<div class="math display">\frac{d}{dt}(E_\Sigma+\psi_\Sigma)=-v^TB_\Sigma v\le0.</div>
+<p>Individual component energies need not obey their isolated balance under the shared acceleration; this is a statement about the summed account. These formulas assume the components already use the same coordinates. Chapter 4 derives the mapping needed when they use different task coordinates.</p></details>
+<p class="connection">The change of assumptions is now explicit: first, physical inertia → chosen virtual inertia; then, potential-free and undamped motion → motion with a chosen potential and damping. We retain smooth ideal mechanical models throughout. The inertia–priority coupling already exists in the natural rule, before these extra forces are added. <a href="https://arxiv.org/html/2109.10443#S3.SS2">Source: classical energy shaping and its limitations</a>.</p>
+
+<h3 id="energy-freedom">What freedom can we add without losing the energy proof?</h3>
+<p>We now have a precise design question: <strong>can we keep the same chosen energy E and inertia M, but make the robot follow a different motion from its natural motion?</strong> This would let us use M to express priorities without accepting only the natural acceleration that M determines. We want to keep the energy guarantee while gaining freedom over how the robot moves.</p>
+<details><summary>Could we change the natural motion simply by changing M?</summary>
+<p>Yes. Changing the inertia is already a valid design tool. Because <span class="math inline">E=\tfrac12v^TMv</span> and <span class="math inline">\xi=\dot Mv-\nabla_qE</span>, changing M generally changes <span class="math inline">a_{\mathrm{natural}}=-M^{-1}\xi</span>. It also changes the energy account and, when M weights a component in a combination, its priorities.</p>
+<p>The reason to seek another tool is that we might already like those weights but dislike the natural motion they produce. For M = I, the natural rule gives zero acceleration and straight paths in joint space. We may want curved motion while keeping the same energy <span class="math inline">E=\tfrac12\|v\|^2</span>. The zero-work modification below provides that additional freedom.</p>
+<p>Changing M does not always change the natural rule. A constant positive overall multiplier c also multiplies ξ by c, so</p>
+<div class="math display">-(cM)^{-1}(c\xi)=-M^{-1}\xi.</div>
+<p>Thus M is not exclusively a speed or energy parameter: it participates in the natural geometry too. Here we are changing a virtual model, not the real robot's physical mass.</p></details>
+<p>To isolate this question, set the goal potential and damping aside again: <span class="math inline">\psi=0</span> and <span class="math inline">B=0</span>. Keep the same smooth, positive-definite <span class="math inline">M(q)</span>, the energy <span class="math inline">E=\tfrac12v^TMv</span>, and its associated ξ. We will first recall the unforced rule, then explicitly allow a new applied force.</p>
+
+<h4>Natural motion imposes more than energy conservation needs</h4>
+<p>The natural acceleration makes an entire vector vanish:</p>
+<div class="math display">Ma_{\mathrm{natural}}+\xi=0,
+\qquad a_{\mathrm{natural}}=-M^{-1}\xi.</div>
+<p>But the energy-rate identity (M4), valid for <em>any</em> acceleration a, is</p>
+<div class="math display">\boxed{\dot E=v^T(Ma+\xi).}</div>
+<p>For energy to remain constant, this last expression must be zero. That is a weaker requirement: <strong>the vector <span class="math inline">Ma+\xi</span> need not vanish; only its dot product with velocity must vanish.</strong> A nonzero vector can be perpendicular to v and therefore have a zero dot product with it.</p>
+<div class="math display">\begin{aligned}
+\text{Natural motion:}&amp;\quad Ma+\xi=0.\\
+\text{Energy conservation:}&amp;\quad v^T(Ma+\xi)=0.
+\end{aligned}</div>
+<p>This is the freedom we were looking for. Natural motion specifies every acceleration component. Energy conservation fixes only one scalar combination of those components.</p>
+<details><summary>How much freedom does one scalar condition leave?</summary>
+<p>Freeze the current q and a nonzero v, and let the robot have n joint coordinates. Then <span class="math inline">v^TMa=-v^T\xi</span> is one linear equation in the n components of a. Because M is positive definite and v is nonzero, its coefficient row <span class="math inline">v^TM</span> is nonzero. The solutions therefore form an <span class="math inline">(n-1)</span>-dimensional affine plane: the natural acceleration plus all changes satisfying <span class="math inline">v^TM\Delta a=0</span>.</p>
+<p>For seven joints, there are six instantaneous directions of acceleration change compatible with this energy condition. This is a statement at one state, not six extra joints or a guarantee that all such motions are safe. At v = 0 the power equation becomes zero automatically; it does not by itself specify a valid motion law through rest.</p></details>
+
+<h4>Add a force that changes motion but does no work</h4>
+<p>Call the new term <span class="math inline">\tau_{\mathrm{bend}}</span>. We now replace the earlier assumption of no applied force with</p>
+<div class="math display">\begin{aligned}
+Ma+\xi&amp;=\tau_{\mathrm{bend}},\\
+a&amp;=a_{\mathrm{natural}}+M^{-1}\tau_{\mathrm{bend}},\\
+\dot E&amp;=v^T\tau_{\mathrm{bend}}.
+\end{aligned}</div>
+<p>Its dot product with velocity is its power: the rate at which it adds energy. A force can change acceleration while contributing zero power. If we choose it so that</p>
+<div class="math display">\boxed{v^T\tau_{\mathrm{bend}}=0\quad\text{throughout the motion},}
+\qquad \dot E=0,\quad E(t)=E(0),\tag{M7}</div>
+<p>the original energy proof still works: substitute the new motion equation into the same energy-rate identity, and the derivative is still zero. We have changed the motion without changing the energy account. In a virtual robot model, this is a designed force-like term; it is not automatically a torque command sent to the hardware.</p>
+<details><summary>Which quantity specifies acceleration, velocity, and geometry?</summary>
+<p>The complete rule <span class="math inline">a(q,v)=-M^{-1}\xi+M^{-1}\tau_{\mathrm{bend}}</span> computes acceleration from the current state. Velocity then evolves from that acceleration; it is not an independently assigned command in this construction:</p>
+<div class="math display">\dot q=v,\qquad \dot v=a(q,v),\qquad
+v(t)=v_0+\int_0^t a(q(u),v(u))\,du.</div>
+<p>Given an initial configuration and velocity, a sufficiently regular rule determines the trajectory. Geometry describes the shape of its paths; timing describes progress along them. The zero-work condition restricts the acceleration we may choose, but does not choose one uniquely. Chapter 1 will derive the separation between turning and changing speed, and state when changing timing preserves the same geometry.</p></details>
+
+<h4>A two-joint example: zero power does not mean zero acceleration</h4>
+<p>Use two robot joint coordinates with a deliberately simple <em>virtual</em> inertia <span class="math inline">M=I</span>, the identity matrix. This is a chosen motion model, not the physical inertia of the two-link arm above. Because M is constant, ξ = 0, so</p>
+<div class="math display">E=\tfrac12(v_1^2+v_2^2),\qquad
+ a_{\mathrm{natural}}=\begin{bmatrix}0\\0\end{bmatrix}.</div>
+<p>At an instant when joint 1 is moving and joint 2 is still, choose</p>
+<div class="math display">v=\begin{bmatrix}1\\0\end{bmatrix},\qquad
+\tau_{\mathrm{bend}}=\begin{bmatrix}0\\2\end{bmatrix}
+\quad\Longrightarrow\quad
+a=\begin{bmatrix}0\\2\end{bmatrix}.</div>
+<div class="math display">\dot E=v^T\tau_{\mathrm{bend}}=1\cdot0+0\cdot2=0.</div>
+<p>The natural rule would keep both joint velocities unchanged. The modified rule accelerates joint 2, turning the direction of motion in <strong>joint-configuration space</strong>, while the instantaneous energy rate remains zero.</p>
+<p>There is a catch: keeping that same force <span class="math inline">(0,2)^T</span> forever would not conserve energy. Once joint 2 starts moving, the force would do positive work. The condition must keep holding as velocity changes. One way to ensure that is to update the force using the current velocity:</p>
+<div class="math display">\tau_{\mathrm{bend}}(q,v)
+=\lambda(q,v)\begin{bmatrix}-v_2\\v_1\end{bmatrix}.</div>
+<p>The vector on the right is v rotated by 90° in this two-coordinate plane. The scalar λ sets its signed strength. For any smooth choice of λ, the power cancels at every state:</p>
+<div class="math display">v^T\tau_{\mathrm{bend}}
+=\lambda\bigl(-v_1v_2+v_2v_1\bigr)=0.</div>
+<p>As joint 2 gains speed, the force also acts on joint 1; it redistributes the two contributions to E instead of continually adding energy. In this identity-inertia example, the joint-velocity norm stays constant. For a general configuration-dependent M, the conserved quantity is <span class="math inline">\tfrac12v^TM(q)v</span>, not necessarily the ordinary velocity norm.</p>
+<details><summary>For a general M, which vectors must be perpendicular?</summary>
+<p>The zero-power condition is <span class="math inline">v^T\tau_{\mathrm{bend}}=0</span>. The acceleration change is <span class="math inline">\Delta a=M^{-1}\tau_{\mathrm{bend}}</span>, so equivalently</p>
+<div class="math display">v^TM\Delta a=0.</div>
+<p>Thus velocity and the acceleration change are orthogonal in the M-weighted inner product. They need not be perpendicular in the ordinary Euclidean picture. The simple example uses M = I specifically so these two notions coincide.</p></details>
+
+<h4>What this gives us—and what still needs to be designed</h4>
+<p>Suppose we propose a desired acceleration rule <span class="math inline">a=h(q,v)</span>. Substituting it into the motion equation tells us the force it would require, and hence the condition it must meet:</p>
+<div class="math display">\tau_{\mathrm{required}}=Mh+\xi,
+\qquad v^T(Mh+\xi)=0.</div>
+<p>An arbitrary proposed rule will not satisfy this condition. Chapter 3 will construct <em>energization</em>: a correction that enforces the energy condition while preserving a suitable proposed geometry. We have now identified exactly what that construction needs to accomplish.</p>
+<p>Energy conservation is only one requirement. The natural rule also has a useful speed-scaling property: in (M3), both terms of ξ are quadratic in velocity, and M depends only on q. Therefore</p>
+<div class="math display">a_{\mathrm{natural}}(q,sv)=s^2a_{\mathrm{natural}}(q,v),\qquad s&gt;0.</div>
+<p>Our zero-work condition does not impose this scaling. For example, the two-joint force above with a nonzero constant λ scales linearly with v, not quadratically. It illustrates energy-preserving freedom, but does not yet give the geometric bending used in fabrics. To retain the natural rule's scaling, we must also choose the added force to scale quadratically. <strong>Chapter 1 already established why this HD2 scaling matters for a geometry of paths. The conservation calculation alone did not establish it.</strong></p>
+<details><summary>Does this freedom survive when we bring back a goal and damping?</summary>
+<p>Yes, with the same assumptions about an autonomous potential ψ and positive-semidefinite damping B used above. The equation and its energy balance become</p>
+<div class="math display">Ma+\xi+\nabla\psi=\tau_{\mathrm{bend}}-Bv.</div>
+<div class="math display">\frac{d}{dt}(E+\psi)
+=v^T\tau_{\mathrm{bend}}-v^TBv
+=-v^TBv\le0.</div>
+<p>The zero-work term disappears from the energy balance even though it changes the motion. This is why it preserves the proof. Goal convergence still needs the additional conditions in Chapter 5; the identity alone does not establish it. Potential forces and damping also need not retain HD2 scaling.</p></details>
+<p class="connection">The mechanics tools are now in place. A natural equation chooses one geometry; its weaker energy-rate identity permits other motion rules. We will use that identity to select timing along the independently chosen geometry from Chapter 1. Chapter 2 generalizes the account, and Chapter 3 joins the two arguments through energization. <a href="https://arxiv.org/html/2109.10443#S4.SS1">Source: the original paper's zero-work modifications and geometric bending</a>.</p>
+</section>
+
+<section id="energy" class="chapter"><p class="chapter-kicker">Chapter 2 · Reference R2</p><h2>Choose an energy to select timing</h2>
+<p><strong>Goal 1 is already established. We now pursue Goal 2: specify how to traverse its paths.</strong> We will use conservation of a chosen motion energy as the timing criterion. First see what this means for ordinary squared speed; then retain the useful properties while extending the account to weighted and direction-dependent motion.</p>
+<h3 id="virtual-energy">Energy begins as an accounting choice</h3>
+<p><strong>We can carry the energy mathematics of physical mechanics into a deliberately designed virtual motion system.</strong> Its energy need not equal the robot's physical kinetic energy. Choosing that measure is one design decision; choosing dynamics that conserve it is another.</p>
+<p>We already began this transition when we introduced virtual inertia in the mechanics interlude. We now revisit it to make the assumptions explicit, then extend the construction to richer energies used by fabrics:</p>
+<p class="connection">Physical kinetic energy → chosen virtual quadratic energy → more general Finsler energy.</p>
+<p>For a physical robot, link masses and kinematics determine its inertia <span class="math inline">M_{\mathrm{physical}}(q)</span> and kinetic energy <span class="math inline">E_{\mathrm{physical}}=\tfrac12v^TM_{\mathrm{physical}}v</span>. For our virtual robot motion, we instead choose a smooth, symmetric positive-definite matrix M(q) and define</p>
+<div class="math display">E(q,v)=\tfrac12v^TM(q)v.\tag{4}</div>
+<p>The matrix M defines a local measuring rule, or <strong>metric</strong>. For two joint coordinates with <span class="math inline">M=\operatorname{diag}(1,4)</span>, velocity <span class="math inline">(0,1)^T</span> has four times the virtual energy of <span class="math inline">(1,0)^T</span>. Equal-energy velocities form an ellipse. We have chosen how heavily different motions count; we have not changed the robot's physical mass.</p>
+<p>As the simplest case, choose M = I. Then <span class="math inline">E=\tfrac12\|v\|^2</span>, and the chain rule gives <span class="math inline">\dot E=v^Ta</span>. Positive means our chosen energy increases, negative means it decreases, and zero means its instantaneous rate is zero. In physical mechanics, torque dotted with joint velocity is power. We retain the language of energy and power for the virtual model, while keeping its account distinct from physical joules.</p>
+<p><strong>Choosing E does not automatically conserve it.</strong> We must calculate how it changes along motion and design the acceleration accordingly. That calculation, rather than the physical origin of E, is what an energy proof needs.</p>
+<details><summary>Background: positive definite matrices, eigenvectors, and inverse weighting</summary><p>A symmetric matrix is <strong>positive definite</strong> when <span class="math inline">z^TMz&gt;0</span> for every nonzero vector <span class="math inline">z</span>. It assigns positive squared length in every direction and has an inverse. “Positive semidefinite” allows zero in some directions. An eigenvector is a direction that the matrix scales without turning; its eigenvalue is the scale factor. Symmetric positive definite matrices have perpendicular eigen-directions with positive scales.</p><p>For <span class="math inline">M=\operatorname{diag}(1,4)</span>, the inverse is <span class="math inline">M^{-1}=\operatorname{diag}(1,1/4)</span>. In <span class="math inline">Ma=f</span>, the same force produces less acceleration in the heavily weighted direction. In an average of requested accelerations, a larger component metric gives that request more influence. These two uses are consistent: resist being displaced from the favored component's requested acceleration.</p></details>
+<details><summary>Background: partial derivatives and the multivariable chain rule</summary><p>A partial derivative changes one input while holding the others fixed. For <span class="math inline">E(q,v)=\tfrac12m(q)v^2</span>, <span class="math inline">\partial_qE=\tfrac12m'(q)v^2</span> and <span class="math inline">\partial_vE=m(q)v</span>. Both inputs change during motion, so <span class="math inline">\dot E=(\partial_qE)\dot q+(\partial_vE)\dot v</span>. In many coordinates, the gradient gathers the partial derivatives into a column, and the chain rule becomes <span class="math inline">\dot E=(\nabla_qE)^Tv+(\nabla_vE)^Ta</span>.</p><p>The Hessian differentiates a gradient once more. Its entry <span class="math inline">(M_E)_{ij}=\partial^2E/\partial v_i\partial v_j</span> measures how changing velocity j changes the slope in velocity i. The notation <span class="math inline">D_q\nabla_vE</span> means instead differentiating that velocity gradient with respect to position. Multiplying it by v accounts for movement through positions; multiplying the velocity Hessian by a accounts for movement through velocities.</p></details>
+<h3 id="simplest-energy-clock">Start with the simplest clock: constant ordinary speed</h3>
+<p><strong>On a fixed regular path, conserving squared speed determines how quickly we advance along it.</strong> Let <span class="math inline">q(t)=r(\sigma(t))</span>, with <span class="math inline">r'(\sigma)\ne0</span> and <span class="math inline">\dot\sigma&gt;0</span>. Here σ is a progress coordinate; it need not equal distance. The chain rule gives <span class="math inline">v=r'\dot\sigma</span>. For the simplest account,</p>
+<div class="math display">E=\tfrac12\|v\|^2
+=\tfrac12\|r'(\sigma)\|^2\dot\sigma^2.</div>
+<p>Choose a positive conserved value E₀. Solving E = E₀ for forward progress gives</p>
+<div class="math display">\boxed{\dot\sigma=\frac{\sqrt{2E_0}}{\|r'(\sigma)\|}.}</div>
+<p>The ordinary speed is <span class="math inline">\|v\|=\|r'\|\dot\sigma=\sqrt{2E_0}</span>. If one unit of σ spans more distance on part of the route, the clock advances more slowly there. The curve r has not changed. We selected timing along it.</p>
+<p>For a weighted Riemannian account the same substitution gives</p>
+<div class="math display">\dot\sigma=\sqrt{\frac{2E_0}{r'(\sigma)^TM(r(\sigma))r'(\sigma)}}.</div>
+<p>The clock now compensates for how heavily the metric weights the local direction. Constant virtual energy need not mean constant ordinary speed. E₀ is an energy <em>value</em>, normally set by the initial state; E is the energy <em>function</em> we design.</p>
+<p>This path-based calculation explains our goal, but a reactive controller should not need to precompute r. To select the clock through an acceleration rule at the current state, we need an identity for how E changes. That is what the following mechanics derivation supplies.</p>
+<h3 id="varying-metric">A varying metric adds a term we must account for</h3>
+<p><strong>If our energy weights depend on configuration, moving the robot changes those weights as well as its velocity.</strong> We are not editing M during execution: the function M(q) is fixed, but the moving robot encounters different values of it.</p>
+<p>Differentiate (4) using the product rule. Since M is symmetric, the terms from differentiating the two copies of v combine:</p>
+<div class="math display">\begin{aligned}
+\dot E&amp;=\tfrac12a^TMv+\tfrac12v^T\dot Mv+\tfrac12v^TMa\\
+&amp;=\underbrace{v^TMa}_{\text{velocity changes}}
++\underbrace{\tfrac12v^T\dot Mv}_{\text{weights change along motion}}.
+\end{aligned}\tag{5}</div>
+<p>For one robot joint, choose <span class="math inline">E=\tfrac12m(q)v^2</span>, with <span class="math inline">m(q)&gt;0</span>. The same calculation becomes</p>
+<div class="math display">\dot E=m(q)va+\tfrac12m'(q)v^3.</div>
+<p>If the joint moves into configurations assigned a larger weight m, its virtual energy can increase even at constant velocity. To conserve it, the natural rule adjusts the acceleration:</p>
+<div class="math display">a=-\frac{m'(q)}{2m(q)}v^2
+\quad\Longrightarrow\quad
+\dot E=-\tfrac12m'(q)v^3+\tfrac12m'(q)v^3=0.</div>
+<p>This correction is not caused by energy being virtual. Physical robot inertia also depends on configuration; we already accounted for that effect through ξ in the mechanical introduction. For the quadratic energy (4), that earlier identity still applies:</p>
+<div class="math display">\xi=\dot Mv-\nabla_qE,\qquad
+\dot E=v^T(Ma+\xi).</div>
+<p>We now want a systematic construction that also works beyond the quadratic form (4). The <strong>Euler–Lagrange equation</strong> supplies one natural motion rule associated with a chosen scalar function. We will show how it produces an acceleration equation, then prove exactly what that equation conserves.</p>
+<p>Let <span class="math inline">L(q,v)</span> be a scalar function called a <strong>Lagrangian</strong>. For a mechanical system it is usually kinetic minus potential energy. For the unforced motion we are constructing, choose <span class="math inline">L=E</span>. The Euler–Lagrange equation is:</p>
+<div class="math display">\frac{d}{dt}\nabla_v L-\nabla_q L=0.\tag{6}</div>
+<p>The gradient <span class="math inline">\nabla_v L</span> is the list of derivatives with respect to velocity coordinates; <span class="math inline">\nabla_q L</span> uses position coordinates. Expanding the time derivative turns (6) into an acceleration equation:</p>
+<div class="math display">M_Ea+\xi_E=0,\qquad
+M_E=\nabla^2_{vv}E,\quad
+\xi_E=(D_q\nabla_vE)v-\nabla_qE.\tag{7}</div>
+<p>The <strong>Hessian</strong> <span class="math inline">\nabla^2_{vv}E</span> is the matrix of second derivatives with respect to velocity. The term <span class="math inline">\xi_E</span> collects the corrections caused by variation of the energy function. We use the subscript E to remember where these objects came from. They are derived from the chosen energy, not independently guessed.</p>
+<details><summary>Derivation: where does the Euler–Lagrange equation come from?</summary><p>Consider the accumulated quantity <span class="math inline">S[q]=\int_{t_0}^{t_1}L(q,\dot q)\,dt</span>, called the action. Compare nearby curves with the same endpoints: <span class="math inline">q_\epsilon=q+\epsilon\eta</span>, where <span class="math inline">\eta(t_0)=\eta(t_1)=0</span>. A stationary action has zero first-order change for every such perturbation:</p><div class="math display">\left.\frac{dS[q_\epsilon]}{d\epsilon}\right|_0
+=\int\left[(\nabla_qL)^T\eta+(\nabla_vL)^T\dot\eta\right]dt.</div><p>Integrate the second term by parts. The endpoint term vanishes because the endpoints are fixed:</p><div class="math display">\delta S=\int\left[\nabla_qL-\frac{d}{dt}\nabla_vL\right]^T\eta\,dt.</div><p>For this to vanish for every interior perturbation, the bracket must vanish, giving (6). “Stationary” means zero first variation; it does not guarantee a global minimum. Choosing this variational rule gives one natural dynamics associated with the energy. Energy conservation alone would not uniquely determine a dynamics in multiple dimensions; fabrics will exploit that remaining freedom.</p></details>
+<h3 id="why-energy-is-conserved">Why these dynamics conserve an energy</h3>
+<p>This section proves the following claim: <strong>If we choose a suitable virtual energy <span class="math inline">E(q,v)</span>, then use its Euler–Lagrange equation to define the motion, that motion conserves <span class="math inline">E</span>.</strong></p>
+<p>Here “suitable” means E is positive for nonzero velocity, smooth on the region of motion, HD2 in velocity, and has a positive-definite velocity Hessian so the acceleration can be resolved. The quadratic energy (4) meets these conditions. We assume no explicit time dependence, no added goal potential, and no damping or other applied force. We are constructing the unforced virtual dynamics, not claiming that an arbitrary motion policy conserves E.</p>
+<p>The proof has two steps. First, derive a conserved quantity for a general autonomous Lagrangian L. Then show that, when <span class="math inline">L=E</span> with E HD2, that quantity is exactly our chosen E. This avoids assuming the result we want to prove.</p>
+<h4>Start with the motion equation, and look for what it conserves</h4>
+<p>The Euler–Lagrange equation is</p>
+<div class="math display">\frac{d}{dt}\nabla_vL-\nabla_qL=0.</div>
+<p>To reduce notation, write <span class="math inline">p=\nabla_vL</span>. For now, p simply means the vector of derivatives of L with respect to velocity. In mechanical language it is generalized momentum. The chosen motion equation becomes</p>
+<div class="math display">\dot p=\nabla_qL.</div>
+<p>We want a scalar whose derivative vanishes when this equality holds. The product rule suggests comparing L with <span class="math inline">v^Tp</span>: differentiating the latter produces the term <span class="math inline">v^T\dot p</span> that can use our motion equation.</p>
+<h4>Derive the conserved quantity instead of guessing it</h4>
+<p>Apply the chain rule to L and the product rule to <span class="math inline">v^Tp</span>:</p>
+<div class="math display">\begin{aligned}
+\frac{dL}{dt}&amp;=(\nabla_qL)^Tv+p^Ta,\\
+\frac{d}{dt}(v^Tp)&amp;=a^Tp+v^T\dot p.
+\end{aligned}</div>
+<p>The terms <span class="math inline">p^Ta</span> and <span class="math inline">a^Tp</span> are the same scalar. Subtracting the two derivatives therefore cancels them:</p>
+<div class="math display">\begin{aligned}
+\frac{d}{dt}(v^Tp-L)
+&amp;=v^T\dot p-v^T\nabla_qL\\
+&amp;=v^T(\dot p-\nabla_qL).
+\end{aligned}</div>
+<p>The motion equation makes the vector in parentheses zero. We have found the conserved quantity:</p>
+<div class="math display">\boxed{H=v^T\nabla_vL-L},\qquad
+\dot H=v^T\left(\frac{d}{dt}\nabla_vL-\nabla_qL\right)=0.\tag{8}</div>
+<p>This quantity is called the <strong>Hamiltonian</strong>; here we express it using (q, v). It was constructed so its derivative contains exactly the expression our dynamics sets to zero. Understanding this calculation requires only the chain rule and product rule, not a separate course in Hamiltonian mechanics.</p>
+<h4>Show that this conserved quantity is our chosen E</h4>
+<p>For an arbitrary L, H need not equal L. We now use the particular choice <span class="math inline">L=E</span> and the energy's scaling property:</p>
+<div class="math display">E(q,cv)=c^2E(q,v).</div>
+<p>This is HD2 of the <em>energy function</em>, distinct from the HD2 acceleration generator studied in Chapter 1. Hold q and v fixed and differentiate both sides with respect to the scalar c:</p>
+<div class="math display">\bigl(\nabla_vE(q,cv)\bigr)^Tv=2cE(q,v).</div>
+<p>The vector v appears on the left because it is the derivative of cv with respect to c. At c = 1, the identity becomes</p>
+<div class="math display">v^T\nabla_vE(q,v)=2E(q,v).</div>
+<p>Substitute that result into the quantity we just proved is conserved:</p>
+<div class="math display">H=v^T\nabla_vE-E=2E-E=\boxed{E}.</div>
+<p><strong>The dynamics conserves H, and for this class of energies H equals E. Therefore it conserves E itself.</strong></p>
+<h4>Recover the energy identity we need for fabrics</h4>
+<p>The product-rule calculation for <span class="math inline">\dot H</span> was valid before we set the Euler–Lagrange expression to zero. Since H = E here, we can use it to measure energy change for <em>any</em> acceleration a. Expanding that expression as in (7) gives</p>
+<div class="math display">\boxed{\dot E=v^T(M_Ea+\xi_E).}\tag{9}</div>
+<p>The natural dynamics makes the whole vector <span class="math inline">M_Ea+\xi_E</span> zero. Conservation requires only its dot product with velocity to vanish. We have recovered the same freedom discovered in the robot-mechanics section, now for a broader class of virtual energies. The next chapter will exploit it to preserve a chosen geometry as well as this energy.</p>
+<details><summary>Check that the general construction recovers the earlier varying-inertia formula</summary>
+<p>For <span class="math inline">E=\tfrac12v^TM(q)v</span>, differentiating in velocity gives <span class="math inline">\nabla_vE=Mv</span> and <span class="math inline">M_E=\nabla^2_{vv}E=M</span>. Its time derivative is <span class="math inline">Ma+\dot Mv</span>, so</p>
+<div class="math display">\xi_E=\dot Mv-\nabla_qE.</div>
+<p>This is exactly the earlier ξ, not a second unrelated correction. For the one-joint example, <span class="math inline">M_E=m(q)</span> and <span class="math inline">\xi_E=\tfrac12m'(q)v^2</span>; solving <span class="math inline">M_Ea+\xi_E=0</span> recovers the acceleration we used to cancel the two energy-rate terms.</p></details>
+<h3 id="riemannian-to-finsler">From Riemannian to Finsler</h3>
+<p><strong>We can allow energy to depend more flexibly on the direction of motion while retaining the conservation proof we just derived.</strong> “Riemannian” and “Finsler” name two classes of measuring rules. The second includes the first; it does not replace the energy argument with a different kind of mechanics.</p>
+<h4>What does the quadratic measuring rule allow?</h4>
+<p>Our starting choice was <span class="math inline">E=\tfrac12v^TM(q)v</span>. At a fixed robot configuration, M is one fixed matrix. It can make elbow motion more expensive than wrist motion, or weight combinations of joints. But it always gives the same energy to opposite velocities:</p>
+<div class="math display">E(q,-v)=\tfrac12(-v)^TM(q)(-v)=E(q,v).</div>
+<p>This is a <strong>Riemannian energy</strong>. Its equal-energy velocities form ellipses, or ellipsoids in more dimensions. Suppose instead that a robot's virtual motion account should distinguish approaching an obstacle from moving away at the same speed. A position-only quadratic matrix cannot express that directional asymmetry. Finsler energies provide that extra freedom. Assigning an energy cost alone still does not guarantee avoidance; we are choosing a measuring rule, not yet a complete controller.</p>
+<h4>Keep the useful scaling while relaxing the quadratic form</h4>
+<p>There are two different restrictions in the Riemannian formula: one matrix at each configuration determines all directional costs, and energy scales quadratically with speed. We want to relax the first while retaining the second:</p>
+<div class="math display">E(q,cv)=c^2E(q,v),\qquad c&gt;0.</div>
+<p>For intuition, write <span class="math inline">v=s d</span>, where <span class="math inline">s=\|v\|</span> is speed and <span class="math inline">d=v/\|v\|</span> is direction. A more flexible candidate is</p>
+<div class="math display">E(q,v)=\tfrac12 s^2w(q,d).</div>
+<p>The direction cost w stays unchanged when we increase speed, so the whole energy remains HD2. It can have more directional structure than one fixed quadratic matrix. Not every w gives valid mechanics; the Hessian condition below is essential.</p>
+<h4>Specify the properties first; then name the class</h4>
+<p><strong>Choose E positive for nonzero velocity, smooth away from zero, HD2 in velocity, and with a positive-definite velocity Hessian <span class="math inline">M_E=\nabla^2_{vv}E</span>.</strong> Positivity gives a useful motion account. Smoothness permits the derivatives. The Hessian condition makes the acceleration equation solvable and the energization denominator positive.</p>
+<p>HD2 retains the conservation proof just derived: it gives <span class="math inline">H=E</span>, hence <span class="math inline">\dot E=v^T(M_Ea+\xi_E)</span>. That proof never required a position-only quadratic matrix. The scaling also makes <span class="math inline">M_E</span> HD0 and <span class="math inline">\xi_E</span> HD2. These are the degrees needed to energize an HD2 generator while leaving its energized rule HD2; Chapter 3 checks that calculation explicitly. These conditions are a useful sufficient package, not a claim that every conserved-energy model must have this form.</p>
+<p>This class is called a <strong>strongly convex Finsler energy</strong>. The usual definition starts with its length rule, but we can introduce that rule after choosing E:</p>
+<div class="math display">F(q,v)=\sqrt{2E(q,v)},\qquad
+F(q,cv)=\sqrt{2c^2E(q,v)}=cF(q,v).</div>
+<p>Thus F is HD1 and <span class="math inline">E=\tfrac12F^2</span>. We have reached Finsler energy by retaining the properties needed by the construction. Squaring an unexplained new function was not an additional physical assumption.</p>
+<div class="table-wrap"><table><thead><tr><th>Energy class</th><th>Form</th><th>What can vary?</th></tr></thead><tbody>
+<tr><td>Riemannian</td><td><span class="math inline">E=\tfrac12v^TM(q)v</span></td><td>One positive-definite matrix per configuration.</td></tr>
+<tr><td>Finsler</td><td><span class="math inline">E=\tfrac12F(q,v)^2</span></td><td>The measuring rule can also distinguish velocity directions; E retains the conditions above.</td></tr>
+</tbody></table></div>
+<p>Riemannian energies are included by taking <span class="math inline">F=\sqrt{v^TM(q)v}</span>. We do not need a nonquadratic energy when a quadratic one already expresses the intended account. Both use the same energization construction.</p>
+<h4>See the extra freedom in one formula</h4>
+<div class="math display">E(v_x,v_y)=\tfrac12\left(\sqrt{v_x^2+mv_y^2}+\varepsilon v_x\right)^2,
+\qquad m&gt;0,\quad |\varepsilon|&lt;1.</div>
+<p>This is a valid directional Finsler family; the optional Hessian proof below verifies its strong convexity. Here <span class="math inline">F=\sqrt{v_x^2+mv_y^2}+\varepsilon v_x</span>. Rightward and leftward unit velocities have energies <span class="math inline">\tfrac12(1+\varepsilon)^2</span> and <span class="math inline">\tfrac12(1-\varepsilon)^2</span>. With ε = 0.3 their length rates F are 1.3 and 0.7. Doubling either velocity still multiplies energy by four.</p>
+<p><strong>F, E, and M<sub>E</sub> are different objects:</strong> F measures length per unit time; E = F²/2 is the motion account; M<sub>E</sub> is derived by differentiating E twice. For a general Finsler energy that Hessian depends on direction. It cannot be replaced by an arbitrary direction-dependent positive matrix without rechecking the derivatives.</p>
+<figure class="lab"><h4>Experiment 2 · What does “equal speed” mean?</h4><p>Each point on the curve is a velocity with E = ½. Try a weighted quadratic energy, then a directional Finsler length <span class="math inline">F=\sqrt{v_x^2+mv_y^2}+\varepsilon v_x</span>.</p><div class="controls"><label>Vertical weight m <input id="metric-m" type="range" min="1" max="5" step="0.1" value="3"><output id="metric-m-value"></output></label><label>Directional bias ε <input id="metric-eps" type="range" min="-0.6" max="0.6" step="0.05" value="0"><output id="metric-eps-value"></output></label></div><canvas id="metric-canvas" width="900" height="270" role="img" aria-label="Unit-energy velocity contour for quadratic and directional Finsler energies"></canvas><p id="metric-readout" class="readout" aria-live="polite"></p><figcaption>The dashed circle is the Euclidean reference. This is velocity space, not a trajectory plot. Positive ε makes rightward velocity more expensive than leftward velocity.</figcaption></figure>
+<details><summary>Derivation: why the Finsler metric can depend on direction but not speed</summary>
+<p><strong>Although E scales quadratically with velocity, its Hessian does not change when we scale velocity.</strong> Differentiate <span class="math inline">E(q,cv)=c^2E(q,v)</span> twice with respect to v. The two chain-rule factors on the left cancel the factor on the right:</p>
+<div class="math display">c^2M_E(q,cv)=c^2M_E(q,v)
+\quad\Longrightarrow\quad M_E(q,cv)=M_E(q,v).</div>
+<p>This is HD0. Changing speed along one direction leaves the matrix unchanged; turning the velocity can change it. We can also recover a familiar-looking energy formula. Differentiate the identity <span class="math inline">v^T\nabla_vE=2E</span> once in v:</p>
+<div class="math display">\nabla_vE+M_Ev=2\nabla_vE
+\quad\Longrightarrow\quad \nabla_vE=M_Ev,
+\qquad E=\tfrac12v^TM_Ev.</div>
+<p>The final expression looks quadratic, but the matrix inside it can itself change with the direction of v. Therefore it need not be a quadratic polynomial with fixed coefficients. We derive this matrix from E; choosing an arbitrary direction-dependent positive matrix does not automatically make it an energy Hessian. Its entries must satisfy the compatibility conditions of second derivatives.</p>
+<p>To see a valid nonquadratic example, take <span class="math inline">F=\|v\|+b^Tv</span>, where the fixed bias vector satisfies <span class="math inline">\|b\|&lt;1</span>. This is called a Randers length rule. Write <span class="math inline">u=v/\|v\|</span> and <span class="math inline">a_0=1+b^Tu&gt;0</span>. Since <span class="math inline">\nabla_vF=u+b</span> and <span class="math inline">\nabla^2_{vv}F=(I-uu^T)/\|v\|</span>, differentiating E = F²/2 gives</p>
+<div class="math display">M_E=(\nabla_vF)(\nabla_vF)^T+F\nabla^2_{vv}F
+=(u+b)(u+b)^T+a_0(I-uu^T).</div>
+<p>We must check that this matrix really is positive definite. Split a test vector into its along-motion and transverse parts: <span class="math inline">z=tu+w</span>, where <span class="math inline">u^Tw=0</span>. Substitution gives</p>
+<div class="math display">z^TM_Ez=(a_0t+b^Tw)^2+a_0\|w\|^2.</div>
+<p>If w is nonzero, the second term is positive. If w is zero but z is nonzero, t is nonzero and the first term is positive. Hence every nonzero z gives positive curvature. The interactive example is the same construction in coordinates <span class="math inline">\bar v=(v_x,\sqrt m\,v_y)</span>, with bias <span class="math inline">b=(\varepsilon,0)</span>. An invertible coordinate rescaling preserves positive definiteness.</p>
+</details>
+<h4 id="natural-energy-geometry-versus-chosen">Does choosing E also choose a geometry?</h4>
+<p><strong>Only if we additionally choose to follow E's natural Euler–Lagrange equation.</strong> That equation gives <span class="math inline">h_E=-M_E^{-1}\xi_E</span>, which is one particular HD2 generator. Its associated geodesics are explained in the optional note below. In our fabric design we can keep a different chosen h, use E as the account, and energize h to select its clock. Conservation alone does not require h's paths to be those natural geodesics.</p>
+<details><summary>Optional connection: F defines length, and its natural energy equation traces geodesics</summary>
+<h4>Why the length construction ignores timing</h4>
+<p><strong>The length assigned to a route should not depend on how fast the robot traverses it.</strong> This is why we required F to be HD1. For the same route written as <span class="math inline">q(t)=r(\tau(t))</span>, with an increasing clock, we have <span class="math inline">\dot q=r'\dot\tau</span>. Thus</p>
+<div class="math display">\begin{aligned}
+\operatorname{Length}[q]&amp;=\int F(r,r'\dot\tau)\,dt\\
+&amp;=\int \dot\tau F(r,r')\,dt
+=\int F(r,r')\,d\tau=\operatorname{Length}[r].
+\end{aligned}</div>
+<p>The velocity's extra clock factor cancels the change of time variable. We can therefore ask which spatial routes make this length stationary under small endpoint-preserving perturbations. Such routes are called <strong>geodesics</strong>. The Euler–Lagrange dynamics of E traces these routes with a constant-energy clock. “Stationary” does not guarantee a globally shortest route; it describes the first-variation condition derived earlier. The proof connecting the length and energy equations is below.</p>
+
+<p><strong>Solving the energy equation is equivalent to following a stationary-length route at constant F.</strong> The length problem leaves the timing free, so we need to identify the timing supplied by the energy problem.</p>
+<p>Use <span class="math inline">\operatorname{EL}[L]=\frac{d}{dt}\nabla_vL-\nabla_qL</span> as shorthand for the Euler–Lagrange expression. For E = F²/2, the gradients are <span class="math inline">\nabla_vE=F\nabla_vF</span> and <span class="math inline">\nabla_qE=F\nabla_qF</span>. The product rule therefore yields</p>
+<div class="math display">\operatorname{EL}[E]
+=F\operatorname{EL}[F]+\dot F\nabla_vF.</div>
+<p>An energy solution satisfies EL[E] = 0 and conserves E. At nonzero velocity, F is positive and constant, so <span class="math inline">\dot F=0</span>. Dividing by F gives EL[F] = 0: its route makes length stationary.</p>
+<p>Conversely, take a regular stationary-length route and choose a clock that traverses equal amounts of F-length in equal times. Then F is constant, and both terms on the right vanish. That clocked route solves the energy equation. These statements concern regular, nonstationary motion; at zero velocity the smoothness of a general Finsler rule needs separate treatment.</p>
+</details>
+<p class="connection">We now have both ingredients for Goal 2: a chosen motion account and an identity for its rate. The next chapter uses them to select timing along the geometry we already designed. The natural energy dynamics is a useful reference, not a requirement to replace that geometry. <a href="https://arxiv.org/html/2109.10443#S3">Source connection: the original paper's mechanics and Finsler background</a>.</p>
+</section>
+
+<section id="energization" class="chapter"><p class="chapter-kicker">Chapter 3 · Reference R3</p><h2>Energization: compute the clock locally</h2>
+<p><strong>We can keep a chosen HD2 geometry and change its timing so that it conserves a separately chosen energy.</strong> This resolves the design conflict from the mechanical introduction: the energy no longer has to dictate the natural routes we use.</p>
+<p>Let <span class="math inline">h(q,v)</span> be the acceleration generator that expresses our desired geometry, and let E be an admissible Finsler energy. Following <span class="math inline">a=h</span> will generally change E. Following the natural energy dynamics <span class="math inline">a=-M_E^{-1}\xi_E</span> would conserve E, but could give the wrong geometry. We need a third option that satisfies both requirements.</p>
+<h3 id="energy-selects-a-clock">The general clock equation on a fixed path</h3>
+<p><strong>For any admissible Finsler energy, conserving a positive energy level determines forward timing along a fixed regular path.</strong> This generalizes Chapter 2's constant-speed calculation. Write <span class="math inline">q(t)=r(\sigma(t))</span>, with <span class="math inline">r'\ne0</span> and <span class="math inline">\dot\sigma&gt;0</span>. The velocity is <span class="math inline">v=r'\dot\sigma</span>. By HD2 of E,</p>
+<div class="math display">\begin{aligned}
+E(q,v)&amp;=E(r(\sigma),r'(\sigma)\dot\sigma)\\
+&amp;=\dot\sigma^2 E(r(\sigma),r'(\sigma)).
+\end{aligned}</div>
+<p>Setting this equal to a positive constant E₀ and taking the forward root gives</p>
+<div class="math display">\boxed{\dot\sigma=\sqrt{\frac{E_0}{E(r(\sigma),r'(\sigma))}}.}</div>
+<p>The geometry supplies r. The energy assigns a cost to its local tangent. Conservation selects the clock rate. Heavily weighted motion demands slower progress to maintain E₀. If the energy is Euclidean and σ measures ordinary distance, this reduces to constant ordinary speed.</p>
+<p>This calculation assumes the path has already been selected; it does not derive geometry from conservation. It also selects one timing, not every possible clock. Arbitrary retiming remains geometrically possible by Chapter 1, but need not conserve E. The level E₀ and initial position on the path set the remaining initial conditions.</p>
+<p>For a reactive robot policy, we want to generate motion from the current (q, v) without storing or integrating a separate path first. We therefore express this same timing choice as an acceleration correction. That is the purpose of energization.</p>
+<h3 id="derive-energization">Turn the timing criterion into a local acceleration rule</h3>
+<p>Chapter 1 supplied the allowed modification: add an acceleration parallel to velocity. For an HD2 generator, this changes the clock along its paths. Chapter 2 supplied the test: <span class="math inline">\dot E=v^T(M_Ea+\xi_E)</span>. We now combine those two results.</p>
+<p>At a nonzero velocity, try <span class="math inline">a=h+\alpha_Ev</span>. Only the scalar coefficient <span class="math inline">\alpha_E</span> is unknown. Introduce two quantities to make the calculation readable:</p>
+<div class="math display">N=v^T(M_Eh+\xi_E),\qquad Z=v^TM_Ev&gt;0.</div>
+<p>N is the energy rate under the original generator. Z measures how strongly an along-velocity correction changes that rate. Substituting our proposed acceleration gives</p>
+<div class="math display">\begin{aligned}
+\dot E&amp;=v^T[M_E(h+\alpha_Ev)+\xi_E]\\
+&amp;=N+\alpha_E Z.
+\end{aligned}</div>
+<p>We want this scalar to be zero. Solving for its one unknown gives</p>
+<div class="math display">\boxed{\alpha_E=-\frac{N}{Z}
+=-\frac{v^T(M_Eh+\xi_E)}{v^TM_Ev},\qquad
+ g=h+\alpha_Ev.}\tag{10}</div>
+<p>If N is positive, the correction opposes velocity and removes exactly the excess energy rate. If N is negative, it adds along-velocity acceleration to replace the loss. If N is zero, it changes nothing. This operation is called <strong>energization</strong>: it gives the chosen dynamics a conserved energy account. We will use g for the resulting conservative acceleration.</p>
+<h4>A concrete calculation: remove speeding up, keep turning</h4>
+<p>Choose the simple account <span class="math inline">E=\tfrac12\|v\|^2</span>. Then <span class="math inline">M_E=I</span> and <span class="math inline">\xi_E=0</span>, so</p>
+<div class="math display">g=h-\frac{v^Th}{v^Tv}v
+=(I-\hat v\hat v^T)h,\qquad \hat v=\frac{v}{\|v\|}.\tag{11}</div>
+<p>The matrix <span class="math inline">\hat v\hat v^T</span> extracts the part of h parallel to velocity. Subtracting that part leaves only turning. For a robot task point with <span class="math inline">v=(2,0)^T</span> and requested <span class="math inline">h=(3,4)^T</span>, we get N = 6, Z = 4, and <span class="math inline">\alpha_E=-1.5</span>. The correction is (−3, 0), so g = (0, 4).</p>
+<p>This perpendicular-arrow picture is specific to Euclidean energy. For a configuration-dependent metric, even ordinary perpendicular acceleration can change energy through <span class="math inline">\xi_E</span>. Equation (10) cancels the full energy rate, including that term; it does not generally enforce <span class="math inline">v^Tg=0</span>.</p>
+<figure class="explain-figure" id="energization-illustration">
+<div class="figure-heading"><span class="figure-number">Visual 02</span><h4>Keep the turn. Cancel the extra speeding up.</h4></div>
+<svg class="explain-svg" viewBox="0 0 840 260" role="img" aria-labelledby="projection-title projection-desc">
+<title id="projection-title">An acceleration decomposed along and perpendicular to current velocity</title>
+<desc id="projection-desc">For velocity (2,0) and proposed acceleration (3,4), the original acceleration has forward component (3,0) and perpendicular component (0,4). Energization removes the forward component and leaves (0,4). This is a vector diagram at one instant, not a trajectory.</desc>
+<defs><marker id="project-orange" markerWidth="8" markerHeight="8" refX="6.6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7Z" fill="#c1663d"/></marker><marker id="project-teal" markerWidth="8" markerHeight="8" refX="6.6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7Z" fill="#136f73"/></marker><marker id="project-gray" markerWidth="8" markerHeight="8" refX="6.6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7Z" fill="#66746e"/></marker></defs>
+<rect x="12" y="10" width="396" height="238" rx="12" fill="#f8f6ef"/><rect x="432" y="10" width="396" height="238" rx="12" fill="#edf5f1"/>
+<text x="32" y="38" class="svg-overline">PROPOSED ACCELERATION h</text><text id="projection-result-heading" x="452" y="38" class="svg-overline">ENERGIZED ACCELERATION g</text>
+<g fill="none" stroke-linecap="round">
+<path d="M68 186 L158 66" stroke="#c1663d" stroke-width="4" marker-end="url(#project-orange)"/>
+<path class="projection-split" d="M68 186 L158 186" stroke="#c1663d" stroke-width="3" marker-end="url(#project-orange)"/>
+<path class="projection-split" d="M158 186 L158 72" stroke="#8fa699" stroke-width="1.5" stroke-dasharray="4 5"/>
+<path class="projection-split" d="M68 186 L68 66" stroke="#136f73" stroke-width="3" marker-end="url(#project-teal)"/>
+<path d="M68 220 L128 220" stroke="#66746e" stroke-width="2.5" marker-end="url(#project-gray)"/>
+<g class="projection-after">
+<path id="projection-moving-vector" d="M494 186 L494 66" stroke="#136f73" stroke-width="4" marker-end="url(#project-teal)"/>
+<path d="M494 186 L584 66" stroke="#c1663d" stroke-width="1.5" stroke-dasharray="4 5" opacity=".45"/>
+<path d="M494 220 L554 220" stroke="#66746e" stroke-width="2.5" marker-end="url(#project-gray)"/>
+<path id="projection-right-angle" d="M494 172 L508 172 L508 186" stroke="#136f73" stroke-width="1.5"/>
+</g>
+</g>
+<circle cx="68" cy="186" r="4" fill="#233330"/><circle class="projection-after" cx="494" cy="186" r="4" fill="#233330"/>
+<text x="180" y="77" class="svg-equation">h = (3, 4)</text><text class="projection-split svg-small" x="180" y="109" fill="#136f73">4 units turn the velocity.</text><text class="projection-split svg-small" x="180" y="133" fill="#ad5330">3 units speed it up.</text>
+<text x="180" y="181" class="svg-equation">Ė = v · h = 6</text><text x="146" y="225" class="svg-small">Current v = (2, 0)</text>
+<g class="projection-after">
+<text id="projection-vector-label" x="602" y="77" class="svg-equation">g = (0, 4)</text><text x="602" y="109" class="svg-small">Subtract (3, 0).</text><text x="602" y="133" class="svg-small">The turn remains.</text>
+<text id="projection-work-label" x="602" y="181" class="svg-equation">Ė = v · g = 0</text><text x="572" y="225" class="svg-small">Same current velocity</text>
+</g>
+<g class="projection-waiting"><text x="465" y="120" class="svg-equation">What should we remove?</text><text x="465" y="152" class="svg-small">First identify the part that changes energy.</text></g>
+</svg>
+<div class="illustration-controls projection-controls"><button id="projection-replay" type="button">Replay the reasoning</button><button data-projection-step="0" type="button" aria-pressed="false">1 · Propose</button><button data-projection-step="1" type="button" aria-pressed="false">2 · Split</button><button data-projection-step="2" type="button" aria-pressed="true">3 · Cancel</button></div>
+<p id="projection-readout" class="landscape-status" aria-live="polite"></p>
+<figcaption>Instantaneous vectors for Euclidean energy <span class="math inline">E=\tfrac12\|v\|^2</span>. The correction changes acceleration, not the current velocity. Perpendicularity conserves speed continuously as the direction turns; an anisotropic energy uses its own work pairing instead.</figcaption>
+</figure>
+
+<figure class="lab"><h4>Experiment 3 · The same geometry, with a different clock</h4><p>Use the HD2 generator <span class="math inline">h=(0,\kappa v_x^2)</span>. Orange follows it directly; teal follows its energized version. The gray parabola is their common path. Both start at the origin with velocity (1, 0).</p><div class="controls"><label>Bending κ <input id="energy-k" type="range" min="0" max="1.6" step="0.1" value="1"><output id="energy-k-value"></output></label><label>Energy weight on vertical motion m <input id="energy-m" type="range" min="1" max="4" step="0.1" value="1"><output id="energy-m-value"></output></label></div><canvas id="energy-canvas" width="900" height="290" role="img" aria-label="Raw and energized trajectories along one parabolic geometry"></canvas><p id="energy-readout" class="readout" aria-live="polite"></p><figcaption>Each trace covers the same elapsed time, not the same distance. The integrator uses RK4; the reported energy drift and path residual reveal numerical error. With m ≠ 1, conserved energy does not imply constant Euclidean speed.</figcaption></figure>
+<p>The experiment's path is <span class="math inline">r(\sigma)=(\sigma,\kappa\sigma^2/2)^T</span>, so <span class="math inline">r'=(1,\kappa\sigma)^T</span>. Its energy is <span class="math inline">E=\tfrac12(v_x^2+mv_y^2)</span>, and the shared initial velocity gives E₀ = 1/2. Our path-based formula predicts</p>
+<div class="math display">\dot\sigma=\frac1{\sqrt{1+m\kappa^2\sigma^2}}.</div>
+<p>Increasing m slows progress where the path's tangent has a large vertical component. The spatial parabola stays the same. The interactive solver uses the local energized acceleration rather than this path formula; the two describe the same conservative timing up to numerical error.</p>
+<h4>What is unique about this correction?</h4>
+<p>At a fixed nonzero state, it is the <em>only tangential correction</em> that conserves the chosen E. After we obtain g, adding another <span class="math inline">\lambda v</span> would give</p>
+<div class="math display">\dot E=v^T[M_E(g+\lambda v)+\xi_E]=\lambda Z.</div>
+<p>Since Z is positive, this vanishes only for λ = 0. This does not say that energy determines a unique motion rule: there are many energy-conserving turning rules. It says that, once we restrict ourselves to retiming this geometry, the chosen energy fixes the correction.</p>
+<h4 id="does-geometry-and-energy-fix-policy">Does choosing geometry and energy fix the motion policy?</h4>
+<p><strong>It fixes the conservative acceleration rule at each nonzero state; an initial state then selects a trajectory.</strong> The uniqueness calculation above leaves no further tangential freedom if we insist on conserving that same energy along the same geometry. The initial velocity sets the conserved value <span class="math inline">E_0=E(q_0,v_0)</span>; specifying E alone does not prescribe one universal operating speed.</p>
+<p>Additional speed regulation is possible, but generally changes E over time. Added goal forces can also change the route and start motion from rest. Chapter 5 develops these purposeful extensions and their own energy arguments. They are extra design choices beyond the conservative core constructed here.</p>
+<h3 id="energization-preserves-geometry">Why the result preserves the geometry</h3>
+<p><strong>The conservation calculation and the geometry argument do different jobs.</strong> The scalar cancellation above works wherever the formula is defined, even for a non-HD2 h. Preserving h's paths requires the HD2 assumption and the retiming result from Chapter 1.</p>
+<p>When h is HD2, <span class="math inline">h+\alpha_Ev</span> has exactly the form of a clock change along its paths. Locally, while the clock remains increasing and regular, g therefore traces the same oriented routes. It may reach a different point on that route at a given time.</p>
+<p>We can further prove that g itself remains HD2. At fixed q, scale v by a positive c. The energy Hessian is HD0, while <span class="math inline">\xi_E</span> and h are HD2. Therefore</p>
+<div class="math display">N(q,cv)=c^3N(q,v),\qquad Z(q,cv)=c^2Z(q,v),
+\qquad \alpha_E(q,cv)=c\alpha_E(q,v).</div>
+<p>To check the scaling of <span class="math inline">\xi_E=(D_q\nabla_vE)v-\nabla_qE</span>, recall that differentiating HD2 E once in v gives an HD1 gradient. A q derivative does not change its velocity degree; multiplying by v raises it back to two. The other term, <span class="math inline">\nabla_qE</span>, is also HD2. Thus both terms of ξ<sub>E</sub> have the stated scaling.</p>
+<p>The coefficient is HD1, so multiplying it by velocity produces an HD2 correction. Both terms of g scale by c². We have achieved the two promises separately: energy conservation by cancellation, and geometric consistency by HD2 and tangential retiming.</p>
+<p>In the 2023 terminology, a <strong>fabric</strong> is an energy-conserving autonomous second-order system; a <strong>geometric fabric</strong> also has this path-consistency structure. Energizing an arbitrary non-HD2 rule can conserve energy without preserving its original paths. The two properties should not be conflated.</p>
+<h3 id="bent-finsler">How this becomes “bent Finsler geometry”</h3>
+<p><strong>The same construction can be read as adding a zero-work force to the energy's natural mechanics.</strong> This connects the energization formula to the original paper's language and to the freedom introduced in the mechanics interlude.</p>
+<p>The natural energy equation is <span class="math inline">M_Ea+\xi_E=0</span>. To make its acceleration equal our chosen g, define</p>
+<div class="math display">f_{\mathrm{bend}}=M_Eg+\xi_E,
+\qquad M_Ea+\xi_E=f_{\mathrm{bend}}.</div>
+<p>Solving this equation gives a = g. Its bending force satisfies</p>
+<div class="math display">v^Tf_{\mathrm{bend}}=v^T(M_Eg+\xi_E)=0.</div>
+<p>Thus it changes the energy's <em>natural</em> geometry into h's chosen geometry without doing work in that account. Energization preserves the paths of h; bending changes the paths of the natural energy dynamics. These statements refer to different starting systems and are consistent. If h is HD2, the bend is HD2 too. Papers that put the bend on the left of the equation use the opposite sign for the same term.</p>
+<details><summary>At rest: does the division by zero mean acceleration blows up?</summary>
+<p><strong>For a regular HD2 construction, the full acceleration can have a zero limit even though the displayed quotient is undefined at v = 0.</strong> We must examine the product <span class="math inline">\alpha_Ev</span>, not just its denominator.</p>
+<p>Suppose h and <span class="math inline">\xi_E</span> are bounded by a constant times <span class="math inline">\|v\|^2</span>, uniformly over velocity directions near the configuration of interest. Also suppose the eigenvalues of <span class="math inline">M_E</span> are bounded above and bounded away from zero. Then</p>
+<div class="math display">N=O(\|v\|^3),\qquad Z=\Theta(\|v\|^2),
+\qquad \alpha_Ev=O(\|v\|^2).</div>
+<p>Here O means “at most a constant times,” and Θ means bounded both above and below by positive constant multiples. The numerator contains one velocity and a term of quadratic size; division removes two powers, and multiplication by v restores one. Consequently g tends to zero. Defining g(q, 0) = 0 gives a continuous extension.</p>
+<p>Continuity alone does not settle every derivative or uniqueness question at rest. A non-HD2 generator that stays nonzero as v tends to zero may not have this limit. Adding a small constant to the denominator also changes the energy identity, as Chapter 7 quantifies. Finally, a regular unforced geometric fabric cannot initiate motion from rest: a separate purposeful force must do that.</p>
+</details>
+<p class="connection">We have separated two design choices: h supplies a geometry, and E selects a conservative timing for it. Next we must combine several task requests into one robot acceleration, and check which of these properties survive. <a href="https://arxiv.org/html/2309.07368#S2">Source connection: energization and path consistency</a>.</p>
+</section>
+
+<section class="chapter" id="composition"><p class="chapter-kicker">Chapter 4 · Reference R5–R7</p><h2>Compose tasks without losing the structure</h2>
+<p><strong>We can express motion requests in different robot task spaces and combine them into a single joint acceleration.</strong> With the right scaling assumptions, the result is still HD2. With additional energy-compatible choices, we can also conserve a combined energy. We will prove these separately rather than assume that averaging controllers preserves everything.</p>
+<p>A robot has one configuration q but many useful descriptions: joint angles, fingertip position, or a link's distance from a wall. A <strong>task map</strong> <span class="math inline">x=\phi(q)</span> computes one such description. We design a component where its purpose is easy to express, then translate its request back to joint coordinates. Throughout this chapter the maps are fixed in time.</p>
+<h3 id="task-acceleration">The Jacobian converts velocity; acceleration needs more</h3>
+<p><strong>A task's acceleration is not just its Jacobian times joint acceleration.</strong> The Jacobian itself changes as the arm moves. Omitting that change would make our supposedly equivalent coordinate descriptions disagree.</p>
+<p>The Jacobian <span class="math inline">J=D\phi</span> collects the first derivatives of task coordinates with respect to joint coordinates. The chain rule gives task velocity; the product rule then gives task acceleration:</p>
+<div class="math display">\dot x=Jv,\qquad
+\ddot x=\frac{d}{dt}(Jv)=Ja+\dot Jv.\tag{12}</div>
+<p>For a one-joint, unit-length robot link, <span class="math inline">x(q)=(\cos q,\sin q)^T</span>. Its tip travels around a circle. Even at constant joint speed, with a = 0, it accelerates inward because the velocity direction keeps turning:</p>
+<div class="math display">J=\begin{pmatrix}-\sin q\\\cos q\end{pmatrix},\qquad
+\dot Jv=\begin{pmatrix}-\cos q\\-\sin q\end{pmatrix}v^2.</div>
+<p>This is the familiar inward acceleration of a rotating link. It arises from the task map's curvature, not from a new control force. We abbreviate it as <span class="math inline">c=\dot Jv</span>.</p>
+<figure class="lab"><h4>Experiment 4 · Zero joint acceleration, nonzero task acceleration</h4><div class="controls"><label>Joint angle q <input id="map-angle" max="360" min="0" step="5" type="range" value="40"/><output id="map-angle-value"></output></label><label>Angular speed v <input id="map-speed" max="2" min="0" step="0.1" type="range" value="1"/><output id="map-speed-value"></output></label></div><canvas aria-label="Point on a circle, tangent velocity and inward curvature acceleration" height="260" id="map-canvas" role="img" width="900"></canvas><p aria-live="polite" class="readout" id="map-readout"></p><figcaption>Teal is velocity; orange is acceleration when q̈ = 0. The drawing uses separate arrow scales; the readout gives actual values. Doubling angular speed doubles velocity but quadruples curvature acceleration.</figcaption></figure>
+<h3 id="combine-task-requests">Derive the combination rule from disagreement</h3>
+<p><strong>The combined acceleration minimizes the weighted disagreement with the task requests at the current state.</strong> This gives a precise meaning to “priority” without pretending that conflicting requests can all be satisfied.</p>
+<p>Task i requests acceleration <span class="math inline">h_i</span> and supplies a symmetric positive-semidefinite priority matrix <span class="math inline">W_i</span>. A trial joint acceleration a would actually produce <span class="math inline">J_i a+c_i</span>. Define the error and its total cost:</p>
+<div class="math display">e_i=J_i a+c_i-h_i,\qquad
+\mathcal C(a)=\tfrac12\sum_i e_i^TW_i e_i.</div>
+<p>Larger weights make disagreement in those directions more expensive. The state (q, v), and hence all J, c, h, and W values, is fixed during this minimization. We vary only the candidate acceleration a. Differentiating the quadratic cost yields</p>
+<div class="math display">\nabla_a\mathcal C
+=\sum_iJ_i^TW_i(J_i a+c_i-h_i).</div>
+<p>Setting this gradient to zero and grouping the terms containing a gives the <strong>pullback and sum</strong> rule:</p>
+<div class="math display">\boxed{W_q=\sum_iJ_i^TW_iJ_i,\qquad
+W_qh_q=\sum_iJ_i^TW_i(h_i-c_i).}\tag{13}</div>
+<p>Here <span class="math inline">h_q</span> is the selected joint acceleration. We subtract c because the task already receives that acceleration from coordinate curvature. The joints need to supply the remainder. The aggregate <span class="math inline">W_q</span> must be positive definite for a unique solution: the collection of tasks must assign weight to every joint direction, even if individual tasks do not.</p>
+<h4>Check the weighting with one joint and two tasks</h4>
+<p>At one state, let task 1 use <span class="math inline">x_1=q</span> and request acceleration 1. Let task 2 use <span class="math inline">x_2=2q</span> and request 0. Both weights are 1 and both curvatures are zero. These numbers are instantaneous requests, not globally HD2 policies. The cost becomes</p>
+<div class="math display">\mathcal C(a)=\tfrac12(a-1)^2+\tfrac12(2a)^2,
+\qquad \mathcal C'(a)=5a-1,
+\qquad h_q=\tfrac15.</div>
+<p>Why not the ordinary average 1/2? A joint acceleration produces twice as much acceleration in task 2, and its disagreement is squared. It therefore contributes four times as much to the joint-space quadratic weight. The Jacobians translate both the requests and their influence.</p>
+<details><summary>Background: why the transpose appears in the derivative</summary>
+<p>If J has m task rows and n joint columns, it maps an n-entry joint vector into an m-entry task vector. Its transpose <span class="math inline">J^T</span> swaps rows and columns and maps back in the derivative calculation.</p>
+<p>For a small change <span class="math inline">\delta a</span>, the task error changes by <span class="math inline">J\delta a</span>. Expanding the cost and keeping only first-order terms gives</p>
+<div class="math display">\delta\mathcal C=e^TWJ\delta a=(J^TWe)^T\delta a.</div>
+<p>The vector multiplying <span class="math inline">\delta a</span> is its gradient. This proves the formula rather than treating the transpose as an arbitrary convention. Positive-semidefinite W makes the quadratic cost convex; positive-definite aggregate weight makes it strictly convex and gives a unique minimizer. A small base component can fill unweighted joint directions, but it changes the model and should be included explicitly.</p>
+</details>
+<h4>Organize the same calculation as a task tree</h4>
+<p>A robot's joint configuration is the <strong>root</strong>. A final task coordinate system is a <strong>leaf</strong>, possibly reached through intermediate maps. At any node, store a <strong>natural-form pair</strong> <span class="math inline">(W,f)</span> representing <span class="math inline">Wa+f=0</span>. A requested acceleration h corresponds to <span class="math inline">f=-Wh</span>.</p>
+<div class="math display">(W,f)\quad\longmapsto\quad
+\bigl(J^TWJ,\ J^T(f+Wc)\bigr).</div>
+<p>This is pullback through one task map. Add pairs that arrive at the same node, then solve at the root. The symbol f follows a residual-force sign convention; it is not a command to the robot's motors. “Natural form” here is an algebraic representation, not a claim that the controller follows unforced natural mechanics.</p>
+<details><summary>Proof: intermediate task coordinates do not change the result</summary>
+<p><strong>Pulling back through two successive maps gives the same pair as pulling back through their composite.</strong> This is why a tree can organize the computation without changing the mathematics.</p>
+<p>For <span class="math inline">x=\phi(y)</span> and <span class="math inline">y=\theta(q)</span>, substitute <span class="math inline">\ddot y=J_\theta a+c_\theta</span> into <span class="math inline">\ddot x=J_\phi\ddot y+c_\phi</span>. The total Jacobian and curvature are</p>
+<div class="math display">J_{\mathrm{total}}=J_\phi J_\theta,\qquad
+c_{\mathrm{total}}=J_\phi c_\theta+c_\phi.</div>
+<p>Two successive pair transformations give</p>
+<div class="math display">\begin{aligned}
+W_q&amp;=J_\theta^TJ_\phi^TWJ_\phi J_\theta,\\
+f_q&amp;=J_\theta^TJ_\phi^T(f+Wc_\phi)+J_\theta^TJ_\phi^TWJ_\phi c_\theta\\
+&amp;=(J_\phi J_\theta)^T[f+W(c_\phi+J_\phi c_\theta)].
+\end{aligned}</div>
+<p>These are exactly the direct formulas using the total map. Sums distribute through the same expressions, so regrouping branches also leaves the result unchanged.</p>
+</details>
+<h3 id="composition-hd2">Prove that the combined generator is HD2</h3>
+<p><strong>Static task maps, HD2 task generators, and HD0 priorities produce an HD2 joint generator wherever the aggregate solve is defined.</strong> This preserves the geometric structure, not each component's individual route. Conflicting components generally produce a new compromise geometry.</p>
+<p>To prove the claim, hold q fixed and replace v by <span class="math inline">sv</span>, with s &gt; 0. Check every ingredient in (13):</p>
+<ul><li>The static Jacobian stays unchanged, and task velocity <span class="math inline">J_i v</span> scales by s.</li><li>The requested <span class="math inline">h_i</span> scales by s² because it is HD2 in task velocity.</li><li>The curvature <span class="math inline">c_i=D^2\phi_i[v,v]</span> also scales by s². It contains two copies of v.</li><li>The priority <span class="math inline">W_i</span> stays unchanged because it is HD0.</li></ul>
+<p>Consequently <span class="math inline">W_q</span> is unchanged and the right-hand side of (13) gains a factor s². The unique solution therefore satisfies</p>
+<div class="math display">h_q(q,sv)=s^2h_q(q,v).</div>
+<p>For clarity, component k of the curvature is <span class="math inline">\sum_{j,l}(\partial^2\phi_{i,k}/\partial q_j\partial q_l)v_jv_l</span>; its two velocity factors explain the scaling. HD0 priorities may depend on position and velocity direction, but not speed magnitude. General speed-dependent gates or moving task maps fall outside this proof. Once we have the combined HD2 generator, Chapter 3 can energize it at the root.</p>
+<h3 id="composition-energy">When does composition also conserve energy?</h3>
+<p><strong>HD2 closure alone says nothing about which energy is conserved.</strong> One straightforward design is to combine the generators first and energize the result using a chosen root energy. Another is to use task energy Hessians as priorities, so the energy accounts themselves combine consistently.</p>
+<p>For the second design, let each task have energy <span class="math inline">E_i</span> and actual velocity <span class="math inline">w_i=J_i v</span>. Define the total account by adding those energies:</p>
+<div class="math display">E_q(q,v)=\sum_i E_i(\phi_i(q),J_i v).
+\qquad M_q=\sum_iJ_i^TM_iJ_i.</div>
+<p>The formula for <span class="math inline">M_q</span> follows by differentiating E<sub>q</sub> twice in v. Its match to (13) is the reason to choose <span class="math inline">W_i=M_i</span>. With regular task energies and a positive-definite aggregate, the following proofs show exactly how conservation and energization interact.</p>
+<details><summary>Proof: pulling back energy and a single energization coefficient</summary>
+<p>The energy's Euler–Lagrange expression transforms by <span class="math inline">J^T</span>. To see why, substitute the task variation <span class="math inline">\delta x=J\delta q</span> into Chapter 2's variation of the action. The coefficient multiplying <span class="math inline">\delta q</span> is the task expression multiplied by <span class="math inline">J^T</span>. Thus for all tasks,</p>
+<div class="math display">\xi_q=\sum_iJ_i^T(\xi_i+M_i c_i).</div>
+<p>For one full-column-rank map, choose <span class="math inline">h_q=M_q^{-1}J^TM_x(h_x-c)</span>. Substitute this and the preceding expression into the energization numerator and denominator:</p>
+<div class="math display">\begin{aligned}
+v^T(M_qh_q+\xi_q)&amp;=(Jv)^T(M_xh_x+\xi_x),\\
+v^TM_qv&amp;=(Jv)^TM_x(Jv).
+\end{aligned}</div>
+<p>Both are identical in the two descriptions, so they give the same scalar α. Pulling back the task correction <span class="math inline">\alpha Jv</span> then gives</p>
+<div class="math display">M_q^{-1}J^TM_x(\alpha Jv)=\alpha v.</div>
+<p>Therefore energizing before this pullback or after it gives the same result. Stacking all tasks into one larger map and using one aggregate coefficient gives the same conclusion. This is a statement about an energy-compatible pullback, not arbitrary priorities.</p>
+</details>
+<details><summary>Proof: separately energizing leaves conserves energy but can change the root geometry</summary>
+<p>Separate leaves generally require different coefficients <span class="math inline">\alpha_i</span>. Their combined correction is</p>
+<div class="math display">\Delta a=M_q^{-1}\sum_iJ_i^TM_iJ_i\alpha_i v.</div>
+<p>Because the matrices weight different directions differently, this vector is generally not parallel to v. It can therefore change the geometry obtained by combining the unenergized requests. Nevertheless, it conserves the summed energy when the weights are the energy Hessians.</p>
+<p>Let each conservative leaf request <span class="math inline">g_i</span>, and let a be the root solution. Its actual task acceleration <span class="math inline">J_i a+c_i</span> need not equal <span class="math inline">g_i</span>. Add and subtract each request inside the energy rate:</p>
+<div class="math display">\begin{aligned}
+\dot E_q&amp;=\sum_iw_i^T[M_i(J_i a+c_i)+\xi_i]\\
+&amp;=v^T\sum_iJ_i^TM_i(J_i a+c_i-g_i)
++\sum_iw_i^T(M_i g_i+\xi_i)=0.
+\end{aligned}</div>
+<p>The first sum vanishes by the root normal equation. The second vanishes by each leaf's conservation identity. Arbitrary unrelated priority matrices do not provide this cancellation.</p>
+<p>All derivatives used here must exist at the actual task velocities. A moving robot can have a stationary fingertip: <span class="math inline">v\ne0</span> does not imply <span class="math inline">J_i v\ne0</span>. A general Finsler leaf can be nonsmooth there. Quadratic energies avoid this particular difficulty; a positive-definite aggregate by itself does not repair a nonsmooth leaf.</p>
+</details>
+<h3 id="exact-constraints">Exact constraints add forces that do no work</h3>
+<p><strong>A static ideal constraint can restrict a fabric's motion without injecting energy.</strong> For example, an ideal constraint keeping a robot tip on a fixed surface permits only tangent velocity. Its reaction force acts normal to that allowed motion, so their work pairing is zero. This is distinct from adding a finite repulsion near a surface.</p>
+<details><summary>Derivation: solve for the constraint reaction, then check its work</summary>
+<p>Write the constraint as <span class="math inline">C(q)=0</span>, with a Jacobian J whose rows are independent. Differentiate twice:</p>
+<div class="math display">Jv=0,\qquad Ja+\dot Jv=0.</div>
+<p>The first restricts allowed velocities; the second restricts accelerations that keep those velocities tangent as the surface curves. Initial position and velocity must satisfy the constraints.</p>
+<p>Write the fabric as <span class="math inline">M_Ea+k=F</span>, with k collecting its natural and bending terms and F an external force. Add a reaction <span class="math inline">-J^T\lambda</span>, where λ contains the unknown reaction magnitudes:</p>
+<div class="math display">M_Ea+k+J^T\lambda=F.</div>
+<p>Solving for a and imposing <span class="math inline">Ja=-\dot Jv</span> gives</p>
+<div class="math display">\lambda=(JM_E^{-1}J^T)^{-1}
+\left[JM_E^{-1}(F-k)+\dot Jv\right].</div>
+<p>The inverse exists under the rank and positive-definiteness assumptions. The reaction's power is</p>
+<div class="math display">-v^TJ^T\lambda=-(Jv)^T\lambda=0.</div>
+<p>Thus it preserves the energy account. With F = 0, k and the curvature term are HD2 while the matrices are HD0, so the constrained acceleration also remains HD2. This establishes conservative geometric structure on the constraint.</p>
+<p>One-sided contact additionally requires a rule for when contact is active, a nonnegative normal reaction, and an impact law. Energy-conserving or dissipating impacts preserve the corresponding energy inequality, but smooth zero-work algebra alone is not a complete analysis of contact evolution.</p>
+</details>
+<details><summary>Background: why a constrained resting robot need not have zero potential gradient</summary>
+<p>A constraint reaction can balance a nonzero goal force. With equality constraints C = 0 and feasible inequalities <span class="math inline">s_j\ge0</span>, a regular constrained stationary point obeys the Karush–Kuhn–Tucker, or <strong>KKT</strong>, conditions:</p>
+<div class="math display">\nabla\psi+J_C^T\lambda-J_s^T\mu=0,\qquad
+C=0,\quad s\ge0,\quad\mu\ge0,\quad\mu_js_j=0.</div>
+<p>The first equation balances the potential gradient with reactions. Feasibility keeps the robot in the allowed set. The last equation says an inequality reaction can act only at its boundary: if <span class="math inline">s_j&gt;0</span>, its multiplier must be zero. These conditions describe constrained stationarity, not a global minimum. A convergence proof involving impacts also needs a well-posed contact evolution, beyond this static balance.</p>
+</details>
+<p class="connection">We can now assemble requests, preserve HD2 under explicit assumptions, and combine compatible energy accounts. None of these operations selects a destination or ensures the robot settles there. That requires purposeful forcing and a separate argument. <a href="https://arxiv.org/html/2109.10443#S4.SS5">Source connection: generalized coordinates and fabric component algebra</a>.</p>
+</section>
+
+<section class="chapter" id="stability"><p class="chapter-kicker">Chapter 5 · Reference R4, R8–R10</p><h2>Goals, damping, and actual guarantees</h2>
+<h3 id="conservation-versus-arrival">Conservation is useful, but it is not arrival</h3>
+<p><strong>A conservative fabric supplies structured motion; a goal force and damping can turn it into a system that settles at stationary points of a potential.</strong> Conservation alone cannot do this. A robot task point can keep moving with nonzero energy, while a regular unforced geometric fabric initialized at rest stays there. We need both a reason to move and a way to settle.</p>
+<p>We already introduced a virtual potential in the mechanical motivation. Now we add one deliberately to the completed fabric. Choose a scalar <span class="math inline">\psi(q)</span> that is low at desired configurations. Its gradient points uphill; its negative gradient supplies a force downhill. For a joint-space goal <span class="math inline">q_*</span>,</p>
+<div class="math display">\psi(q)=\tfrac12k\|q-q_*\|^2,\qquad
+-\nabla\psi=-k(q-q_*),\qquad k&gt;0.</div>
+<p>This behaves like a virtual spring toward the goal and can act at zero velocity. To remove motion, add a damping force <span class="math inline">-Bv</span>, with B symmetric positive definite. Apply both forces through the energy Hessian:</p>
+<div class="math display">a=g-M_E^{-1}\nabla\psi-M_E^{-1}Bv,
+\qquad V=E+\psi.\tag{14}</div>
+<p>The matrix inverse converts these virtual forces into accelerations. We use <span class="math inline">M_E</span> here for a specific reason: it lets the work of the goal force cancel the change in potential. V is the total account—motion energy plus potential—not just the fabric's motion energy E.</p>
+<h4>Track each contribution instead of asserting stability</h4>
+<p>First substitute (14) into <span class="math inline">\dot E=v^T(M_Ea+\xi_E)</span>. Then add <span class="math inline">\dot\psi=(\nabla\psi)^Tv</span>:</p>
+<div class="math display">\begin{aligned}
+\dot V&amp;=\underbrace{v^T(M_Eg+\xi_E)}_{0\text{ by conservation}}
+-\underbrace{v^T\nabla\psi}_{\text{goal-force work}}
+-v^TBv+\underbrace{(\nabla\psi)^Tv}_{\text{potential change}}\\
+&amp;=\boxed{-v^TBv\le0.}
+\end{aligned}\tag{15}</div>
+<p>The two potential terms are equal and opposite. Descending the potential can increase motion energy, but that transfer leaves V unchanged. Damping removes total energy. The conservative fabric redistributes motion without contributing to its rate. This proves that V cannot increase; it does not say that E stays constant or that goal forcing preserves g's original paths.</p>
+<figure class="explain-figure landscape-figure" id="landscape-illustration">
+<div class="figure-heading"><span class="figure-number">Visual 03 · Explore in 3D</span><h4>A bowl gives a goal. Damping makes motion settle.</h4></div>
+<div class="landscape-live">
+<div id="landscape-view" class="landscape-view" role="img" aria-label="Rotatable three-dimensional potential surface with undamped and damped trajectories">
+<img class="landscape-fallback" src="assets/fabrics-figures/energy-landscape.svg" alt="A quadratic potential bowl with an orange orbit and a teal inward spiral." loading="lazy">
+<span class="landscape-hint" id="landscape-hint">Drag the surface to rotate</span>
+</div>
+<div class="energy-ledger">
+<div class="energy-case no-damping"><h5>Without damping <span>b = 0</span></h5><p class="energy-total">V = <output id="landscape-v-free">1.750</output></p><div class="energy-track" aria-hidden="true"><i id="landscape-e-free"></i><i id="landscape-p-free"></i></div><p id="landscape-values-free">Motion energy and potential trade places.</p></div>
+<div class="energy-case with-damping"><h5>With damping <span>b = 1.6</span></h5><p class="energy-total">V = <output id="landscape-v-damped">—</output></p><div class="energy-track" aria-hidden="true"><i id="landscape-e-damped"></i><i id="landscape-p-damped"></i></div><p id="landscape-values-damped">Damping drains the total energy.</p></div>
+<p class="energy-key"><span class="solid-swatch"></span> Solid: motion E<br><span class="hatch-swatch"></span> Hatched: potential ψ</p>
+</div></div>
+<div class="illustration-controls"><button id="landscape-play" type="button">Play motion</button><label>Elapsed time <input id="landscape-time" type="range" min="0" max="8" step="0.02" value="3"><output id="landscape-time-value">3.00 s</output></label><button id="landscape-reset" type="button">Reset view</button></div>
+<p class="landscape-status" id="landscape-readout" aria-live="polite">The orange motion keeps circulating; the teal motion loses energy and approaches the center.</p>
+<img class="landscape-print" src="assets/fabrics-figures/energy-landscape.svg" alt="The undamped orbit retains total energy while the damped trajectory spirals toward the potential minimum.">
+<figcaption>A simple forced fabric with <span class="math inline">g=0</span>, <span class="math inline">\psi=\|q\|^2</span>, and <span class="math inline">\ddot q=-2q-b\dot q</span>. Both runs start at q = (1.1, 0.2), v = (0, 1). Dotted vertical drops locate q on the horizontal plane. Surface height represents ψ; the actual motion is in the horizontal q-plane, not a simulation of a ball rolling under gravity. Full curves show the next 8 s; dots show the selected time.</figcaption>
+</figure>
+
+<h3 id="why-energy-decay-implies-settling">Why does decreasing energy imply settling?</h3>
+<p><strong>With the assumptions below, the motion approaches the set of stationary points of ψ.</strong> The conclusion is not automatically “the robot reaches the desired goal.” To establish what actually follows, examine where the energy can stop decreasing and which of those states can persist.</p>
+<p>A scalar used to reason about stability is called a <strong>Lyapunov function</strong>. V is a candidate because it is bounded below and nonincreasing. To use it for convergence, assume that the solution stays in a compact invariant region away from singularities, that the full dynamics is regular there including at rest, and that B damps every direction by at least a fixed positive amount. The optional notes explain these conditions.</p>
+<p>LaSalle's <strong>invariance principle</strong> says the motion approaches the largest invariant subset of <span class="math inline">\dot V=0</span>. “Invariant” means the dynamics can remain in that subset for all later time. Apply it in three steps:</p>
+<ol><li>By (15) and positive-definite damping, <span class="math inline">\dot V=0</span> requires v = 0.</li><li>At v = 0, the conservative geometric term and damping vanish. The acceleration is <span class="math inline">a=-M_E^{-1}\nabla\psi</span>.</li><li>If <span class="math inline">\nabla\psi\ne0</span>, that acceleration immediately starts motion. Such a state cannot stay in the zero-velocity set. Remaining there requires <span class="math inline">\nabla\psi=0</span>.</li></ol>
+<div class="math display">\text{Limiting invariant set}\subseteq
+\{(q,v):v=0,\ \nabla\psi(q)=0\}.</div>
+<p>This is the missing step between a decreasing number and a statement about the robot. A turning point with v = 0 can have zero energy derivative for an instant; an equilibrium must remain at rest.</p>
+<h4>What does this say about the goal?</h4>
+<p>If the relevant region contains only one stationary point, the motion converges to it. For the simple quadratic potential above, the only stationary configuration is <span class="math inline">q_*</span>. If additional obstacle potentials make the landscape nonconvex, there can be other stationary points where forces balance.</p>
+<p>A strict local minimum also gives local stability: nearby initial states with sufficiently little total energy cannot climb out of a small enclosing region. A saddle or maximum is also stationary, however, and a robot placed exactly there at rest remains there. “Stationary,” “stable,” and “globally optimal” are different claims. The energy calculation should not silently substitute one for another.</p>
+<details><summary>Background: compactness, invariance, and what LaSalle adds</summary>
+<p>A set is <strong>compact</strong> in these coordinates if it is closed and bounded. A sublevel set <span class="math inline">\{(q,v):V(q,v)\le V_0\}</span> contains all states whose energy is at most V₀. A nonincreasing V keeps a solution inside its initial sublevel, for as long as the solution exists. This is <strong>invariance</strong>.</p>
+<p>To make the sublevel compact, we need energy to bound the state. For example, E can bound velocity through <span class="math inline">E\ge m\|v\|^2/2</span> with m &gt; 0, while ψ grows without bound at large distances and forbidden boundaries. These conditions keep motion bounded and away from singularities. Merely knowing that V decreases does not provide them.</p>
+<p>On a compact region, a regular autonomous system has accumulation states. V decreases to a limit, so any complete limiting motion must keep V at that value. It must therefore remain in the zero-derivative set, not simply pass through it. LaSalle's principle formalizes this argument. This is why testing the acceleration at rest completes the proof.</p>
+<p>The full forced equation also needs a well-defined evolution at zero velocity. A smooth Riemannian energy makes its matrix well-defined there. A direction-dependent Finsler Hessian may approach different matrices from different directions; then <span class="math inline">-M_E^{-1}\nabla\psi</span> may have no unique rest limit, even if g itself tends to zero. Positive definiteness alone does not fix that issue. If B is only semidefinite, some moving states can have zero dissipation; their invariant motions require a new analysis too.</p>
+</details>
+<details><summary>Background: “locally Lipschitz” is an existence condition, not a stability claim</summary>
+<p>Rewrite the equation for the complete state <span class="math inline">z=(q,v)</span> as <span class="math inline">\dot z=\mathcal F(z)</span>. The vector field is locally Lipschitz when every state has a neighborhood with a finite constant L satisfying</p>
+<div class="math display">\|\mathcal F(z_1)-\mathcal F(z_2)\|
+\le L\|z_1-z_2\|.</div>
+<p>Nearby inputs cannot produce arbitrarily different rates relative to their separation. Bounded continuous derivatives in that neighborhood are sufficient. This condition provides a locally existing, unique solution. Compact bounds inside the regular domain let us continue it forward rather than lose it at a singularity or at infinity. None of that alone says the solution settles; the energy and invariant-set argument supplies that conclusion.</p>
+</details>
+<h3 id="independent-priority-damping">What changes when priorities are chosen independently?</h3>
+<p><strong>Using a separate priority matrix gives design freedom, but the preceding energy cancellation must then be checked again.</strong> The later formulation allows an HD0 matrix W that is not the Hessian of E. If we apply the goal force through <span class="math inline">W^{-1}</span> instead of <span class="math inline">M_E^{-1}</span>, its contribution to the old energy rate becomes</p>
+<div class="math display">-v^TM_EW^{-1}\nabla\psi.</div>
+<p>This does not generally cancel <span class="math inline">\dot\psi=v^T\nabla\psi</span>. The purpose of the extra damping condition in the later theory is to control the residual that this additional freedom leaves. It is an extra hypothesis to establish, not a consequence of W merely being positive definite.</p>
+<details><summary>Derivation: bound the residual, then choose enough damping</summary>
+<p>Consider <span class="math inline">a=g-W^{-1}(\nabla\psi+Bv)-\beta v</span>. Try an account based on W:</p>
+<div class="math display">V_W=\tfrac12v^TWv+\psi.</div>
+<p>Differentiate all three factors in its quadratic term, as in Chapter 2. Substituting the controller now cancels the potential terms, but g need not conserve this new account:</p>
+<div class="math display">\begin{aligned}
+\dot V_W&amp;=v^TWa+\tfrac12v^T\dot Wv+\nabla\psi^Tv\\
+&amp;=\underbrace{v^TWg+\tfrac12v^T\dot Wv}_{R_W}
+-v^TBv-\beta\underbrace{v^TWv}_{Z_W}.
+\end{aligned}</div>
+<p>R<sub>W</sub> is the leftover rate; Z<sub>W</sub> is the positive factor multiplying the scalar damping. At v ≠ 0, let <span class="math inline">\rho=R_W/Z_W</span>. If we verify an upper bound for ρ over the region of interest and select <span class="math inline">\beta\ge\sup\rho+\delta</span>, with δ &gt; 0, then</p>
+<div class="math display">\dot V_W=(\rho-\beta)Z_W-v^TBv
+\le-\delta Z_W</div>
+<p>for positive-semidefinite B. This recovers strict energy dissipation away from rest. The earlier convergence argument can then be used if its compactness, regularity, and rest assumptions also hold.</p>
+<p>To recognize the paper's notation, write <span class="math inline">g=h+\alpha_Ev</span> and define</p>
+<div class="math display">\alpha_0=-\frac{v^TWh+\tfrac12v^T\dot Wv}{Z_W}.
+\qquad \rho=\alpha_E-\alpha_0.</div>
+<p>The bound can thus be stated as a bound on the difference between energization coefficients. For velocity-dependent W, its total derivative contains acceleration: <span class="math inline">\dot W=D_qW[v]+D_vW[a]</span>. For exactly HD0 W, however, <span class="math inline">D_vW[v]=0</span>, so the direct contribution of the scalar damping acceleration −βv vanishes from this derivative at a fixed state. Other acceleration terms, and the region of states visited, still matter. Neither HD0 nor positive definiteness establishes a bounded ρ; the bound must be verified for the actual design.</p>
+</details>
+<h3 id="energy-ceiling">An energy ceiling is a different guarantee from reaching a goal</h3>
+<p><strong>We can limit motion energy even when a navigation input is not the gradient of a potential.</strong> This is useful when another system supplies an acceleration u. Without assumptions on u, however, controlling energy cannot prove where the robot will go.</p>
+<p>Start with <span class="math inline">a=g+u</span>. Since g conserves E, the input's entire energy injection rate is <span class="math inline">p=v^TM_Eu</span>. With <span class="math inline">Z=v^TM_Ev</span>, split the input as</p>
+<div class="math display">u=\underbrace{\frac pZ v}_{u_{\parallel}}
++\underbrace{\left(u-\frac pZ v\right)}_{u_{\mathrm{zero\ work}}}.</div>
+<p>The first part produces power p, because <span class="math inline">v^TM_Eu_{\parallel}=p</span>. The second produces zero. This isolates the piece we must regulate without canceling all of u's steering effect.</p>
+<p>Choose an energy ceiling <span class="math inline">E_{\max}&gt;0</span> and a factor <span class="math inline">\gamma(E)</span> that increases to 1 at that ceiling and vanishes at zero. Remove that fraction of the work-producing component and optionally add damping:</p>
+<div class="math display">\begin{aligned}
+a&amp;=g+u-\gamma(E)\frac pZ v-\beta v,\\
+\dot E&amp;=p-\gamma(E)p-\beta Z
+=(1-\gamma(E))p-\beta Z.
+\end{aligned}\tag{16}</div>
+<p>At the ceiling, γ = 1 and <span class="math inline">\dot E=-\beta Z\le0</span> for β ≥ 0. Under a regular, well-posed continuous-time evolution, the vector field cannot carry a state from inside the energy cap through its boundary outward. This is an invariant-set argument, not a goal-convergence argument.</p>
+<p>For example, <span class="math inline">\gamma(E)=\min(1,E/E_{\max})</span> stays between 0 and 1. Near rest, its factor E suppresses the quotient for bounded inputs and a regular uniformly positive metric. If additionally <span class="math inline">E\ge m_{\min}\|v\|^2/2</span>, the cap implies <span class="math inline">\|v\|\le\sqrt{2E_{\max}/m_{\min}}</span>. Without that comparison, a bound in the chosen energy is not yet a bound on ordinary speed.</p>
+<details><summary>Derivation: use a separate execution energy to request a speed</summary>
+<p>The energy E used to structure the fabric need not be the most convenient measure of execution speed. Let another admissible Finsler energy K measure the quantity we wish to regulate. For <span class="math inline">a=g+u+\lambda v</span>, its rate is</p>
+<div class="math display">\dot K=N_K+\lambda Z_K,\qquad
+N_K=v^T[M_K(g+u)+\xi_K],\quad Z_K=v^TM_Kv.</div>
+<p>To request a rate r(K), solve the same kind of scalar equation used for energization:</p>
+<div class="math display">\lambda=\frac{r(K)-N_K}{Z_K}.</div>
+<p>For example, <span class="math inline">r(K)=k_s(K_*-K)</span>, with <span class="math inline">k_s&gt;0</span>, drives K toward a desired level wherever the formula is well-defined. This is a rate calculation, not permission to ignore rest singularities or other guarantees. Maintaining a positive speed and settling to rest at a goal are different objectives; the controller must reconcile them, for example by changing its requested speed near the goal and rechecking the resulting energy argument.</p>
+</details>
+<details><summary>Derivation: navigation can agree with a potential without equaling its negative gradient</summary>
+<p><strong>A navigation field can point downhill at rest while having more freedom away from rest.</strong> The later paper uses this idea to connect purposeful fields to a potential. Require <span class="math inline">u(q,0)=0</span> exactly where <span class="math inline">\nabla\psi=0</span>, and elsewhere require</p>
+<div class="math display">(\nabla\psi)^Tu(q,0)&lt;0.</div>
+<p>The dot product says u points into a direction of decreasing potential. It need not be parallel to the negative gradient. Now cancel the rate of the <em>total</em> account E + ψ, rather than E alone:</p>
+<div class="math display">a=h+u-\frac{v^T[M_E(h+u)+\xi_E+\nabla\psi]}{Z}v-\beta v.</div>
+<p>Substitution gives <span class="math inline">\dot{(E+\psi)}=-\beta Z</span> wherever defined. To understand a possible rest limit, define</p>
+<div class="math display">A=\frac{vv^T}{Z},\qquad P=I-AM_E.
+\qquad a=g-\beta v+Pu-A\nabla\psi.</div>
+<p>The two surviving forcing terms occupy different directions. Direct multiplication gives <span class="math inline">v^TM_EPu=0</span>, so Pu is perpendicular to v in the metric's work pairing. Meanwhile <span class="math inline">A\nabla\psi</span> is parallel to v. Their sum cannot vanish by mutual cancellation unless both vanish.</p>
+<p>Suppose motion converges regularly to rest with acceleration tending to zero, and take a convergent subsequence of velocity directions and nonsingular metrics. The vanishing limits of g and βv leave these two components. Their separate vanishing says u is parallel to the limiting direction while ∇ψ is perpendicular to it. Hence <span class="math inline">\nabla\psi^Tu=0</span>. The downhill condition rules this out away from stationary points, identifying the possible rest limits.</p>
+<p>This explains the rest-limit mechanism, but it is not a complete global convergence proof. A and P can retain a dependence on approach direction at v = 0. An actual implementation must define a well-posed rest treatment, and any regularization must be checked against the energy identity. Keeping that issue explicit is essential to understanding the theorem's scope.</p>
+</details>
+<p class="connection">We now have three distinct results: an unforced fabric conserves E; an energy regulator can keep E below a ceiling; compatible forcing and damping can yield convergence to stationary points. The next example combines these ideas and shows both successful reaching and a legitimate equilibrium away from the goal. <a href="https://arxiv.org/html/2309.07368#S3">Source connection: forcing and energy regulation</a>.</p>
+</section>
+
+<section id="design" class="chapter"><p class="chapter-kicker">Chapter 6 · Reference R11</p><h2>Design a complete fabric, then examine its limits</h2>
+<p><strong>We will build a controller whose ideal motion avoids an obstacle and approaches a stationary point, then show why that point need not be the requested goal.</strong> The example makes each design choice and each guarantee visible.</p>
+<p>Consider a robot task point moving in a plane—for example, an end-effector position before translating the request to joint coordinates. Let its position q be freely controlled in this two-dimensional example. We want it to reach a target while staying outside a circular forbidden region. We will choose a geometry, an energy, a goal potential, damping, and a barrier in that order.</p>
+<h3 id="design-bending">First choose how motion should bend</h3>
+<p>The geometric request is: near the obstacle, bend motion outward, with the same spatial behavior at different speeds. Distance can determine where the request acts; HD2 tells us how its acceleration must scale with speed.</p>
+<p>Let o be the obstacle center and r its radius. Define clearance d and the outward unit vector n:</p>
+<div class="math display">d=\|q-o\|-r,\qquad n=\frac{q-o}{\|q-o\|}.</div>
+<p>We work outside the disk, where d &gt; 0. Choose</p>
+<div class="math display">h(q,v)=\eta e^{-d/\ell}\|v\|^2n,\qquad \eta,\ell&gt;0.</div>
+<p>The unit vector supplies direction. The exponential fades with clearance; ℓ sets its spatial reach. The parameter η sets strength. Finally, speed squared makes the rule HD2 because everything else depends only on position. This is a geometry request, not yet a collision guarantee.</p>
+<h4>Choose an energy and energize the request</h4>
+<p>Use <span class="math inline">E=\tfrac12\|v\|^2</span>, so energization removes the component parallel to velocity. Substitute h into (11):</p>
+<div class="math display">\begin{aligned}
+g&amp;=h-\frac{v^Th}{\|v\|^2}v\\
+&amp;=\eta e^{-d/\ell}\left[\|v\|^2n-v(v^Tn)\right].
+\end{aligned}\tag{17}</div>
+<p>The speed-squared denominator cancels algebraically. This expression is smooth at rest and gives g(q, 0) = 0 without a numerical epsilon. Its energy rate is</p>
+<div class="math display">v^Tg=\eta e^{-d/\ell}
+\left[\|v\|^2(v^Tn)-(v^Tv)(v^Tn)\right]=0.</div>
+<p>Thus the energized rule changes the direction of motion without changing this energy account.</p>
+<h4>Check the approach where this geometry cannot help</h4>
+<p>If velocity points exactly toward the obstacle center, write <span class="math inline">v=-s n</span>, with s &gt; 0. Then both terms in the bracket of (17) equal <span class="math inline">s^2n</span>, so g = 0. The original radial repulsion was entirely parallel to the motion; energization removed it. There is no sideways component left to steer with.</p>
+<p><strong>Conservation and HD2 are not, by themselves, collision-avoidance proofs.</strong> We need another construction if we want to establish exclusion of the disk, including a perfectly head-on approach.</p>
+<h3 id="design-barrier-proof">Add a goal and a barrier with an energy argument</h3>
+<p>Choose <span class="math inline">\psi_g=\tfrac12k\|q-q_*\|^2</span>, with k &gt; 0, to attract the task point to the goal. For obstacle exclusion, choose a nonnegative potential that becomes infinite at contact:</p>
+<div class="math display">\psi_b(d)=
+\begin{cases}
+\lambda(1/d-1/d_0)^2,&amp;0&lt;d&lt;d_0,\\
+0,&amp;d\ge d_0,
+\end{cases}
+\qquad \lambda,d_0&gt;0.\tag{18}</div>
+<p>The idea is an energy budget: if total energy starts finite and never increases, the system cannot reach a configuration demanding infinite potential energy. The optional proof below turns that idea into an explicit positive clearance bound.</p>
+<p>Inside the activation distance d₀, differentiate the barrier and use <span class="math inline">\nabla_qd=n</span>:</p>
+<div class="math display">\psi_b'(d)=-\frac{2\lambda}{d^2}\left(\frac1d-\frac1{d_0}\right),\qquad
+-\nabla_q\psi_b=\frac{2\lambda}{d^2}\left(\frac1d-\frac1{d_0}\right)n.</div>
+<p>The coefficient is positive, so the force points outward. The value and first derivative both join continuously to zero at d₀. Assemble the full controller:</p>
+<div class="math display">\boxed{a=g-\nabla(\psi_g+\psi_b)-bv,\qquad b&gt;0.}\tag{19}</div>
+<p>The goal starts motion, the geometric term supplies zero-work steering, the barrier resists contact, and damping removes energy. Unlike g, the barrier force can change both speed and geometry. Chapter 5 now gives</p>
+<div class="math display">V=\tfrac12\|v\|^2+\psi_g+\psi_b,
+\qquad \dot V=-b\|v\|^2\le0.</div>
+<details><summary>Proof: turn the finite energy budget into clearance, bounded motion, and convergence</summary>
+<p><strong>For this ideal continuous-time example, a finite initial energy prevents contact.</strong> Let V₀ be the initial total energy, with initial d &gt; 0. Every term in V is nonnegative and V never exceeds V₀. Therefore</p>
+<div class="math display">\tfrac12\|v\|^2\le V_0,
+\qquad \tfrac12k\|q-q_*\|^2\le V_0,
+\qquad \psi_b(d)\le V_0.</div>
+<p>The first two inequalities bound velocity and position. Inside d₀, the barrier expression gives</p>
+<div class="math display">\lambda\left(\frac1d-\frac1{d_0}\right)^2\le V_0
+\quad\Longrightarrow\quad
+\frac1d-\frac1{d_0}\le\sqrt{V_0/\lambda}.</div>
+<p>The quantity inside the square is nonnegative there, so taking its positive square root is valid. Rearranging yields all three bounds:</p>
+<div class="math display">\|v\|\le\sqrt{2V_0},\qquad
+\|q-q_*\|\le\sqrt{2V_0/k},\qquad
+ d\ge\frac1{d_0^{-1}+\sqrt{V_0/\lambda}}&gt;0.</div>
+<p>Outside d₀, the last bound holds automatically because its right-hand side is at most d₀. Thus the whole motion remains in a closed bounded region separated from contact. The controller is locally Lipschitz on that region, including at rest and across the activation boundary. Although the barrier's second derivative jumps at d₀, its force is continuous and has bounded one-sided derivatives there; this is enough for local Lipschitz continuity.</p>
+<p>These bounds also prevent finite-time escape from the regular domain, so the solution continues forward. With b &gt; 0, LaSalle's argument applies and gives approach to the stationary set of <span class="math inline">\psi_g+\psi_b</span>. The result is collision exclusion and approach to that set, not necessarily arrival at the target. Nor does this continuous-time proof prevent a numerical integrator from stepping across the barrier; discrete motion needs its own check.</p>
+</details>
+<figure class="lab"><h4>Experiment 5 · Guidance, barriers, and getting stuck</h4><p>The teal trace is the complete controller over 12 seconds. The orange disk is forbidden; the dashed circle marks the barrier's activation distance. Change the approach to “exactly head-on” to expose symmetry and a possible equilibrium.</p><div class="controls"><label>Geometric bending η <input id="design-eta" type="range" min="0" max="8" step="0.5" value="4"><output id="design-eta-value"></output></label><label>Damping b <input id="design-b" type="range" min="0" max="6" step="0.25" value="2.5"><output id="design-b-value"></output></label><label>Approach <select id="design-start"><option value="offset">Offset above the center</option><option value="headon">Exactly head-on</option></select></label><label><input id="design-barrier" type="checkbox" checked> Include the barrier potential</label></div><canvas id="design-canvas" width="900" height="320" role="img" aria-label="Point trajectory around a circular obstacle and toward a goal"></canvas><p id="design-readout" class="readout" aria-live="polite"></p><figcaption>Teaching values: r = 0.35, ℓ = 0.45, k = 2, λ = 0.015, d₀ = 0.45, initial velocity (0.6, 0). RK4 uses a 1 ms step. The balance residual checks V(t) + ∫b‖v‖²dt − V(0). Collision checks terminate a numerical rollout if a stage enters the disk; no position correction is applied.</figcaption></figure>
+<p>The controls intentionally let you remove assumptions. Setting b = 0 removes the strict dissipation needed for the settling argument. Disabling the barrier removes the clearance proof. The geometry still has its conservation property, but those other conclusions no longer follow.</p>
+<h3 id="design-equilibrium">Why can a safe controller still get stuck?</h3>
+<p><strong>The robot can stop where the total potential's forces balance, even when the goal remains farther away.</strong> This is exactly the stationary-point conclusion of Chapter 5, not a contradiction of it.</p>
+<p>In a perfectly head-on approach, the position, velocity, goal force, and barrier force all remain on one symmetry line. The geometric term supplies no sideways acceleration. With the barrier on, the robot can settle where</p>
+<div class="math display">v=0,\qquad \nabla\psi_g+\nabla\psi_b=0.</div>
+<p>Increasing η cannot remove that resting equilibrium: g vanishes at rest for every η. A navigation field or potential that selects a route around the obstruction can change the outcome, but that is a new design requiring its own analysis.</p>
+<p>If the goal lies inside the barrier's active region, the barrier may also shift the equilibrium away from it. If the goal lies inside the forbidden disk, exact reaching and collision exclusion are incompatible. These cases should be distinguished from an implementation error.</p>
+<p>For a full robot, define clearance using a link-attached point or collision shape, then pull the task back to joint space using Chapter 4. The coordinate algebra transfers. A claim about the whole robot additionally requires that the chosen shapes cover its geometry and that composition, actuation, and numerical execution satisfy the relevant assumptions.</p>
+</section>
+
+<section id="implementation" class="chapter"><p class="chapter-kicker">Chapter 7 · Reference R12</p><h2>From mathematical structure to an implementation</h2>
+<h3 id="fabric-computational-recipe">What do we actually compute at each state?</h3>
+<p><strong>The construction reduces to evaluating task derivatives, solving a weighted acceleration equation, and applying the selected energy and forcing rules.</strong> The formulas describe a continuous-time vector field. A program must additionally advance that field in finite steps and check the identities on which its guarantees depend.</p>
+<p>Here is one complete organization: combine unenergized task generators, energize their aggregate, then add a compatible goal and damping law. It is the “energize at the root” choice from Chapter 4, not the separately energized-leaf variant.</p>
+<pre>For each task xᵢ = φᵢ(q):
+    wᵢ = Jᵢ v;  cᵢ = J̇ᵢ v
+    evaluate geometry hᵢ and priority Wᵢ
+    accumulate W = Σ Jᵢᵀ Wᵢ Jᵢ
+    accumulate f = Σ Jᵢᵀ Wᵢ (cᵢ − hᵢ)
+Solve W h = −f
+Evaluate E, M_E, and ξ_E for the chosen aggregate energy
+If v ≠ 0: compute g = h − v [vᵀ(M_E h + ξ_E)/(vᵀ M_E v)]
+At v = 0: use the specified regular extension, if one exists
+Apply the selected forcing and damping law
+Advance the state; monitor the identities used by the design</pre>
+<p>The first solve chooses the compromise geometry. Energization then selects a conservative timing for it. Goal forcing changes the purposeful motion, and damping controls dissipation. Keeping these roles explicit makes it possible to tell which stage caused a failed energy or scaling check.</p>
+<p>Use a linear solver for <span class="math inline">Wh=-f</span> instead of explicitly forming an inverse. Require W to be nonsingular before resolving the request. When task energy Hessians serve as priorities and Chapter 4's regularity and rank conditions hold, their pulled-back sum supplies an aggregate energy. With independent priorities, choose E separately and use the corresponding forcing analysis.</p>
+<h3 id="numerical-theorem-changes">Three common modifications require a new calculation</h3>
+<h4>1. Adding an epsilon changes the energy rate</h4>
+<p><strong>A finite denominator is not the same thing as exact conservation.</strong> Near zero velocity, it is tempting to replace <span class="math inline">\alpha_E=-N/Z</span> by <span class="math inline">-N/(Z+\varepsilon)</span>, with ε &gt; 0. Recall <span class="math inline">N=v^T(M_Eh+\xi_E)</span> and <span class="math inline">Z=v^TM_Ev</span>. Substitution reveals the remaining rate:</p>
+<div class="math display">\dot E=N-\frac{NZ}{Z+\varepsilon}
+=\frac{\varepsilon N}{Z+\varepsilon}.\tag{20}</div>
+<p>Its sign is the sign of N. The approximation may be acceptable, but its residual should be measured against the intended use. A better outcome is sometimes possible through algebra: in (17), the speed denominator canceled exactly, giving both a smooth rest extension and the original identity.</p>
+<h4>2. A finite integration step can add energy even when the vector field does not</h4>
+<p>Suppose <span class="math inline">E=\tfrac12\|v\|^2</span> and the continuous-time acceleration satisfies <span class="math inline">v^Ta=0</span>. Forward Euler uses <span class="math inline">v^+=v+\Delta t\,a</span>. Expanding the square gives</p>
+<div class="math display">\begin{aligned}
+E(v^+)-E(v)&amp;=\Delta t\,v^Ta+\tfrac12\Delta t^2\|a\|^2\\
+&amp;=\tfrac12\Delta t^2\|a\|^2.
+\end{aligned}</div>
+<p>The linear term vanishes, but the quadratic term does not. Thus this update adds energy at every nonzero turning step, despite the correct continuous-time equation. Higher-order methods can reduce the error; they do not automatically prove collision exclusion or exact conservation. Compare results at decreasing step sizes and verify that the discrepancy shrinks.</p>
+<p>For the damped example, a useful check follows by integrating its energy equation:</p>
+<div class="math display">V(t)+\int_0^t b\|v(s)\|^2\,ds-V(0)=0.</div>
+<p>The experiment reports the numerical residual of this balance. Checking it tests the whole simulated evolution, whereas checking <span class="math inline">\dot V=-b\|v\|^2</span> at one state only tests the local formula.</p>
+<h4>3. Clipping and speed gates can alter the structure we proved</h4>
+<p>For a concrete clipping example, let <span class="math inline">v=(1,2)^T</span> and <span class="math inline">g=(2,-1)^T</span>. Their dot product is zero. Clipping each acceleration component to the interval [−1, 1] gives <span class="math inline">\bar g=(1,-1)^T</span>, for which <span class="math inline">v^T\bar g=-1</span>. The result no longer conserves the original Euclidean energy.</p>
+<p>Likewise, multiplying individual priorities by speed-dependent gates generally violates the HD0 hypothesis and can make the combined rule non-HD2. Some special factors cancel in the aggregate solve, so the correct test is the resolved equation itself. Treat these changes as changes to the dynamics, and recompute the relevant identity rather than assume the original theorem survives.</p>
+<details><summary>Extension: what changes when a target or task map moves?</summary>
+<p><strong>A moving task has its own velocity and acceleration, which the static-map formula omits.</strong> For <span class="math inline">x=\phi(q,t)</span>, the chain rule gives</p>
+<div class="math display">\dot x=Jv+\phi_t,\qquad
+\ddot x=Ja+D_q^2\phi[v,v]+2(D_q\phi_t)v+\phi_{tt}.</div>
+<p>The terms after Ja account for curvature and motion of the map itself. The factor 2 comes from two mixed derivatives: J changes explicitly with time, and <span class="math inline">\phi_t</span> changes as q moves. Dropping these terms is a modeling approximation, not the same static composition theorem.</p>
+<p>A moving goal potential similarly satisfies</p>
+<div class="math display">\frac{d}{dt}\psi(q,t)=\nabla_q\psi^Tv+\partial_t\psi.</div>
+<p>Even if the gradient work cancels as before, <span class="math inline">\partial_t\psi</span> remains as externally supplied power. For a moving quadratic goal, it equals <span class="math inline">-k(q-q_*(t))^T\dot q_*(t)</span>. Goal motion can therefore add energy. Tracking requires an argument that accounts for this input; autonomous convergence to a fixed goal does not establish tracking of arbitrary target motion.</p>
+</details>
+<h3 id="read-application-controller">How should we read the application paper's controller now?</h3>
+<p><strong>Identify each term by the job it performs and the identity it satisfies.</strong> After translating signs, the conservative geometry has the form <span class="math inline">h+\alpha_Ev</span>. A purposeful navigation term makes progress toward a task. Tangential corrections regulate energy or speed; damping removes motion. A policy can steer this structured motion system instead of choosing every low-level acceleration directly.</p>
+<p>The 2024 application uses that structure within a learning system. The underlying mathematics does not make every added learned input collision-free or convergent. For a claimed property, identify the energy or potential being used, calculate its rate with the actual input present, and check the assumptions that turn that rate into the conclusion.</p>
+<p class="connection">We began with two goals: preserve a geometry and choose timing along it. HD2 and tangential retiming established the first; a chosen energy and energization supplied a structured answer to the second. Mechanics explained the energy tools without requiring us to inherit the energy's natural geometry. Task maps assemble requests; potentials and damping add purposeful behavior. Each operation has a specific proof, and an implementation can check the corresponding identity rather than rely on the word “fabric” as a blanket guarantee. <a href="https://arxiv.org/html/2405.02250v1">Source connection: the 2024 guiding-medium application</a>.</p>
+</section>
+
+<section id="reference" class="chapter"><p class="chapter-kicker">Notation and source guide</p><h2>Read the technical language with its assumptions intact</h2>
+<p><strong>The symbols below describe distinct design choices, not interchangeable names for the controller.</strong> Return to this table when a derivation changes from choosing a geometry to choosing an energy, a priority, or a purposeful force.</p>
+<p>The companion <a href="reference/fabrics-mathematical-reference.html">mathematical reference</a> gives the same arguments in compact expert notation, with results R0–R12. Use the table below to move between explanations and proofs. Background notes expand when clicked; “Print / save PDF” includes them all.</p>
+<div class="table-wrap"><table><thead><tr><th>Term or symbol</th><th>Meaning in this tutorial</th></tr></thead><tbody>
+<tr><td>q, v, a</td><td>Configuration, its velocity, and its acceleration. A configuration may be joint angles or Cartesian coordinates.</td></tr>
+<tr><td>Trajectory / path / geometry</td><td>A time-indexed motion / its oriented curve without its clock / a family of such paths indexed by starting position and direction.</td></tr>
+<tr><td>r, σ(t), E₀</td><td>A parameterized spatial path / an increasing progress coordinate along it, giving q(t) = r(σ(t)) / a positive energy value set by the initial state, distinct from the chosen energy function E.</td></tr>
+<tr><td>HDk</td><td>Scaling velocity by positive c scales the function by cᵏ. It does not require symmetry under velocity reversal.</td></tr>
+<tr><td>J, c</td><td>A task map's Jacobian and curvature term. They give task acceleration Ja + c.</td></tr>
+<tr><td>F and E</td><td>A length rate and its energy E = F²/2. F is HD1; E is HD2. The virtual account need not equal the robot's physical energy.</td></tr>
+<tr><td>M<sub>E</sub> and ξ<sub>E</sub></td><td>The velocity Hessian derived from E and its Euler–Lagrange correction. Together they give the rate Ė = vᵀ(M<sub>E</sub>a + ξ<sub>E</sub>).</td></tr>
+<tr><td>Riemannian / Finsler</td><td>A position-dependent quadratic energy / the broader class built from a positive HD1 length rule with positive-definite energy Hessian. Finsler matrices may also depend on velocity direction.</td></tr>
+<tr><td>L and H</td><td>A Lagrangian defining a variational motion rule and its conserved autonomous account H = vᵀ∇ᵥL − L. For the HD2 choice L = E used here, H = E.</td></tr>
+<tr><td>W, (W, f)</td><td>A priority matrix and a natural-form pair, with convention Wa + f = 0. W need not be an energy Hessian.</td></tr>
+<tr><td>h, g, u</td><td>A chosen acceleration generator, its conservative energized fabric, and an added navigation acceleration.</td></tr>
+<tr><td>ψ and V</td><td>A chosen potential and the total account V = E + ψ. A negative potential gradient supplies purposeful force; V is used to analyze forcing and damping together.</td></tr>
+<tr><td>B and β</td><td>A matrix damping force coefficient and a scalar tangential damping coefficient. Their effects on the energy rate depend on how they enter the equation.</td></tr>
+<tr><td>Stationary point / equilibrium</td><td>A configuration where the potential gradient vanishes / a full state that remains unchanged. In the regular unconstrained forced construction, v = 0 at a stationary point gives an equilibrium.</td></tr>
+<tr><td>Conservative / geometric / convergent</td><td>Preserves an energy / has speed-consistent path structure / approaches a specified limiting set. These are distinct properties.</td></tr>
+<tr><td>Regularity / compactness</td><td>Enough smoothness for the stated evolution and limits / confinement to a closed bounded region away from singularities.</td></tr>
+</tbody></table></div>
+<h3>The proof map</h3>
+<p>Read each result with its hypothesis: HD2 controls clock scaling; positive energy Hessians make particular solves possible; conservation is a rate identity; convergence additionally needs regular evolution and confinement. The reference labels connect each expanded derivation to its compact version.</p>
+<div class="table-wrap"><table class="source-map"><thead><tr><th>Blog</th><th>Reference</th><th>Primary-source connection</th></tr></thead><tbody>
+<tr><td>1. Geometry and HD2</td><td>R0–R1</td><td>G21 geometry of paths; F23 Definition II.11 and Proposition II.13.</td></tr>
+<tr><td>Mechanics interlude</td><td>R0a</td><td>F22 §III-B: energy shaping and the metric–geometry coupling. Explicit two-joint teaching example.</td></tr>
+<tr><td>2. Energy as a timing criterion</td><td>R2, R3c</td><td>G21 Finsler construction; F22 mechanics background. Explicit clock formula derived here.</td></tr>
+<tr><td>3. Energization computes the clock</td><td>R3–R3c</td><td>F22 bent Finsler geometry; F23 Definition II.9, Lemma II.10, Definition II.11, and Proposition II.13.</td></tr>
+<tr><td>4. Task composition and constraints</td><td>R5–R7</td><td>F22 Sections IV-E–V and Appendix E: constrained energization, pullback, and fabric composition.</td></tr>
+<tr><td>5. Forcing and stability</td><td>R4, R8–R10</td><td>F22 forcing; F23 Section III and Theorem IV.1. Rest regularity and bounded-residual hypotheses are explicit here.</td></tr>
+<tr><td>6. Complete obstacle example</td><td>R11</td><td>An original teaching construction applying the preceding results.</td></tr>
+<tr><td>7. Implementation and application</td><td>R12</td><td>A24's structured guiding medium; numerical residuals derived here.</td></tr>
+</tbody></table></div>
+<p class="source-map"><strong>G21.</strong> <a href="https://arxiv.org/abs/2010.14745">Generalized Nonlinear and Finsler Geometry for Robotics</a>, 2021.<br>
+<strong>F22.</strong> <a href="https://arxiv.org/html/2109.10443">Geometric Fabrics: Generalizing Classical Mechanics to Capture the Physics of Behavior</a>, 2022.<br>
+<strong>F23.</strong> <a href="https://arxiv.org/html/2309.07368">Fabrics: A Foundationally Stable Medium for Encoding Prior Experience</a>, 2023.<br>
+<strong>A24.</strong> <a href="https://arxiv.org/html/2405.02250v1">Geometric Fabrics: a Safe Guiding Medium for Policy Learning</a>, 2024.<br>
+<strong>Overview.</strong> <a href="https://research.nvidia.com/labs/srl/project/geometric-fabrics/">NVIDIA's geometric fabrics project page</a>.</p>
+<p class="reading-note">The proofs here use one sign convention throughout. They distinguish exact identities from conditional convergence results, and describe limiting stationary points rather than silently replacing them by global goals. Expand the notes for the prerequisite derivations; use the reference to check the full set of assumptions.</p>
+</section>
+</article>
+<footer>Original explanatory derivations and interactive examples accompanying the primary fabrics papers. Source links identify the formulations used; the examples are teaching constructions, not reproductions of the authors' experiments.</footer>
+</main><script src="assets/vendor/katex/katex.min.js?v=e8d885505949" defer></script><script src="assets/render-math.js?v=03610d0aff7c" defer></script><script src="assets/fabrics-models.js?v=be6a73d52d99" defer></script><script src="assets/fabrics-book.js?v=7840779f34da" defer></script>
+<script src="assets/fabrics-illustrations.js?v=f72dd80fa7d2" defer></script><script type="module" src="assets/fabrics-landscape.js?v=1eebb1d35070"></script>
+<script src="assets/fabrics-robot-mechanics.js?v=36252227499c" defer></script>
+</body></html>

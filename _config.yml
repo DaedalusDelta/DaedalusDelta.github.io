@@ -14,3 +14,7 @@ defaults:
       path: ""
     values:
       image: /assets/images/portrait.jpeg
+  - scope:
+      path: "private"
+    values:
+      sitemap: false

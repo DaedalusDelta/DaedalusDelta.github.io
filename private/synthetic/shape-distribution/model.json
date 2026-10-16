@@ -1,0 +1,35 @@
+{
+  "version": "phase-functional-gaussian-v1",
+  "source_sha256": "025df08b85393c9727efe7689e918b3f40fa78abfe7c8deb2e475c2a0627cf16",
+  "episodes": [
+    "ep_0019",
+    "ep_0043",
+    "ep_0053",
+    "ep_0057",
+    "ep_0065",
+    "ep_0071",
+    "ep_0078",
+    "ep_0080",
+    "ep_0095"
+  ],
+  "n_episodes": 9,
+  "phases": [
+    "move towards ring",
+    "align and pickup",
+    "move the ring to the pole",
+    "align and open",
+    "withdraw"
+  ],
+  "n_basis": 16,
+  "degree": 3,
+  "rank": 8,
+  "sampling": "mean + independent standard normal latent vector times empirical joint covariance modes",
+  "coordinate_system": "endpoint-linear residual in local chord / gravity frame, divided by max(human chord, 0.05m)",
+  "limitations": [
+    "Nine ring/pole demonstrations; not a universal human motion distribution",
+    "Single Gaussian assumption; modes or tails may be wrong",
+    "Covariance has rank at most eight; new combinations, not unseen directions",
+    "Bends emerge from curves; counts/locations are evaluated, not independently sampled",
+    "Task execution transforms and constraints alter the raw distribution"
+  ]
+}

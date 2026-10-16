@@ -1,0 +1,62 @@
+[
+  {
+    "seed": 43024,
+    "sample_id": 0,
+    "episode": "study-artifacts/phase-shape-distribution-v1/executions/43024-sample0/episodes/43024",
+    "run_exit": 0,
+    "error": null,
+    "seconds": 16.14,
+    "verify_exit": 0,
+    "qualified": true,
+    "unwanted_contacts": 0,
+    "stable_stack": true
+  },
+  {
+    "seed": 43024,
+    "sample_id": 1,
+    "episode": "study-artifacts/phase-shape-distribution-v1/executions/43024-sample1/episodes/43024",
+    "run_exit": 0,
+    "error": null,
+    "seconds": 15.040000000000001,
+    "verify_exit": 0,
+    "qualified": true,
+    "unwanted_contacts": 0,
+    "stable_stack": true
+  },
+  {
+    "seed": 43024,
+    "sample_id": 2,
+    "episode": "study-artifacts/phase-shape-distribution-v1/executions/43024-sample2/episodes/43024",
+    "run_exit": 0,
+    "error": null,
+    "seconds": 14.68,
+    "verify_exit": 0,
+    "qualified": true,
+    "unwanted_contacts": 0,
+    "stable_stack": true
+  },
+  {
+    "seed": 42801,
+    "sample_id": 0,
+    "episode": "study-artifacts/phase-shape-distribution-v1/executions/42801-sample0/episodes/42801",
+    "run_exit": 0,
+    "error": null,
+    "seconds": 17.18,
+    "verify_exit": 0,
+    "qualified": true,
+    "unwanted_contacts": 0,
+    "stable_stack": true
+  },
+  {
+    "seed": 43025,
+    "sample_id": 0,
+    "episode": "study-artifacts/phase-shape-distribution-v1/executions/43025-sample0/episodes/43025",
+    "run_exit": 0,
+    "error": null,
+    "seconds": 13.46,
+    "verify_exit": 0,
+    "qualified": true,
+    "unwanted_contacts": 0,
+    "stable_stack": true
+  }
+]

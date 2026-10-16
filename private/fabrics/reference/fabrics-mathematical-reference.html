@@ -1,0 +1,420 @@
+<!doctype html><html lang="en"><head><meta name="robots" content="noindex, nofollow, noarchive"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Geometric fabrics — mathematical reference</title><link rel="stylesheet" href="../assets/vendor/katex/katex.min.css"><link rel="stylesheet" href="../assets/fabrics-book.css"></head><body class="reference-doc"><main><h1 id="geometric-fabrics-a-mathematical-reference">Geometric fabrics: a mathematical reference</h1>
+<p>This reference reconstructs the core geometry, mechanics, energization, composition, constraint, and stability arguments needed to design geometric fabrics. It fixes one notation across the original bent-Finsler formulation and the later conservative-system formulation. Proofs are supplied rather than delegated to citations. The companion tutorial must explain these same results; prerequisites and intermediate algebra may be expanded, but hypotheses must not be weakened.</p>
+<p><strong>Scope.</strong> The subject is the mathematical motion-generation framework, including its design and numerical limits. It is not a reproduction of the learning experiments in the 2024 application. Exact continuous-time identities, conditional convergence results, and engineering approximations are distinguished. The intended reader should be able to reconstruct the results, identify their assumptions, and implement a conforming example.</p>
+<p><strong>Logical dependency.</strong> The two design goals are to preserve a geometry and to select timing along it. R1 establishes tangential retiming of HD2 paths without any energy assumption. R2 supplies an energy-rate identity; R3 uses that identity to select a conservative representative of the already chosen geometry. R3c makes its clock explicit. The mechanics in R0a motivates the energy tools, but conservation is not a premise of R1. The tutorial follows this dependency order, introducing geometry before the supporting mechanics interlude.</p>
+<p>Primary sources: <a href="https://arxiv.org/abs/2010.14745">G21: Generalized Nonlinear and Finsler Geometry for Robotics</a>; <a href="https://arxiv.org/html/2109.10443">F22: Geometric Fabrics: Generalizing Classical Mechanics to Capture the Physics of Behavior</a>; <a href="https://arxiv.org/html/2309.07368">F23: Fabrics: A Foundationally Stable Medium for Encoding Prior Experience</a>; <a href="https://arxiv.org/html/2405.02250v1">A24: Geometric Fabrics: a Safe Guiding Medium for Policy Learning</a>. The <a href="https://research.nvidia.com/labs/srl/project/geometric-fabrics/">NVIDIA overview</a> introduces F22. The derivations below are written independently with explicit conventions and qualifications.</p>
+<h2 id="r0-state-domain-and-conventions">R0. State, domain, and conventions</h2>
+<p>Let <span class="math inline">Q\subset\mathbb R^n</span> be a configuration chart, <span class="math inline">v=\dot q</span>, and <span class="math inline">a=\ddot q</span>. Work on the slit tangent domain <span class="math inline">TQ\setminus\{v=0\}</span> unless a zero-speed extension is stated. Assume sufficient differentiability for each calculation and local existence/uniqueness of the resulting ODE. Compactness, forward completeness, and regularity at zero are additional hypotheses when invoking convergence.</p>
+<p>An <strong>acceleration generator</strong> is <span class="math inline">a=h(q,v)</span>. A <strong>trajectory</strong> includes its time parameter; an oriented <strong>path</strong> is its curve modulo increasing regular changes of parameter. A <strong>geometry of paths</strong> specifies such curves by starting position and direction. A chosen generating equation additionally selects a clock. Neither a single path nor a single timed trajectory is the whole geometry.</p>
+<p>Use <span class="math inline">E</span> for a positive motion-energy function, <span class="math inline">M_E=\partial^2_{vv}E</span> for its Hessian, <span class="math inline">\xi_E=(D_q\nabla_vE)v-\nabla_qE</span>, <span class="math inline">W</span> for an independently chosen priority matrix, <span class="math inline">g</span> for a conservative fabric acceleration, <span class="math inline">u</span> for added navigation acceleration, and <span class="math inline">\psi</span> for a potential. All gradients are columns. A natural-form pair <span class="math inline">(W,f)</span> means <span class="math inline">Wa+f=0</span>, hence <span class="math inline">h=-W^{-1}f</span>. Applied force and residual force have opposite signs in this convention.</p>
+<p>For <span class="math inline">c&gt;0</span>, a function is <strong>HDk in velocity</strong> if <span class="math inline">f(q,cv)=c^kf(q,v)</span>. Positive homogeneity imposes no reversal symmetry. Direction dependence is compatible with HD0. A direction-dependent HD0 function may lack a direction-independent limit at zero.</p>
+<h3 id="r0a-classical-robot-mechanics-as-the-starting-point">R0a. Classical robot mechanics as the starting point</h3>
+<p><strong>Newtonian origin.</strong> For a smooth, time-independent material-point representation <span class="math inline">r_i(q)</span> of rigid links, <span class="math inline">J_i=\partial_qr_i</span> gives <span class="math inline">\ddot r_i=J_i a+\dot J_i v</span>. The virtual-work identity <span class="math inline">f_i^T\delta r_i=(J_i^Tf_i)^T\delta q</span>, applied to Newton's equations, eliminates ideal constraint reactions and yields</p>
+<div class="math display">
+Q_{\rm net}=\sum_i m_iJ_i^T\ddot r_i=Ma+\xi,\qquad
+M=\sum_i m_iJ_i^TJ_i,\quad \xi=\sum_i m_iJ_i^T\dot J_i v.
+</div>
+<p>The sum becomes a mass integral for continuous rigid bodies. Symmetry of the mixed derivatives of <span class="math inline">r_i</span> gives <span class="math inline">(\partial_{q_j}J_i)v=\frac{d}{dt}(J_i)_{:,j}</span>, hence <span class="math inline">\nabla_q E=\sum_i m_i\dot J_i^TJ_i v</span>. Differentiating M therefore proves <span class="math inline">\xi=\dot Mv-\nabla_qE</span> directly from Newtonian mechanics. With <span class="math inline">Q_{\rm net}=\tau-\nabla U-Bv</span>, this produces the equation below; energy conservation alone was not used to infer a vector equation.</p>
+<p>For a fixed-base ideal manipulator in joint coordinates, let <span class="math inline">E=\tfrac12v^TM(q)v</span>, with smooth symmetric positive-definite M, potential U(q), and <span class="math inline">B=B^T\succeq0</span>. The autonomous classical equation is</p>
+<div class="math display">
+Ma+\xi+\nabla U=\tau-Bv,\qquad
+\xi=\dot Mv-\nabla_qE,\qquad
+\dot M=\sum_j(\partial_{q_j}M)v_j.
+</div>
+<p>Here <span class="math inline">\nabla_qE</span> holds v fixed. This ξ is obtained by expanding the Euler–Lagrange equation for <span class="math inline">L=E-U</span>. Since</p>
+<div class="math display">
+v^T\nabla_qE=\tfrac12v^T\dot Mv,
+\quad v^T\xi=\tfrac12v^T\dot Mv,
+\quad \dot E=v^TMa+\tfrac12v^T\dot Mv,
+</div>
+<p>the total energy satisfies <span class="math inline">\dot H=v^T\tau-v^TBv</span> for <span class="math inline">H=E+U</span>. In the absence of potentials, forcing, and damping, the natural rule <span class="math inline">h_M=-M^{-1}\xi</span> conserves E and is HD2. Choosing M fixes this classical rule, although conservation alone does not uniquely determine a vector field. A constant overall rescaling of M leaves the natural rule unchanged. A zero-work added force <span class="math inline">b</span>, with <span class="math inline">v^Tb=0</span>, modifies the rule by <span class="math inline">M^{-1}b</span> while conserving E; it must also have the appropriate HD2 scaling to preserve the geometric subclass.</p>
+<p><strong>Natural versus forced virtual motion.</strong> The natural-motion specialization is <span class="math inline">\nabla U=0,\tau=0,B=0</span>, not merely the assumption of ideal mechanical constraints. It specifies <span class="math inline">\dot q=v,\dot v=-M^{-1}\xi</span> with initial state <span class="math inline">(q_0,v_0)</span>, and conserves E. A chosen virtual inertia <span class="math inline">M_i(q)</span> defines <span class="math inline">E_i=\tfrac12v^TM_i v</span>, its associated <span class="math inline">\xi_i</span>, and <span class="math inline">a_i^{\rm natural}=-M_i^{-1}\xi_i</span>, still without potential forces or damping.</p>
+<p>Adding an autonomous virtual potential <span class="math inline">\psi_i(q)</span> and <span class="math inline">B_i=B_i^T\succeq0</span> changes this force assumption while retaining the ideal smooth mechanical structure:</p>
+<div class="math display">
+M_i a_i+\xi_i=-\nabla\psi_i-B_i v,
+\qquad a_i=a_i^{\rm natural}-M_i^{-1}\nabla\psi_i-M_i^{-1}B_i v.
+</div>
+<p>Along the isolated component, <span class="math inline">\dot E_i=-v^T\nabla\psi_i-v^TB_i v</span>, hence <span class="math inline">\frac{d}{dt}(E_i+\psi_i)=-v^TB_i v</span>. Kinetic energy alone need not be conserved. For components in the same coordinates, the force-balance combination <span class="math inline">\sum_iM_i(a-a_i)=0</span> gives</p>
+<div class="math display">
+a=\left(\sum_iM_i\right)^{-1}\sum_iM_i a_i,\qquad
+\frac{d}{dt}\sum_i(E_i+\psi_i)=-v^T\left(\sum_iB_i\right)v.
+</div>
+<p>The last identity is for the aggregate; individual component energies need not obey their isolated balance under the shared acceleration. The metric–geometry coupling is already present with all <span class="math inline">\psi_i=0,B_i=0</span>: changing <span class="math inline">M_i</span> generally changes both its weight and its natural request. To study energy-preserving bending, set potential and damping terms aside again and allow only the zero-work bending term.</p>
+<p><strong>Freedom beyond the natural rule.</strong> For fixed <span class="math inline">(q,v)</span> with <span class="math inline">v\ne0</span>, the natural equation <span class="math inline">Ma+\xi=0</span> fixes a uniquely, whereas conservation imposes only <span class="math inline">v^T(Ma+\xi)=0</span>. Since <span class="math inline">v^TM\ne0</span>, the latter defines an affine hyperplane of dimension n−1:</p>
+<div class="math display">
+\{a:\dot E=0\}=h_M+\ker(v^TM).
+</div>
+<p>Writing <span class="math inline">Ma+\xi=b</span>, this becomes <span class="math inline">v^Tb=0</span> or equivalently <span class="math inline">v^TM\Delta a=0</span>, where <span class="math inline">\Delta a=M^{-1}b</span>. Conservation over a trajectory requires this condition throughout, not merely at its initial state. At v = 0 the instantaneous power constraint is vacuous and does not resolve extension of the motion law through rest.</p>
+<p>For a two-joint virtual model M = I, ξ = 0, the smooth rule <span class="math inline">b=\lambda(q,v)(-v_2,v_1)^T</span> has <span class="math inline">v^Tb=0</span> identically. At <span class="math inline">v=(1,0)^T,\lambda=2</span>, it changes a from zero to <span class="math inline">(0,2)^T</span>. A constant applied force <span class="math inline">(0,2)^T</span> would instead yield <span class="math inline">v(t)=(1,2t)^T</span>, <span class="math inline">E(t)=1/2+2t^2</span>, demonstrating why initial zero power is insufficient. A nonzero constant λ in the rotating-force rule gives HD1, not HD2; choosing λ positively HD1 makes b HD2 on its regular domain. Thus energy-preserving freedom alone does not imply a geometric fabric. Reintroducing potential and damping gives <span class="math inline">\frac{d}{dt}(E+\psi)=v^Tb-v^TBv=-v^TBv</span> under the same zero-work condition, without by itself establishing convergence.</p>
+<p><strong>Explicit 2R example.</strong> Two massless links of unit length carry unit point masses at the elbow and tip. In a horizontal plane,
+<span class="math inline">p_1=(\cos q_1,\sin q_1)</span> and <span class="math inline">p_2=p_1+(\cos(q_1+q_2),\sin(q_1+q_2))</span>.
+From <span class="math inline">E=(\|\dot p_1\|^2+\|\dot p_2\|^2)/2</span>,</p>
+<div class="math display">
+M=\begin{bmatrix}3+2\cos q_2&amp;1+\cos q_2\\1+\cos q_2&amp;1\end{bmatrix},\qquad
+\xi=\begin{bmatrix}-\sin q_2(2v_1v_2+v_2^2)\\\sin q_2v_1^2\end{bmatrix}.
+</div>
+<p>The determinant is <span class="math inline">2-\cos^2q_2\ge1</span>. At <span class="math inline">q=(0,\pi/2),v=(1,0)</span>, <span class="math inline">h_M=(1/2,-3/2)</span> and <span class="math inline">E=3/2</span>. A constant identity virtual inertia instead has <span class="math inline">\bar\xi=0</span> and zero natural acceleration. Their initial acceleration difference is not parallel to v, so their local joint-space paths differ. The identity model conserves its own virtual energy, not the physical point-mass arm's energy in general. These calculations are an original teaching example of the classical structure discussed in <a href="https://arxiv.org/html/2109.10443#S3.SS2">F22 §III-B</a>; see also the <a href="https://underactuated.mit.edu/multibody.html">MIT manipulator equations</a>.</p>
+<h2 id="r1-why-hd2-describes-a-geometry">R1. Why HD2 describes a geometry</h2>
+<p><strong>Proposition R1a (constant clock scaling).</strong> The generator has exact constant clock equivariance for every initial state if and only if it is HD2.</p>
+<p><strong>Proof.</strong> If <span class="math inline">q(t)</span> solves <span class="math inline">\ddot q=h(q,\dot q)</span>, define <span class="math inline">q_c(t)=q(ct)</span>. Then</p>
+<div class="math display">
+\dot q_c=c\dot q(ct),\qquad
+\ddot q_c=c^2h(q(ct),\dot q(ct)).
+</div>
+<p>The same ODE requires <span class="math inline">\ddot q_c=h(q(ct),c\dot q(ct))</span>. Equality at every possible initial state is precisely <span class="math inline">h(q,cv)=c^2h(q,v)</span>. ∎</p>
+<p><strong>Proposition R1b (projective freedom).</strong> For HD2 <span class="math inline">h</span>, adding a scalar tangential term <span class="math inline">\lambda(q,v)v</span> preserves the local oriented path family wherever the clock remains regular and increasing.</p>
+<p><strong>Proof.</strong> Let <span class="math inline">r&#x27;&#x27;(\tau)=h(r,r&#x27;)</span>, and let <span class="math inline">q(t)=r(\tau(t))</span>, <span class="math inline">\dot\tau&gt;0</span>. Then</p>
+<div class="math display">
+v=r&#x27;\dot\tau,\quad
+a=r&#x27;&#x27;\dot\tau^2+r&#x27;\ddot\tau
+=h(q,v)+\frac{\ddot\tau}{\dot\tau}v.
+</div>
+<p>Conversely the scalar clock equation <span class="math inline">\ddot\tau/\dot\tau=\lambda(r(\tau),r&#x27;(\tau)\dot\tau)</span>, together with <span class="math inline">\dot\tau(0)&gt;0</span>, has a locally increasing solution under the usual ODE conditions. Thus the projected equation</p>
+<div class="math display">
+P_v^\perp(a-h)=0,\qquad
+P_v^\perp=I-\frac{vv^T}{v^Tv},
+</div>
+<p>describes the geometry without fixing tangential acceleration. ∎</p>
+<p>For prescribed <span class="math inline">\lambda(t)</span>, the clock rate is <span class="math inline">\dot\tau(t)=\dot\tau(0)\exp(\int_0^t\lambda(u)\,du)</span>, positive on its regular finite domain when its initial value is positive. For autonomous <span class="math inline">\lambda(q,v)</span>, the full acceleration <span class="math inline">h+\lambda v</span> remains HD2 exactly when λ is HD1 on the nonzero-velocity domain; arbitrary tangential speed control need not preserve HD2 of the full policy. The base generator itself can have tangential acceleration: the equivalence concerns its path geometry, not a claim that each summand has an exclusive turning or timing role.</p>
+<p>The unchanged HD2 ODE admits constant clock scaling; nonuniform clock changes generally produce the additional tangential term. For example, <span class="math inline">a=-\beta v</span>, with constant <span class="math inline">\beta&gt;0</span>, has <span class="math inline">q(t)=q_0+(1-e^{-\beta t})v_0/\beta</span>. Its paths are straight over the portions traversed, but <span class="math inline">r(t)=q(ct)</span> obeys <span class="math inline">\ddot r=-c\beta\dot r</span>, not the same damping equation unless c = 1. Its forward displacement is bounded by <span class="math inline">v_0/\beta</span>; equivalence of the local path geometry does not imply equal maximal forward image sets. The geometric transverse part has the speed-squared scaling. In arc-length coordinates, <span class="math inline">q=r(\ell(t))</span>, <span class="math inline">s=\dot\ell</span>, <span class="math inline">T=r&#x27;</span>, this is</p>
+<div class="math display">
+v=sT,\qquad a=\dot sT+s^2\frac{dT}{d\ell},\qquad
+T^T\frac{dT}{d\ell}=0.
+</div>
+<p>Stopping and restarting require a zero-speed model and a new departure direction; they are not regular reparameterizations. [G21 §II; F23 Definition II.11 and Proposition II.13.]</p>
+<h2 id="r2-finsler-energy-and-the-exact-energy-rate-identity">R2. Finsler energy and the exact energy-rate identity</h2>
+<p><strong>Definition R2.</strong> A strongly convex Finsler length function <span class="math inline">F(q,v)</span> is positive for <span class="math inline">v\ne0</span>, positively HD1, smooth on the slit tangent domain, with <span class="math inline">E=\tfrac12F^2</span> having positive-definite velocity Hessian <span class="math inline">M_E</span>. E is positive and HD2. These are the usable nonsingular assumptions; semidefinite leaves require an invertible aggregate before resolving accelerations.</p>
+<p>The length <span class="math inline">\int F(q,\dot q)dt</span> is invariant under increasing reparameterization, since <span class="math inline">F(q,r&#x27;\dot\tau)=\dot\tau F(q,r&#x27;)</span>. This differs from a timed action <span class="math inline">\int E\,dt</span>.</p>
+<p><strong>Proposition R2a (homogeneous identities).</strong></p>
+<div class="math display">
+v^T\nabla_vE=2E,\qquad
+\nabla_vE=M_Ev,\qquad
+E=\tfrac12v^TM_Ev.
+</div>
+<p>Moreover <span class="math inline">M_E</span> is HD0, <span class="math inline">\xi_E</span> is HD2, and <span class="math inline">h_E=-M_E^{-1}\xi_E</span> is HD2.</p>
+<p><strong>Proof.</strong> Differentiate <span class="math inline">E(q,cv)=c^2E(q,v)</span> in c at 1 for the first identity, then in v to obtain <span class="math inline">\nabla_vE+M_Ev=2\nabla_vE</span>. The third follows. Each velocity derivative reduces the degree by one; position derivatives do not change degree. The stated scalings follow. ∎</p>
+<p><strong>Proposition R2b (energy rate).</strong> For any acceleration a,</p>
+<div class="math display">
+\boxed{\dot E=v^T(M_Ea+\xi_E).}
+\tag{R2}
+</div>
+<p><strong>Proof.</strong> For a general autonomous Lagrangian L, set <span class="math inline">p=\nabla_vL</span>. The product and chain rules give</p>
+<div class="math display">
+\dot L=(\nabla_qL)^Tv+p^Ta,\qquad
+\frac{d}{dt}(v^Tp)=a^Tp+v^T\dot p.
+</div>
+<p>Subtracting cancels <span class="math inline">p^Ta=a^Tp</span>, motivating the energy function <span class="math inline">H=v^Tp-L</span> and giving the identity</p>
+<div class="math display">
+\dot H=v^T(\dot p-\nabla_qL)
+=v^T\left(\frac{d}{dt}\nabla_vL-\nabla_qL\right).
+</div>
+<p>For <span class="math inline">L=E</span>, R2a gives <span class="math inline">H=2E-E=E</span>; expansion of the bracket gives <span class="math inline">M_Ea+\xi_E</span>. This identity holds for any a, before imposing the Euler–Lagrange equation. ∎</p>
+<p>Euler–Lagrange dynamics <span class="math inline">M_Ea+\xi_E=0</span> consequently conserves E. Its variational derivation follows by perturbing <span class="math inline">q_\epsilon=q+\epsilon\eta</span> at fixed endpoints in <span class="math inline">S[q]=\int E(q,\dot q)dt</span>, differentiating in <span class="math inline">\epsilon</span>, integrating <span class="math inline">(\nabla_vE)^T\dot\eta</span> by parts, and requiring zero first variation for every interior <span class="math inline">\eta</span>. Stationarity is not global minimization.</p>
+<p><strong>Proposition R2c (length and energy geodesics).</strong> Euler–Lagrange trajectories of E are constant-F parameterizations of stationary-length paths. Conversely, a regular stationary-length path reparameterized to constant F solves the energy equations.</p>
+<p><strong>Proof.</strong> Since <span class="math inline">E=F^2/2</span>,</p>
+<div class="math display">
+\operatorname{EL}[E]=F\operatorname{EL}[F]+\dot F\nabla_vF.
+</div>
+<p>An energy geodesic conserves E, hence F, so its length Euler–Lagrange expression vanishes. Conversely constant F and <span class="math inline">\operatorname{EL}[F]=0</span> imply <span class="math inline">\operatorname{EL}[E]=0</span>. ∎</p>
+<p>Riemannian energy is the special case <span class="math inline">E=\tfrac12v^TM(q)v</span>. A nonquadratic example is <span class="math inline">F=\|v\|+b^Tv</span>, <span class="math inline">\|b\|&lt;1</span>. With <span class="math inline">u=v/\|v\|</span> and <span class="math inline">d=1+b^Tu&gt;0</span>,</p>
+<div class="math display">
+M_E=(u+b)(u+b)^T+d(I-uu^T).
+</div>
+<p>For <span class="math inline">z=tu+w</span>, <span class="math inline">w\perp u</span>, <span class="math inline">z^TM_Ez=(dt+b^Tw)^2+d\|w\|^2&gt;0</span>. Thus this is a valid direction-dependent example. An arbitrary SPD HD0 W need not be an energy Hessian; writing <span class="math inline">\tfrac12v^TWv</span> does not in general make its Hessian equal W. [G21 §III; F22 §III-A.]</p>
+<h2 id="r3-energization-uniqueness-and-bending">R3. Energization, uniqueness, and bending</h2>
+<p><strong>Theorem R3 (energization).</strong> Given a generator h and a Finsler energy E, the unique correction parallel to nonzero velocity that conserves E is</p>
+<div class="math display">
+g=h+\alpha_Ev,\qquad
+\boxed{\alpha_E=-\frac{v^T(M_Eh+\xi_E)}{v^TM_Ev}.}
+\tag{R3}
+</div>
+<p>If h is HD2, g is HD2, conserves E, and generates the same local oriented paths as h.</p>
+<p><strong>Proof.</strong> Substituting <span class="math inline">a=h+\alpha v</span> into R2 gives
+<span class="math inline">\dot E=N+\alpha Z</span>, where <span class="math inline">N=v^T(M_Eh+\xi_E)</span> and <span class="math inline">Z=v^TM_Ev&gt;0</span>. The unique zero is <span class="math inline">\alpha=-N/Z</span>. For HD2 h, N is HD3 and Z HD2, so <span class="math inline">\alpha_E</span> is HD1 and g HD2. R1b proves preservation of paths. ∎</p>
+<p>For Euclidean energy, <span class="math inline">g=(I-vv^T/(v^Tv))h</span>. For general energy, g is not generally Euclidean perpendicular to v, since conservation is the identity R2, including <span class="math inline">\xi_E</span>.</p>
+<p><strong>Corollary R3a (completeness relative to an energy).</strong> Every regular HD2 generator can be converted to an energy-conserving representative of its geometry for any admissible E. The representative is unique within its tangential equivalence class for that E: if <span class="math inline">g+\lambda v</span> also conserves E then <span class="math inline">\lambda Z=0</span>, hence <span class="math inline">\lambda=0</span>.</p>
+<p><strong>Corollary R3b (bent-Finsler equivalence).</strong> Define an applied bending force <span class="math inline">b=M_Eg+\xi_E</span>. Then</p>
+<div class="math display">
+M_Ea+\xi_E=b,\qquad v^Tb=0.
+</div>
+<p>If h is HD2, b is HD2. Conversely any HD2 zero-work b gives an HD2 energy-conserving acceleration <span class="math inline">g=M_E^{-1}(b-\xi_E)</span>. Thus the energized-HD2 and bent-Finsler constructions coincide under the stated assumptions. The resulting paths need not be geodesics of the chosen E; bending is precisely the freedom to change them.</p>
+<p>Under bounded angular dependence and uniform positive definiteness of <span class="math inline">M_E</span>, HD2 h and <span class="math inline">\xi_E</span> imply <span class="math inline">N=O(\|v\|^3)</span>, <span class="math inline">Z\ge m\|v\|^2</span>, and <span class="math inline">\alpha_Ev=O(\|v\|^2)</span>. Hence g extends continuously by <span class="math inline">g(q,0)=0</span>. A regular ODE extension needs appropriate angular regularity as well. Energy conservation plus positivity also forbids spontaneous departure from rest for a well-posed unforced system.</p>
+<p>F23 uses <strong>fabric</strong> broadly for an autonomous conservative second-order system, with <strong>geometric fabric</strong> for the path-consistent subclass. F22 emphasizes the equivalent bent-Finsler construction. Energization of a non-HD2 generator may conserve energy while changing its original paths. [F22 Theorem IV.5; F23 Definition II.9.]</p>
+<p><strong>Corollary R3c (the clock selected by energy).</strong> Let r(σ) parameterize a regular oriented path, and let E be an admissible Finsler energy. For a positive level E₀, the increasing clock of q(t) = r(σ(t)) that conserves E satisfies</p>
+<div class="math display">
+E(q,\dot q)=\dot\sigma^2 E(r(\sigma),r&#x27;(\sigma))=E_0,
+\qquad
+\boxed{\dot\sigma=\sqrt{\frac{E_0}{E(r(\sigma),r&#x27;(\sigma))}}.}
+\tag{R3c}
+</div>
+<p><strong>Proof.</strong> The chain rule gives <span class="math inline">\dot q=r&#x27;\dot\sigma</span>; positive HD2 of E gives the first equality. Positivity and forward orientation select the positive root. For smooth regular r and E, the positive right-hand side gives a locally unique clock after specifying σ(0). If r belongs to h's geometry, R1b says the resulting acceleration differs from h only tangentially. Since it conserves E, uniqueness in R3 forces that acceleration to equal g. ∎</p>
+<p>For Euclidean E and an arc-length parameter σ, this reduces to <span class="math inline">\dot\sigma=\sqrt{2E_0}</span>. For <span class="math inline">r(\sigma)=(\sigma,\kappa\sigma^2/2)^T</span>, <span class="math inline">E=\tfrac12(v_x^2+mv_y^2)</span>, and <span class="math inline">E_0=1/2</span>, it gives <span class="math inline">\dot\sigma=(1+m\kappa^2\sigma^2)^{-1/2}</span>. This does not require r to be a geodesic of E. The same E also defines the distinct natural generator <span class="math inline">-M_E^{-1}\xi_E</span>; only choosing that generator imposes its geodesics. E is a function; E₀ is its initial value. An arbitrary alternative clock generally changes E rather than conserving it.</p>
+<h2 id="r4-policy-forcing-decomposition-and-energy-regulation">R4. Policy forcing, decomposition, and energy regulation</h2>
+<p>For a conservative fabric g and an added acceleration u,</p>
+<div class="math display">
+a=g+u,\qquad \dot E=v^TM_Eu.
+</div>
+<p>At nonzero v set <span class="math inline">Z=v^TM_Ev</span>, <span class="math inline">p=v^TM_Eu</span>. There is a unique decomposition</p>
+<div class="math display">
+u=u_\perp+u_\parallel,\quad
+u_\parallel=\frac pZ v,\quad
+u_\perp=\left(I-\frac{vv^TM_E}{Z}\right)u,
+\quad v^TM_Eu_\perp=0.
+</div>
+<p>The transverse term preserves the chosen energy instantaneously; the tangential term accounts for its rate. This is M_E-orthogonality, not necessarily Euclidean orthogonality. For an unforced geometric generator, a scalar damping term <span class="math inline">-\beta v</span> preserves its path family and yields <span class="math inline">\dot E=-\beta Z</span>. Once an independent goal force is present, changing damping can alter the full forced trajectory's path.</p>
+<p><strong>Proposition R4 (energy cap).</strong> Suppose g and u define a regular forward solution, <span class="math inline">E(0)\le E_{\max}</span>, <span class="math inline">\beta\ge0</span>, and <span class="math inline">\gamma(E)\in[0,1]</span> satisfies <span class="math inline">\gamma(E_{\max})=1</span>. Define</p>
+<div class="math display">
+a=g+u-\gamma(E)\frac pZ v-\beta v.
+</div>
+<p>Then <span class="math inline">\dot E=(1-\gamma)p-\beta Z</span>; at the upper boundary it is nonpositive. The energy sublevel is forward invariant under the regularity needed for this boundary argument. A choice such as <span class="math inline">\gamma(E)=\min(1,E/E_{\max})</span> makes the correction vanish continuously at v = 0 for bounded u and uniformly positive metric, because <span class="math inline">\gamma=O(\|v\|^2)</span>. This gives a well-defined start-from-rest extension when the other terms are regular. ∎</p>
+<p>This is energy bounding, not goal convergence or position bounding. If E is uniformly comparable to <span class="math inline">\|v\|^2</span>, it bounds speed. A free particle can still travel arbitrarily far. Fixed-energy regulation similarly uses <span class="math inline">\dot E=r(E)</span> by choosing a scalar tangential coefficient <span class="math inline">(r(E)-p)/Z</span>; starts, zeros, and boundedness require separate treatment.</p>
+<p>An <strong>execution energy</strong> K can differ from the design energy E; for the derivative formula below, K is an admissible Finsler (positive, strongly convex, HD2) energy. For example, E may shape directional preferences while <span class="math inline">K=\|v\|^2/2</span> measures ordinary execution speed. For <span class="math inline">a=g+u+\lambda v</span>, let <span class="math inline">N_K=v^T[M_K(g+u)+\xi_K]</span> and <span class="math inline">Z_K=v^TM_Kv</span>. Then <span class="math inline">\dot K=N_K+\lambda Z_K</span>, so <span class="math inline">\lambda=(r(K)-N_K)/Z_K</span> realizes a desired rate where defined. This preserves the unforced geometry when the total modification is tangential, but it can inject E; coexistence with a goal-convergence proof requires an admissible damping/energy budget. Desired execution speed and a Lyapunov decrease condition cannot be assumed compatible without checking both inequalities. [F22 §V-A; F23 §II and Propositions III.1–III.3.]</p>
+<h2 id="r5-task-maps-pullback-and-composition">R5. Task maps, pullback, and composition</h2>
+<p>For a static smooth map <span class="math inline">x_i=\phi_i(q)</span>, put <span class="math inline">J_i=D\phi_i</span>, <span class="math inline">w_i=J_iv</span>, and <span class="math inline">c_i=\dot J_iv=D^2\phi_i[v,v]</span>. Then</p>
+<div class="math display">
+\dot x_i=w_i,\qquad\ddot x_i=J_ia+c_i.
+</div>
+<p>Assume every leaf quantity is defined and sufficiently regular at the attained task state <span class="math inline">(x_i,w_i)</span>. A nonzero root velocity can map to zero task velocity; nonquadratic Finsler leaves therefore require special domain care. Given task generators <span class="math inline">h_i(x_i,w_i)</span> and symmetric PSD priorities <span class="math inline">W_i</span>, minimize the instantaneous acceleration discrepancy</p>
+<div class="math display">
+\mathcal C(a)=\tfrac12\sum_i(J_ia+c_i-h_i)^TW_i(J_ia+c_i-h_i).
+</div>
+<p>Weights are evaluated at the current state, so they are constants in this minimization over a. Differentiating gives</p>
+<div class="math display">
+W_q=\sum_iJ_i^TW_iJ_i,\qquad
+W_qh_q=\sum_iJ_i^TW_i(h_i-c_i).
+\tag{R5}
+</div>
+<p>If <span class="math inline">W_q\succ0</span>, this uniquely resolves h_q. Equivalently a natural pair <span class="math inline">(W_i,f_i)</span> pulls back to</p>
+<div class="math display">
+W_{q,i}=J_i^TW_iJ_i,\qquad
+f_{q,i}=J_i^T(f_i+W_ic_i),
+</div>
+<p>and pairs at the root add. The transpose follows both from least squares and from virtual work: <span class="math inline">f_x^T\delta x=f_x^TJ\delta q=(J^Tf_x)^T\delta q</span>. The curvature term follows from the acceleration chain rule; omitting it changes the dynamics.</p>
+<p>Pullback is associative: for <span class="math inline">x=\phi(y)</span>, <span class="math inline">y=\theta(q)</span>, the composite Jacobian is <span class="math inline">J_\phi J_\theta</span> and curvature is <span class="math inline">J_\phi c_\theta+c_\phi</span>. Substituting these into the natural-pair formulas equals two successive pullbacks; constant weighted sums distribute over the same formulas. Thus a task tree and its flattened composite maps give identical pairs.</p>
+<p><strong>Proposition R5a (geometric closure).</strong> If every h_i is HD2, every W_i HD0, and the task maps are static, then h_q is HD2 wherever W_q is invertible.</p>
+<p><strong>Proof.</strong> The task velocity scales by c under v↦cv. W_q is HD0, h_i HD2, and each curvature c_i HD2. The right side of R5 is HD2; multiplication by the HD0 inverse preserves degree. ∎</p>
+<p>This proves geometric closure of the generator, not automatic conservation of an independently chosen energy. Root energization supplies conservation. A constant SPD base metric paired with a specified HD2 base generator can ensure invertibility. It changes the compromise and should be included as a component rather than treated as algebraically invisible.</p>
+<p><strong>Proposition R5b (energy pullback and Euler–Lagrange covariance).</strong> Let</p>
+<div class="math display">
+E_q(q,v)=\sum_iE_i(\phi_i(q),J_iv).
+</div>
+<p>Then</p>
+<div class="math display">
+M_{E_q}=\sum_iJ_i^TM_{E_i}J_i,\qquad
+\xi_{E_q}=\sum_iJ_i^T(\xi_{E_i}+M_{E_i}c_i).
+\tag{R5b}
+</div>
+<p><strong>Proof.</strong> Two velocity derivatives give the first equation since J is independent of v. For the second, vary q in the action <span class="math inline">\int E_i(\phi_i(q),J_iv)dt</span>. The task variation is <span class="math inline">\delta x_i=J_i\delta q</span>; after integration by parts the task Euler–Lagrange covector pulls back by <span class="math inline">J_i^T</span>. Substitution of <span class="math inline">\ddot x_i=J_ia+c_i</span> yields the stated coefficients. Summation is linear. ∎</p>
+<p>For a diffeomorphism this is ordinary coordinate covariance. For a rectangular task map it is a metric-weighted reconciliation on realizable task accelerations. The aggregate pullback energy must remain strongly convex and sufficiently smooth on the domain used. A product of Finsler energies can be nonsmooth when one task velocity vanishes even if other tasks move; positivity of the aggregate matrix alone does not fix that domain issue. Quadratic/Riemannian leaves are a straightforward way to avoid it. Constant positive scaling of component energies and residual forces preserves these operations. State-dependent scaling introduces derivative terms and cannot be inserted as though it were a constant multiplier. [F22 §IV-E, §V, Appendix E.]</p>
+<h2 id="r6-when-energization-commutes-with-pullbackand-when-it-does-not">R6. When energization commutes with pullback—and when it does not</h2>
+<p><strong>Theorem R6 (compatible immersion).</strong> Let <span class="math inline">x=\phi(q)</span> be an immersion with full column-rank J, let E_x be a Finsler energy, and use its Hessian as the pullback weight. Define</p>
+<div class="math display">
+M_q=J^TM_xJ,\quad
+h_q=M_q^{-1}J^TM_x(h_x-c),\quad
+E_q=E_x\circ T\phi.
+</div>
+<p>Then pulling back the energized task generator equals energizing h_q with E_q.</p>
+<p><strong>Proof.</strong> R5b gives <span class="math inline">\xi_q=J^T(\xi_x+M_xc)</span>. With <span class="math inline">w=Jv</span>,</p>
+<div class="math display">
+v^T(M_qh_q+\xi_q)=w^T(M_xh_x+\xi_x),\quad
+v^TM_qv=w^TM_xw.
+</div>
+<p>Thus the two energization coefficients coincide. Pulling back the task correction <span class="math inline">\alpha w</span> gives <span class="math inline">M_q^{-1}J^TM_x(\alpha Jv)=\alpha v</span>, proving equality. ∎</p>
+<p>This is F22's generalized-coordinate result under compatible energy/metric assumptions. It is not a commutation theorem for arbitrary unrelated priorities and energies.</p>
+<p>Stacking multiple task spaces gives a product-space energy and one aggregate coefficient, on the common smooth domain described in R5. Energizing that product generator and then pulling back is equivalent to root energization. <strong>Independently energizing each leaf is a different operation.</strong> If the leaf metrics are their energy Hessians, combining independently conservative leaves still conserves the sum of pulled-back energies. To see this without assuming that all leaf requests are simultaneously realizable, use the resolved root equation:</p>
+<div class="math display">
+\begin{aligned}
+\dot E_q&amp;=\sum_iw_i^T\{M_i(J_ia+c_i)+\xi_i\}\\
+&amp;=v^T\sum_iJ_i^TM_i(J_ia+c_i-g_i)
++\sum_iw_i^T(M_ig_i+\xi_i)=0.
+\end{aligned}
+</div>
+<p>But the resulting correction relative to the unenergized root generator is
+<span class="math inline">M_q^{-1}\sum_iJ_i^TM_iJ_i\alpha_i v</span>, generally not parallel to v. Hence it can change the root path family. With unrelated priority matrices even the summed-energy conservation need not hold. These distinctions resolve the common ambiguity in “energize before or after combining.”</p>
+<h2 id="r7-holonomic-constraints-preserve-the-fabric-structure">R7. Holonomic constraints preserve the fabric structure</h2>
+<p>Let <span class="math inline">C(q)=0</span> be a time-independent equality constraint with full row-rank Jacobian J. Initial feasibility requires <span class="math inline">C(q_0)=0</span> and <span class="math inline">Jv_0=0</span>; acceleration feasibility requires <span class="math inline">Ja+\dot Jv=0</span>. Let an unconstrained geometric fabric have natural form <span class="math inline">M_Ea+k=F</span>, where <span class="math inline">k=\xi_E-b</span>, <span class="math inline">v^Tb=0</span>, and F is external forcing.</p>
+<p>Add ideal reactions with convention</p>
+<div class="math display">
+M_Ea+k+J^T\lambda=F.
+</div>
+<p>Put <span class="math inline">A=JM_E^{-1}J^T</span>. Since A is positive definite, the multiplier is</p>
+<div class="math display">
+\lambda=A^{-1}\{JM_E^{-1}(F-k)+\dot Jv\}.
+\tag{R7}
+</div>
+<p><strong>Proof.</strong> Solve for a and substitute into <span class="math inline">Ja=-\dot Jv</span>. This gives Aλ equal to the expression in braces. The reaction power is <span class="math inline">-v^TJ^T\lambda=-(Jv)^T\lambda=0</span>, so energy accounting is unchanged. If F = 0, M_E is HD0, k HD2, and <span class="math inline">\dot Jv</span> HD2; thus λ and the constrained acceleration are HD2. ∎</p>
+<p>In force-projector form, with <span class="math inline">P_F=I-J^TA^{-1}JM_E^{-1}</span>,</p>
+<div class="math display">
+M_Ea+P_Fk+J^TA^{-1}\dot Jv=P_FF.
+</div>
+<p>This expression is dimensionally valid for an m×n constraint Jacobian. The tangent feasible manifold inherits the restricted energy; root coordinates may instead enforce the constraint through an immersion, leading to R6.</p>
+<p>Unilateral constraints require active-set/contact assumptions, nonnegative reaction multipliers, and an impact/reset model. Ideal persistent contacts do no work along feasible velocities; conserving or dissipating impacts must not increase the Lyapunov energy. Feasibility is not established merely by adding a finite repulsive term. [F22 Lemma IV.3 and Theorem IV.4.]</p>
+<h2 id="r8-goal-forcing-and-a-complete-matched-energy-convergence-argument">R8. Goal forcing and a complete matched-energy convergence argument</h2>
+<p><strong>Theorem R8.</strong> Let g be an E-conserving fabric with a regular extension <span class="math inline">g(q,0)=0</span>. Consider</p>
+<div class="math display">
+a=g-M_E^{-1}(\nabla\psi+Bv),\qquad
+V=E+\psi.
+\tag{R8}
+</div>
+<p>Assume the <strong>full forced vector field</strong>, including <span class="math inline">-M_E^{-1}\nabla\psi</span>, has a specified locally Lipschitz extension at rest on a compact forward-invariant sublevel of V; E and ψ are sufficiently differentiable there; the metric and damping are uniformly positive definite; and the solution exists for all future time. At rest require this extension to have zero acceleration exactly when <span class="math inline">\nabla\psi=0</span>. Then trajectories approach the largest invariant subset of
+<span class="math inline">\{(q,0):\nabla\psi(q)=0\}</span>. If that subset contains only one isolated equilibrium, trajectories converge to it. Strict local minima of ψ give locally asymptotically stable equilibria when the usual local isolation and regularity conditions hold.</p>
+<p><strong>Proof.</strong> The energy rate is</p>
+<div class="math display">
+\dot V=v^T(M_Eg+\xi_E)-v^T\nabla\psi-v^TBv+(\nabla\psi)^Tv
+=-v^TBv\le-b_0\|v\|^2.
+</div>
+<p>Conservation cancels the first group, and potential work cancels its own derivative. By LaSalle's invariance principle on the compact invariant set, the limit set lies in the largest invariant subset of <span class="math inline">\dot V=0</span>. Uniform positive damping forces v = 0 there. Remaining at rest also requires <span class="math inline">a=-M_E^{-1}\nabla\psi=0</span>, so <span class="math inline">\nabla\psi=0</span>. For an isolated strict local minimum, V shifted by its equilibrium value is locally positive definite and a sufficiently small compact sublevel supplies the local stability and attraction argument. ∎</p>
+<p>Compactness can follow from a proper potential and uniformly coercive energy; it does not follow from energy conservation alone. Monotone bounded V alone does not justify every limiting derivative in a proof. The invariant-set hypothesis supplies the missing regularity framework. Semidefinite damping requires a separate analysis of the larger zero-dissipation invariant set. Riemannian energy supplies a straightforward smooth metric at rest. A genuinely direction-dependent Finsler Hessian can make the forced term discontinuous at zero even when g extends continuously; R8 must not be applied without resolving that separate issue.</p>
+<p>Stationarity is weaker than minimization: a state resting exactly at a saddle or maximum is also an equilibrium. Neither R8 nor the source energy argument proves universal convergence to the global goal. With ideal equality constraints the equilibrium condition is tangential stationarity; with regular unilateral constraints it becomes KKT stationarity with feasibility, dual feasibility, and complementarity. These statements require the corresponding contact/constraint hypotheses. For static constraints <span class="math inline">C(q)=0</span>, <span class="math inline">s(q)\ge0</span>, the KKT equations in this convention are <span class="math inline">\nabla\psi+J_C^T\lambda-J_s^T\mu=0</span>, <span class="math inline">C=0</span>, <span class="math inline">s\ge0</span>, <span class="math inline">\mu\ge0</span>, and <span class="math inline">\mu_js_j=0</span>. They are stationarity conditions, not an independent contact existence or hybrid convergence theorem.</p>
+<p><strong>Barrier consequence.</strong> If the total ψ diverges to positive infinity at a forbidden boundary (for example a diverging nonnegative barrier plus other terms bounded below), E is nonnegative, and <span class="math inline">V(t)\le V(0)&lt;\infty</span>, then a continuous solution cannot reach that boundary while the stated energy inequality and existence assumptions hold. Finite caps, altered forces, and discrete stepping invalidate that exact argument unless separately analyzed. [F22 Theorem IV.4 and Appendix D-C.]</p>
+<h2 id="r9-independent-priorities-the-additional-damping-condition">R9. Independent priorities: the additional damping condition</h2>
+<p>F23 permits a priority matrix W that is not M_E. For</p>
+<div class="math display">
+a=g-W^{-1}(\nabla\psi+Bv)-\beta v,
+</div>
+<p>the cancellation for E+ψ is generally absent. Instead use</p>
+<div class="math display">
+V_W=\tfrac12v^TWv+\psi,\quad Z_W=v^TWv,\quad
+R_W=v^TWg+\tfrac12v^T\dot Wv.
+</div>
+<p>Direct differentiation gives</p>
+<div class="math display">
+\boxed{\dot V_W=R_W-v^TBv-\beta Z_W.}
+\tag{R9}
+</div>
+<p>If <span class="math inline">\rho=R_W/Z_W</span> has a verified upper bound on the relevant domain, W is uniformly positive definite, B is PSD, and <span class="math inline">\beta\ge\sup\rho+\delta</span> for <span class="math inline">\delta&gt;0</span>, then <span class="math inline">\dot V_W\le-\delta Z_W</span>. The compactness and invariant-set reasoning of R8 then applies with appropriate regularity and zero-speed limits.</p>
+<p>To match the source's residual notation, write <span class="math inline">g=h+\alpha_Ev</span> and</p>
+<div class="math display">
+\alpha_0=-\frac{v^TWh+\tfrac12v^T\dot Wv}{Z_W},\qquad
+\rho=\alpha_E-\alpha_0.
+</div>
+<p>The proof of F23 Theorem IV.1 assumes this residual is bounded and selects damping to dominate it. Positive definiteness or HD0 alone does not establish that condition. With velocity-dependent W, <span class="math inline">\dot W=D_qW[v]+D_vW[a]</span> is the total derivative along the actual dynamics. For exactly HD0 W, <span class="math inline">D_vW[v]=0</span>, so the direct contribution of scalar tangential damping <span class="math inline">-\beta v</span> to this derivative vanishes at a fixed state. Other acceleration terms and the chosen state domain still enter the residual bound. This is a verifiable sufficient condition, not an automatic constructive formula for β.</p>
+<p>For comparison, differentiating E+ψ directly gives</p>
+<div class="math display">
+\dot{(E+\psi)}
+=v^T(I-M_EW^{-1})\nabla\psi-v^TM_EW^{-1}Bv-\beta v^TM_Ev.
+</div>
+<p>The first term no longer cancels. The product in the second term is not generally symmetric positive semidefinite merely because its factors are positive definite. This explains why simply reusing the matched-energy proof would be incorrect. [F23 §IV, especially the bounded-residual assumption in its proof.]</p>
+<h2 id="r10-compatible-navigation-fields-what-the-formal-construction-establishes">R10. Compatible navigation fields: what the formal construction establishes</h2>
+<p>A potential ψ is compatible with a navigation acceleration u if, at rest, <span class="math inline">u(q,0)=0</span> iff <span class="math inline">\nabla\psi(q)=0</span>, and <span class="math inline">-(\nabla\psi)^Tu(q,0)&gt;0</span> elsewhere. This allows navigation fields beyond an exact metric-scaled negative gradient.</p>
+<p>At nonzero velocity consider total-energy energization:</p>
+<div class="math display">
+a=h+u-\frac{v^T[M_E(h+u)+\xi_E+\nabla\psi]}{Z}v-\beta v,
+\quad Z=v^TM_Ev.
+\tag{R10}
+</div>
+<p>Substitution into the total-energy identity yields <span class="math inline">\dot{(E+\psi)}=-\beta Z</span>. This is an exact algebraic identity on the slit tangent domain.</p>
+<p>For the rest-limit argument define <span class="math inline">A_v=vv^T/Z</span>, <span class="math inline">P_v=I-A_vM_E</span>. Then</p>
+<div class="math display">
+a=g-\beta v+P_vu-A_v\nabla\psi.
+</div>
+<p>The range of P_v is M_E-orthogonal to v, its kernel is span(v), and the range of A_v is span(v). At a limiting resting configuration, take a subsequence with <span class="math inline">v/\|v\|\to e</span> and <span class="math inline">M_E\to M_*\succ0</span>, and define <span class="math inline">A_*=ee^T/(e^TM_*e)</span>, <span class="math inline">P_*=I-A_*M_*</span>. Under conditions ensuring <span class="math inline">a\to0</span>, <span class="math inline">g\to0</span>, <span class="math inline">\beta v\to0</span>, bounded/regular coefficients, and continuous navigation limits, the limiting equation separates into</p>
+<div class="math display">
+P_*u(q_*,0)=0,\qquad A_*\nabla\psi(q_*)=0.
+</div>
+<p>If u were nonzero, the first equation would make it parallel to the limiting direction, while the second would make its inner product with ∇ψ zero, contradicting compatibility. Hence the rest limit lies in the common zero set.</p>
+<p>This reconstructs the key mechanism of F23 Theorem III.5. It does <strong>not</strong> remove the zero-speed issue: A_v and P_v can have direction-dependent limits, so the exact formula need not admit a single continuous vector field at rest for a general u. A complete implementation-level convergence theorem must specify a well-posed extension or regularization and recheck its Lyapunov and limit arguments. The energy identity plus compatible rest-limit argument should not be silently promoted into a guarantee for every numerical regularization. The matched-energy formulation R8 avoids this particular projected-forcing ambiguity, but still needs a regular metric/forcing extension as stated there.</p>
+<h2 id="r11-a-fully-specified-teaching-construction">R11. A fully specified teaching construction</h2>
+<p>Let q be a point in <span class="math inline">\mathbb R^2</span>, outside a disk of radius r centered at o. Define <span class="math inline">d=\|q-o\|-r&gt;0</span>, <span class="math inline">n=(q-o)/\|q-o\|</span>, and <span class="math inline">\chi(d)=\exp(-d/\ell)</span>, with <span class="math inline">\ell&gt;0</span>. Choose the HD2 generator</p>
+<div class="math display">
+h(q,v)=\eta\chi(d)\|v\|^2n.
+</div>
+<p>Energize with Euclidean E. The quotient cancels algebraically, giving the globally regular velocity expression</p>
+<div class="math display">
+g=\eta\chi(d)\{\|v\|^2n-v(v^Tn)\}.
+</div>
+<p>It is zero at rest without a numerical denominator. Add</p>
+<div class="math display">
+\psi_g=\tfrac k2\|q-q_*\|^2,\quad
+\psi_b(d)=\begin{cases}\lambda(1/d-1/d_0)^2,&amp;0&lt;d&lt;d_0,\\0,&amp;d\ge d_0,\end{cases}
+</div>
+<p>and <span class="math inline">a=g-\nabla(\psi_g+\psi_b)-bv</span>, <span class="math inline">k,b,\lambda&gt;0</span>. The barrier force is</p>
+<div class="math display">
+-\nabla\psi_b=\frac{2\lambda(1/d-1/d_0)}{d^2}n\quad(d&lt;d_0).
+</div>
+<p>On the interior, the generator is HD2, the energized term is conservative, and <span class="math inline">\dot V=-b\|v\|^2</span>. The potential is C1 at d_0 and its gradient is locally Lipschitz away from the obstacle. If <span class="math inline">V\le V_0</span>, its nonnegative terms give the explicit bounds</p>
+<div class="math display">
+\|v\|\le\sqrt{2V_0},\quad
+\|q-q_*\|\le\sqrt{2V_0/k},\quad
+d\ge\left(d_0^{-1}+\sqrt{V_0/\lambda}\right)^{-1}.
+</div>
+<p>The distance bound also holds outside the barrier region since its right-hand side is at most d_0. These bounds produce compact feasible sublevels on which the ODE is regular, supplying R8's hypotheses and forward existence. The destination can shift if the goal lies in the active barrier region, and additional stationary points can occur. Exact head-on symmetry removes the radial geometric turn because h is parallel to v; the barrier then prevents penetration by braking/repelling, possibly leaving a stationary equilibrium before the disk. These are mathematical features to show, not conceal in a demonstration.</p>
+<p>For a robot, replace the point tasks with static maps for end-effector coordinates, link-to-obstacle distances, and joint-limit distances. Supply HD0 priorities, pull back via R5, and either use a compatible aggregate energy or choose E separately with the R9 analysis. Moving maps require explicit time derivatives; finite-dimensional configuration geometry does not by itself establish feasible contact dynamics.</p>
+<h2 id="r12-numerical-implementation-and-identities-that-cease-to-be-exact">R12. Numerical implementation and identities that cease to be exact</h2>
+<h3 id="zero-speed-denominator">Zero-speed denominator</h3>
+<p>With N and Z from R3, replacing <span class="math inline">\alpha=-N/Z</span> by <span class="math inline">\alpha_\epsilon=-N/(Z+\epsilon)</span> yields the exact residual</p>
+<div class="math display">
+\dot E=\frac{\epsilon N}{Z+\epsilon}.
+</div>
+<p>Its sign is not fixed. A fixed ε breaks exact HD2. For a regular HD2 generator, an explicit zero branch with the continuous limit preserves the intended mathematical definition; finite thresholds still introduce an approximation.</p>
+<h3 id="time-discretization">Time discretization</h3>
+<p>Even if <span class="math inline">v^Ta=0</span>, a forward-Euler velocity update gives</p>
+<div class="math display">
+\tfrac12\|v+\Delta t a\|^2-\tfrac12\|v\|^2
+=\tfrac12\Delta t^2\|a\|^2.
+</div>
+<p>Continuous conservation is therefore not discrete conservation. Report energy drift and path residuals; test convergence under decreasing step size. A higher-order integrator reduces error but does not turn an identity of the ODE into an exact identity of the solver.</p>
+<h3 id="solve-and-regularization">Solve and regularization</h3>
+<p>Numerically solve <span class="math inline">Wa=r</span> rather than explicitly constructing <span class="math inline">W^{-1}</span>. A base metric or diagonal shift changes the generator and its energy relation. Include the corresponding component in the derivation, or measure the violation as an approximation.</p>
+<h3 id="saturation-and-moving-maps">Saturation and moving maps</h3>
+<p>Acceleration clipping, speed-dependent gates, and changing goals can invalidate homogeneity or the autonomous Lyapunov proof. For <span class="math inline">x=\phi(q,t)</span>,</p>
+<div class="math display">
+\ddot x=J\ddot q+D^2_{qq}\phi[v,v]+2D^2_{qt}\phi\,v+\partial^2_{tt}\phi.
+</div>
+<p>A time-varying potential adds <span class="math inline">\partial_t\psi</span> to <span class="math inline">\dot V</span>. These terms must be included rather than borrowed from the static theory.</p>
+<h3 id="verification">Verification</h3>
+<p>Check numerical homogeneity at fixed q and direction, verify the energy-rate residual, compare the same geometry under speed changes, verify pullback against differentiated kinematics, and test the chosen convergence/constraint assumptions in the actual domain. These checks catch implementation mistakes; they do not replace the stated proofs.</p>
+<p>A24's nominal artificial dynamics can be read in this notation as <span class="math inline">a=h+\alpha_Ev-W^{-1}(\nabla\psi+Bv)-\beta v</span>. Its use of a separate physical tracking system is an implementation layer, not a change in the geometric construction. Its arbitrary policy forcing and numerical constraint handling require their own energy/feasibility analysis.</p>
+<h2 id="coverage-and-tutorial-crosswalk">Coverage and tutorial crosswalk</h2>
+<table>
+<thead>
+<tr>
+<th>Result</th>
+<th>Question answered</th>
+<th>Required tutorial treatment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R0–R1</td>
+<td>What is a geometry, and why HD2?</td>
+<td>Clock and curvature derivations; path vs trajectory; tangential equivalence and zero-speed limits</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>Where do energy, metric, and geometric terms come from?</td>
+<td>Work, gradients, Hessians, variation, Euler identities; Riemannian and Finsler examples</td>
+</tr>
+<tr>
+<td>R3</td>
+<td>How can geometry and energy be chosen independently?</td>
+<td>Full α derivation, uniqueness, completeness, bending equivalence</td>
+</tr>
+<tr>
+<td>R4</td>
+<td>What can forcing and speed regulation do?</td>
+<td>Work decomposition; energy cap proof; bounding vs convergence</td>
+</tr>
+<tr>
+<td>R5–R6</td>
+<td>How do tasks combine, and which operations commute?</td>
+<td>Jacobian curvature, least squares, energy pullback, HD closure, energization order</td>
+</tr>
+<tr>
+<td>R7</td>
+<td>What happens under exact constraints?</td>
+<td>Multiplier derivation, zero reaction work, equality vs unilateral assumptions</td>
+</tr>
+<tr>
+<td>R8–R10</td>
+<td>What does stability actually establish?</td>
+<td>Lyapunov cancellation, invariance, critical points, separate priority metric, compatible forcing qualification</td>
+</tr>
+<tr>
+<td>R11–R12</td>
+<td>How do we design and implement a fabric?</td>
+<td>Complete example, failure/equilibrium cases, algorithm, regularization and discretization errors</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Source-reading caution.</strong> Expressions are derived in the convention above rather than copied mechanically. F23's displayed regularized coefficient Eq. (69) lacks the minus sign required by its earlier definition and the energy-rate calculation. Some rendered F22 constrained expressions are dimensionally ambiguous for rectangular constraint Jacobians; R7 derives the dimensionally consistent form directly. The original convergence discussion uses “minimum” broadly, while its energy/KKT arguments establish stationarity unless further hypotheses select a stable minimum. These qualifications belong in the explanatory tutorial as well.</p></main><script src="../assets/vendor/katex/katex.min.js" defer></script><script src="../assets/render-math.js" defer></script></body></html>

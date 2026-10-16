@@ -1,0 +1,47 @@
+{
+  "verified_at": "2026-10-16T16:25:39.567274+00:00",
+  "summary_raw_match": {
+    "raw_aggregation_matches_saved": true,
+    "rows": 137,
+    "accepted_candidates_all_audited": true
+  },
+  "same_brick_candidate_checks": {
+    "grasp_qpos": true,
+    "pregrasp_qpos": true,
+    "quarter_squeeze": true
+  },
+  "selected_mesh_hashes_valid": true,
+  "overview_counts": [
+    68,
+    51,
+    70,
+    105
+  ],
+  "retrospective_best_count": 124,
+  "fresh_seed_physical": [
+    30,
+    33
+  ],
+  "fresh_seed_with_intent": [
+    25,
+    33
+  ],
+  "denominators": {
+    "overview": 240,
+    "fresh_seed": 80
+  },
+  "plots": [
+    "overview",
+    "shape-size",
+    "fresh-seed",
+    "ablations"
+  ],
+  "ui_checks": [
+    "plot SVGs rendered",
+    "hammer baseline/adapted selection",
+    "orbit drag",
+    "closed/final switching",
+    "no accepted baseline state hides mesh instead of inventing a result"
+  ],
+  "url": "http://127.0.0.1:8894/size-study/viewer/comparison.html"
+}

@@ -1,0 +1,33 @@
+{
+  "seed": 43024,
+  "episode": "study-artifacts/nominal-ik-comparison-v1/episodes/43024",
+  "seconds": 11.8,
+  "error": null,
+  "qualified": true,
+  "unwanted_contacts": 0,
+  "unwanted_contact_examples": [],
+  "stable_stack": true,
+  "identical_initial_state": true,
+  "identical_nominal_settings": true,
+  "run_exit": 0,
+  "verify_exit": 0,
+  "video_probe": {
+    "programs": [],
+    "streams": [
+      {
+        "avg_frame_rate": "10/1"
+      }
+    ],
+    "format": {
+      "duration": "11.800000"
+    }
+  },
+  "decode_errors": false,
+  "source_sha256": {
+    "ik_control.py": "6699d263d88c662b81485b994d32164eef7e8478c04f1bcc69a3d26a638cf24e",
+    "tuning.py": "d9fa1bc28db4bdd4dfe35dabc772f5cb8454f627c031abf597d2907226fe4080",
+    "simulate.py": "95283903ed0dee2111f4b07e09c7ab2725eac2fc9b2abfb41e5e7f4c1b01b8d7",
+    "controller_snapshot/verify.py": "d4f9d612c6261de4056a17a6dd06ea77086466a2cb462aba240c0983deca0681"
+  },
+  "limitation": "One reset; IK collision avoidance is not equivalent to Fabrics. Shared nominal reference generator/settings with tracking-dependent progress, not identical timestamped reference poses."
+}

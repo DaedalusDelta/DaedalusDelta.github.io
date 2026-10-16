@@ -1,0 +1,46 @@
+{
+  "current": {
+    "episode": "study-artifacts/motion-style-v5/executions/43024/attempt-0/episodes/43024",
+    "seconds": 16.3,
+    "error": null,
+    "qualified": true,
+    "unwanted_contacts": 0,
+    "initial_qpos_sha256": "80f2592f1d5bf46545eac7807b7239ee0a7228d4c9d0ef1a63d0a0bf7e5cd288",
+    "video": "study-artifacts/nominal-front-comparison-v1/current-front.mp4",
+    "video_probe": {
+      "programs": [],
+      "streams": [
+        {
+          "width": 640,
+          "height": 480,
+          "avg_frame_rate": "10/1"
+        }
+      ],
+      "format": {
+        "duration": "16.300000"
+      }
+    }
+  },
+  "nominal": {
+    "episode": "study-artifacts/nominal-front-comparison-v1/nominal/43024",
+    "seconds": 13.620000000000001,
+    "error": null,
+    "qualified": true,
+    "unwanted_contacts": 0,
+    "initial_qpos_sha256": "80f2592f1d5bf46545eac7807b7239ee0a7228d4c9d0ef1a63d0a0bf7e5cd288",
+    "video": "study-artifacts/nominal-front-comparison-v1/nominal-front.mp4",
+    "video_probe": {
+      "programs": [],
+      "streams": [
+        {
+          "width": 640,
+          "height": 480,
+          "avg_frame_rate": "10/1"
+        }
+      ],
+      "format": {
+        "duration": "13.700000"
+      }
+    }
+  }
+}

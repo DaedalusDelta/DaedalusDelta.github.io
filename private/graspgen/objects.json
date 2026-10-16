@@ -1,0 +1,752 @@
+[
+  {
+    "id": "bottle-s0.05",
+    "object": "bottle",
+    "scale": 0.05,
+    "dimensions_m": [
+      0.034159734500000004,
+      0.08954646250000001,
+      0.034155132
+    ],
+    "bounds_m": [
+      [
+        -0.017080657,
+        -0.04477334,
+        -0.017075862
+      ],
+      [
+        0.0170790775,
+        0.044773122500000005,
+        0.01707927
+      ]
+    ],
+    "scene": "scenes/bottle-s0.05/floating/scene.npy",
+    "source": {
+      "dataset": "Dexonomy DGN_5k",
+      "scene": "research-artifacts/grasp-three-methods-20261016/assets/DGN_5k/scene_cfg/core_bottle_523cddb320608c09a37f3fc191551700/floating/scale020.npy",
+      "source_sha256": "838d2d955ad84cf4c7cd645af4cab63ad280ff99d43ee223666e16d9ab1ce464"
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "bottle-s0.1",
+    "object": "bottle",
+    "scale": 0.1,
+    "dimensions_m": [
+      0.06831946900000001,
+      0.17909292500000001,
+      0.068310264
+    ],
+    "bounds_m": [
+      [
+        -0.034161314,
+        -0.08954668,
+        -0.034151724
+      ],
+      [
+        0.034158155,
+        0.08954624500000001,
+        0.03415854
+      ]
+    ],
+    "scene": "scenes/bottle-s0.1/floating/scene.npy",
+    "source": {
+      "dataset": "Dexonomy DGN_5k",
+      "scene": "research-artifacts/grasp-three-methods-20261016/assets/DGN_5k/scene_cfg/core_bottle_523cddb320608c09a37f3fc191551700/floating/scale020.npy",
+      "source_sha256": "838d2d955ad84cf4c7cd645af4cab63ad280ff99d43ee223666e16d9ab1ce464"
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "bottle-s0.2",
+    "object": "bottle",
+    "scale": 0.2,
+    "dimensions_m": [
+      0.13663893800000002,
+      0.35818585000000003,
+      0.136620528
+    ],
+    "bounds_m": [
+      [
+        -0.068322628,
+        -0.17909336,
+        -0.068303448
+      ],
+      [
+        0.06831631,
+        0.17909249000000002,
+        0.06831708
+      ]
+    ],
+    "scene": "scenes/bottle-s0.2/floating/scene.npy",
+    "source": {
+      "dataset": "Dexonomy DGN_5k",
+      "scene": "research-artifacts/grasp-three-methods-20261016/assets/DGN_5k/scene_cfg/core_bottle_523cddb320608c09a37f3fc191551700/floating/scale020.npy",
+      "source_sha256": "838d2d955ad84cf4c7cd645af4cab63ad280ff99d43ee223666e16d9ab1ce464"
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "bottle-s0.3",
+    "object": "bottle",
+    "scale": 0.3,
+    "dimensions_m": [
+      0.20495840699999998,
+      0.537278775,
+      0.204930792
+    ],
+    "bounds_m": [
+      [
+        -0.102483942,
+        -0.26864003999999997,
+        -0.102455172
+      ],
+      [
+        0.102474465,
+        0.268638735,
+        0.10247561999999999
+      ]
+    ],
+    "scene": "scenes/bottle-s0.3/floating/scene.npy",
+    "source": {
+      "dataset": "Dexonomy DGN_5k",
+      "scene": "research-artifacts/grasp-three-methods-20261016/assets/DGN_5k/scene_cfg/core_bottle_523cddb320608c09a37f3fc191551700/floating/scale020.npy",
+      "source_sha256": "838d2d955ad84cf4c7cd645af4cab63ad280ff99d43ee223666e16d9ab1ce464"
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "mug-s0.05",
+    "object": "mug",
+    "scale": 0.05,
+    "dimensions_m": [
+      0.051889321,
+      0.053807095000000006,
+      0.0685509715
+    ],
+    "bounds_m": [
+      [
+        -0.025950673000000004,
+        -0.026858628000000002,
+        -0.0341857525
+      ],
+      [
+        0.025938647999999998,
+        0.026948467,
+        0.034365219
+      ]
+    ],
+    "scene": "scenes/mug-s0.05/floating/scene.npy",
+    "source": {
+      "dataset": "Dexonomy DGN_5k",
+      "scene": "research-artifacts/grasp-three-methods-20261016/assets/DGN_5k/scene_cfg/core_mug_c7f8d39c406fee941050b055aafa6fb8/floating/scale020.npy",
+      "source_sha256": "0551741333fedd209f95ed042e03c0841fb3ec7bdf59c987a21fe4e9b837816e"
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "mug-s0.1",
+    "object": "mug",
+    "scale": 0.1,
+    "dimensions_m": [
+      0.103778642,
+      0.10761419000000001,
+      0.137101943
+    ],
+    "bounds_m": [
+      [
+        -0.05190134600000001,
+        -0.053717256000000005,
+        -0.068371505
+      ],
+      [
+        0.051877295999999996,
+        0.053896934,
+        0.068730438
+      ]
+    ],
+    "scene": "scenes/mug-s0.1/floating/scene.npy",
+    "source": {
+      "dataset": "Dexonomy DGN_5k",
+      "scene": "research-artifacts/grasp-three-methods-20261016/assets/DGN_5k/scene_cfg/core_mug_c7f8d39c406fee941050b055aafa6fb8/floating/scale020.npy",
+      "source_sha256": "0551741333fedd209f95ed042e03c0841fb3ec7bdf59c987a21fe4e9b837816e"
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "mug-s0.2",
+    "object": "mug",
+    "scale": 0.2,
+    "dimensions_m": [
+      0.207557284,
+      0.21522838000000002,
+      0.274203886
+    ],
+    "bounds_m": [
+      [
+        -0.10380269200000002,
+        -0.10743451200000001,
+        -0.13674301
+      ],
+      [
+        0.10375459199999999,
+        0.107793868,
+        0.137460876
+      ]
+    ],
+    "scene": "scenes/mug-s0.2/floating/scene.npy",
+    "source": {
+      "dataset": "Dexonomy DGN_5k",
+      "scene": "research-artifacts/grasp-three-methods-20261016/assets/DGN_5k/scene_cfg/core_mug_c7f8d39c406fee941050b055aafa6fb8/floating/scale020.npy",
+      "source_sha256": "0551741333fedd209f95ed042e03c0841fb3ec7bdf59c987a21fe4e9b837816e"
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "mug-s0.3",
+    "object": "mug",
+    "scale": 0.3,
+    "dimensions_m": [
+      0.311335926,
+      0.32284257,
+      0.411305829
+    ],
+    "bounds_m": [
+      [
+        -0.15570403800000002,
+        -0.161151768,
+        -0.205114515
+      ],
+      [
+        0.15563188799999997,
+        0.161690802,
+        0.20619131400000001
+      ]
+    ],
+    "scene": "scenes/mug-s0.3/floating/scene.npy",
+    "source": {
+      "dataset": "Dexonomy DGN_5k",
+      "scene": "research-artifacts/grasp-three-methods-20261016/assets/DGN_5k/scene_cfg/core_mug_c7f8d39c406fee941050b055aafa6fb8/floating/scale020.npy",
+      "source_sha256": "0551741333fedd209f95ed042e03c0841fb3ec7bdf59c987a21fe4e9b837816e"
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "phone-s0.05",
+    "object": "phone",
+    "scale": 0.05,
+    "dimensions_m": [
+      0.076229748,
+      0.0659802825,
+      0.011755219
+    ],
+    "bounds_m": [
+      [
+        -0.038114938,
+        -0.0329820155,
+        -0.0059004420000000005
+      ],
+      [
+        0.03811481,
+        0.032998267,
+        0.005854777
+      ]
+    ],
+    "scene": "scenes/phone-s0.05/floating/scene.npy",
+    "source": {
+      "dataset": "Dexonomy DGN_5k",
+      "scene": "research-artifacts/grasp-three-methods-20261016/assets/DGN_5k/scene_cfg/sem_CellPhone_63d7e19327f1bca6fbd525df60e2bb14/floating/scale020.npy",
+      "source_sha256": "4abf374f10a7508930b7bfe540a47c52b0a9fd5bfd14708735f4e30e7e7a5a0c"
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "phone-s0.1",
+    "object": "phone",
+    "scale": 0.1,
+    "dimensions_m": [
+      0.152459496,
+      0.131960565,
+      0.023510438
+    ],
+    "bounds_m": [
+      [
+        -0.076229876,
+        -0.065964031,
+        -0.011800884000000001
+      ],
+      [
+        0.07622962,
+        0.065996534,
+        0.011709554
+      ]
+    ],
+    "scene": "scenes/phone-s0.1/floating/scene.npy",
+    "source": {
+      "dataset": "Dexonomy DGN_5k",
+      "scene": "research-artifacts/grasp-three-methods-20261016/assets/DGN_5k/scene_cfg/sem_CellPhone_63d7e19327f1bca6fbd525df60e2bb14/floating/scale020.npy",
+      "source_sha256": "4abf374f10a7508930b7bfe540a47c52b0a9fd5bfd14708735f4e30e7e7a5a0c"
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "phone-s0.2",
+    "object": "phone",
+    "scale": 0.2,
+    "dimensions_m": [
+      0.304918992,
+      0.26392113,
+      0.047020876
+    ],
+    "bounds_m": [
+      [
+        -0.152459752,
+        -0.131928062,
+        -0.023601768000000002
+      ],
+      [
+        0.15245924,
+        0.131993068,
+        0.023419108
+      ]
+    ],
+    "scene": "scenes/phone-s0.2/floating/scene.npy",
+    "source": {
+      "dataset": "Dexonomy DGN_5k",
+      "scene": "research-artifacts/grasp-three-methods-20261016/assets/DGN_5k/scene_cfg/sem_CellPhone_63d7e19327f1bca6fbd525df60e2bb14/floating/scale020.npy",
+      "source_sha256": "4abf374f10a7508930b7bfe540a47c52b0a9fd5bfd14708735f4e30e7e7a5a0c"
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "phone-s0.3",
+    "object": "phone",
+    "scale": 0.3,
+    "dimensions_m": [
+      0.45737848799999997,
+      0.395881695,
+      0.070531314
+    ],
+    "bounds_m": [
+      [
+        -0.22868962799999998,
+        -0.197892093,
+        -0.035402652
+      ],
+      [
+        0.22868886,
+        0.197989602,
+        0.035128662
+      ]
+    ],
+    "scene": "scenes/phone-s0.3/floating/scene.npy",
+    "source": {
+      "dataset": "Dexonomy DGN_5k",
+      "scene": "research-artifacts/grasp-three-methods-20261016/assets/DGN_5k/scene_cfg/sem_CellPhone_63d7e19327f1bca6fbd525df60e2bb14/floating/scale020.npy",
+      "source_sha256": "4abf374f10a7508930b7bfe540a47c52b0a9fd5bfd14708735f4e30e7e7a5a0c"
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "hammer-s0.5",
+    "object": "hammer",
+    "scale": 0.5,
+    "dimensions_m": [
+      0.17899997463454678,
+      0.07203025534191722,
+      0.03801272917878146
+    ],
+    "bounds_m": [
+      [
+        -0.07999997463454678,
+        -0.03601512767095861,
+        -0.01900636458939073
+      ],
+      [
+        0.099,
+        0.03601512767095861,
+        0.01900636458939073
+      ]
+    ],
+    "scene": "scenes/hammer-s0.5/floating/scene.npy",
+    "source": {
+      "dataset": "MetaWorld hammer geometry; mesh conversion, uniform-density study",
+      "source": "research-artifacts/rl100/upstream/third_party/Metaworld/metaworld/envs/assets_v2/objects/assets/hammer.xml",
+      "sha256": "36339607bb84869afb2342d64f1477c963fc4c90ac11f9f0da955c666e0c49e0"
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "hammer-s1",
+    "object": "hammer",
+    "scale": 1.0,
+    "dimensions_m": [
+      0.35799994926909356,
+      0.14406051068383444,
+      0.07602545835756291
+    ],
+    "bounds_m": [
+      [
+        -0.15999994926909356,
+        -0.07203025534191722,
+        -0.03801272917878146
+      ],
+      [
+        0.198,
+        0.07203025534191722,
+        0.03801272917878146
+      ]
+    ],
+    "scene": "scenes/hammer-s1/floating/scene.npy",
+    "source": {
+      "dataset": "MetaWorld hammer geometry; mesh conversion, uniform-density study",
+      "source": "research-artifacts/rl100/upstream/third_party/Metaworld/metaworld/envs/assets_v2/objects/assets/hammer.xml",
+      "sha256": "36339607bb84869afb2342d64f1477c963fc4c90ac11f9f0da955c666e0c49e0"
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "hammer-s1.5",
+    "object": "hammer",
+    "scale": 1.5,
+    "dimensions_m": [
+      0.5369999239036404,
+      0.21609076602575167,
+      0.11403818753634437
+    ],
+    "bounds_m": [
+      [
+        -0.23999992390364033,
+        -0.10804538301287583,
+        -0.057019093768172185
+      ],
+      [
+        0.29700000000000004,
+        0.10804538301287583,
+        0.057019093768172185
+      ]
+    ],
+    "scene": "scenes/hammer-s1.5/floating/scene.npy",
+    "source": {
+      "dataset": "MetaWorld hammer geometry; mesh conversion, uniform-density study",
+      "source": "research-artifacts/rl100/upstream/third_party/Metaworld/metaworld/envs/assets_v2/objects/assets/hammer.xml",
+      "sha256": "36339607bb84869afb2342d64f1477c963fc4c90ac11f9f0da955c666e0c49e0"
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "banana-s0.5",
+    "object": "banana",
+    "scale": 0.5,
+    "dimensions_m": [
+      0.053961925241972374,
+      0.08870025847572222,
+      0.018167316668219056
+    ],
+    "bounds_m": [
+      [
+        -0.02075116612823387,
+        -0.05073241168602465,
+        -0.007762097170983656
+      ],
+      [
+        0.033210759113738504,
+        0.037967846789697564,
+        0.010405219497235399
+      ]
+    ],
+    "scene": "scenes/banana-s0.5/floating/scene.npy",
+    "source": {
+      "dataset": "YCB asset from Isaac Gym; convex collision proxy",
+      "source": "research-artifacts/isaacgym-grogu/runtime/isaacgym-sdk/assets/urdf/ycb/011_banana/collision.obj",
+      "sha256": "4d688fc40eecb930636f53cb7c653096a10e288f87382cb435bca82a141b0499",
+      "urdf": "research-artifacts/isaacgym-grogu/runtime/isaacgym-sdk/assets/urdf/ycb/011_banana/011_banana.urdf",
+      "urdf_mesh_scale": [
+        0.01,
+        0.01,
+        0.01
+      ]
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "banana-s1",
+    "object": "banana",
+    "scale": 1.0,
+    "dimensions_m": [
+      0.10792385048394475,
+      0.17740051695144443,
+      0.03633463333643811
+    ],
+    "bounds_m": [
+      [
+        -0.04150233225646774,
+        -0.1014648233720493,
+        -0.015524194341967312
+      ],
+      [
+        0.06642151822747701,
+        0.07593569357939513,
+        0.020810438994470798
+      ]
+    ],
+    "scene": "scenes/banana-s1/floating/scene.npy",
+    "source": {
+      "dataset": "YCB asset from Isaac Gym; convex collision proxy",
+      "source": "research-artifacts/isaacgym-grogu/runtime/isaacgym-sdk/assets/urdf/ycb/011_banana/collision.obj",
+      "sha256": "4d688fc40eecb930636f53cb7c653096a10e288f87382cb435bca82a141b0499",
+      "urdf": "research-artifacts/isaacgym-grogu/runtime/isaacgym-sdk/assets/urdf/ycb/011_banana/011_banana.urdf",
+      "urdf_mesh_scale": [
+        0.01,
+        0.01,
+        0.01
+      ]
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "banana-s1.5",
+    "object": "banana",
+    "scale": 1.5,
+    "dimensions_m": [
+      0.1618857757259171,
+      0.26610077542716665,
+      0.05450195000465717
+    ],
+    "bounds_m": [
+      [
+        -0.06225349838470161,
+        -0.15219723505807395,
+        -0.023286291512950967
+      ],
+      [
+        0.09963227734121552,
+        0.1139035403690927,
+        0.031215658491706197
+      ]
+    ],
+    "scene": "scenes/banana-s1.5/floating/scene.npy",
+    "source": {
+      "dataset": "YCB asset from Isaac Gym; convex collision proxy",
+      "source": "research-artifacts/isaacgym-grogu/runtime/isaacgym-sdk/assets/urdf/ycb/011_banana/collision.obj",
+      "sha256": "4d688fc40eecb930636f53cb7c653096a10e288f87382cb435bca82a141b0499",
+      "urdf": "research-artifacts/isaacgym-grogu/runtime/isaacgym-sdk/assets/urdf/ycb/011_banana/011_banana.urdf",
+      "urdf_mesh_scale": [
+        0.01,
+        0.01,
+        0.01
+      ]
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "can-s0.5",
+    "object": "can",
+    "scale": 0.5,
+    "dimensions_m": [
+      0.051343285,
+      0.029900005,
+      0.041644
+    ],
+    "bounds_m": [
+      [
+        -0.02567170068775754,
+        -0.01495000411979391,
+        -0.021313616113984073
+      ],
+      [
+        0.02567158431224246,
+        0.01495000088020609,
+        0.020330383886015928
+      ]
+    ],
+    "scene": "scenes/can-s0.5/floating/scene.npy",
+    "source": {
+      "dataset": "YCB asset from Isaac Gym; convex collision proxy",
+      "source": "research-artifacts/isaacgym-grogu/runtime/isaacgym-sdk/assets/urdf/ycb/010_potted_meat_can/collision.obj",
+      "sha256": "d80bf87eeeab0ebed0664ed6adffa5abffcff9e0ab44a0234c291d94d652c129",
+      "urdf": "research-artifacts/isaacgym-grogu/runtime/isaacgym-sdk/assets/urdf/ycb/010_potted_meat_can/010_potted_meat_can.urdf",
+      "urdf_mesh_scale": [
+        0.01,
+        0.01,
+        0.01
+      ]
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "can-s1",
+    "object": "can",
+    "scale": 1.0,
+    "dimensions_m": [
+      0.10268657,
+      0.05980001,
+      0.083288
+    ],
+    "bounds_m": [
+      [
+        -0.05134340137551508,
+        -0.02990000823958782,
+        -0.042627232227968145
+      ],
+      [
+        0.05134316862448492,
+        0.02990000176041218,
+        0.040660767772031856
+      ]
+    ],
+    "scene": "scenes/can-s1/floating/scene.npy",
+    "source": {
+      "dataset": "YCB asset from Isaac Gym; convex collision proxy",
+      "source": "research-artifacts/isaacgym-grogu/runtime/isaacgym-sdk/assets/urdf/ycb/010_potted_meat_can/collision.obj",
+      "sha256": "d80bf87eeeab0ebed0664ed6adffa5abffcff9e0ab44a0234c291d94d652c129",
+      "urdf": "research-artifacts/isaacgym-grogu/runtime/isaacgym-sdk/assets/urdf/ycb/010_potted_meat_can/010_potted_meat_can.urdf",
+      "urdf_mesh_scale": [
+        0.01,
+        0.01,
+        0.01
+      ]
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "can-s1.5",
+    "object": "can",
+    "scale": 1.5,
+    "dimensions_m": [
+      0.154029855,
+      0.089700015,
+      0.124932
+    ],
+    "bounds_m": [
+      [
+        -0.07701510206327263,
+        -0.04485001235938173,
+        -0.06394084834195221
+      ],
+      [
+        0.07701475293672738,
+        0.04485000264061827,
+        0.06099115165804778
+      ]
+    ],
+    "scene": "scenes/can-s1.5/floating/scene.npy",
+    "source": {
+      "dataset": "YCB asset from Isaac Gym; convex collision proxy",
+      "source": "research-artifacts/isaacgym-grogu/runtime/isaacgym-sdk/assets/urdf/ycb/010_potted_meat_can/collision.obj",
+      "sha256": "d80bf87eeeab0ebed0664ed6adffa5abffcff9e0ab44a0234c291d94d652c129",
+      "urdf": "research-artifacts/isaacgym-grogu/runtime/isaacgym-sdk/assets/urdf/ycb/010_potted_meat_can/010_potted_meat_can.urdf",
+      "urdf_mesh_scale": [
+        0.01,
+        0.01,
+        0.01
+      ]
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "brick-s0.5",
+    "object": "brick",
+    "scale": 0.5,
+    "dimensions_m": [
+      0.0262015,
+      0.038846000000000006,
+      0.025507000000000002
+    ],
+    "bounds_m": [
+      [
+        -0.012920800537183372,
+        -0.01929051893435715,
+        -0.012700977520942435
+      ],
+      [
+        0.013280699462816627,
+        0.019555481065642852,
+        0.012806022479057566
+      ]
+    ],
+    "scene": "scenes/brick-s0.5/floating/scene.npy",
+    "source": {
+      "dataset": "YCB asset from Isaac Gym; convex collision proxy",
+      "source": "research-artifacts/isaacgym-grogu/runtime/isaacgym-sdk/assets/urdf/ycb/061_foam_brick/textured.obj",
+      "sha256": "92a265e25599fa155584b6fbb2f07edd087c3b822ea1473b1b110f00f263ef77",
+      "urdf": "research-artifacts/isaacgym-grogu/runtime/isaacgym-sdk/assets/urdf/ycb/061_foam_brick/061_foam_brick.urdf",
+      "urdf_mesh_scale": [
+        0.01,
+        0.01,
+        0.01
+      ]
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "brick-s1",
+    "object": "brick",
+    "scale": 1.0,
+    "dimensions_m": [
+      0.052403,
+      0.07769200000000001,
+      0.051014000000000004
+    ],
+    "bounds_m": [
+      [
+        -0.025841601074366744,
+        -0.0385810378687143,
+        -0.02540195504188487
+      ],
+      [
+        0.026561398925633254,
+        0.039110962131285704,
+        0.025612044958115133
+      ]
+    ],
+    "scene": "scenes/brick-s1/floating/scene.npy",
+    "source": {
+      "dataset": "YCB asset from Isaac Gym; convex collision proxy",
+      "source": "research-artifacts/isaacgym-grogu/runtime/isaacgym-sdk/assets/urdf/ycb/061_foam_brick/textured.obj",
+      "sha256": "92a265e25599fa155584b6fbb2f07edd087c3b822ea1473b1b110f00f263ef77",
+      "urdf": "research-artifacts/isaacgym-grogu/runtime/isaacgym-sdk/assets/urdf/ycb/061_foam_brick/061_foam_brick.urdf",
+      "urdf_mesh_scale": [
+        0.01,
+        0.01,
+        0.01
+      ]
+    },
+    "mass_kg": 0.1
+  },
+  {
+    "id": "brick-s1.5",
+    "object": "brick",
+    "scale": 1.5,
+    "dimensions_m": [
+      0.0786045,
+      0.11653800000000002,
+      0.076521
+    ],
+    "bounds_m": [
+      [
+        -0.03876240161155012,
+        -0.05787155680307145,
+        -0.038102932562827305
+      ],
+      [
+        0.03984209838844988,
+        0.058666443196928555,
+        0.0384180674371727
+      ]
+    ],
+    "scene": "scenes/brick-s1.5/floating/scene.npy",
+    "source": {
+      "dataset": "YCB asset from Isaac Gym; convex collision proxy",
+      "source": "research-artifacts/isaacgym-grogu/runtime/isaacgym-sdk/assets/urdf/ycb/061_foam_brick/textured.obj",
+      "sha256": "92a265e25599fa155584b6fbb2f07edd087c3b822ea1473b1b110f00f263ef77",
+      "urdf": "research-artifacts/isaacgym-grogu/runtime/isaacgym-sdk/assets/urdf/ycb/061_foam_brick/061_foam_brick.urdf",
+      "urdf_mesh_scale": [
+        0.01,
+        0.01,
+        0.01
+      ]
+    },
+    "mass_kg": 0.1
+  }
+]

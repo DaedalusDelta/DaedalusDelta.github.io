@@ -1,0 +1,87 @@
+[
+  {
+    "seed": 42801,
+    "selected": "study-artifacts/motion-style-v5/executions/42801/attempt-0/episodes/42801",
+    "attempts": [
+      {
+        "scale": 1.0,
+        "episode": "study-artifacts/motion-style-v5/executions/42801/attempt-0/episodes/42801",
+        "run_exit": 0,
+        "error": null,
+        "seconds": 16.76,
+        "verify_exit": 0,
+        "qualified": true,
+        "unwanted_contacts": 0,
+        "stable_stack": true
+      }
+    ]
+  },
+  {
+    "seed": 42802,
+    "selected": "study-artifacts/motion-style-v5/executions/42802/attempt-0/episodes/42802",
+    "attempts": [
+      {
+        "scale": 1.0,
+        "episode": "study-artifacts/motion-style-v5/executions/42802/attempt-0/episodes/42802",
+        "run_exit": 0,
+        "error": null,
+        "seconds": 13.4,
+        "verify_exit": 0,
+        "qualified": true,
+        "unwanted_contacts": 0,
+        "stable_stack": true
+      }
+    ]
+  },
+  {
+    "seed": 43021,
+    "selected": "study-artifacts/motion-style-v5/executions/43021/attempt-0/episodes/43021",
+    "attempts": [
+      {
+        "scale": 1.0,
+        "episode": "study-artifacts/motion-style-v5/executions/43021/attempt-0/episodes/43021",
+        "run_exit": 0,
+        "error": null,
+        "seconds": 15.5,
+        "verify_exit": 0,
+        "qualified": true,
+        "unwanted_contacts": 0,
+        "stable_stack": true
+      }
+    ]
+  },
+  {
+    "seed": 43024,
+    "selected": "study-artifacts/motion-style-v5/executions/43024/attempt-0/episodes/43024",
+    "attempts": [
+      {
+        "scale": 1.0,
+        "episode": "study-artifacts/motion-style-v5/executions/43024/attempt-0/episodes/43024",
+        "run_exit": 0,
+        "error": null,
+        "seconds": 16.3,
+        "verify_exit": 0,
+        "qualified": true,
+        "unwanted_contacts": 0,
+        "stable_stack": true
+      }
+    ]
+  },
+  {
+    "seed": 43025,
+    "selected": "study-artifacts/motion-style-v5/executions/43025/attempt-0/episodes/43025",
+    "attempts": [
+      {
+        "scale": 1.0,
+        "episode": "study-artifacts/motion-style-v5/executions/43025/attempt-0/episodes/43025",
+        "run_exit": 0,
+        "error": null,
+        "seconds": 12.96,
+        "verify_exit": 0,
+        "qualified": true,
+        "unwanted_contacts": 0,
+        "stable_stack": true
+      }
+    ]
+  }
+]

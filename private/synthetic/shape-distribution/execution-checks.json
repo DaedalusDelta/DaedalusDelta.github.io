@@ -1,0 +1,13 @@
+{
+  "identical_initial_state_three_samples": true,
+  "controller_files_unchanged_from_v5": [
+    "controller_snapshot/fabric_control.py",
+    "controller_snapshot/path_motion.py",
+    "controller_snapshot/verify.py",
+    "controller_snapshot/franka_env.py"
+  ],
+  "no_retries": true,
+  "accepted": 5,
+  "attempted": 5,
+  "training_hold_preserved": true
+}

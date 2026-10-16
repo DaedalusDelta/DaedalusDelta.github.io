@@ -1,0 +1,1017 @@
+{
+  "generated_at": "2026-10-16T16:21:05.460850+00:00",
+  "metric": "Combined = repository test AND relative retention AND lift/rotation; rejected optimizer candidates remain in denominator.",
+  "overview": [
+    {
+      "run": "fixed-s12",
+      "successes": 68,
+      "attempts": 240
+    },
+    {
+      "run": "mid-s12",
+      "successes": 51,
+      "attempts": 240
+    },
+    {
+      "run": "large-s12",
+      "successes": 70,
+      "attempts": 240
+    },
+    {
+      "run": "admm-s12",
+      "successes": 105,
+      "attempts": 240
+    }
+  ],
+  "best_observed_four": {
+    "successes": 124,
+    "attempts": 240,
+    "retrospective": true
+  },
+  "confirmation": [
+    {
+      "scene": "bottle-s0.05",
+      "baseline": "confirm-admm-s29-bottle-s0.05",
+      "selected": "confirm-admm-s29-bottle-s0.05",
+      "choice": "admm",
+      "baseline_pass": 7,
+      "selected_pass": 7,
+      "baseline_with_intent": 7,
+      "selected_with_intent": 7,
+      "attempts": 10
+    },
+    {
+      "scene": "bottle-s0.1",
+      "baseline": "confirm-admm-s29-bottle-s0.1",
+      "selected": "confirm-admm-s29-bottle-s0.1",
+      "choice": "admm",
+      "baseline_pass": 7,
+      "selected_pass": 7,
+      "baseline_with_intent": 7,
+      "selected_with_intent": 7,
+      "attempts": 10
+    },
+    {
+      "scene": "bottle-s0.2",
+      "baseline": "confirm-admm-s29-bottle-s0.2",
+      "selected": "confirm-choice-s29-bottle-s0.2",
+      "choice": "wrap",
+      "baseline_pass": 2,
+      "selected_pass": 4,
+      "baseline_with_intent": 2,
+      "selected_with_intent": 4,
+      "attempts": 10
+    },
+    {
+      "scene": "bottle-s0.3",
+      "baseline": "confirm-admm-s29-bottle-s0.3",
+      "selected": "confirm-admm-s29-bottle-s0.3",
+      "choice": "admm",
+      "baseline_pass": 0,
+      "selected_pass": 0,
+      "baseline_with_intent": 0,
+      "selected_with_intent": 0,
+      "attempts": 10
+    },
+    {
+      "scene": "mug-s0.05",
+      "baseline": "confirm-admm-s29-mug-s0.05",
+      "selected": "confirm-admm-s29-mug-s0.05",
+      "choice": "admm",
+      "baseline_pass": 1,
+      "selected_pass": 1,
+      "baseline_with_intent": 1,
+      "selected_with_intent": 1,
+      "attempts": 10
+    },
+    {
+      "scene": "can-s0.5",
+      "baseline": "confirm-admm-s29-can-s0.5",
+      "selected": "confirm-choice-s29-can-s0.5",
+      "choice": "mid",
+      "baseline_pass": 2,
+      "selected_pass": 8,
+      "baseline_with_intent": 2,
+      "selected_with_intent": 8,
+      "attempts": 10
+    },
+    {
+      "scene": "phone-s0.05",
+      "baseline": "confirm-admm-s29-phone-s0.05",
+      "selected": "confirm-choice-s29-phone-s0.05",
+      "choice": "large",
+      "baseline_pass": 6,
+      "selected_pass": 4,
+      "baseline_with_intent": 6,
+      "selected_with_intent": 4,
+      "attempts": 10
+    },
+    {
+      "scene": "hammer-s0.5",
+      "baseline": "confirm-admm-s29-hammer-s0.5",
+      "selected": "confirm-choice-s29-hammer-s0.5",
+      "choice": "handle-mid",
+      "baseline_pass": 5,
+      "selected_pass": 2,
+      "baseline_with_intent": 0,
+      "selected_with_intent": 2,
+      "attempts": 10
+    }
+  ],
+  "confirmation_totals": [
+    [
+      30,
+      33
+    ],
+    [
+      25,
+      33
+    ]
+  ],
+  "iteration_ablation": [
+    [
+      26,
+      70
+    ],
+    [
+      27,
+      70
+    ],
+    [
+      26,
+      70
+    ]
+  ],
+  "squeeze_ablation": [
+    [
+      6,
+      20
+    ],
+    [
+      7,
+      20
+    ],
+    [
+      10,
+      20
+    ]
+  ],
+  "pairs": [
+    {
+      "id": "hammer",
+      "title": "Functional intent: hold the handle, not the head",
+      "description": "179 mm hammer. Physical stability alone favors some head grasps. The changed setup restricts contact matching to a manually identified handle region and uses the mid-fingertip template. Whole-object collision geometry and evaluation remain unchanged.",
+      "metric": "Physical + handle-only contact success, seed 12",
+      "rates": [
+        "0/10 (0%)",
+        "4/10 (40%)"
+      ],
+      "counts": [
+        [
+          0,
+          10
+        ],
+        [
+          4,
+          10
+        ]
+      ],
+      "labels": [
+        "Fixed Dexonomy wrap",
+        "Handle matching + mid fingertips"
+      ],
+      "stage": "closed",
+      "caution": "Two ingredients change together, so this is a joint intervention, not an isolated semantic-region ablation. Handle contacts are an intent proxy; actual hammering was not tested.",
+      "cases": [
+        {
+          "id": "d999effaca8af5",
+          "object": "hammer",
+          "scene": "hammer-s0.5",
+          "dimensions_mm": [
+            179.0,
+            72.0,
+            38.0
+          ],
+          "scale": 0.5,
+          "method": "Dexonomy \u00b7 wrap",
+          "run": "fixed-s12_leap",
+          "candidate": "0_2",
+          "featured": "Holding a hammer is not the same as using it",
+          "selection": "first filename satisfying the stated example criteria",
+          "source_pass": true,
+          "relative_pass": true,
+          "motion_pass": true,
+          "combined_pass": true,
+          "handle_pass": false,
+          "motion_error_mm": 6.56,
+          "motion_error_deg": 2.14,
+          "contact_bodies": 5,
+          "penetration_mm": 0.426,
+          "audit": "runs/fixed-s12_leap/physical-v2-m0.1-f0.6/4_Adducted_Thumb/hammer-s0.5/floating/scene/0_2_grasp.json",
+          "audit_url": "../runs/fixed-s12_leap/physical-v2-m0.1-f0.6/4_Adducted_Thumb/hammer-s0.5/floating/scene/0_2_grasp.json",
+          "source": "runs/fixed-s12_leap/grasp_data/4_Adducted_Thumb/hammer-s0.5/floating/scene/0_2_grasp.npy",
+          "models": {
+            "closed": {
+              "file": "catalog/d999effaca8af5-closed.glb",
+              "bytes": 1289268,
+              "sha256": "eccf9f6790026dd05b3db39fd5c6656a31d8fef227e30beca8108bb329b7f978",
+              "hand_center": [
+                -0.002459683904319769,
+                0.00720845002058302,
+                0.012710214902525961
+              ],
+              "object_center": [
+                0.013370848705241134,
+                -0.001060951487365902,
+                0.005469883420108372
+              ],
+              "bounds": [
+                [
+                  -0.09598387609985966,
+                  -0.07494188325214837,
+                  -0.05547059764280725
+                ],
+                [
+                  0.10319036191337815,
+                  0.08935878329331441,
+                  0.08089102744785917
+                ]
+              ]
+            },
+            "final": {
+              "file": "catalog/d999effaca8af5-final.glb",
+              "bytes": 1289272,
+              "sha256": "e083e9edbcba1fdb6902b72b6fa81539471e624aaa6ad8db7c0eec460a3dd58b",
+              "hand_center": [
+                0.013738890225515419,
+                0.007926708448245737,
+                0.10596220483289302
+              ],
+              "object_center": [
+                0.007464352460159006,
+                0.00040601820398754665,
+                0.09000850153985056
+              ],
+              "bounds": [
+                [
+                  -0.05433817002195004,
+                  -0.07434575422991158,
+                  0.0003172119116643113
+                ],
+                [
+                  0.08181595047298088,
+                  0.09019917112640305,
+                  0.1993274316760959
+                ]
+              ]
+            }
+          }
+        },
+        {
+          "id": "0ce3ae101e2942",
+          "object": "hammer",
+          "scene": "hammer-s0.5",
+          "dimensions_mm": [
+            179.0,
+            72.0,
+            38.0
+          ],
+          "scale": 0.5,
+          "method": "Dexonomy \u00b7 handle contacts",
+          "run": "handle-contact-s12_leap",
+          "candidate": "0_1",
+          "featured": "Handle-targeted contact matching",
+          "selection": "first filename satisfying the stated example criteria",
+          "source_pass": true,
+          "relative_pass": true,
+          "motion_pass": true,
+          "combined_pass": true,
+          "handle_pass": true,
+          "motion_error_mm": 16.72,
+          "motion_error_deg": 3.3,
+          "contact_bodies": 4,
+          "penetration_mm": 0.776,
+          "audit": "runs/handle-contact-s12_leap/physical-v2-m0.1-f0.6/fingertip_mid/hammer-s0.5/floating/scene/0_1_grasp.json",
+          "audit_url": "../runs/handle-contact-s12_leap/physical-v2-m0.1-f0.6/fingertip_mid/hammer-s0.5/floating/scene/0_1_grasp.json",
+          "source": "runs/handle-contact-s12_leap/grasp_data/fingertip_mid/hammer-s0.5/floating/scene/0_1_grasp.npy",
+          "models": {
+            "closed": {
+              "file": "catalog/0ce3ae101e2942-closed.glb",
+              "bytes": 1289268,
+              "sha256": "33297007bf8f8be01fa8ecae3ad55448bb6c83249c23ef7c1e270b82068f1006",
+              "hand_center": [
+                0.0010672411591916564,
+                0.06388029823673608,
+                -0.037124715803489944
+              ],
+              "object_center": [
+                0.00878316159376124,
+                -8.356846916683647e-05,
+                5.0004926047893944e-05
+              ],
+              "bounds": [
+                [
+                  -0.08073222767132822,
+                  -0.03624064947170832,
+                  -0.11861956856410764
+                ],
+                [
+                  0.0982985508588507,
+                  0.15273849999932507,
+                  0.044370136957127757
+                ]
+              ]
+            },
+            "final": {
+              "file": "catalog/0ce3ae101e2942-final.glb",
+              "bytes": 1289272,
+              "sha256": "1e7cd621140a26c8aa4cc8690a0afe09c4ad8a3d6b5d169ef38e1045f17f831b",
+              "hand_center": [
+                -0.037054106450890884,
+                0.061695922293511646,
+                0.09283275804608655
+              ],
+              "object_center": [
+                -0.002251292355908178,
+                -0.0004224016869286279,
+                0.08234257842223158
+              ],
+              "bounds": [
+                [
+                  -0.11799227137601002,
+                  -0.03742270340498326,
+                  -0.007401540460490422
+                ],
+                [
+                  0.043884058474228264,
+                  0.14988683748122536,
+                  0.17208669730495357
+                ]
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "brick",
+      "title": "The same optimized pose can fail during enclosure",
+      "description": "Two brick sizes: 78 and 117 mm. Reduce only grasp-to-squeeze joint displacement to one quarter. The displayed 117 mm example is the exact same candidate before and after that change.",
+      "metric": "Combined physical success, seed 12",
+      "rates": [
+        "6/20 (30%)",
+        "10/20 (50%)"
+      ],
+      "counts": [
+        [
+          6,
+          20
+        ],
+        [
+          10,
+          20
+        ]
+      ],
+      "labels": [
+        "Default squeeze, mid-fingertip pose",
+        "0.25\u00d7 squeeze, identical optimized pose"
+      ],
+      "stage": "final",
+      "caution": "The shown baseline is the selected worst source-passing motion failure, not a typical result. It reaches 4.45 m tracking error; the repaired case reaches 19.1 mm and narrowly passes the 20 mm threshold. The repaired case fails at +20% mass.",
+      "cases": [
+        {
+          "id": "1c71106ad54091",
+          "object": "brick",
+          "scene": "brick-s1.5",
+          "dimensions_mm": [
+            78.6,
+            116.5,
+            76.5
+          ],
+          "scale": 1.5,
+          "method": "Dexonomy \u00b7 mid fingertips",
+          "run": "mid-s12_leap",
+          "candidate": "0_9",
+          "featured": "A dynamic failure hidden by the static test",
+          "selection": "largest observed motion error among source passes",
+          "source_pass": true,
+          "relative_pass": false,
+          "motion_pass": false,
+          "combined_pass": false,
+          "handle_pass": null,
+          "motion_error_mm": 4450.63,
+          "motion_error_deg": 177.7,
+          "contact_bodies": 6,
+          "penetration_mm": 4.244,
+          "audit": "runs/mid-s12_leap/physical-v2-m0.1-f0.6/fingertip_mid/brick-s1.5/floating/scene/0_9_grasp.json",
+          "audit_url": "../runs/mid-s12_leap/physical-v2-m0.1-f0.6/fingertip_mid/brick-s1.5/floating/scene/0_9_grasp.json",
+          "source": "runs/mid-s12_leap/grasp_data/fingertip_mid/brick-s1.5/floating/scene/0_9_grasp.npy",
+          "models": {
+            "closed": {
+              "file": "catalog/1c71106ad54091-closed.glb",
+              "bytes": 1283352,
+              "sha256": "59d66e366ffa8b88641a30ae3fdcbbb28c4ff7bf5a7c05af40637b7d17ac51d2",
+              "hand_center": [
+                -0.06429397003133279,
+                0.023649359730308107,
+                -0.009176212482607152
+              ],
+              "object_center": [
+                0.0008588267667131548,
+                0.0011414154582300197,
+                0.0011080220410937362
+              ],
+              "bounds": [
+                [
+                  -0.164517348451084,
+                  -0.06647784992372859,
+                  -0.08578528895994242
+                ],
+                [
+                  0.03965395652185148,
+                  0.1137765693843448,
+                  0.06743286399472811
+                ]
+              ]
+            },
+            "final": {
+              "file": "catalog/1c71106ad54091-final.glb",
+              "bytes": 1283348,
+              "sha256": "67c8043470a770dbfd0d08fe23ea089a4cfebd6c68182916fa90f516fd6fc6e1",
+              "hand_center": [
+                -0.008263536798557305,
+                0.023187966726572994,
+                0.16722237673895485
+              ],
+              "object_center": [
+                0.2524689281890658,
+                0.04744543483073736,
+                -4.379642428362365
+              ],
+              "bounds": [
+                [
+                  -0.07843601797520153,
+                  -0.06752527559553465,
+                  -4.441379763125624
+                ],
+                [
+                  0.2932977486371282,
+                  0.11557341656271634,
+                  0.26633295170681964
+                ]
+              ]
+            }
+          }
+        },
+        {
+          "id": "e1d16bdd8b2a37",
+          "object": "brick",
+          "scene": "brick-s1.5",
+          "dimensions_mm": [
+            78.6,
+            116.5,
+            76.5
+          ],
+          "scale": 1.5,
+          "method": "Dexonomy \u00b7 quarter squeeze",
+          "run": "mid-squeeze0.25-s12_leap",
+          "candidate": "0_9",
+          "featured": "Repair the same brick grasp: gentler enclosure",
+          "selection": "first filename satisfying the stated example criteria",
+          "source_pass": true,
+          "relative_pass": true,
+          "motion_pass": true,
+          "combined_pass": true,
+          "handle_pass": null,
+          "motion_error_mm": 19.06,
+          "motion_error_deg": 3.29,
+          "contact_bodies": 4,
+          "penetration_mm": 0.665,
+          "audit": "runs/mid-squeeze0.25-s12_leap/physical-v2-m0.1-f0.6/fingertip_mid/brick-s1.5/floating/scene/0_9_grasp.json",
+          "audit_url": "../runs/mid-squeeze0.25-s12_leap/physical-v2-m0.1-f0.6/fingertip_mid/brick-s1.5/floating/scene/0_9_grasp.json",
+          "source": "runs/mid-squeeze0.25-s12_leap/grasp_data/fingertip_mid/brick-s1.5/floating/scene/0_9_grasp.npy",
+          "models": {
+            "closed": {
+              "file": "catalog/e1d16bdd8b2a37-closed.glb",
+              "bytes": 1283352,
+              "sha256": "a6a9188836875623f3d9fac2d33238b57747aba26cc751f2c6c759463af71631",
+              "hand_center": [
+                -0.0645111381805479,
+                0.024181572328924053,
+                -0.009200042630086641
+              ],
+              "object_center": [
+                0.000708990859941,
+                0.0006300173161435212,
+                0.0006206335883244436
+              ],
+              "bounds": [
+                [
+                  -0.16461881497482994,
+                  -0.0655768125984325,
+                  -0.08638629279440235
+                ],
+                [
+                  0.039919831113458655,
+                  0.1139399572562806,
+                  0.06798620753422907
+                ]
+              ]
+            },
+            "final": {
+              "file": "catalog/e1d16bdd8b2a37-final.glb",
+              "bytes": 1283348,
+              "sha256": "f35c74b47b940c895f1b20195ba903871b72d91307a5dc3a9419f97bbcb1830c",
+              "hand_center": [
+                -0.011064355042769924,
+                0.02559007011429608,
+                0.16451360740372564
+              ],
+              "object_center": [
+                -0.0013983459240436182,
+                0.002507731430131468,
+                0.09786287957709114
+              ],
+              "bounds": [
+                [
+                  -0.088201083701922,
+                  -0.06383771712388733,
+                  0.05891273226485013
+                ],
+                [
+                  0.06607237361638216,
+                  0.11501785735247949,
+                  0.2643510004584553
+                ]
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "small-bottle",
+      "title": "Optimizer choice can rescue a small object",
+      "description": "34 mm-diameter bottle. GraspADMM reuses the same wrap initializations as fixed Dexonomy, with its own released defaults.",
+      "metric": "Combined physical success, seed 12",
+      "rates": [
+        "0/10 (0%)",
+        "10/10 (100%)"
+      ],
+      "counts": [
+        [
+          0,
+          10
+        ],
+        [
+          10,
+          10
+        ]
+      ],
+      "labels": [
+        "Fixed Dexonomy wrap",
+        "Default GraspADMM wrap"
+      ],
+      "stage": "closed",
+      "caution": "All ten Dexonomy candidates were rejected before physical closure, so no executed baseline grasp exists to display. ADMM takes more optimization work per candidate; this is not equal wall-time comparison.",
+      "cases": [
+        null,
+        {
+          "id": "86715e64f18cac",
+          "object": "bottle",
+          "scene": "bottle-s0.05",
+          "dimensions_mm": [
+            34.2,
+            89.5,
+            34.2
+          ],
+          "scale": 0.05,
+          "method": "GraspADMM \u00b7 wrap",
+          "run": "admm-s12_leap",
+          "candidate": "0_0",
+          "featured": "Small bottle: change the optimizer",
+          "selection": "first filename satisfying the stated example criteria",
+          "source_pass": true,
+          "relative_pass": true,
+          "motion_pass": true,
+          "combined_pass": true,
+          "handle_pass": null,
+          "motion_error_mm": 8.1,
+          "motion_error_deg": 2.77,
+          "contact_bodies": 5,
+          "penetration_mm": 1.095,
+          "audit": "runs/admm-s12_leap/physical-v2-m0.1-f0.6/4_Adducted_Thumb/bottle-s0.05/floating/scene/0_0_grasp.json",
+          "audit_url": "../runs/admm-s12_leap/physical-v2-m0.1-f0.6/4_Adducted_Thumb/bottle-s0.05/floating/scene/0_0_grasp.json",
+          "source": "runs/admm-s12_leap/grasp_data/4_Adducted_Thumb/bottle-s0.05/floating/scene/0_0_grasp.npy",
+          "models": {
+            "closed": {
+              "file": "catalog/86715e64f18cac-closed.glb",
+              "bytes": 1340360,
+              "sha256": "8087b536b247975761fdc73f79ac04c69e7072a88c6144db5a690092ca2b2884",
+              "hand_center": [
+                -0.013123565183292163,
+                -0.003759413510199164,
+                0.02347594709889607
+              ],
+              "object_center": [
+                -0.0016078039159532946,
+                0.0008506265505670157,
+                0.0031340988504650284
+              ],
+              "bounds": [
+                [
+                  -0.08697421880107847,
+                  -0.08452694513958675,
+                  -0.05260568297501508
+                ],
+                [
+                  0.06072708843449415,
+                  0.07700811811918842,
+                  0.09955757717280722
+                ]
+              ]
+            },
+            "final": {
+              "file": "catalog/86715e64f18cac-final.glb",
+              "bytes": 1340348,
+              "sha256": "7ab029a29604761653ededbe56045f400ecb9a7145f883f011504c8269feedba",
+              "hand_center": [
+                0.01931380521935653,
+                -0.005045997808790684,
+                0.11215673812222085
+              ],
+              "object_center": [
+                -0.0005257624720956932,
+                -0.00041050643845259513,
+                0.10092565047126681
+              ],
+              "bounds": [
+                [
+                  -0.0570411105356244,
+                  -0.08574985050956083,
+                  0.03890748624689537
+                ],
+                [
+                  0.09566872097433746,
+                  0.07565785489197946,
+                  0.18540598999754632
+                ]
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "can",
+      "title": "Contact topology must fit the object",
+      "description": "Small can proxy, approximately 51 \u00d7 30 \u00d7 42 mm. Changing the released contact template from wrap to mid fingertips, with Dexonomy optimizer defaults, recovers grasps.",
+      "metric": "Combined physical success, seed 12",
+      "rates": [
+        "0/10 (0%)",
+        "8/10 (80%)"
+      ],
+      "counts": [
+        [
+          0,
+          10
+        ],
+        [
+          8,
+          10
+        ]
+      ],
+      "labels": [
+        "Fixed Dexonomy wrap",
+        "Dexonomy mid fingertips"
+      ],
+      "stage": "closed",
+      "caution": "The template changes contact geometry and corresponding initial proposals. This is not evidence that an individual scalar optimizer hyperparameter caused the gain. No accepted baseline closure exists.",
+      "cases": [
+        null,
+        {
+          "id": "757236c9007646",
+          "object": "can",
+          "scene": "can-s0.5",
+          "dimensions_mm": [
+            51.3,
+            29.9,
+            41.6
+          ],
+          "scale": 0.5,
+          "method": "Dexonomy \u00b7 mid fingertips",
+          "run": "mid-s12_leap",
+          "candidate": "0_0",
+          "featured": "Small can: change the contact template",
+          "selection": "first filename satisfying the stated example criteria",
+          "source_pass": true,
+          "relative_pass": true,
+          "motion_pass": true,
+          "combined_pass": true,
+          "handle_pass": null,
+          "motion_error_mm": 17.51,
+          "motion_error_deg": 3.15,
+          "contact_bodies": 4,
+          "penetration_mm": 1.122,
+          "audit": "runs/mid-s12_leap/physical-v2-m0.1-f0.6/fingertip_mid/can-s0.5/floating/scene/0_0_grasp.json",
+          "audit_url": "../runs/mid-s12_leap/physical-v2-m0.1-f0.6/fingertip_mid/can-s0.5/floating/scene/0_0_grasp.json",
+          "source": "runs/mid-s12_leap/grasp_data/fingertip_mid/can-s0.5/floating/scene/0_0_grasp.npy",
+          "models": {
+            "closed": {
+              "file": "catalog/757236c9007646-closed.glb",
+              "bytes": 1269352,
+              "sha256": "536028cd83f68c068f70e258afc912a5089aa370544be2b86d2c9efa1f556327",
+              "hand_center": [
+                -0.032932292754139385,
+                0.06852502999212574,
+                -0.0007410206251948492
+              ],
+              "object_center": [
+                -0.00016003911162400068,
+                -0.0003299595132796292,
+                -0.0003085932925255292
+              ],
+              "bounds": [
+                [
+                  -0.1135958071993511,
+                  -0.02908868083125995,
+                  -0.06402210635518892
+                ],
+                [
+                  0.04773122169107233,
+                  0.16613874081551144,
+                  0.06254006510479922
+                ]
+              ]
+            },
+            "final": {
+              "file": "catalog/757236c9007646-final.glb",
+              "bytes": 1269348,
+              "sha256": "f9f538dc43f7d9cae0fa21d67a5b85becd154ae3311b5709b1d7438bf471c95f",
+              "hand_center": [
+                -0.0010029157797100292,
+                0.07144436209057746,
+                0.12847392082858222
+              ],
+              "object_center": [
+                -0.00044410042521452614,
+                0.0026903275671000164,
+                0.0941050566836533
+              ],
+              "bounds": [
+                [
+                  -0.06429573877872023,
+                  -0.026317349677718614,
+                  0.0472560192692284
+                ],
+                [
+                  0.062289907219300174,
+                  0.16920607385887354,
+                  0.20969182238793607
+                ]
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "mug",
+      "title": "A semantic handle region gives only partial recovery",
+      "description": "274 mm mug. Combine handle-region matching, mid fingertips, and ADMM while keeping the full collider. One combined pass was found.",
+      "metric": "Combined physical success, seed 12",
+      "rates": [
+        "0/10 (0%)",
+        "1/10 (10%)"
+      ],
+      "counts": [
+        [
+          0,
+          10
+        ],
+        [
+          1,
+          10
+        ]
+      ],
+      "labels": [
+        "Fixed GraspADMM wrap",
+        "Handle-region matching + mid + ADMM"
+      ],
+      "stage": "closed",
+      "caution": "The displayed adapted grasp is the sole pass. The 411 mm mug remains 0/10; this is not a robust solution. Several settings change, so their individual effects are unresolved.",
+      "cases": [
+        null,
+        {
+          "id": "38fc6b9fa70c49",
+          "object": "mug",
+          "scene": "mug-s0.2",
+          "dimensions_mm": [
+            207.6,
+            215.2,
+            274.2
+          ],
+          "scale": 0.2,
+          "method": "GraspADMM \u00b7 mug handle",
+          "run": "mug-region-admm-s12_leap",
+          "candidate": "0_4",
+          "featured": "Oversized mug: a fragile partial recovery",
+          "selection": "first filename satisfying the stated example criteria",
+          "source_pass": true,
+          "relative_pass": true,
+          "motion_pass": true,
+          "combined_pass": true,
+          "handle_pass": null,
+          "motion_error_mm": 15.19,
+          "motion_error_deg": 3.69,
+          "contact_bodies": 5,
+          "penetration_mm": 1.144,
+          "audit": "runs/mug-region-admm-s12_leap/physical-v2-m0.1-f0.6/fingertip_mid/mug-s0.2/floating/scene/0_4_grasp.json",
+          "audit_url": "../runs/mug-region-admm-s12_leap/physical-v2-m0.1-f0.6/fingertip_mid/mug-s0.2/floating/scene/0_4_grasp.json",
+          "source": "runs/mug-region-admm-s12_leap/grasp_data/fingertip_mid/mug-s0.2/floating/scene/0_4_grasp.npy",
+          "models": {
+            "closed": {
+              "file": "catalog/38fc6b9fa70c49-closed.glb",
+              "bytes": 1342632,
+              "sha256": "ee8a5f3a951ec8f983ef76731951466768c45d9d9e8862d0d206fc9d2fb096b3",
+              "hand_center": [
+                0.010989387280750617,
+                -0.017816364205975876,
+                -0.16448099088724896
+              ],
+              "object_center": [
+                -0.0011147928656214806,
+                0.0014960046037323232,
+                0.00018590296271504825
+              ],
+              "bounds": [
+                [
+                  -0.1058428754329339,
+                  -0.11470706021644064,
+                  -0.25788757848496
+                ],
+                [
+                  0.10361328970169094,
+                  0.11054110647812981,
+                  0.13747565723771799
+                ]
+              ]
+            },
+            "final": {
+              "file": "catalog/38fc6b9fa70c49-final.glb",
+              "bytes": 1342632,
+              "sha256": "5878bec2f250d32e766dd524ea52c61f23872bda4c71cf5bf107428536edf8f9",
+              "hand_center": [
+                -0.16377395743272705,
+                -0.015721483536507916,
+                0.08209074272470454
+              ],
+              "object_center": [
+                0.0021428164462941324,
+                0.006524355201996748,
+                0.08809815473947691
+              ],
+              "bounds": [
+                [
+                  -0.25596309629519987,
+                  -0.11215802239362566,
+                  -0.020273010509772663
+                ],
+                [
+                  0.13964679124328808,
+                  0.11976867268432198,
+                  0.19646931998872647
+                ]
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "large-bottle",
+      "title": "Larger fingertips do not solve every large object",
+      "description": "205 mm-diameter, 537 mm-tall bottle. A larger contact template produces repository-test passes, but none passes the stricter physical combination.",
+      "metric": "Combined physical success, seed 12",
+      "rates": [
+        "0/10 (0%)",
+        "0/10 (0%)"
+      ],
+      "counts": [
+        [
+          0,
+          10
+        ],
+        [
+          0,
+          10
+        ]
+      ],
+      "labels": [
+        "Fixed Dexonomy wrap",
+        "Dexonomy large fingertips"
+      ],
+      "stage": "final",
+      "caution": "The alternative passes the repository static test in 9/10 cases but passes movement in 0/10. The shown tracking error is 24.8 mm, not a claim that every object flies away.",
+      "cases": [
+        null,
+        {
+          "id": "5b1be6724a7d94",
+          "object": "bottle",
+          "scene": "bottle-s0.3",
+          "dimensions_mm": [
+            205.0,
+            537.3,
+            204.9
+          ],
+          "scale": 0.3,
+          "method": "Dexonomy \u00b7 large fingertips",
+          "run": "large-s12_leap",
+          "candidate": "0_0",
+          "featured": "Large bottle: repo pass, motion failure",
+          "selection": "first filename satisfying the stated example criteria",
+          "source_pass": true,
+          "relative_pass": false,
+          "motion_pass": false,
+          "combined_pass": false,
+          "handle_pass": null,
+          "motion_error_mm": 24.78,
+          "motion_error_deg": 4.79,
+          "contact_bodies": 4,
+          "penetration_mm": 1.339,
+          "audit": "runs/large-s12_leap/physical-v2-m0.1-f0.6/fingertip_large/bottle-s0.3/floating/scene/0_0_grasp.json",
+          "audit_url": "../runs/large-s12_leap/physical-v2-m0.1-f0.6/fingertip_large/bottle-s0.3/floating/scene/0_0_grasp.json",
+          "source": "runs/large-s12_leap/grasp_data/fingertip_large/bottle-s0.3/floating/scene/0_0_grasp.npy",
+          "models": {
+            "closed": {
+              "file": "catalog/5b1be6724a7d94-closed.glb",
+              "bytes": 1340348,
+              "sha256": "3ab58402d3fe5f1af19d8644e916bac3e8a4857d961443f7ed93bd13e71eaeec",
+              "hand_center": [
+                0.01732845826511001,
+                0.21379916615254477,
+                0.07192862561128771
+              ],
+              "object_center": [
+                0.00036310213864164387,
+                -0.0011142245398122197,
+                -0.0007474540172099434
+              ],
+              "bounds": [
+                [
+                  -0.10253171890261835,
+                  -0.26997669727405627,
+                  -0.10338303993436694
+                ],
+                [
+                  0.12064765267895047,
+                  0.28264484069355683,
+                  0.16101029321137067
+                ]
+              ]
+            },
+            "final": {
+              "file": "catalog/5b1be6724a7d94-final.glb",
+              "bytes": 1340348,
+              "sha256": "f1aa9a1b97e1a88699035688bac42910bb64eed53a0bfd9f5119181c759eeb25",
+              "hand_center": [
+                0.07193042570381049,
+                0.21455177491167682,
+                0.07430849232368555
+              ],
+              "object_center": [
+                -0.0017682497782776016,
+                -0.0030466703863643585,
+                0.06958502912380791
+              ],
+              "bounds": [
+                [
+                  -0.10457217694325528,
+                  -0.27499866766129405,
+                  -0.04272926074061126
+                ],
+                [
+                  0.1592748535187906,
+                  0.2847207609797834,
+                  0.1818993189882271
+                ]
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "source_checks": {
+    "raw_aggregation_matches_saved": true,
+    "rows": 137,
+    "accepted_candidates_all_audited": true
+  },
+  "input_sha256": {
+    "summary.json": "443462e7cd40a53d4715c76829116e507ae47b956929e929aade25408fda7afd",
+    "confirmation-plan.json": "5736bac31b66bd3b093cb28566c97fecf3237c7e9d3144c149715bc168ca4440",
+    "confirmation-map.json": "8e968b52b4c19473fddc6d7baff622789b8f1eee2834ffed99ce4ae046c93409",
+    "index.json": "5d0c7e08a3fb22c6e1345550d7311b2da2e136fe0bc1c27af360412705d952a0",
+    "compare_results.py": "b7c6dbb46c2f104eaea78209dd27ed2c7350a98c34336af0eabdf4ad84570286"
+  }
+}

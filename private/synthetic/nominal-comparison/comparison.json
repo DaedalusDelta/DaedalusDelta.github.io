@@ -1,0 +1,30 @@
+{
+  "seed": 43024,
+  "donor": "ep_0095",
+  "identical_initial_state": true,
+  "controller_and_physics_unchanged": true,
+  "variants": {
+    "current": {
+      "episode": "study-artifacts/motion-style-v5/executions/43024/attempt-0/episodes/43024",
+      "seconds": 16.3,
+      "error": null,
+      "qualified": true,
+      "unwanted_contacts": 0,
+      "initial_qpos_sha256": "80f2592f1d5bf46545eac7807b7239ee0a7228d4c9d0ef1a63d0a0bf7e5cd288"
+    },
+    "nominal": {
+      "episode": "study-artifacts/nominal-front-comparison-v1/nominal/43024",
+      "seconds": 13.620000000000001,
+      "error": null,
+      "qualified": true,
+      "unwanted_contacts": 0,
+      "initial_qpos_sha256": "80f2592f1d5bf46545eac7807b7239ee0a7228d4c9d0ef1a63d0a0bf7e5cd288"
+    }
+  },
+  "source_sha256": {
+    "tuning.py": "d9fa1bc28db4bdd4dfe35dabc772f5cb8454f627c031abf597d2907226fe4080",
+    "simulate.py": "92df28599d8e87afa629966cff0914f7b5b56c0b3fda628d881f4d042736b276",
+    "render_front.py": "a105564161cb39d7cbd47b9d989a4a302f723a10888a6b26a58503cd12fc966e"
+  },
+  "interpretation": "Human ep_0095 is the source of geometric shape templates; simulation initial state is seed43024, independent of human recording."
+}

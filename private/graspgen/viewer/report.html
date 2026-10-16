@@ -1,0 +1,341 @@
+<!doctype html><html><meta name="robots" content="noindex, nofollow, noarchive"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><base href="../"><title>Grasp size and intent: experimental report</title><style>body{max-width:1000px;margin:auto;padding:28px;font:17px/1.65 system-ui,sans-serif;color:#292b38;background:white}h1{line-height:1.2}h2{margin-top:2.3em;border-bottom:1px solid #e5e1ea;padding-bottom:.3em}table{border-collapse:collapse;width:100%;font-size:15px}td,th{padding:9px 12px;border-bottom:1px solid #ddd;text-align:left}th{background:#f4f1f8}img{max-width:100%}pre{overflow:auto;background:#f4f1f8;padding:18px;border-radius:8px}blockquote{border-left:4px solid #9c87c2;padding:1px 20px;background:#faf8fe}a{color:#5b428a}code{font-size:.9em}</style><body><h1 id="object-size-contact-choice-and-functional-grasping">Object size, contact choice, and functional grasping</h1>
+<p><strong>Local experimental investigation — 16 October 2026.</strong> Donald; LEAP hand; native Dexonomy and GraspADMM. <a href="viewer/index.html">Interactive measured-state examples and videos</a> · <a href="summary.csv">all condition counts</a> · <a href="objects.json">object provenance</a>.</p>
+<h2 id="what-we-learned">What we learned</h2>
+<p>The experiments support a narrower, more useful version of the hypothesis: <strong>a configuration that holds one object well can be unsuitable at another scale or for another intended use. Choosing contacts, the optimization method, and the enclosure command can help—but no single adjustment worked everywhere.</strong></p>
+<p>Three concrete recoveries:</p>
+<ol>
+<li>A 34 mm-diameter bottle produced <strong>0/10 accepted grasps with the fixed Dexonomy wrap configuration</strong>, but <strong>10/10 passed all three physical tests with default GraspADMM on the same initializations</strong>. This is a stronger existing optimizer solving the problem, not evidence that an agent is necessary.</li>
+<li>For a 179 mm-long hammer, ordinary grasps often held the head. Handle-targeted contact matching plus a fingertip template produced <strong>4/10 grasps passing the repository test, relative retention, movement, and our handle-only contact criterion</strong>. A new random seed produced <strong>2/10</strong>, versus <strong>0/10 functionally eligible grasps from the fixed ADMM-wrap baseline</strong>.</li>
+<li>One brick grasp passed the repository test but was ejected during movement. Keeping its optimized pose unchanged and using <strong>one quarter of the original squeeze displacement</strong> recovered that exact candidate. Across two brick sizes, motion passes improved <strong>6/20 → 11/20</strong>; passes of all three physical tests improved <strong>6/20 → 10/20</strong>.</li>
+</ol>
+<p>There are equally important negative results. Longer optimization did not improve the small-object motion total. A shorter pregrasp opening did not improve it either. The oversized bottle remained unsuccessful in movement. The largest mug remained unsuccessful in the combined tests. A template choice that looked better on the first seed became worse on the second.</p>
+<p><strong>This is evidence for adaptive selection and physical feedback, not proof that an LLM agent outperforms a well-designed rule-based selector or template search.</strong></p>
+<h2 id="objects-and-experimental-controls">Objects and experimental controls</h2>
+<p>Seven geometries were evaluated at 24 size conditions. These are deliberately different shapes: cylindrical bottle, hollow mug with handle, thin phone, curved banana, rectangular can, brick, and asymmetric hammer.</p>
+<table>
+<thead>
+<tr>
+<th>Geometry</th>
+<th>Source</th>
+<th>Scales tested</th>
+<th>Largest dimension, cm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bottle</td>
+<td>Released Dexonomy/DGN_5k mesh</td>
+<td>0.05, 0.10, 0.20, 0.30</td>
+<td>8.95, 17.91, 35.82, 53.73</td>
+</tr>
+<tr>
+<td>Mug</td>
+<td>Released Dexonomy/DGN_5k mesh</td>
+<td>0.05, 0.10, 0.20, 0.30</td>
+<td>6.86, 13.71, 27.42, 41.13</td>
+</tr>
+<tr>
+<td>Phone</td>
+<td>Released Dexonomy/DGN_5k mesh</td>
+<td>0.05, 0.10, 0.20, 0.30</td>
+<td>7.62, 15.25, 30.49, 45.74</td>
+</tr>
+<tr>
+<td>Banana</td>
+<td>YCB geometry distributed with Isaac Gym</td>
+<td>0.5, 1.0, 1.5</td>
+<td>8.87, 17.74, 26.61</td>
+</tr>
+<tr>
+<td>Can</td>
+<td>YCB geometry distributed with Isaac Gym</td>
+<td>0.5, 1.0, 1.5</td>
+<td>5.13, 10.27, 15.40</td>
+</tr>
+<tr>
+<td>Brick</td>
+<td>YCB geometry distributed with Isaac Gym</td>
+<td>0.5, 1.0, 1.5</td>
+<td>3.88, 7.77, 11.65</td>
+</tr>
+<tr>
+<td>Hammer</td>
+<td>MetaWorld hammer geometry</td>
+<td>0.5, 1.0, 1.5</td>
+<td>17.90, 35.80, 53.70</td>
+</tr>
+</tbody>
+</table>
+<p>The YCB objects use convex collision proxies; the banana's concavity is therefore not represented. The hammer uses separate meshes converted from its source primitives, with uniform-density mass distribution rather than MetaWorld's original component masses. The original DGN collision decompositions are retained. Units for the YCB meshes were read from their URDFs, not guessed from mesh coordinates. Exact dimensions, source paths, hashes, and representation changes are in <code>objects.json</code> and <code>prepare.py</code>.</p>
+<p>The source density convention targets a <strong>nominal 100 g</strong>, independently of scale, to separate geometric effects from increasing weight. A compiled-model check found approximately <strong>99.1 g for the bottle, 95.2 g for the mug, 97.9 g for the phone, and 100 g for the other four geometries</strong>, because the original mesh metadata and collision volumes differ slightly (<code>mass-check.json</code>). The same convention and collider are used in each matched comparison. This deliberately makes very large objects lighter than many real counterparts. Object pose, hand, collider, friction, and tests were held fixed across each comparison. There is no table, floor, or neighboring object supporting the grasp.</p>
+<p>Each condition receives ten retained initialization candidates, generated from 1,024 surface samples × eight in-plane orientations and 100 matching iterations. Candidates rejected by optimization still count in the denominator. Source initialization filters can pad their output with less-qualified candidates; their message “10 valid” is not treated as ten successful grasps.</p>
+<p>This is a <strong>controlled one-epoch pilot</strong>, not the authors' full dataset-generation campaign: the source initialization default has five epochs, and template evolution is disabled here to prevent cross-condition contamination. The optimization settings themselves are the source defaults unless a change is explicitly identified. The released LEAP wrap, middle-fingertip, and large-fingertip templates are tested, so conclusions do not depend only on deliberately choosing one unsuitable template.</p>
+<p>The investigation completed <strong>1,320 optimization attempts across configurations</strong>, plus <strong>40 derived enclosure-command variants</strong> and <strong>36 perturbation checks of selected examples</strong>. Four memory-only retries are recorded separately, not counted as additional independent trials. These are attempts, not 1,320 independent object instances.</p>
+<h2 id="what-pass-means">What “pass” means</h2>
+<p>All physics uses the native MuJoCo-based implementation, with MuJoCo 3.11.0. This is not an IsaacLab validation or a hardware experiment.</p>
+<p><strong>Repository test.</strong> Replay the generated pregrasp → grasp → squeeze. Apply object-weight force in each of six axis directions for two seconds, resetting between directions. The released test permits up to <strong>5 cm translation and 15° rotation</strong> from the initial object pose. Source: <a href="https://github.com/JYChen18/Dexonomy/blob/d561ff9df8545deef7a3f9e7cfb4045ef66f6913/dexonomy/config/op/eval.yaml">evaluation configuration</a> and <a href="https://github.com/JYChen18/Dexonomy/blob/d561ff9df8545deef7a3f9e7cfb4045ef66f6913/dexonomy/sim/mujoco_env.py">simulation implementation</a>.</p>
+<p><strong>Relative retention.</strong> During the same six perturbations, require sampled object motion relative to the <em>actual hand root</em> below <strong>1 cm / 15°</strong>, at least two hand bodies with load-bearing contact, and hand–object penetration below <strong>2 mm</strong>. This separates object slip from motion of the compliant simulated wrist. We also retain the stricter world-coordinate measurements; they should not be interpreted as pure grasp slip.</p>
+<p><strong>Movement.</strong> After closing, lift 10 cm over one second, rotate 90° over two seconds, then hold for one second under object-weight loading. Require sampled object tracking error below <strong>2 cm / 15°</strong>, at least two load-bearing hand bodies, and hand–object penetration below <strong>2 mm</strong>. Measurements are taken every 20 ms; force-direction checks are sampled every 200 ms.</p>
+<p><strong>Combined pass</strong> means all three tests pass. The tests are not nested: a candidate can pass movement but fail a different force direction. “Below 2 mm” is a soft-contact simulation tolerance, not a claim of mathematically zero penetration. These checks do not certify every hand self-collision, hardware torque limit, or real-world stability condition.</p>
+<p><strong>Hammer intent proxy.</strong> In addition to the physical tests, all force-bearing contacts after closure must be on the handle. This is our declared criterion for preparing a hammering grasp. It is stricter than carrying the object, but it does <strong>not</strong> prove strike-face clearance, impact success, or nail insertion. Videos show actual closure and movement, not the optimizer's desired configuration.</p>
+<h2 id="scale-and-method-comparison">Scale and method comparison</h2>
+<p><img alt="Measured movement results" src="viewer/scale-results.png" /></p>
+<p>Each main configuration attempted all 24 conditions × ten initializations. The ADMM run reused the exact wrap initializations; the two fingertip runs used their corresponding released templates with the same sampling seed and proposal budget.</p>
+<table>
+<thead>
+<tr>
+<th>Fixed configuration</th>
+<th style="text-align: right;">Accepted by optimizer</th>
+<th style="text-align: right;">Repository test</th>
+<th style="text-align: right;">Relative retention</th>
+<th style="text-align: right;">Movement</th>
+<th style="text-align: right;">Combined</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dexonomy, wrap</td>
+<td style="text-align: right;">97/240</td>
+<td style="text-align: right;">86/240</td>
+<td style="text-align: right;">71/240</td>
+<td style="text-align: right;">71/240</td>
+<td style="text-align: right;">68/240</td>
+</tr>
+<tr>
+<td>Dexonomy, fingertip mid</td>
+<td style="text-align: right;">182/240</td>
+<td style="text-align: right;">129/240</td>
+<td style="text-align: right;">73/240</td>
+<td style="text-align: right;">62/240</td>
+<td style="text-align: right;">51/240</td>
+</tr>
+<tr>
+<td>Dexonomy, fingertip large</td>
+<td style="text-align: right;">147/240</td>
+<td style="text-align: right;">128/240</td>
+<td style="text-align: right;">89/240</td>
+<td style="text-align: right;">75/240</td>
+<td style="text-align: right;">70/240</td>
+</tr>
+<tr>
+<td>GraspADMM, wrap</td>
+<td style="text-align: right;">148/240</td>
+<td style="text-align: right;">133/240</td>
+<td style="text-align: right;">111/240</td>
+<td style="text-align: right;">108/240</td>
+<td style="text-align: right;">105/240</td>
+</tr>
+</tbody>
+</table>
+<p>There is no universally best contact template. For example, the smallest can has movement results <strong>0/10 wrap, 8/10 mid fingertips, 6/10 large fingertips, and 1/10 ADMM-wrap</strong>. Conversely, ADMM-wrap is much better on the small bottle. The larger banana favors the large-fingertip template. A selector has useful choices to make, but strong fixed baselines already solve many cases.</p>
+<p>For the bottle, fixed Dexonomy-wrap movement success is <strong>0/10, 8/10, 3/10, 0/10</strong> as diameter increases through approximately <strong>34, 68, 137, 205 mm</strong>. This is a size-dependent operating range, not simply “bigger is always worse.” Required-contact failures are visible in the saved filter logs on small objects; large objects also produce contact, retention, and motion failures.</p>
+<p>The largest bottle with the large-fingertip template passes the repository test <strong>9/10</strong>, but movement and combined success are <strong>0/10</strong>. The selected viewer case has 24.8 mm movement tracking error, exceeding the 20 mm limit. That does not establish the source evaluator is incorrect; it demonstrates that its static tolerance does not guarantee our more precise moving-object requirement.</p>
+<p>A more severe selected brick case passes the source test but loses the object during rotation, reaching <strong>4.45 m</strong> tracking error and approximately <strong>20 mm</strong> sampled penetration during the unstable motion. The visual evidence labels this as a selected severe failure, not typical behavior of every candidate.</p>
+<h2 id="what-the-agent-changedand-what-did-not-help">What the agent changed—and what did not help</h2>
+<h3 id="contact-regions-must-affect-matching-not-just-initialization">Contact regions must affect matching, not just initialization</h3>
+<p>After inspecting the hammer geometry, I first sampled proposals near its handle. This did <strong>not</strong> solve the small hammer's intended-use problem: the subsequent unconstrained matcher still returned head grasps. The source objective rewards geometrically convenient stable contacts; it has no instruction to preserve the head for use.</p>
+<p>The stronger intervention uses a manually identified handle surface for <strong>contact matching</strong>, while collision checks, mass, center of mass, and physical evaluation retain the <strong>complete hammer</strong>. The selected raw-coordinate patch is <code>x &lt; 0.08</code>; it is a source-geometry annotation, not a learned segmentation result. Together with the released middle-fingertip template, this gives handle-only contacts in all ten small-hammer candidates, but only <strong>4/10</strong> pass all physical tests. Correct semantics alone is not enough.</p>
+<p>For the oversized mug, visual inspection identified its protruding handle on negative z. Restricting contact matching to <code>z &lt; -0.4</code> in source coordinates, retaining the full collider, and using ADMM recovered <strong>1/10 combined passes at the 27.4 cm size</strong>. The 41.1 cm mug remained <strong>0/10 combined</strong>. This is a partial recovery with low candidate yield, not a solved large-object problem.</p>
+<h3 id="more-iterations-and-less-opening-were-not-general-fixes">More iterations and less opening were not general fixes</h3>
+<p>Matched ablations on the smallest size of each of the seven objects reused the middle-fingertip initializations:</p>
+<table>
+<thead>
+<tr>
+<th>Change</th>
+<th style="text-align: right;">Repository test</th>
+<th style="text-align: right;">Movement</th>
+<th style="text-align: right;">Combined</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Default, 20-iteration cap</td>
+<td style="text-align: right;">37/70</td>
+<td style="text-align: right;">30/70</td>
+<td style="text-align: right;">26/70</td>
+</tr>
+<tr>
+<td>100-iteration cap, same early stopping</td>
+<td style="text-align: right;">38/70</td>
+<td style="text-align: right;">30/70</td>
+<td style="text-align: right;">27/70</td>
+</tr>
+<tr>
+<td>Pregrasp distance 45 → 15 mm</td>
+<td style="text-align: right;">38/70</td>
+<td style="text-align: right;">29/70</td>
+<td style="text-align: right;">26/70</td>
+</tr>
+</tbody>
+</table>
+<p>The shorter opening also reduces the generation-stage pregrasp clearance filter from 40 to 12 mm; downstream evaluation criteria are unchanged. These results do not support blindly increasing iterations or shrinking all distances. The source may stop before the configured maximum.</p>
+<h3 id="the-enclosure-controller-can-undo-a-good-optimized-pose">The enclosure controller can undo a good optimized pose</h3>
+<p>For two brick sizes, I kept the optimized grasp and pregrasp unchanged and scaled only the commanded joint displacement from grasp to squeeze:</p>
+<p><code>new_squeeze = grasp + multiplier × (original_squeeze − grasp)</code></p>
+<table>
+<thead>
+<tr>
+<th>Squeeze multiplier</th>
+<th style="text-align: right;">Repository test</th>
+<th style="text-align: right;">Movement</th>
+<th style="text-align: right;">Combined</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0, source command</td>
+<td style="text-align: right;">13/20</td>
+<td style="text-align: right;">6/20</td>
+<td style="text-align: right;">6/20</td>
+</tr>
+<tr>
+<td>0.5</td>
+<td style="text-align: right;">15/20</td>
+<td style="text-align: right;">7/20</td>
+<td style="text-align: right;">7/20</td>
+</tr>
+<tr>
+<td>0.25</td>
+<td style="text-align: right;">17/20</td>
+<td style="text-align: right;">11/20</td>
+<td style="text-align: right;">10/20</td>
+</tr>
+</tbody>
+</table>
+<p>The severe brick failure above becomes a combined pass at 0.25, with <strong>19.1 mm</strong> maximum motion tracking error and <strong>0.55 mm</strong> maximum sampled penetration. At 0.5 it also recovers. This directly supports checking the <em>executed enclosure</em>, not only the optimized configuration. It does not establish that lower squeeze is universally better: the recovered 0.25 candidate fails the combined criteria when mass increases from 100 to 120 g.</p>
+<h2 id="new-seed-confirmation-useful-gains-real-regressions">New-seed confirmation: useful gains, real regressions</h2>
+<p>A choice policy was frozen after inspecting seed 12, then tested at seed 29 with ten candidates per condition. The baseline is <strong>ADMM-wrap</strong>, the strongest global fixed configuration in the first sweep. When the selector chose ADMM itself, the identical result was reused rather than generating extra candidates. This tests new sampling on the <strong>same objects</strong>, not unseen-object generalization.</p>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Selected change</th>
+<th style="text-align: right;">Baseline combined</th>
+<th style="text-align: right;">Selected combined</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Small bottle</td>
+<td>Keep ADMM</td>
+<td style="text-align: right;">7/10</td>
+<td style="text-align: right;">7/10</td>
+</tr>
+<tr>
+<td>Medium bottle</td>
+<td>Keep ADMM</td>
+<td style="text-align: right;">7/10</td>
+<td style="text-align: right;">7/10</td>
+</tr>
+<tr>
+<td>Large bottle, 137 mm diameter</td>
+<td>Dexonomy wrap</td>
+<td style="text-align: right;">2/10</td>
+<td style="text-align: right;">4/10</td>
+</tr>
+<tr>
+<td>Largest bottle, 205 mm diameter</td>
+<td>Keep ADMM</td>
+<td style="text-align: right;">0/10</td>
+<td style="text-align: right;">0/10</td>
+</tr>
+<tr>
+<td>Small mug</td>
+<td>Keep ADMM</td>
+<td style="text-align: right;">1/10</td>
+<td style="text-align: right;">1/10</td>
+</tr>
+<tr>
+<td>Small can</td>
+<td>Middle-fingertip Dexonomy</td>
+<td style="text-align: right;">2/10</td>
+<td style="text-align: right;">8/10</td>
+</tr>
+<tr>
+<td>Small phone</td>
+<td>Large-fingertip Dexonomy</td>
+<td style="text-align: right;">6/10</td>
+<td style="text-align: right;">4/10</td>
+</tr>
+<tr>
+<td>Small hammer</td>
+<td>Handle contacts + middle fingertips</td>
+<td style="text-align: right;">5/10</td>
+<td style="text-align: right;">2/10</td>
+</tr>
+<tr>
+<td><strong>Total, physical criteria only</strong></td>
+<td></td>
+<td style="text-align: right;"><strong>30/80</strong></td>
+<td style="text-align: right;"><strong>33/80</strong></td>
+</tr>
+</tbody>
+</table>
+<p>For the hammer, the baseline's five physically passing grasps fail the handle-only intent criterion, while both selected combined passes satisfy it. With the declared intent criterion applied to that row, the totals become <strong>25/80 versus 33/80</strong>. This small mixed-task total is descriptive, not a statistical superiority claim.</p>
+<p>The phone regression is important. A choice based on one seed can be wrong. An effective agent should inspect evidence, retain alternatives, and verify a changed configuration rather than treating its semantic judgment as ground truth.</p>
+<h2 id="robustness-of-the-selected-examples">Robustness of the selected examples</h2>
+<p>Each selected successful example was retested with six separate changes: ±2 mm x translation at reset, ±3° z rotation at reset, mass 100 → 120 g, and friction 0.6 → 0.5. Each row below counts passes of all three physical tests across these six checks; it is not a population success estimate.</p>
+<table>
+<thead>
+<tr>
+<th>Selected example</th>
+<th style="text-align: right;">Perturbation passes</th>
+<th>Observed limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Default medium bottle</td>
+<td style="text-align: right;">6/6</td>
+<td>No failure in these six checks</td>
+</tr>
+<tr>
+<td>ADMM small bottle</td>
+<td style="text-align: right;">6/6</td>
+<td>No failure in these six checks</td>
+</tr>
+<tr>
+<td>Middle-fingertip small can</td>
+<td style="text-align: right;">5/6</td>
+<td>+2 mm reset shift fails</td>
+</tr>
+<tr>
+<td>Handle-targeted small hammer</td>
+<td style="text-align: right;">5/6</td>
+<td>−3° reset rotation fails</td>
+</tr>
+<tr>
+<td>Gentler-squeeze brick</td>
+<td style="text-align: right;">5/6</td>
+<td>+20% mass fails</td>
+</tr>
+<tr>
+<td>Region-targeted large mug, selected rare success</td>
+<td style="text-align: right;">6/6</td>
+<td>Low generation yield remains: only 1/10 combined passes</td>
+</tr>
+</tbody>
+</table>
+<p>Thus the improved examples are more than attractive configurations, but some still have narrow operating margins. These checks do not replace friction/contact-model variation across simulators or hardware tests.</p>
+<h2 id="how-this-changes-the-research-hypothesis">How this changes the research hypothesis</h2>
+<p>The best current hypothesis is not “datasets hide scale and an agent will fix the optimizer.” It is:</p>
+<blockquote>
+<p>Grasp synthesis has several interacting choices—contact topology, contact region, optimizer, enclosure strength, and task constraints. Their best settings vary with object geometry and intended use. An agent may be useful as a feedback-driven coordinator of those choices, provided it is judged on executed physical and task outcomes.</p>
+</blockquote>
+<p>We did <strong>not</strong> establish that the source datasets contain only similarly sized objects. Dexonomy already supports multiple grasp types and hand-specific templates; it should receive that capability in a fair comparison. The <a href="https://github.com/JYChen18/Dexonomy">official repository</a> describes template-based synthesis, while <a href="https://dexfunc.github.io/">Dexterous Functional Grasping</a> already highlights object size, mass, and functional-contact challenges. Our contribution would need to be measured adaptation and reliable evaluation, not claiming those issues were previously unknown.</p>
+<p>A useful next experiment is a preregistered comparison on unseen objects and sizes: (1) strongest single fixed configuration; (2) fixed template/parameter portfolio with search; (3) simple geometry-based rules; (4) agent-guided adaptation. Match simulator-call or wall-time budgets, count every failed proposal, and keep the physical evaluator separate from the adaptation loop. Add actual hammering/pouring tasks and test different hands. This pilot is promising enough to justify that study, but does not yet demonstrate a publishable agent advantage.</p>
+<h2 id="reproducibility-and-limitations">Reproducibility and limitations</h2>
+<ul>
+<li>Source: Dexonomy commit <code>d561ff9df8545deef7a3f9e7cfb4045ef66f6913</code>, with a clean upstream working tree. Native GraspADMM uses its default 50 outer steps, ten simulation substeps, rho 1000, object learning rate 2e-4. Dexonomy uses a 20-step cap and ten substeps. Candidate count is matched, not optimization time: ADMM costs more per candidate.</li>
+<li>Local code, configurations, initialization/grasp arrays, measured states, filter logs, per-command and per-stage receipts, plans, and failed attempts are retained under this study directory. <code>summary.csv</code> includes rejected attempts in denominators. <code>confirmation-plan.json</code> predates the confirmation outcomes.</li>
+<li>Four original mug optimizations hit MuJoCo arena allocation errors; a native evaluation also exhausted arena memory, and the first middle-template evaluation terminated with a segmentation fault. The bounded recovery increases arena capacity to 64 MiB without changing physics. All accepted candidates now have complete independent audit records; all four failed optimization attempts were retried and rejected normally. Errors were not counted as physical evidence of grasp failure.</li>
+<li>MuJoCo teardown issues are bypassed only after artifacts are flushed. Per-case simulation records, not process exit alone, support results. Original failed logs remain. The initial command-list files were replaced by later invocations; per-stage configuration/receipt files remain, and the launcher now preserves command history on subsequent invocations.</li>
+<li>The independent evaluator was extended to retain relative object–hand motion after initial inspection showed that world-coordinate drift conflates wrist compliance with slip. Original measurements and earlier audit files are preserved. This was exploratory analysis, not a preregistered benchmark.</li>
+<li>Seven geometries, one hand, two sampling seeds on a subset, manually annotated semantic regions, simplified collision assets, fixed mass, and a compliant floating wrist limit generalization. Ten candidates selected from one initialization batch are correlated; no binomial confidence claim is made from treating them as ten independent object trials.</li>
+<li>DexGraspNet's older LEAP/Wuji adapter and the ongoing IsaacLab/Grogu work are not included in this numerical comparison. No Grogu jobs, other project budgets, or research pauses were changed.</li>
+</ul>
+<p>To rerun a fresh baseline from this directory, use the provided environment and a new output name:</p>
+<pre><code class="language-bash">python campaign.py \
+  --run fresh-wrap --stages init,grasp,physical
+</code></pre>
+<p><code>next_trials.py</code>, <code>followup_trials.py</code>, <code>confirm_trials.py</code>, and <code>mug_trials.py</code> specify the comparisons. Use fresh run names or a copied study directory when reproducing; do not overwrite this evidence. The local viewer is served through the existing port 8894 server at <code>/size-study/viewer/index.html</code>.</p></body></html>
