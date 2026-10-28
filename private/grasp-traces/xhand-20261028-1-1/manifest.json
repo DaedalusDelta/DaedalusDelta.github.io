@@ -1,0 +1,70 @@
+{
+  "browser_status": "NOT_BROWSER_TESTED",
+  "case": "xHand right-hand optimization example",
+  "coordinates": "right-handed XYZ",
+  "entry": "index.html",
+  "files": {
+    "README.md": {
+      "bytes": 1128,
+      "sha256": "06e13cef5b435aae17ee492679f774dd0391e0dc94f49083235921314182b8a6"
+    },
+    "THIRD_PARTY_NOTICES.txt": {
+      "bytes": 745,
+      "sha256": "dfb7965a4a8ea8fe8411db1d9fb53a48b82f0a3fbc83e9f5c0e6048d443ddd41"
+    },
+    "index.html": {
+      "bytes": 8922749,
+      "sha256": "4e77bfc8e90071e02b6ef2456fe396725fea80904d958dab32abca5e53569be5"
+    },
+    "licenses/TRIMESH-MIT-LICENSE.md": {
+      "bytes": 1090,
+      "sha256": "fe27b5ef8710676cc85255da28a32f394e2ef3f4ce47075a1c732a9ea1d7bd03"
+    },
+    "trace.json": {
+      "bytes": 20906755,
+      "sha256": "54e175ad823a31df0e50d39f00e9b3bad298b300a3e8bee75239bb141eab480c"
+    },
+    "viewer-generic.html": {
+      "bytes": 694689,
+      "sha256": "b7d616ba268d45d50bf03b1ecd2419784f9d2949d3776a9d58446a562f8f62b8"
+    }
+  },
+  "generic_viewer": "viewer-generic.html",
+  "geometry_layers": {
+    "hand_operative": 12,
+    "object_piece": 2,
+    "vendor_visual": 19
+  },
+  "historical_outcome_override": false,
+  "limitations": [
+    "Cached transforms may lag integrated joint state.",
+    "MAIN is a distinct endpoint, with eight native rows versus seven planned rows.",
+    "Object-QP normal evaluation point and constructor internal work remain UNKNOWN.",
+    "Display and fit values are not clearance, force, physical-success or model-qualification evidence.",
+    "No fabricated intermediate states.",
+    "Asset license completeness is not asserted; upstream/data are not relicensed."
+  ],
+  "model_adoption": false,
+  "physical_success": null,
+  "privacy": "Operational metadata removed; scientific geometry/body/row/state identifiers preserved.",
+  "publication": "Prepared derivative only; deployment handled separately.",
+  "row_domains": [
+    7,
+    7,
+    7,
+    7,
+    7,
+    8
+  ],
+  "schema": "graspgen-public-viewer-release/v1",
+  "source_content_identities": {
+    "hand_model_sha256": "63b0f283237c520594f82474f3ee42706c240a7f25faf2ef5dda39aaeef904c7",
+    "policy_sha256": "64f2ba1c0a6359f017036ef0812f98a0daa185515ada5a4d726acee83566406b"
+  },
+  "state_count": 6,
+  "stored_fit_metric_literals": 42,
+  "trace": "trace.json",
+  "trace_schema": "graspgen-3d-trace/v1",
+  "units": "m",
+  "version": "2026-10-28-v1"
+}
