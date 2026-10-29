@@ -1,0 +1,5 @@
+Third-party source notice — graspgen interactive 3D viewer
+
+The inline Three.js r115, TrackballControls, and GLTFLoader JavaScript prefix is copied without alteration from the installed Trimesh 4.5.3 resource viewer.zip member viewer.html.template. The original inline notice `// threejs.org/license` is preserved at the start of the script. See https://threejs.org/license for the upstream Three.js license terms. GLTFLoader is bundled but not called by this adapter.
+
+The member source is pinned by SHA256 e7a4d79d02787ac109375ebb194ae379bafc83c298f0dee9366204771350980f. The archive is pinned by SHA256 50941c26df9634a8cbdd0ad3b81c831872c7ed4f6321c7329ecac133e9e74433. This notice does not change or relicense the bundled third-party code.
