@@ -123,9 +123,9 @@ description: Ray Muxin Liu is a fourth-year Carnegie Mellon University School of
 
     <article class="paper-card">
       <div class="paper-layout">
-        <div class="paper-thumb">
+        <a class="paper-thumb" href="https://cowboy-manip.com/" aria-label="COWBOY project page">
           <img src="/assets/images/papers/cowboy.jpg" alt="COWBOY whole-body mobile manipulation experiments across diverse environments">
-        </div>
+        </a>
         <div class="paper-body">
           <div class="paper-meta">
             <span>2026</span>
@@ -133,13 +133,16 @@ description: Ray Muxin Liu is a fourth-year Carnegie Mellon University School of
           </div>
           <h3>COWBOY: A Scalable Sim-to-Real Framework for Learning Contextual Whole-Body Manipulation</h3>
           <p class="paper-authors">Jiahui Yang*, Jason Jingzhou Liu*, <strong class="paper-author-highlight">Ray Muxin Liu*</strong>, Andrew E. Wang, Kenneth Shaw, Deepak Pathak, Ruslan Salakhutdinov</p>
-          <p class="paper-venue">CoRL 2026 · Accepted (unreleased)</p>
+          <p class="paper-venue">Conference on Robot Learning (CoRL) 2026</p>
           <p>
             A scalable sim-to-real framework for contextual whole-body mobile
             manipulation, using local reinforcement-learning experts,
             student-teacher distillation, whole-body control, and simulation
             evaluation.
           </p>
+          <div class="paper-links">
+            <a href="https://cowboy-manip.com/">Project</a>
+          </div>
         </div>
       </div>
     </article>
@@ -156,6 +159,7 @@ description: Ray Muxin Liu is a fourth-year Carnegie Mellon University School of
           </div>
           <h3>IFG: Internet-Scale Guidance for Functional Grasping Generation</h3>
           <p class="paper-authors"><strong class="paper-author-highlight">Ray Muxin Liu*</strong>, Mingxuan Li*, Kenneth Shaw, Deepak Pathak</p>
+          <p class="paper-venue">IROS 2026 Workshop on Physical World Models for Scaling Embodied AI · Outstanding Paper Award</p>
           <p class="paper-venue">ICRA Workshop on Robot Learning Prior Maps · Best Poster Finalist</p>
           <p>
             A grasp generation framework that combines internet-scale semantic cues
