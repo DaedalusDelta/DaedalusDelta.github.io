@@ -1,0 +1,453 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Ray Muxin Liu//CoRL 2026 Personal Plan//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:CoRL 2026 Personal Plan
+X-WR-TIMEZONE:America/Chicago
+BEGIN:VEVENT
+UID:corl-2026-plan-badge-plan@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261109T174500Z
+DTEND:20261109T180000Z
+SUMMARY:Pick up badge\, then catch O3 if time
+LOCATION:JW Marriott · Room 201\, then viewing room
+DESCRIPTION:Pick up the badge\, then catch the end of O3 if there is time. 
+ O3 starts at 11:30 a.m.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://jaywu109.github.io/papers/corl-2026/
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-expo-plan9@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261109T180000Z
+DTEND:20261109T194000Z
+SUMMARY:Explore booths and demos
+LOCATION:JW Marriott · Expo
+DESCRIPTION:Visit booths and demos before the NVIDIA keynote.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://raymuxinliu.com/corl/#booth-directory
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-jim-fan@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261109T194000Z
+DTEND:20261109T203000Z
+SUMMARY:Jim Fan (NVIDIA) · World Action Models and Agentic Robotics
+LOCATION:JW Marriott · conference viewing room
+DESCRIPTION:Join the JW Marriott stream at 1:40 p.m. to catch the start. Ji
+ m Fan announced 1:45 p.m. and NVIDIA lists 1:50 p.m. Austin time. Covers w
+ orld action models\, robot foundation models\, and how video\, robot data 
+ and simulation support training. The 2:30 p.m. end is a planning estimate.
+  Check Cvent for the exact slot.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://www.nvidia.com/en-us/events/corl/
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-expo-plan9-later@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261109T203000Z
+DTEND:20261109T223000Z
+SUMMARY:Explore booths and demos
+LOCATION:JW Marriott · Expo
+DESCRIPTION:Visit booths and demos after the NVIDIA keynote. Try the hands-
+ on AIRoA YUBI demo in Lone Star 7 on Level 3.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://raymuxinliu.com/corl/#booth-directory
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-cowboy-setup@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261109T223000Z
+DTEND:20261109T230000Z
+SUMMARY:Mount COWBOY poster #135
+LOCATION:JW Marriott · Griffin\, Level 2
+DESCRIPTION:Set up before the 5 p.m. poster session.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://cowboy-manip.com/
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-cowboy@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261109T230000Z
+DTEND:20261109T231500Z
+SUMMARY:Start at COWBOY poster #135
+LOCATION:JW Marriott · Griffin\, Level 2
+DESCRIPTION:Main-track poster session runs from 5 to 6:30 p.m.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://cowboy-manip.com/
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-xynova@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261109T231500Z
+DTEND:20261109T233500Z
+SUMMARY:Talk to Xynova
+LOCATION:JW Marriott Austin
+DESCRIPTION:Planned recruiting conversation. Xynova is also at booth #604.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://xynova.ai/about-us
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-cowboy-return@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261109T233500Z
+DTEND:20261110T003000Z
+SUMMARY:Return to COWBOY poster #135
+LOCATION:JW Marriott · Griffin\, Level 2
+DESCRIPTION:Return for the rest of the main-track poster session.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://cowboy-manip.com/
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-long-center@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261110T003000Z
+DTEND:20261110T010000Z
+SUMMARY:Choose a side event or the CoRL dinner
+LOCATION:From JW Marriott
+DESCRIPTION:Gento runs 6–8 p.m. and Maxinsights runs 6–9 p.m. Check ava
+ ilability with the organizers. If neither works\, take the CoRL shuttle to
+  the welcome dinner. https://luma.com/wq7neni9
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://luma.com/6ua2bbzf
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-welcome@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261110T010000Z
+DTEND:20261110T040000Z
+SUMMARY:CoRL welcome dinner (fallback)
+LOCATION:Long Center · 701 W Riverside Dr
+DESCRIPTION:Fallback if Gento and Maxinsights are unavailable.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://www.corl.org/attending/venue-information
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-s3@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261110T143000Z
+DTEND:20261110T150000Z
+SUMMARY:S3 · Human learning\, dexterity & cooperation
+LOCATION:Hilton Austin · main stage\; JW Marriott viewing rooms
+DESCRIPTION:The paper index gives the session and individual paper assignme
+ nts. Verify room in Cvent.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://jaywu109.github.io/papers/corl-2026/
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-o4@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261110T150000Z
+DTEND:20261110T153000Z
+SUMMARY:O4 · Reinforcement learning & motion reasoning
+LOCATION:Hilton Austin · main stage\; JW Marriott viewing rooms
+DESCRIPTION:The paper index gives the session and individual paper assignme
+ nts. Verify room in Cvent.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://jaywu109.github.io/papers/corl-2026/
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-o5@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261110T163000Z
+DTEND:20261110T170000Z
+SUMMARY:O5 · Dexterous learning\, grasping & assembly
+LOCATION:Hilton Austin · main stage\; JW Marriott viewing rooms
+DESCRIPTION:The paper index gives the session and individual paper assignme
+ nts. Verify room in Cvent.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://jaywu109.github.io/papers/corl-2026/
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-o6@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261110T170000Z
+DTEND:20261110T173000Z
+SUMMARY:O6 · Force\, tactile control & manipulation planning
+LOCATION:Hilton Austin · main stage\; JW Marriott viewing rooms
+DESCRIPTION:The paper index gives the session and individual paper assignme
+ nts. Verify room in Cvent.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://jaywu109.github.io/papers/corl-2026/
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-o7@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261110T173000Z
+DTEND:20261110T180000Z
+SUMMARY:O7 · Humanoid data\, control & skills
+LOCATION:Hilton Austin · main stage\; JW Marriott viewing rooms
+DESCRIPTION:The paper index gives the session and individual paper assignme
+ nts. Verify room in Cvent.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://jaywu109.github.io/papers/corl-2026/
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-jwm-lunch@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261110T180000Z
+DTEND:20261110T182500Z
+SUMMARY:Walk to JW Marriott and get lunch
+LOCATION:Hilton → JW Marriott
+DESCRIPTION:
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://www.corl.org/attending/venue-information
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-lbr10-plan@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261110T182500Z
+DTEND:20261110T191000Z
+SUMMARY:Late-breaking posters · Real2Sim2Real
+LOCATION:JW Marriott · Griffin\, Level 2
+DESCRIPTION:The late-breaking poster session runs noon–1:30 p.m. This vis
+ it focuses on Real2Sim2Real.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://github.com/SimeonOA/bair-at-corl-2026
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-followup-tue@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261110T203000Z
+DTEND:20261110T211500Z
+SUMMARY:Booth follow-ups · AGIBOT\, Franka and Feather
+LOCATION:JW Marriott Austin
+DESCRIPTION:Visit AGIBOT #804\, Franka #802 and Feather #108.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://raymuxinliu.com/corl/#booth-directory
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-tedrake@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261110T213000Z
+DTEND:20261110T223000Z
+SUMMARY:Russ Tedrake · Learning in the Factories
+LOCATION:JW Marriott viewing rooms
+DESCRIPTION:Watch the Hilton stream from the JW Marriott. Check Cvent for t
+ he exact timing.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://www.corl.org/program/keynotes
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-sieve-plan@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261110T224000Z
+DTEND:20261110T230000Z
+SUMMARY:Talk to Sieve
+LOCATION:JW Marriott Austin
+DESCRIPTION:Planned recruiting drop-in. Sieve is also at booth #508.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://www.sieve.ai/about
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-p2@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261110T230000Z
+DTEND:20261111T003000Z
+SUMMARY:Main-track poster session 2
+LOCATION:JW Marriott · Griffin & Lone Star
+DESCRIPTION:Open the source to look up individual papers and poster numbers
+ .
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://jaywu109.github.io/papers/corl-2026/
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-bedrock@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261111T023000Z
+DTEND:20261111T053000Z
+SUMMARY:Bedrock × NVIDIA · CoRL After Dark
+LOCATION:Austin. Check organizer listing for venue.
+DESCRIPTION:See the organizer's listing for registration\, access details\,
+  and updates.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://luma.com/6zvo84pn
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-path@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261111T154500Z
+DTEND:20261111T164500Z
+SUMMARY:Path Robotics · Physical AI in Manufacturing
+LOCATION:JW Marriott Austin\, Room 302
+DESCRIPTION:See the organizer's listing for registration\, access details\,
+  and updates.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://luma.com/grm48cpz
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-p3-plan@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261111T165000Z
+DTEND:20261111T180000Z
+SUMMARY:Main-track poster session 3
+LOCATION:JW Marriott · Griffin & Lone Star
+DESCRIPTION:Join after Path Robotics. Official session starts at 10:30 a.m.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://jaywu109.github.io/papers/corl-2026/
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-last-booths@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261111T180000Z
+DTEND:20261111T184500Z
+SUMMARY:Final expo round
+LOCATION:JW Marriott Austin
+DESCRIPTION:Return to any remaining booths before the expo closes at 1 p.m.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://raymuxinliu.com/corl/#booth-directory
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-to-bass@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261111T201500Z
+DTEND:20261111T210000Z
+SUMMARY:Head to Bass Concert Hall
+LOCATION:Bass Concert Hall\, UT Austin
+DESCRIPTION:Check Cvent for shuttle stops and exact closing program timing.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://www.corl.org/attending/venue-information
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-li@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261111T210000Z
+DTEND:20261111T223000Z
+SUMMARY:Fei-Fei Li · Atlas\, followed by Lisa Su fireside chat
+LOCATION:Bass Concert Hall\, UT Austin
+DESCRIPTION:Reported 3 p.m. start (https://vqv.me/s/vm535/). End time is a 
+ planning hold. Check Cvent.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://www.corl.org/program/keynotes
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-closing-hold@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261111T223000Z
+DTEND:20261111T233000Z
+SUMMARY:Panel\, awards and closing · timing hold
+LOCATION:Bass Concert Hall\, UT Austin
+DESCRIPTION:The official site places these on Wednesday afternoon. This slo
+ t reserves time in your plan\; check Cvent for the actual order and times.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://www.corl.org/attending/venue-information
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-dyna@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261112T000000Z
+DTEND:20261112T030000Z
+SUMMARY:Dyna Robotics happy hour
+LOCATION:Austin. Check organizer listing for venue.
+DESCRIPTION:See the organizer's listing for registration\, access details\,
+  and updates.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://luma.com/3du99deo
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-w18@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261112T143000Z
+DTEND:20261112T183000Z
+SUMMARY:Bimanual Dexterous Tool Use
+LOCATION:JW Marriott · Rooms 303–304
+DESCRIPTION:Morning workshop on contact-rich execution\, tactile sensing an
+ d bimanual tool use.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://bimanual-tool.github.io/
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-dex-open-plan@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261112T200000Z
+DTEND:20261112T212000Z
+SUMMARY:Full-Stack Dexterous Manipulation · talks and spotlights
+LOCATION:Check Cvent for room
+DESCRIPTION:Includes the opening talk and the start of the spotlight block.
+  Leave early enough to set up IFG.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://dex-manipulation.github.io/corl2026/
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-ifg-setup@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261112T212000Z
+DTEND:20261112T213000Z
+SUMMARY:Set up IFG poster
+LOCATION:Full-Stack Dexterous Manipulation · check Cvent for room
+DESCRIPTION:Set up before the workshop poster session.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://dex-manipulation.github.io/corl2026/
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-ifg@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261112T213000Z
+DTEND:20261112T220000Z
+SUMMARY:Present IFG · Functional Grasping workshop poster
+LOCATION:Full-Stack Dexterous Manipulation · check Cvent for room
+DESCRIPTION:Present during the workshop poster session. Check the organizer
+ 's program for updates.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://dex-manipulation.github.io/corl2026/
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-dexdemo@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261112T220000Z
+DTEND:20261112T224000Z
+SUMMARY:Dexterous Manipulation workshop · live demos
+LOCATION:Check Cvent for room
+DESCRIPTION:Organizer schedule marked tentative.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://dex-manipulation.github.io/corl2026/
+END:VEVENT
+BEGIN:VEVENT
+UID:corl-2026-plan-dex-end-plan@raymuxinliu.com
+DTSTAMP:20261109T103945Z
+DTSTART:20261112T224000Z
+DTEND:20261113T000000Z
+SUMMARY:Full-Stack Dexterous Manipulation · panel and wrap-up
+LOCATION:Check Cvent for room
+DESCRIPTION:Organizer’s tentative program includes a talk\, panel\, and c
+ losing.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+URL:https://dex-manipulation.github.io/corl2026/
+END:VEVENT
+END:VCALENDAR
